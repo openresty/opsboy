@@ -1,0 +1,38 @@
+all {
+    dep ngx_srcache etcproxy;
+}
+
+etcproxy {
+    git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
+    dep erlang;
+}
+
+erlang {
+    prog erl erlc;
+    yum erlang;
+}
+
+ngx_srcache {
+    git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
+    dep nginx-devel-utils;
+}
+
+nginx-devel-utils {
+    git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
+    dep no-pool-nginx;
+    dep ngx_openresty;
+}
+
+no-pool-nginx {
+    git git://github.com/shrimp/no-pool-nginx.git ~/git/no-pool-nginx;
+}
+
+ngx_openresty {
+    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+}
+
+git {
+    prog git;
+    yum git;
+}
+
