@@ -1,0 +1,8 @@
+This is a rule-based sysadmin script generator.
+
+    # on the developer host machine
+    ./opsboy openresty-tester.ob -o openresty-tester.pl
+
+    # on the target machine
+    ./openresty-test.pl
+
