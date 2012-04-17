@@ -33,12 +33,15 @@ command: 'git'
        | 'file'
        | 'dir'
        | 'dep'
+       | 'cwd'
+       | 'env'
+       | 'always'
+       | 'sh'
        | 'yum'
        | 'prog'
        | <error>
 
-argument: /"(?:\\.|[^\\"])*"/ { eval $item[1] }
-        | /'(?:\\.|[^\\'])*'/ { eval $item[1] }
+argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
         | /[^;\s]+/
         | <error>
 
@@ -164,7 +167,7 @@ sub make ($) {
 
     my $rules = $entities->{$target};
     if (!$rules) {
-        die "entity $rules not defined.\n";
+        die "entity $target not defined.\n";
     }
 
     my $deps = $rules->{dep};
@@ -229,11 +232,51 @@ sub make ($) {
         }
     }
 
+    if ($rules->{always}) {
+        $requires_making = 1;
+    }
+
     if ($requires_making) {
         my $pkgs = $rules->{yum};
         if ($pkgs) {
             for my $pkg (@$pkgs) {
                 sh("sudo", "yum", "install", $pkg, "-y");
+            }
+        }
+
+        my $cwds = $rules->{cwd};
+        if (defined $cwds) {
+            for my $cwd (@$cwds) {
+                $cwd =~ s/^~/$ENV{HOME}/;
+                chdir $cwd or die "Cannot cd to $cwd\n";
+            }
+        }
+
+        my $envs = $rules->{env};
+        if (defined $envs) {
+            my @vals = @$envs;
+            while (@vals) {
+                my $name = shift @vals;
+                if (!defined $name) {
+                    die "Undefined environment name.\n";
+                }
+
+                my $value = shift @vals;
+                if (!defined $value) {
+                    die "Environment $name does not take a value.\n";
+                }
+
+                $value =~ s/\$(\w+)/$ENV{$1}/g;
+                $ENV{$name} = $value;
+            }
+        }
+
+        my $cmds = $rules->{sh};
+        if ($cmds) {
+            for my $cmd (@$cmds) {
+                $cmd =~ s/\$(\w+)/$ENV{$1}/g;
+                warn "CMD: [$cmd]";
+                sh($cmd);
             }
         }
     }

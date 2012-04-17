@@ -14,17 +14,24 @@ erlang {
 
 ngx_srcache {
     git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
-    dep nginx-devel-utils;
+    dep ndk ngx_set_misc ngx_redis;
 }
 
 nginx-devel-utils {
     git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
     dep no-pool-nginx;
     dep ngx_openresty;
+    dep patch;
+}
+
+ngx_set_misc {
+    git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+    dep ndk;
 }
 
 no-pool-nginx {
     git git://github.com/shrimp/no-pool-nginx.git ~/git/no-pool-nginx;
+    dep patch;
 }
 
 ngx_openresty {
@@ -34,5 +41,46 @@ ngx_openresty {
 git {
     prog git;
     yum git;
+}
+
+test-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    sh 'sh ./util/build.sh $nginx_version';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep ngx_srcache nginx-module-test;
+}
+
+nginx-module-test {
+    always;
+    env PATH $PWD/work/nginx/sbin:$HOME/git/nginx-devel-utils:$PATH;
+    dep prove test-nginx no-pool-nginx nginx-devel-utils axel;
+}
+
+axel {
+    prog axel;
+    cwd /tmp;
+    sh 'wget \'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2\' && tar -xvf axel-2.4.tar.bz2 && cd axel-2.4 && ./configure && make && sudo make install';
+}
+
+prove {
+    prog prove;
+    yum perl-Test-Harness;
+}
+
+test-nginx {
+    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+}
+
+patch {
+    prog patch;
+    yum patch;
+}
+
+ndk {
+    git git://github.com/simpl/ngx_devel_kit.git ~/git/ndk-nginx-module;
+}
+
+ngx_redis {
 }
 
