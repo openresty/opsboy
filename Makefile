@@ -2,8 +2,8 @@
 
 all: openresty-tester.pl
 
-openresty-tester.pl:
-	./opsboy -o openresty-tester.pl samples/openresty-tester.ob
+openresty-tester.pl: samples/openresty-tester.ob opsboy
+	./opsboy -o $@ $<
 
 test: all
 	./openresty-tester.pl check

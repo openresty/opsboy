@@ -136,6 +136,8 @@ use 5.006001;
 use strict;
 use warnings;
 
+use File::Spec;
+
 my ($default_goal, $entities);
 my $check_only;
 
@@ -144,6 +146,8 @@ my (%made, %making);
 sub make ($);
 sub check_dir ($);
 sub main ();
+sub can_run ($);
+sub sh (@);
 
 sub make ($) {
     my $target = shift;
@@ -182,13 +186,6 @@ sub make ($) {
 
     warn "making $target ...\n";
 
-    my $dirs = $rules->{dir};
-    if ($dirs) {
-        for my $dir (@$dirs) {
-            check_dir($dir);
-        }
-    }
-
     if ($gits) {
         if (@$gits % 2 != 0) {
             die "Bad number of arguments to the \"git\" command: ",
@@ -201,12 +198,42 @@ sub make ($) {
             my $dir = shift @args;
 
             $dir =~ s/^~/$ENV{HOME}/;
+
+            my $parent;
+            if ($dir =~ m{(.+/)[^/]+$}) {
+                $parent = $1;
+                if (!-d $parent) {
+                    sh("mkdir", "-p", $parent);
+                }
+            }
+
             if (!good_git_repos($dir)) {
                 if (-d $dir) {
                     sh("rm", "-rf", $dir);
                 }
 
                 sh("git", "clone", $url, $dir);
+            }
+        }
+    }
+
+    my $requires_making;
+
+    my $progs = $rules->{prog};
+    if ($progs) {
+        for my $prog (@$progs) {
+            if (!can_run($prog)) {
+                warn "program $prog missing.\n";
+                $requires_making = 1;
+            }
+        }
+    }
+
+    if ($requires_making) {
+        my $pkgs = $rules->{yum};
+        if ($pkgs) {
+            for my $pkg (@$pkgs) {
+                sh("sudo", "yum", "install", $pkg, "-y");
             }
         }
     }
@@ -254,15 +281,42 @@ sub main () {
     if ($cmd eq 'check') {
         $check_only = 1;
 
-        make($default_goal);
-
     } elsif ($cmd eq 'make') {
         undef $check_only;
-
-        make($default_goal);
 
     } else {
         die "unknown command: $cmd\n";
     }
+
+    if (@ARGV) {
+        for my $goal (@ARGV) {
+            make ($goal);
+        }
+
+    } else {
+        make($default_goal);
+    }
+}
+
+# check if we can run some command
+sub can_run ($) {
+    my ($cmd) = @_;
+
+    #warn "can run: @_\n";
+    my $_cmd = $cmd;
+    return $_cmd if -x $_cmd;
+
+    return undef if $_cmd =~ m{[\\/]};
+
+    # FIXME: this is a hack; MSWin32 is not supported anyway
+    my $path_sep = ':';
+
+    for my $dir ((split /$path_sep/, $ENV{PATH}), '.') {
+        next if $dir eq '';
+        my $abs = File::Spec->catfile($dir, $_[0]);
+        return $abs if -x $abs;
+    }
+
+    return undef;
 }
 
