@@ -60,7 +60,9 @@ nginx-module-test {
 axel {
     prog axel;
     cwd /tmp;
-    sh 'wget \'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2\' && tar -xvf axel-2.4.tar.bz2 && cd axel-2.4 && ./configure && make && sudo make install';
+    fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
+    tarball axel-2.4.tar.bz2;
+    sh 'cd axel-2.4 && ./configure && make && sudo make install';
 }
 
 prove {

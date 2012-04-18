@@ -39,6 +39,8 @@ command: 'git'
        | 'sh'
        | 'yum'
        | 'prog'
+       | 'fetch'
+       | 'tarball'
        | <error>
 
 argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
@@ -271,6 +273,20 @@ sub make ($) {
             }
         }
 
+        my $fetches = $rules->{fetch};
+        if (defined $fetches) {
+            for my $fetch (@$fetches) {
+                sh('wget', '-N', $fetch);
+            }
+        }
+
+        my $tarballs = $rules->{tarball};
+        if (defined $tarballs) {
+            for my $tarball (@$tarballs) {
+                sh('tar', '-xvf', $tarball);
+            }
+        }
+
         my $cmds = $rules->{sh};
         if ($cmds) {
             for my $cmd (@$cmds) {
@@ -285,10 +301,9 @@ sub make ($) {
 }
 
 sub sh (@) {
-    if ($check_only) {
-        print "@_\n";
+    print "@_\n";
 
-    } else {
+    if (!$check_only) {
         if (system(@_) != 0) {
             die "failed to run command: $?\n";
         }
