@@ -1,3 +1,6 @@
+ngx_redis_version = 0.3.6;
+nginx_version = 1.0.15;
+
 all {
     dep ngx_srcache etcproxy;
 }
@@ -84,5 +87,9 @@ ndk {
 }
 
 ngx_redis {
+    file ~/work/nginx/ngx_http_redis-$ngx_redis_version;
+    cwd ~/work/nginx;
+    fetch http://people.freebsd.org/~osa/ngx_http_redis-$ngx_redis_version.tar.gz;
+    tarball ngx_http_redis-$ngx_redis_version.tar.gz;
 }
 

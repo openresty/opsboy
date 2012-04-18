@@ -21,7 +21,10 @@ spec: entity(s?) eof { $item[1] }
 
 eof: /^\Z/
 
-entity: identifier block { [$item[1], $item[2]] }
+entity: identifier '=' <commit> argument ';'
+            { $return = { $item[1] => $item[4] } }
+      | identifier block { [$item[1], $item[2]] }
+      | <error?>
 
 block: '{' rule(s?) '}' { $item[2] }
      | <error>
@@ -67,7 +70,25 @@ my $ast = $parser->spec($src) or
 
 my $default_goal;
 my %entities;
+my %vars;
+#my $i = 0;
 for my $entity (@$ast) {
+    #warn "$i: ref: ", ref($entity);
+    #$i++;
+    if (!ref $entity) {
+        die "Unknown entity: $entity";
+    }
+
+    if (ref $entity eq 'HASH') {
+        # variable assignment
+        while (my ($name, $val) = each %$entity) {
+            #warn "$name = $val\n";
+            $vars{$name} = $val;
+        }
+
+        next;
+    }
+
     my ($name, $rules) = @$entity;
     if (!$default_goal) {
         $default_goal = $name;
@@ -127,6 +148,7 @@ while (<$data>) {
 }
 
 print $out "\$default_goal = '$default_goal';\n";
+print $out Data::Dumper->Dump([\%vars], ['vars']);
 print $out Data::Dumper->Dump([\%entities], ['entities']);
 print $out "main()";
 close $out;
@@ -143,7 +165,7 @@ use warnings;
 
 use File::Spec;
 
-my ($default_goal, $entities);
+my ($default_goal, $entities, $vars);
 my $check_only;
 
 my (%made, %making);
@@ -230,6 +252,18 @@ sub make ($) {
             if (!can_run($prog)) {
                 warn "program $prog missing.\n";
                 $requires_making = 1;
+                last;
+            }
+        }
+    }
+
+    my $files = $rules->{file};
+    if ($files) {
+        for my $file (@$files) {
+            $file =~ s/^~/$ENV{HOME}/;
+            if (!-e $file) {
+                $requires_making = 1;
+                last;
             }
         }
     }
@@ -250,6 +284,9 @@ sub make ($) {
         if (defined $cwds) {
             for my $cwd (@$cwds) {
                 $cwd =~ s/^~/$ENV{HOME}/;
+                if (!-d $cwd) {
+                    mkdir $cwd or die "Cannot mkdir $cwd\n";
+                }
                 chdir $cwd or die "Cannot cd to $cwd\n";
             }
         }
@@ -276,6 +313,7 @@ sub make ($) {
         my $fetches = $rules->{fetch};
         if (defined $fetches) {
             for my $fetch (@$fetches) {
+                $fetch =~ s/\$(\w+)/$ENV{$1}/g;
                 sh('wget', '-N', $fetch);
             }
         }
@@ -283,6 +321,7 @@ sub make ($) {
         my $tarballs = $rules->{tarball};
         if (defined $tarballs) {
             for my $tarball (@$tarballs) {
+                $tarball =~ s/\$(\w+)/$ENV{$1}/g;
                 sh('tar', '-xvf', $tarball);
             }
         }
@@ -336,6 +375,10 @@ sub main () {
     my $cmd = shift @ARGV or
         die "No command specified.\n";
 
+    while (my ($var, $val) = each %$vars) {
+        $ENV{$var} = $val;
+    }
+
     if ($cmd eq 'check') {
         $check_only = 1;
 
@@ -347,7 +390,17 @@ sub main () {
     }
 
     if (@ARGV) {
-        for my $goal (@ARGV) {
+        my @goals;
+        for my $arg (@ARGV) {
+            if ($arg =~ /^([A-Za-z][-\w]*)=(.*)/) {
+                $ENV{$1} = $2;
+                next;
+            }
+
+            push @goals, $arg;
+        }
+
+        for my $goal (@goals) {
             make ($goal);
         }
 
