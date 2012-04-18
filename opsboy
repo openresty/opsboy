@@ -213,6 +213,25 @@ sub make ($) {
 
     warn "making $target ...\n";
 
+    my $envs = $rules->{env};
+    if (defined $envs) {
+        my @vals = @$envs;
+        while (@vals) {
+            my $name = shift @vals;
+            if (!defined $name) {
+                die "Undefined environment name.\n";
+            }
+
+            my $value = shift @vals;
+            if (!defined $value) {
+                die "Environment $name does not take a value.\n";
+            }
+
+            $value =~ s/\$(\w+)/$ENV{$1}/g;
+            $ENV{$name} = $value;
+        }
+    }
+
     if ($gits) {
         if (@$gits % 2 != 0) {
             die "Bad number of arguments to the \"git\" command: ",
@@ -261,6 +280,7 @@ sub make ($) {
     if ($files) {
         for my $file (@$files) {
             $file =~ s/^~/$ENV{HOME}/;
+            $file =~ s/\$(\w+)/$ENV{$1}/g;
             if (!-e $file) {
                 $requires_making = 1;
                 last;
@@ -291,25 +311,6 @@ sub make ($) {
             }
         }
 
-        my $envs = $rules->{env};
-        if (defined $envs) {
-            my @vals = @$envs;
-            while (@vals) {
-                my $name = shift @vals;
-                if (!defined $name) {
-                    die "Undefined environment name.\n";
-                }
-
-                my $value = shift @vals;
-                if (!defined $value) {
-                    die "Environment $name does not take a value.\n";
-                }
-
-                $value =~ s/\$(\w+)/$ENV{$1}/g;
-                $ENV{$name} = $value;
-            }
-        }
-
         my $fetches = $rules->{fetch};
         if (defined $fetches) {
             for my $fetch (@$fetches) {
@@ -330,7 +331,7 @@ sub make ($) {
         if ($cmds) {
             for my $cmd (@$cmds) {
                 $cmd =~ s/\$(\w+)/$ENV{$1}/g;
-                warn "CMD: [$cmd]";
+                #warn "CMD: [$cmd]";
                 sh($cmd);
             }
         }

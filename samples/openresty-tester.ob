@@ -1,8 +1,10 @@
 ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
+openresty_version = 1.0.11.28;
+jobs = 1;
 
 all {
-    dep ngx_srcache etcproxy;
+    dep test-ngx_srcache;
 }
 
 etcproxy {
@@ -17,7 +19,73 @@ erlang {
 
 ngx_srcache {
     git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
-    dep ndk ngx_set_misc ngx_redis;
+    dep ndk ngx_set_misc ngx_redis ngx_xss;
+    dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
+    dep ngx_lua ngx_rds_json ngx_drizzle;
+}
+
+ngx_drizzle {
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    git git://github.com/chaoslawful/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
+
+    dep libdrizzle;
+}
+
+libdrizzle {
+    file /opt/drizzle/lib/libdrizzle.so;
+    file /opt/drizzle/include/libdrizzle-1.0/libdrizzle/drizzle.h;
+    cwd /tmp;
+    fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
+    tarball drizzle7-2011.07.21.tar.gz;
+    sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && make install-libdrizzle-1.0';
+}
+
+ngx_rds_json {
+    git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+}
+
+ngx_xss {
+    git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+}
+
+ngx_redis2 {
+    git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+}
+
+ngx_eval {
+    git git://github.com/agentzh/nginx-eval-module.git ~/git/eval-nginx-module;
+}
+
+ngx_echo {
+    git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+}
+
+ngx_lua {
+    git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
+    env LUAJIT_LIB /usr/local/openresty/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty/luajit/include/luajit-2.0;
+    dep ndk luajit;
+}
+
+luajit {
+    dep ngx_openresty-debug;
+}
+
+ngx_openresty-debug {
+    file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
+    file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
+    file /usr/local/openresty-debug/nginx/sbin/nginx;
+    cwd /tmp;
+    fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
+    tarball ngx_openresty-$openresty_version.tar.gz;
+    sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug && make -j$jobs && sudo make install';
+    dep libdrizzle;
+}
+
+ngx_headers_more {
+    git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
 }
 
 nginx-devel-utils {
@@ -49,6 +117,8 @@ git {
 test-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
+    sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    sh 'touch config';
     sh 'sh ./util/build.sh $nginx_version';
     sh 'prove -I../test-nginx/lib -r t';
     dep ngx_srcache nginx-module-test;
