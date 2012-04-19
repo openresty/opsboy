@@ -464,6 +464,8 @@ sub main () {
                 } else {
                     die "unknown option: $arg\n";
                 }
+
+                next;
             }
 
             push @goals, $arg;

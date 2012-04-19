@@ -7,12 +7,14 @@ redis_version = 2.4.10;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
 force = 0;
+ragel_version = 6.7;
 
 
 all {
     dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
     dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
-    dep test-ngx_redis2 test-ngx_lua;
+    dep test-ngx_redis2 test-ngx_echo test-ngx_lua;
+    dep test-ngx_array_var;
 }
 
 etcproxy {
@@ -35,6 +37,15 @@ ngx_srcache {
 
 ngx_memc {
     git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+    dep ragel;
+}
+
+ragel {
+    prog ragel;
+    cwd /tmp;
+    fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
+    tarball ragel-$ragel_version.tar.gz;
+    sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
 }
 
 ngx_upstream_keepalive {
@@ -90,10 +101,12 @@ ngx_form_input {
 
 ngx_xss {
     git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+    dep ragel;
 }
 
 ngx_redis2 {
     git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+    dep ragel;
 }
 
 ngx_eval {
@@ -315,7 +328,7 @@ test-ngx_srcache {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -331,7 +344,7 @@ test-ngx_set_misc {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -347,7 +360,7 @@ test-ngx_rds_json {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -363,7 +376,7 @@ test-ngx_drizzle {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -382,7 +395,7 @@ test-ngx_lua {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build2.sh $nginx_version';
+    sh 'sh ./util/build2.sh $nginx_version || touch config && sh ./util/build2.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -401,7 +414,7 @@ test-ngx_memc {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -417,7 +430,7 @@ test-ngx_redis2 {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -433,12 +446,45 @@ test-ngx_xss {
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
-    sh 'sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
     dep nginx-module-test;
     dep ngx_xss ngx_echo ndk ngx_lua;
+}
+
+test-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+    dep nginx-module-test;
+    dep ngx_array_var ngx_echo ndk ngx_set_misc;
+}
+
+test-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+    dep nginx-module-test;
+    dep ngx_echo ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
 }
 
