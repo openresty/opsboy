@@ -5,6 +5,7 @@ openresty_version = 1.0.11.28;
 ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.10;
 ngx_auth_request_version = 0.2;
+pcre_version = 8.30;
 
 all {
     dep test-ngx_srcache;
@@ -94,7 +95,23 @@ ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
     env LUAJIT_LIB /usr/local/openresty/luajit/lib;
     env LUAJIT_INC /usr/local/openresty/luajit/include/luajit-2.0;
-    dep ndk luajit ngx_set_misc ngx_auth_request ngx_echo ngx_memc ngx_headers_more ngx_drizzle ngx_upstream_keepalive ngx_rds_json ngx_coolkit;
+    dep ndk luajit ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+pcrejit {
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    file /opt/pcrejit/lib/libpcre.so;
+    file /opt/pcrejit/include/pcre.h;
+
+    fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
+    tarball pcre-$pcre_version.tar.gz;
+    cwd /tmp;
+    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
 ngx_auth_request {
@@ -170,12 +187,12 @@ test-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    sh 'touch config';
     sh 'sh ./util/build2.sh $nginx_version';
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
-    dep ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
 }
 
 mockeagain {
