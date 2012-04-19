@@ -1,4 +1,3 @@
-
 jobs = 1;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
@@ -7,6 +6,8 @@ ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.10;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
+force = 0;
+
 
 all {
     dep test-ngx_srcache;
@@ -310,8 +311,7 @@ test-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build.sh $nginx_version';
 
@@ -327,8 +327,7 @@ test-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build.sh $nginx_version';
 
@@ -344,8 +343,7 @@ test-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build.sh $nginx_version';
 
@@ -361,8 +359,7 @@ test-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build.sh $nginx_version';
 
@@ -381,8 +378,7 @@ test-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build2.sh $nginx_version';
 

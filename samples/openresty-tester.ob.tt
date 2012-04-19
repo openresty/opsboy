@@ -1,10 +1,19 @@
+jobs = 1;
+ngx_redis_version = 0.3.6;
+nginx_version = 1.0.15;
+openresty_version = 1.0.11.28;
+ngx_upstream_keepalive_version = 0.7;
+redis_version = 2.4.10;
+ngx_auth_request_version = 0.2;
+pcre_version = 8.30;
+force = 0;
+
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
 
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     [%- IF name == "lua" %]
     sh 'sh ./util/build2.sh $nginx_version';
@@ -15,15 +24,6 @@
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 [% END -%]
-
-jobs = 1;
-ngx_redis_version = 0.3.6;
-nginx_version = 1.0.15;
-openresty_version = 1.0.11.28;
-ngx_upstream_keepalive_version = 0.7;
-redis_version = 2.4.10;
-ngx_auth_request_version = 0.2;
-pcre_version = 8.30;
 
 all {
     dep test-ngx_srcache;

@@ -248,7 +248,7 @@ sub make ($) {
                 die "Environment $name does not take a value.\n";
             }
 
-            $value =~ s/\$(\w+)/$ENV{$1} || ''/ge;
+            $value =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/ge;
             $value =~ s/^~/$ENV{HOME}/;
             #warn "Setting $name to $value\n";
             $ENV{$name} = $value;
@@ -332,7 +332,7 @@ sub make ($) {
     if ($files) {
         for my $file (@$files) {
             $file =~ s/^~/$ENV{HOME}/;
-            $file =~ s/\$(\w+)/$ENV{$1} || ''/eg;
+            $file =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/eg;
             if (!-e $file) {
                 $requires_making = 1;
                 last;
@@ -389,7 +389,7 @@ sub make ($) {
         my $cmds = $rules->{sh};
         if ($cmds) {
             for my $cmd (@$cmds) {
-                $cmd =~ s/\$(\w+)/$ENV{$1}/g;
+                $cmd =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/ge;
                 #warn "CMD: [$cmd]";
                 sh($cmd);
             }
