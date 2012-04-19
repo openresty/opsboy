@@ -11,10 +11,10 @@ ragel_version = 6.7;
 
 
 all {
-    dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
-    dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
-    dep test-ngx_redis2 test-ngx_echo test-ngx_lua;
-    dep test-ngx_array_var test-ngx_postgres;
+    dep t-ngx_srcache t-ngx_memc t-ngx_set_misc;
+    dep t-ngx_xss t-ngx_drizzle t-ngx_rds_json;
+    dep t-ngx_redis2 t-ngx_echo t-ngx_lua;
+    dep t-ngx_array_var t-ngx_postgres;
 }
 
 etcproxy {
@@ -95,7 +95,7 @@ ngx_array_var {
 }
 
 ngx_form_input {
-    git git://github.com/calio/form-input-nginx-module ~/git/form-input-nginx-module;
+    git git://github.com/calio/form-inputest-nginx-module ~/git/form-inputest-nginx-module;
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
@@ -147,7 +147,7 @@ ngx_auth_request {
 }
 
 ngx_coolkit {
-    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkitest-nginx-module;
 }
 
 luajit {
@@ -277,7 +277,12 @@ prove {
 
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
-    dep test-base time-hires test-longstring list-moreutils;
+    dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
+}
+
+parallel-forkmanager {
+    test 'perl -MParallel::ForkManager -e1';
+    cpan Parallel::ForkManager;
 }
 
 list-moreutils {
@@ -321,7 +326,10 @@ cpan {
     yum perl-CPAN;
 }
 
-test-ngx_srcache {
+
+
+
+t-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
@@ -333,11 +341,12 @@ test-ngx_srcache {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
 }
 
 
-test-ngx_set_misc {
+t-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
@@ -349,11 +358,12 @@ test-ngx_set_misc {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep ngx_set_misc nginx-module-test;
     dep ndk ngx_echo ngx_iconv;
 }
 
-test-ngx_rds_json {
+t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
@@ -365,11 +375,12 @@ test-ngx_rds_json {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep ngx_rds_json nginx-module-test run-mysql;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
 }
 
-test-ngx_drizzle {
+t-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
@@ -381,12 +392,13 @@ test-ngx_drizzle {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep ngx_drizzle nginx-module-test run-mysql ngx_lua;
     dep ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-test-ngx_lua {
+t-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
 
     always;
@@ -400,6 +412,7 @@ test-ngx_lua {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep pcrejit ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
     dep ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
@@ -407,7 +420,7 @@ test-ngx_lua {
     dep ngx_rds_json ngx_coolkit;
 }
 
-test-ngx_memc {
+t-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
@@ -419,11 +432,12 @@ test-ngx_memc {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test run-memcached;
     dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
 }
 
-test-ngx_redis2 {
+t-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
@@ -435,11 +449,12 @@ test-ngx_redis2 {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test run-redis;
     dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
 }
 
-test-ngx_xss {
+t-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
@@ -451,11 +466,12 @@ test-ngx_xss {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test;
     dep ngx_xss ngx_echo ndk ngx_lua;
 }
 
-test-ngx_array_var {
+t-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
@@ -467,11 +483,12 @@ test-ngx_array_var {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test;
     dep ngx_array_var ngx_echo ndk ngx_set_misc;
 }
 
-test-ngx_echo {
+t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
@@ -483,12 +500,13 @@ test-ngx_echo {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test;
     dep ngx_echo ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
 }
 
-test-ngx_postgres {
+t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
@@ -500,16 +518,220 @@ test-ngx_postgres {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
 
+
     dep nginx-module-test ngx-postgres-build-script;
     dep ngx_postgres ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
 }
 
+
+tv-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
+}
+
+
+tv-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep ngx_set_misc nginx-module-test;
+    dep ndk ngx_echo ngx_iconv;
+}
+
+tv-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep ngx_rds_json nginx-module-test run-mysql;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+tv-ngx_drizzle {
+    always;
+    cwd ~/git/drizzle-nginx-module;
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep ngx_drizzle nginx-module-test run-mysql ngx_lua;
+    dep ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+tv-ngx_lua {
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build2.sh $nginx_version || touch config && sh ./util/build2.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep pcrejit ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
+    dep ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+tv-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test run-memcached;
+    dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+tv-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test run-redis;
+    dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+tv-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test;
+    dep ngx_xss ngx_echo ndk ngx_lua;
+}
+
+tv-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test;
+    dep ngx_array_var ngx_echo ndk ngx_set_misc;
+}
+
+tv-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test;
+    dep ngx_echo ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+tv-ngx_postgres {
+    always;
+    cwd ~/git/postgres-nginx-module;
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test ngx-postgres-build-script;
+    dep ngx_postgres ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+
 ngx-postgres-build-script {
     file ~/git/postgres-nginx-module/util/build.sh;
     cwd ~/git/postgres-nginx-module/util;
     fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
     sh 'mv ngx-postgres-build.sh build.sh';
+}
+
+valgrind {
+    prog valgrind;
+    yum valgrind;
 }
 

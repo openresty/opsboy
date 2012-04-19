@@ -14,6 +14,10 @@ ragel_version = 6.7;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
 
+    [%- IF type == "v" -%]
+    env TEST_NGINX_USE_VALGRIND 1;
+    [%- END -%]
+
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     [%- IF name == "lua" %]
@@ -24,13 +28,17 @@ ragel_version = 6.7;
 
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
+
+    [%- IF type == 'v' -%]
+    dep valgrind;
+    [%- END %]
 [% END -%]
 
 all {
-    dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
-    dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
-    dep test-ngx_redis2 test-ngx_echo test-ngx_lua;
-    dep test-ngx_array_var test-ngx_postgres;
+    dep t-ngx_srcache t-ngx_memc t-ngx_set_misc;
+    dep t-ngx_xss t-ngx_drizzle t-ngx_rds_json;
+    dep t-ngx_redis2 t-ngx_echo t-ngx_lua;
+    dep t-ngx_array_var t-ngx_postgres;
 }
 
 etcproxy {
@@ -111,7 +119,7 @@ ngx_array_var {
 }
 
 ngx_form_input {
-    git git://github.com/calio/form-input-nginx-module ~/git/form-input-nginx-module;
+    git git://github.com/calio/form-inputest-nginx-module ~/git/form-inputest-nginx-module;
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
@@ -163,7 +171,7 @@ ngx_auth_request {
 }
 
 ngx_coolkit {
-    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkitest-nginx-module;
 }
 
 luajit {
@@ -293,7 +301,12 @@ prove {
 
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
-    dep test-base time-hires test-longstring list-moreutils;
+    dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
+}
+
+parallel-forkmanager {
+    test 'perl -MParallel::ForkManager -e1';
+    cpan Parallel::ForkManager;
 }
 
 list-moreutils {
@@ -337,28 +350,31 @@ cpan {
     yum perl-CPAN;
 }
 
-test-ngx_srcache {
-    [%- PROCESS build_nginx_module name="srcache" -%]
+[% types = ['', 'v'] %]
+[% FOREACH type = types %]
+
+t[% type %]-ngx_srcache {
+    [%- PROCESS build_nginx_module name="srcache"  type=type -%]
 
     dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
 }
 
 
-test-ngx_set_misc {
+t[% type %]-ngx_set_misc {
     [%- PROCESS build_nginx_module name="set-misc" -%]
 
     dep ngx_set_misc nginx-module-test;
     dep ndk ngx_echo ngx_iconv;
 }
 
-test-ngx_rds_json {
+t[% type %]-ngx_rds_json {
     [%- PROCESS build_nginx_module name="rds-json" -%]
 
     dep ngx_rds_json nginx-module-test run-mysql;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
 }
 
-test-ngx_drizzle {
+t[% type %]-ngx_drizzle {
     [%- PROCESS build_nginx_module name="drizzle" -%]
 
     dep ngx_drizzle nginx-module-test run-mysql ngx_lua;
@@ -366,7 +382,7 @@ test-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-test-ngx_lua {
+t[% type %]-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
 
     [%- PROCESS build_nginx_module name="lua" -%]
@@ -378,35 +394,35 @@ test-ngx_lua {
     dep ngx_rds_json ngx_coolkit;
 }
 
-test-ngx_memc {
+t[% type %]-ngx_memc {
     [%- PROCESS build_nginx_module name="memc" -%]
 
     dep nginx-module-test run-memcached;
     dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
 }
 
-test-ngx_redis2 {
+t[% type %]-ngx_redis2 {
     [%- PROCESS build_nginx_module name="redis2" -%]
 
     dep nginx-module-test run-redis;
     dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
 }
 
-test-ngx_xss {
+t[% type %]-ngx_xss {
     [%- PROCESS build_nginx_module name="xss" -%]
 
     dep nginx-module-test;
     dep ngx_xss ngx_echo ndk ngx_lua;
 }
 
-test-ngx_array_var {
+t[% type %]-ngx_array_var {
     [%- PROCESS build_nginx_module name="array-var" -%]
 
     dep nginx-module-test;
     dep ngx_array_var ngx_echo ndk ngx_set_misc;
 }
 
-test-ngx_echo {
+t[% type %]-ngx_echo {
     [%- PROCESS build_nginx_module name="echo" -%]
 
     dep nginx-module-test;
@@ -414,7 +430,7 @@ test-ngx_echo {
     dep ngx_rds_json ngx_headers_more ngx_lua;
 }
 
-test-ngx_postgres {
+t[% type %]-ngx_postgres {
     [%- PROCESS build_nginx_module name="postgres" -%]
 
     dep nginx-module-test ngx-postgres-build-script;
@@ -423,10 +439,17 @@ test-ngx_postgres {
     dep ngx_auth_request run-postgres;
 }
 
+[%- END %]
+
 ngx-postgres-build-script {
     file ~/git/postgres-nginx-module/util/build.sh;
     cwd ~/git/postgres-nginx-module/util;
     fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
     sh 'mv ngx-postgres-build.sh build.sh';
+}
+
+valgrind {
+    prog valgrind;
+    yum valgrind;
 }
 
