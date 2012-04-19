@@ -10,7 +10,9 @@ force = 0;
 
 
 all {
-    dep test-ngx_srcache;
+    dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
+    dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
+    dep test-ngx_redis2 test-ngx_lua;
 }
 
 etcproxy {
@@ -390,5 +392,53 @@ test-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+test-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+    dep nginx-module-test run-memcached;
+    dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+test-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+    dep nginx-module-test run-redis;
+    dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+test-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+    dep nginx-module-test;
+    dep ngx_xss ngx_echo ndk ngx_lua;
 }
 

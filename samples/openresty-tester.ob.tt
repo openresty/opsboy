@@ -26,7 +26,9 @@ force = 0;
 [% END -%]
 
 all {
-    dep test-ngx_srcache;
+    dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
+    dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
+    dep test-ngx_redis2 test-ngx_lua;
 }
 
 etcproxy {
@@ -361,5 +363,26 @@ test-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+test-ngx_memc {
+    [%- PROCESS build_nginx_module name="memc" -%]
+
+    dep nginx-module-test run-memcached;
+    dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+test-ngx_redis2 {
+    [%- PROCESS build_nginx_module name="redis2" -%]
+
+    dep nginx-module-test run-redis;
+    dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+test-ngx_xss {
+    [%- PROCESS build_nginx_module name="xss" -%]
+
+    dep nginx-module-test;
+    dep ngx_xss ngx_echo ndk ngx_lua;
 }
 
