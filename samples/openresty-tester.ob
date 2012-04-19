@@ -73,6 +73,17 @@ libdrizzle {
 
 ngx_rds_json {
     git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+ngx_array_var {
+    git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+ngx_form_input {
+    git git://github.com/calio/form-input-nginx-module ~/git/form-input-nginx-module;
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
 ngx_xss {
@@ -332,5 +343,17 @@ test-ngx_set_misc {
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
     dep ngx_set_misc nginx-module-test;
+}
+
+test-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    sh 'touch config';
+    sh 'sh ./util/build.sh $nginx_version';
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep ngx_rds_json nginx-module-test;
 }
 
