@@ -1,8 +1,10 @@
+jobs = 1;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
 openresty_version = 1.0.11.28;
-jobs = 1;
 ngx_upstream_keepalive_version = 0.7;
+redis_version = 2.4.10;
+ngx_auth_request_version = 0.2;
 
 all {
     dep test-ngx_srcache;
@@ -92,7 +94,18 @@ ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
     env LUAJIT_LIB /usr/local/openresty/luajit/lib;
     env LUAJIT_INC /usr/local/openresty/luajit/include/luajit-2.0;
-    dep ndk luajit;
+    dep ndk luajit ngx_set_misc ngx_auth_request ngx_echo ngx_memc ngx_headers_more ngx_drizzle ngx_upstream_keepalive ngx_rds_json ngx_coolkit;
+}
+
+ngx_auth_request {
+    file ~/work/nginx/ngx_http_auth_request_module-$ngx_auth_request_version;
+    cwd ~/work/nginx;
+    fetch http://mdounin.ru/files/ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
+    tarball ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
+}
+
+ngx_coolkit {
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
 luajit {
@@ -152,7 +165,41 @@ test-ngx_srcache {
     dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
 }
 
+test-ngx_lua {
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    #sh 'touch config';
+    sh 'sh ./util/build2.sh $nginx_version';
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
+}
+
+mockeagain {
+    file ~/git/mockeagain/mockeagain.so;
+    sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
+    dep mockeagain-git;
+}
+
+mockeagain-git {
+    git git://github.com/agentzh/mockeagain.git ~/git/mockeagain;
+}
+
 run-redis {
+    running 'redis-server -';
+    sh '(echo "daemonize yes"; echo "loglevel warning")|redis-server -';
+    dep redis;
+}
+
+redis {
+    prog redis-server;
+    cwd /tmp;
+    fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
+    tarball redis-$redis_version.tar.gz;
+    sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
 }
 
 run-postgres {

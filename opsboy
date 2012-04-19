@@ -187,7 +187,7 @@ use warnings;
 use File::Spec;
 
 my ($default_goal, $entities, $vars);
-my $check_only;
+my ($check_only, $git_pull);
 
 my (%made, %making);
 
@@ -248,7 +248,7 @@ sub make ($) {
                 die "Environment $name does not take a value.\n";
             }
 
-            $value =~ s/\$(\w+)/$ENV{$1}/g;
+            $value =~ s/\$(\w+)/$ENV{$1} || ''/ge;
             $value =~ s/^~/$ENV{HOME}/;
             #warn "Setting $name to $value\n";
             $ENV{$name} = $value;
@@ -282,6 +282,11 @@ sub make ($) {
                 }
 
                 sh("git", "clone", $url, $dir);
+
+            } else {
+                if ($git_pull) {
+                    sh("cd $dir && git pull");
+                }
             }
         }
     }
@@ -327,7 +332,7 @@ sub make ($) {
     if ($files) {
         for my $file (@$files) {
             $file =~ s/^~/$ENV{HOME}/;
-            $file =~ s/\$(\w+)/$ENV{$1}/g;
+            $file =~ s/\$(\w+)/$ENV{$1} || ''/eg;
             if (!-e $file) {
                 $requires_making = 1;
                 last;
@@ -450,6 +455,15 @@ sub main () {
             if ($arg =~ /^([A-Za-z][-\w]*)=(.*)/) {
                 $ENV{$1} = $2;
                 next;
+            }
+
+            if ($arg =~ /^-/) {
+                if ($arg eq '--git-pull') {
+                    $git_pull = 1;
+
+                } else {
+                    die "unknown option: $arg\n";
+                }
             }
 
             push @goals, $arg;
