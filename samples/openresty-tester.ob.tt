@@ -1,3 +1,20 @@
+[% BLOCK build_nginx_module %]
+    always;
+    cwd ~/git/[% name %]-nginx-module;
+    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+
+    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    #sh 'touch config';
+
+    [%- IF name == "lua" %]
+    sh 'sh ./util/build2.sh $nginx_version';
+    [%- ELSE %]
+    sh 'sh ./util/build.sh $nginx_version';
+    [%- END %]
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+[% END -%]
 
 jobs = 1;
 ngx_redis_version = 0.3.6;
@@ -306,68 +323,28 @@ cpan {
 }
 
 test-ngx_srcache {
-    always;
-    cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
-
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
-
-    sh 'sh ./util/build.sh $nginx_version';
-
-    sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    [%- PROCESS build_nginx_module name="srcache" -%]
 
     dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
 }
 
 
 test-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
-
-    sh 'sh ./util/build.sh $nginx_version';
-
-    sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    [%- PROCESS build_nginx_module name="set-misc" -%]
 
     dep ngx_set_misc nginx-module-test;
     dep ndk ngx_echo ngx_iconv;
 }
 
 test-ngx_rds_json {
-    always;
-    cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
-
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
-
-    sh 'sh ./util/build.sh $nginx_version';
-
-    sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    [%- PROCESS build_nginx_module name="rds-json" -%]
 
     dep ngx_rds_json nginx-module-test run-mysql;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
 }
 
 test-ngx_drizzle {
-    always;
-    cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
-
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
-
-    sh 'sh ./util/build.sh $nginx_version';
-
-    sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    [%- PROCESS build_nginx_module name="drizzle" -%]
 
     dep ngx_drizzle nginx-module-test run-mysql ngx_lua;
     dep ngx_echo ngx_rds_json;
@@ -377,17 +354,7 @@ test-ngx_drizzle {
 test-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
 
-    always;
-    cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
-    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    #sh 'touch config';
-
-    sh 'sh ./util/build2.sh $nginx_version';
-
-    sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    [%- PROCESS build_nginx_module name="lua" -%]
 
     dep pcrejit ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
     dep ndk ngx_set_misc ngx_auth_request;
