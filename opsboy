@@ -48,10 +48,11 @@ command: 'git'
        | 'prog'
        | 'fetch'
        | 'tarball'
+       | 'cpan'
        | <error>
 
 argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
-        | /[^;\s]+/
+        | /[^;"\s]+/
         | <error>
 
 identifier: /[A-Za-z][-\w]*/
@@ -127,6 +128,15 @@ for my $entity (@$ast) {
             unshift @$deps, 'git';
         }
     }
+
+    my $cpans = $rules{cpan};
+    if ($cpans) {
+        if (!$deps) {
+            $rules{dep} = ['cpan'];
+        } else {
+            unshift @$deps, 'cpan';
+        }
+    }
 }
 
 for my $name (keys %entities) {
@@ -151,10 +161,17 @@ while (<$data>) {
     print $out $_;
 }
 
-print $out "\$default_goal = '$default_goal';\n";
+print $out "\$default_goal = '$default_goal';\n\n";
+
+$Data::Dumper::Indent = 1;
+
 print $out Data::Dumper->Dump([\%vars], ['vars']);
+
+print $out "\n";
+
 print $out Data::Dumper->Dump([\%entities], ['entities']);
-print $out "main()";
+
+print $out "\nmain()";
 close $out;
 
 chmod 0700, $outfile or
@@ -232,6 +249,8 @@ sub make ($) {
             }
 
             $value =~ s/\$(\w+)/$ENV{$1}/g;
+            $value =~ s/^~/$ENV{HOME}/;
+            #warn "Setting $name to $value\n";
             $ENV{$name} = $value;
         }
     }
@@ -280,9 +299,11 @@ sub make ($) {
         }
     }
 
-    my $tests = $rules->{tests};
+    my $tests = $rules->{test};
     if ($tests) {
+        #warn "Found tests!";
         for my $test (@$tests) {
+            #warn "running command $test";
             if (system($test) != 0) {
                 warn "shell test failed: $test\n";
                 $requires_making = 1;
@@ -323,6 +344,13 @@ sub make ($) {
         if ($pkgs) {
             for my $pkg (@$pkgs) {
                 sh("sudo", "yum", "install", $pkg, "-y");
+            }
+        }
+
+        my $cpans = $rules->{cpan};
+        if ($cpans) {
+            for my $cpan (@$cpans) {
+                sh("sudo", "cpan", $cpan);
             }
         }
 

@@ -143,16 +143,21 @@ git {
 test-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
     #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
     #sh 'touch config';
     sh 'sh ./util/build.sh $nginx_version';
+    sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
-    dep ngx_srcache nginx-module-test run-memcached run-mysql run-postgres;
+    dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
+}
+
+run-redis {
 }
 
 run-postgres {
-    running 'postgres -D';
-    sh 'sudo service postgresql start';
+    running 'postgres: writer process';
+    sh 'sudo service postgresql start || sudo service postgresql initdb';
     dep postgres;
 }
 
@@ -204,7 +209,22 @@ prove {
 
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
-    dep test-base;
+    dep test-base time-hires test-longstring list-moreutils;
+}
+
+list-moreutils {
+    test 'perl -MList::MoreUtils -e1';
+    yum perl-List-MoreUtils;
+}
+
+test-longstring {
+    test 'perl -MTest::LongString -e1';
+    cpan Test::LongString;
+}
+
+time-hires {
+    test 'perl -MTime::HiRes -e1';
+    yum perl-Time-HiRes;
 }
 
 test-base {
@@ -226,5 +246,10 @@ ngx_redis {
     cwd ~/work/nginx;
     fetch http://people.freebsd.org/~osa/ngx_http_redis-$ngx_redis_version.tar.gz;
     tarball ngx_http_redis-$ngx_redis_version.tar.gz;
+}
+
+cpan {
+    prog cpan;
+    yum perl-CPAN;
 }
 
