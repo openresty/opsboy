@@ -30,7 +30,7 @@ all {
     dep test-ngx_srcache test-ngx_memc test-ngx_set_misc;
     dep test-ngx_xss test-ngx_drizzle test-ngx_rds_json;
     dep test-ngx_redis2 test-ngx_echo test-ngx_lua;
-    dep test-ngx_array_var;
+    dep test-ngx_array_var test-ngx_postgres;
 }
 
 etcproxy {
@@ -412,5 +412,21 @@ test-ngx_echo {
     dep nginx-module-test;
     dep ngx_echo ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+test-ngx_postgres {
+    [%- PROCESS build_nginx_module name="postgres" -%]
+
+    dep nginx-module-test ngx-postgres-build-script;
+    dep ngx_postgres ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+ngx-postgres-build-script {
+    file ~/git/postgres-nginx-module/util/build.sh;
+    cwd ~/git/postgres-nginx-module/util;
+    fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
+    sh 'mv ngx-postgres-build.sh build.sh';
 }
 
