@@ -2,6 +2,7 @@ ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
 openresty_version = 1.0.11.28;
 jobs = 1;
+ngx_upstream_keepalive_version = 0.7;
 
 all {
     dep test-ngx_srcache;
@@ -21,7 +22,32 @@ ngx_srcache {
     git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
-    dep ngx_lua ngx_rds_json ngx_drizzle;
+    dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
+    dep ngx_memc ngx_upstream_keepalive;
+}
+
+ngx_memc {
+    git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+}
+
+ngx_upstream_keepalive {
+    file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
+    cwd ~/work/nginx;
+    fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+    tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+}
+
+ngx_postgres {
+    git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
+    env LIBPQ_INC /usr/include;
+    env LIBPQ_LIB /usr/lib64;
+    dep libpq;
+}
+
+libpq {
+    file /usr/lib64/libpq.so;
+    file /usr/include/libpq-fe.h;
+    yum postgresql9-devel;
 }
 
 ngx_drizzle {
@@ -117,11 +143,44 @@ git {
 test-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    sh 'touch config';
+    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    #sh 'touch config';
     sh 'sh ./util/build.sh $nginx_version';
     sh 'prove -I../test-nginx/lib -r t';
-    dep ngx_srcache nginx-module-test;
+    dep ngx_srcache nginx-module-test run-memcached run-mysql run-postgres;
+}
+
+run-postgres {
+    running 'postgres -D';
+    sh 'sudo service postgresql start';
+    dep postgres;
+}
+
+postgres {
+    prog pg_ctl;
+    yum postgres-server postgres-server-devel;
+}
+
+run-mysql {
+    running 'mysqld --';
+    sh 'sudo service mysqld start';
+    dep mysql;
+}
+
+mysql {
+    prog mysqld_safe;
+    yum mysql mysql-server;
+}
+
+run-memcached {
+    running 'memcached -d -p 11211';
+    sh 'memcached -d -p 11211';
+    dep memcached;
+}
+
+memcached {
+    prog memcached;
+    yum memcached;
 }
 
 nginx-module-test {
@@ -144,7 +203,7 @@ prove {
 }
 
 test-nginx {
-    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+    git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
 }
 
 patch {

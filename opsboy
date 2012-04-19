@@ -15,6 +15,8 @@ getopts("co:", \%opts) or
 my $compile_only = $opts{c};
 my $outfile = $opts{o} || "a.pl";
 
+$Parse::RecDescent::skip = '(?:\s*\#[^\n]*\s*)+|\s*';
+
 my $parser = Parse::RecDescent->new(<<'END_GRAMMAR');
 spec: entity(s?) eof { $item[1] }
     | <error>
@@ -34,6 +36,7 @@ rule: command argument(s?) ';' { [$item[1], $item[2]] }
 
 command: 'git'
        | 'file'
+       | 'running'
        | 'dir'
        | 'dep'
        | 'cwd'
@@ -270,6 +273,17 @@ sub make ($) {
         for my $prog (@$progs) {
             if (!can_run($prog)) {
                 warn "program $prog missing.\n";
+                $requires_making = 1;
+                last;
+            }
+        }
+    }
+
+    my $runnings = $rules->{running};
+    if ($runnings) {
+        for my $running (@$runnings) {
+            if (system("ps aux|grep '$running'|grep -v grep") != 0) {
+                warn "process matching '$running' not found.\n";
                 $requires_making = 1;
                 last;
             }
