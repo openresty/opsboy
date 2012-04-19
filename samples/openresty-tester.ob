@@ -153,6 +153,11 @@ nginx-devel-utils {
 
 ngx_set_misc {
     git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+    dep ndk ngx_echo ngx_iconv;
+}
+
+ngx_iconv {
+    git git://github.com/calio/iconv-nginx-module ~/git/iconv-nginx-module;
     dep ndk;
 }
 
@@ -187,8 +192,8 @@ test-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-    sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
-    sh 'touch config';
+    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    #sh 'touch config';
     sh 'sh ./util/build2.sh $nginx_version';
     sh 'nginx -V';
     sh 'prove -I../test-nginx/lib -r t';
@@ -315,5 +320,17 @@ ngx_redis {
 cpan {
     prog cpan;
     yum perl-CPAN;
+}
+
+test-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    #sh 'rm -f buildroot/nginx-$nginx_version.tar.gz';
+    #sh 'touch config';
+    sh 'sh ./util/build.sh $nginx_version';
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep ngx_set_misc nginx-module-test;
 }
 
