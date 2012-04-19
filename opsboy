@@ -40,6 +40,7 @@ command: 'git'
        | 'dir'
        | 'dep'
        | 'cwd'
+       | 'test'
        | 'env'
        | 'always'
        | 'sh'
@@ -273,6 +274,17 @@ sub make ($) {
         for my $prog (@$progs) {
             if (!can_run($prog)) {
                 warn "program $prog missing.\n";
+                $requires_making = 1;
+                last;
+            }
+        }
+    }
+
+    my $tests = $rules->{tests};
+    if ($tests) {
+        for my $test (@$tests) {
+            if (system($test) != 0) {
+                warn "shell test failed: $test\n";
                 $requires_making = 1;
                 last;
             }

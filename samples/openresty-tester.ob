@@ -158,7 +158,7 @@ run-postgres {
 
 postgres {
     prog pg_ctl;
-    yum postgres-server postgres-server-devel;
+    yum postgresql-server postgresql-server-devel;
 }
 
 run-mysql {
@@ -204,6 +204,12 @@ prove {
 
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
+    dep test-base;
+}
+
+test-base {
+    test 'perl -e "require(q{Test/Base.pm});"';
+    yum perl-Test-Base;
 }
 
 patch {
