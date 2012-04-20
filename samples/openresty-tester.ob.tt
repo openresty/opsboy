@@ -9,14 +9,33 @@ pcre_version = 8.30;
 force = 0;
 ragel_version = 6.7;
 
+[%- servers = [
+        ['nginx', 1984, 1234],
+        ['mysql', 3306, 3307],
+        ['memcached', 11211, 11984],
+        ['redis', 6379, 6380],
+        ['postgres', 5432, 5433],
+    ]
+-%]
+
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
 
     [%- IF type == "v" -%]
+
     env TEST_NGINX_USE_VALGRIND 1;
+
+    [%- ELSIF type == "r" -%]
+
+        [%- FOREACH serv IN servers %]
+    dep run-etcproxy-[% serv.0 %];
+        [%- END %]
+
     [%- END -%]
+
+    sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
@@ -27,7 +46,8 @@ ragel_version = 6.7;
     [%- END %]
 
     sh 'nginx -V';
-    sh 'prove -I../test-nginx/lib -r t';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     [%- IF type == 'v' -%]
     dep valgrind;
@@ -53,6 +73,15 @@ t {
 tv {
 [% FOREACH name IN mods -%]
     dep tv-ngx_[% name %];
+[% END -%]
+}
+
+tr {
+[% FOREACH name IN mods -%]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            NEXT;
+        END %]
+    dep tr-ngx_[% name %];
 [% END -%]
 }
 
@@ -138,7 +167,7 @@ ngx_array_var {
 }
 
 ngx_form_input {
-    git git://github.com/calio/form-inputest-nginx-module ~/git/form-inputest-nginx-module;
+    git git://github.com/calio/form-input-nginx-module ~/git/form-input-nginx-module;
     dep ndk;
 }
 
@@ -369,7 +398,7 @@ cpan {
     yum perl-CPAN;
 }
 
-[% types = ['', 'v'] %]
+[% types = ['', 'v', 'r'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
@@ -456,7 +485,7 @@ t[% type %]-ngx_echo {
 t[% type %]-ngx_eval {
     [%- PROCESS build_nginx_module name="eval" -%]
 
-    dep ngx_echo ngx_memc;
+    dep run-memcached ngx_echo ngx_memc;
 }
 
 t[% type %]-ngx_form_input {
@@ -493,4 +522,25 @@ valgrind {
     prog valgrind;
     yum valgrind;
 }
+
+[%- FOR server IN servers;
+        name = server.0;
+        port = server.1;
+        new_port = server.2 %]
+run-etcproxy-[% name %] {
+    [%- tag = name;
+       IF tag == "postgres";
+            tag = "postgresql";
+       ELSIF tag == "nginx";
+            tag = "client";
+       END %]
+    env TEST_NGINX_[% tag | upper %]_PORT [% new_port %];
+    running 'etcproxy [% new_port %] [% port %]';
+    cwd ~/git/etcproxy;
+    sh 'nohup ./etcproxy [% new_port %] [% port %] &';
+    [%- IF name != "nginx" %]
+    dep etcproxy run-[% name %];
+    [%- END %]
+}
+[% END -%]
 

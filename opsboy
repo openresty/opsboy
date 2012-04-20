@@ -18,12 +18,12 @@ my $outfile = $opts{o} || "a.pl";
 $Parse::RecDescent::skip = '(?:\s*\#[^\n]*\s*)+|\s*';
 
 my $parser = Parse::RecDescent->new(<<'END_GRAMMAR');
-spec: entity(s?) eof { $item[1] }
+spec: target(s?) eof { $item[1] }
     | <error>
 
 eof: /^\Z/
 
-entity: identifier '=' <commit> argument ';'
+target: identifier '=' <commit> argument ';'
             { $return = { $item[1] => $item[4] } }
       | identifier block { [$item[1], $item[2]] }
       | <error?>
@@ -77,16 +77,16 @@ my $default_goal;
 my %entities;
 my %vars;
 #my $i = 0;
-for my $entity (@$ast) {
-    #warn "$i: ref: ", ref($entity);
+for my $target (@$ast) {
+    #warn "$i: ref: ", ref($target);
     #$i++;
-    if (!ref $entity) {
-        die "Unknown entity: $entity";
+    if (!ref $target) {
+        die "Unknown target: $target";
     }
 
-    if (ref $entity eq 'HASH') {
+    if (ref $target eq 'HASH') {
         # variable assignment
-        while (my ($name, $val) = each %$entity) {
+        while (my ($name, $val) = each %$target) {
             #warn "$name = $val\n";
             $vars{$name} = $val;
         }
@@ -94,14 +94,14 @@ for my $entity (@$ast) {
         next;
     }
 
-    my ($name, $rules) = @$entity;
+    my ($name, $rules) = @$target;
     if (!$default_goal) {
         $default_goal = $name;
     }
 
-    #warn "entity: $name\n";
+    #warn "target: $name\n";
     if ($entities{$name}) {
-        die "entity $name redefined.\n";
+        die "target $name redefined.\n";
     }
 
     my %rules;
@@ -212,7 +212,7 @@ sub make ($) {
 
     my $rules = $entities->{$target};
     if (!$rules) {
-        die "entity $target not defined.\n";
+        die "target $target not defined.\n";
     }
 
     my $deps = $rules->{dep};
