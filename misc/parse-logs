@@ -1,0 +1,26 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+my $rec;
+my @records;
+while (<>) {
+    if (/^making (\S+) \.\.\.$/) {
+        my $subj = $1;
+
+        if ($subj =~ /^t([rvw]*)-(ngx_[-_A-Za-z0-9]+)$/) {
+            my ($mode, $module) = ($1, $2);
+
+            warn "$mode: $module\n";
+
+            $rec = {
+                module => $module,
+                mode => $mode,
+            };
+
+            push @records, $rec;
+        }
+    }
+}
+

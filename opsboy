@@ -171,7 +171,7 @@ print $out "\n";
 
 print $out Data::Dumper->Dump([\%entities], ['entities']);
 
-print $out "\nmain()";
+print $out "\nmain();\n";
 close $out;
 
 chmod 0700, $outfile or
@@ -364,7 +364,7 @@ sub make ($) {
             for my $cwd (@$cwds) {
                 $cwd =~ s/^~/$ENV{HOME}/;
                 if (!-d $cwd) {
-                    mkdir $cwd or die "Cannot mkdir $cwd\n";
+                    system("mkdir -p $cwd") == 0 or die "Cannot mkdir $cwd\n";
                 }
                 chdir $cwd or die "Cannot cd to $cwd\n";
             }

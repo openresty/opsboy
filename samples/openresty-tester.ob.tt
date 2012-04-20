@@ -132,6 +132,13 @@ ragel {
     fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
     tarball ragel-$ragel_version.tar.gz;
     sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
+    dep cxx;
+}
+
+cxx {
+    prog g++;
+    yum gcc-c++;
+    dep make;
 }
 
 ngx_upstream_keepalive {
@@ -168,7 +175,7 @@ libdrizzle {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
     tarball drizzle7-2011.07.21.tar.gz;
-    sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && make install-libdrizzle-1.0';
+    sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && sudo make install-libdrizzle-1.0';
 }
 
 ngx_rds_json {
@@ -252,7 +259,7 @@ ngx_openresty-debug {
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
     sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug && make -j$jobs && sudo make install';
-    dep libdrizzle;
+    dep libdrizzle openssl pcre;
 }
 
 ngx_headers_more {
@@ -322,6 +329,11 @@ run-postgres {
 postgres {
     prog pg_ctl;
     yum postgresql-server postgresql-server-devel;
+
+    # vim /var/lib/pgsql9/data/pg_hba.conf
+    # psql> create user ngx_test with password 'ngx_test';
+    # psql> create database ngx_test;
+    # psql> grant all privileges on database ngx_test to ngx_test;
 }
 
 run-mysql {
@@ -350,6 +362,18 @@ nginx-module-test {
     always;
     env PATH $PWD/work/nginx/sbin:$HOME/git/nginx-devel-utils:$PATH;
     dep prove test-nginx no-pool-nginx nginx-devel-utils axel;
+    dep cc openssl pcre;
+}
+
+openssl {
+    file /usr/include/openssl/md5.h;
+
+    yum openssl-devel;
+}
+
+pcre {
+    prog pcre-config;
+    yum pcre-devel;
 }
 
 axel {
@@ -358,6 +382,18 @@ axel {
     fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
     tarball axel-2.4.tar.bz2;
     sh 'cd axel-2.4 && ./configure && make && sudo make install';
+    dep cc;
+}
+
+cc {
+    prog gcc;
+    yum gcc;
+    dep make;
+}
+
+make {
+    prog make;
+    yum make;
 }
 
 prove {
@@ -414,6 +450,7 @@ ngx_redis {
 cpan {
     prog cpan;
     yum perl-CPAN;
+    dep cc;
 }
 
 [% types = ['', 'v', 'r', 'w'] %]
