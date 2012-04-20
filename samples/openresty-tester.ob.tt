@@ -32,6 +32,8 @@ ragel_version = 6.7;
     [%- IF type == 'v' -%]
     dep valgrind;
     [%- END %]
+
+    dep nginx-module-test [% "ngx_" _ name.replace("-", "_") %];
 [% END -%]
 
 all {
@@ -115,12 +117,12 @@ ngx_rds_json {
 
 ngx_array_var {
     git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
-    dep ngx_echo ndk ngx_set_misc;
+    dep ndk;
 }
 
 ngx_form_input {
     git git://github.com/calio/form-inputest-nginx-module ~/git/form-inputest-nginx-module;
-    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+    dep ndk;
 }
 
 ngx_xss {
@@ -147,7 +149,7 @@ ngx_lua {
     env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
     env LUAJIT_LIB /usr/local/openresty/luajit/lib;
     env LUAJIT_INC /usr/local/openresty/luajit/include/luajit-2.0;
-    dep luajit;
+    dep luajit ndk;
 }
 
 pcrejit {
@@ -356,29 +358,28 @@ cpan {
 t[% type %]-ngx_srcache {
     [%- PROCESS build_nginx_module name="srcache"  type=type -%]
 
-    dep ngx_srcache nginx-module-test run-memcached run-redis run-mysql run-postgres;
+    dep run-memcached run-redis run-mysql run-postgres;
 }
 
 
 t[% type %]-ngx_set_misc {
     [%- PROCESS build_nginx_module name="set-misc" -%]
 
-    dep ngx_set_misc nginx-module-test;
     dep ndk ngx_echo ngx_iconv;
 }
 
 t[% type %]-ngx_rds_json {
     [%- PROCESS build_nginx_module name="rds-json" -%]
 
-    dep ngx_rds_json nginx-module-test run-mysql;
+    dep run-mysql;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
 }
 
 t[% type %]-ngx_drizzle {
     [%- PROCESS build_nginx_module name="drizzle" -%]
 
-    dep ngx_drizzle nginx-module-test run-mysql ngx_lua;
-    dep ngx_echo ngx_rds_json;
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
@@ -387,8 +388,8 @@ t[% type %]-ngx_lua {
 
     [%- PROCESS build_nginx_module name="lua" -%]
 
-    dep pcrejit ngx_lua nginx-module-test run-memcached run-redis run-mysql mockeagain;
-    dep ndk ngx_set_misc ngx_auth_request;
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
@@ -397,44 +398,53 @@ t[% type %]-ngx_lua {
 t[% type %]-ngx_memc {
     [%- PROCESS build_nginx_module name="memc" -%]
 
-    dep nginx-module-test run-memcached;
-    dep ngx_memc ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
 }
 
 t[% type %]-ngx_redis2 {
     [%- PROCESS build_nginx_module name="redis2" -%]
 
-    dep nginx-module-test run-redis;
-    dep ngx_redis2 ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
 }
 
 t[% type %]-ngx_xss {
     [%- PROCESS build_nginx_module name="xss" -%]
 
-    dep nginx-module-test;
-    dep ngx_xss ngx_echo ndk ngx_lua;
-}
-
-t[% type %]-ngx_array_var {
-    [%- PROCESS build_nginx_module name="array-var" -%]
-
-    dep nginx-module-test;
-    dep ngx_array_var ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_lua;
 }
 
 t[% type %]-ngx_echo {
     [%- PROCESS build_nginx_module name="echo" -%]
 
-    dep nginx-module-test;
-    dep ngx_echo ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+t[% type %]-ngx_eval {
+    [%- PROCESS build_nginx_module name="eval" -%]
+
+    dep ngx_echo ngx_memc;
+}
+
+t[% type %]-ngx_form_input {
+    [%- PROCESS build_nginx_module name="form-input" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+t[% type %]-ngx_array_var {
+    [%- PROCESS build_nginx_module name="array-var" -%]
+
+    dep ngx_echo ndk ngx_set_misc;
 }
 
 t[% type %]-ngx_postgres {
     [%- PROCESS build_nginx_module name="postgres" -%]
 
-    dep nginx-module-test ngx-postgres-build-script;
-    dep ngx_postgres ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
 }
