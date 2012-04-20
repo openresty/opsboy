@@ -23,15 +23,27 @@ ragel_version = 6.7;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
 
-    [%- IF type == "v" -%]
+    [%- IF type.match("v") -%]
 
     env TEST_NGINX_USE_VALGRIND 1;
 
-    [%- ELSIF type == "r" -%]
+    [%- END -%]
+
+    [%- IF type.match("r") -%]
 
         [%- FOREACH serv IN servers %]
     dep run-etcproxy-[% serv.0 %];
         [%- END %]
+
+    [%- END -%]
+
+    [%- IF type.match("w") -%]
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
 
     [%- END -%]
 
@@ -49,7 +61,7 @@ ragel_version = 6.7;
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
-    [%- IF type == 'v' -%]
+    [%- IF type.match("v") -%]
     dep valgrind;
     [%- END %]
 
@@ -82,6 +94,12 @@ tr {
             NEXT;
         END %]
     dep tr-ngx_[% name %];
+[% END -%]
+}
+
+tw {
+[% FOREACH name IN mods -%]
+    dep tw-ngx_[% name %];
 [% END -%]
 }
 
@@ -398,7 +416,7 @@ cpan {
     yum perl-CPAN;
 }
 
-[% types = ['', 'v', 'r'] %]
+[% types = ['', 'v', 'r', 'w'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
@@ -444,7 +462,10 @@ t[% type %]-ngx_drizzle {
 }
 
 t[% type %]-ngx_lua {
+
+    [%- IF NOT type.match("w") -%]
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    [%- END -%]
 
     [%- PROCESS build_nginx_module name="lua" -%]
 

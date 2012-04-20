@@ -69,6 +69,23 @@ tr {
     dep tr-ngx_rds_csv;
 }
 
+tw {
+    dep tw-ngx_srcache;
+    dep tw-ngx_memc;
+    dep tw-ngx_set_misc;
+    dep tw-ngx_xss;
+    dep tw-ngx_drizzle;
+    dep tw-ngx_rds_json;
+    dep tw-ngx_redis2;
+    dep tw-ngx_echo;
+    dep tw-ngx_lua;
+    dep tw-ngx_array_var;
+    dep tw-ngx_postgres;
+    dep tw-ngx_eval;
+    dep tw-ngx_headers_more;
+    dep tw-ngx_rds_csv;
+}
+
 etcproxy {
     git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
     dep erlang;
@@ -519,7 +536,6 @@ t-ngx_drizzle {
 
 t-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -865,7 +881,6 @@ tv-ngx_drizzle {
 
 tv-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -1253,7 +1268,6 @@ tr-ngx_drizzle {
 
 tr-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -1486,6 +1500,429 @@ tr-ngx_postgres {
     dep run-etcproxy-memcached;
     dep run-etcproxy-redis;
     dep run-etcproxy-postgres;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_postgres;
+
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+
+tw-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_srcache;
+
+    dep run-memcached run-redis run-mysql run-postgres;
+}
+
+
+tw-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+tw-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
+tw-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_json;
+
+    dep run-mysql run-postgres;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+tw-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
+}
+
+tw-ngx_drizzle {
+    always;
+    cwd ~/git/drizzle-nginx-module;
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_drizzle;
+
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+tw-ngx_lua {
+
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build2.sh $nginx_version || touch config && sh ./util/build2.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_lua;
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+tw-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_memc;
+
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+tw-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_redis2;
+
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+tw-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
+}
+
+tw-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_echo;
+
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+tw-ngx_eval {
+    always;
+    cwd ~/git/eval-nginx-module;
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_eval;
+
+    dep run-memcached ngx_echo ngx_memc;
+}
+
+tw-ngx_form_input {
+    always;
+    cwd ~/git/form-input-nginx-module;
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_form_input;
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+tw-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+tw-ngx_postgres {
+    always;
+    cwd ~/git/postgres-nginx-module;
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
