@@ -113,7 +113,7 @@ for my $rec (@records) {
     }
 
     if (@{ $rec->{valgrind_warnings} }) {
-        print @{ $rec->{valgrind_warnings} };
+        #print @{ $rec->{valgrind_warnings} };
     }
 }
 

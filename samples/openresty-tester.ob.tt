@@ -8,6 +8,7 @@ ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
 force = 0;
 ragel_version = 6.7;
+valgrind_version = 3.7.0;
 
 [%- servers = [
         ['nginx', 1984, 1234],
@@ -41,7 +42,7 @@ ragel_version = 6.7;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -582,8 +583,12 @@ ngx-postgres-build-script {
 }
 
 valgrind {
-    prog valgrind;
-    yum valgrind;
+    env PATH /opt/valgrind/bin:$PATH;
+    file /opt/valgrind/bin/valgrind;
+    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
+    tarball valgrind-$valgrind_version.tar.bz2;
+    sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
+    dep cc;
 }
 
 [%- FOR server IN servers;
