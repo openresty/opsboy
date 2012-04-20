@@ -36,11 +36,24 @@ ragel_version = 6.7;
     dep nginx-module-test [% "ngx_" _ name.replace("-", "_") %];
 [% END -%]
 
-all {
-    dep t-ngx_srcache t-ngx_memc t-ngx_set_misc;
-    dep t-ngx_xss t-ngx_drizzle t-ngx_rds_json;
-    dep t-ngx_redis2 t-ngx_echo t-ngx_lua;
-    dep t-ngx_array_var t-ngx_postgres;
+[%- mods = [
+    'srcache', 'memc', 'set_misc', 'xss',
+    'drizzle', 'rds_json', 'redis2', 'echo',
+    'lua', 'array_var', 'postgres', 'eval',
+    'headers_more'
+   ]
+-%]
+
+t {
+[% FOREACH name IN mods -%]
+    dep t-ngx_[% name %];
+[% END -%]
+}
+
+tv {
+[% FOREACH name IN mods -%]
+    dep tv-ngx_[% name %];
+[% END -%]
 }
 
 etcproxy {
@@ -366,6 +379,12 @@ t[% type %]-ngx_set_misc {
     [%- PROCESS build_nginx_module name="set-misc" -%]
 
     dep ndk ngx_echo ngx_iconv;
+}
+
+t[% type %]-ngx_headers_more {
+    [%- PROCESS build_nginx_module name="headers-more" -%]
+
+    dep ngx_eval ngx_echo ngx_lua;
 }
 
 t[% type %]-ngx_rds_json {

@@ -10,11 +10,36 @@ force = 0;
 ragel_version = 6.7;
 
 
-all {
-    dep t-ngx_srcache t-ngx_memc t-ngx_set_misc;
-    dep t-ngx_xss t-ngx_drizzle t-ngx_rds_json;
-    dep t-ngx_redis2 t-ngx_echo t-ngx_lua;
-    dep t-ngx_array_var t-ngx_postgres;
+t {
+    dep t-ngx_srcache;
+    dep t-ngx_memc;
+    dep t-ngx_set_misc;
+    dep t-ngx_xss;
+    dep t-ngx_drizzle;
+    dep t-ngx_rds_json;
+    dep t-ngx_redis2;
+    dep t-ngx_echo;
+    dep t-ngx_lua;
+    dep t-ngx_array_var;
+    dep t-ngx_postgres;
+    dep t-ngx_eval;
+    dep t-ngx_headers_more;
+}
+
+tv {
+    dep tv-ngx_srcache;
+    dep tv-ngx_memc;
+    dep tv-ngx_set_misc;
+    dep tv-ngx_xss;
+    dep tv-ngx_drizzle;
+    dep tv-ngx_rds_json;
+    dep tv-ngx_redis2;
+    dep tv-ngx_echo;
+    dep tv-ngx_lua;
+    dep tv-ngx_array_var;
+    dep tv-ngx_postgres;
+    dep tv-ngx_eval;
+    dep tv-ngx_headers_more;
 }
 
 etcproxy {
@@ -366,6 +391,24 @@ t-ngx_set_misc {
     dep ndk ngx_echo ngx_iconv;
 }
 
+t-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
 t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -615,6 +658,24 @@ tv-ngx_set_misc {
     dep nginx-module-test ngx_set_misc;
 
     dep ndk ngx_echo ngx_iconv;
+}
+
+tv-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
 }
 
 tv-ngx_rds_json {
