@@ -449,6 +449,8 @@ sub main () {
         die "unknown command: $cmd\n";
     }
 
+    my $begin = time();
+
     if (@ARGV) {
         my @goals;
         for my $arg (@ARGV) {
@@ -478,6 +480,9 @@ sub main () {
     } else {
         make($default_goal);
     }
+
+    my $elapsed = time() - $begin;
+    warn "For total $elapsed sec elapsed.\n";
 }
 
 # check if we can run some command

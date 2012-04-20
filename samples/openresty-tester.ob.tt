@@ -558,7 +558,7 @@ run-etcproxy-[% name %] {
     env TEST_NGINX_[% tag | upper %]_PORT [% new_port %];
     running 'etcproxy [% new_port %] [% port %]';
     cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy [% new_port %] [% port %] &';
+    sh 'nohup ./etcproxy [% new_port %] [% port %] > /dev/null &';
     [%- IF name != "nginx" %]
     dep etcproxy run-[% name %];
     [%- END %]
