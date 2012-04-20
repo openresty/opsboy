@@ -24,6 +24,7 @@ t {
     dep t-ngx_postgres;
     dep t-ngx_eval;
     dep t-ngx_headers_more;
+    dep t-ngx_rds_csv;
 }
 
 tv {
@@ -40,6 +41,7 @@ tv {
     dep tv-ngx_postgres;
     dep tv-ngx_eval;
     dep tv-ngx_headers_more;
+    dep tv-ngx_rds_csv;
 }
 
 etcproxy {
@@ -112,6 +114,10 @@ libdrizzle {
 
 ngx_rds_json {
     git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+}
+
+ngx_rds_csv {
+    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
 }
 
 ngx_array_var {
@@ -424,8 +430,28 @@ t-ngx_rds_json {
 
     dep nginx-module-test ngx_rds_json;
 
-    dep run-mysql;
+    dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+t-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
 }
 
 t-ngx_drizzle {
@@ -693,8 +719,28 @@ tv-ngx_rds_json {
 
     dep nginx-module-test ngx_rds_json;
 
-    dep run-mysql;
+    dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+tv-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+
+    sh 'nginx -V';
+    sh 'prove -I../test-nginx/lib -r t';
+    dep valgrind;
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
 }
 
 tv-ngx_drizzle {

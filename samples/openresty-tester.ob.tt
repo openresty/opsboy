@@ -40,7 +40,7 @@ ragel_version = 6.7;
     'srcache', 'memc', 'set_misc', 'xss',
     'drizzle', 'rds_json', 'redis2', 'echo',
     'lua', 'array_var', 'postgres', 'eval',
-    'headers_more'
+    'headers_more', 'rds_csv'
    ]
 -%]
 
@@ -126,6 +126,10 @@ libdrizzle {
 
 ngx_rds_json {
     git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+}
+
+ngx_rds_csv {
+    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
 }
 
 ngx_array_var {
@@ -390,8 +394,16 @@ t[% type %]-ngx_headers_more {
 t[% type %]-ngx_rds_json {
     [%- PROCESS build_nginx_module name="rds-json" -%]
 
-    dep run-mysql;
+    dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+t[% type %]-ngx_rds_csv {
+    [%- PROCESS build_nginx_module name="rds-csv" -%]
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
 }
 
 t[% type %]-ngx_drizzle {
