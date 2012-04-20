@@ -244,7 +244,7 @@ ngx_auth_request {
 }
 
 ngx_coolkit {
-    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkitest-nginx-module;
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
 luajit {
@@ -601,6 +601,7 @@ run-etcproxy-[% name %] {
     running 'etcproxy [% new_port %] [% port %]';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy [% new_port %] [% port %] > /dev/null &';
+    sh 'sleep 0.5';
     [%- IF name != "nginx" %]
     dep etcproxy run-[% name %];
     [%- END %]

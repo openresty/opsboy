@@ -2,25 +2,118 @@
 
 use strict;
 use warnings;
+use List::MoreUtils qw( uniq );
 
+my @white_list = (
+);
+
+my $in_valgrind_warning;
 my $rec;
 my @records;
 while (<>) {
+    if ($in_valgrind_warning) {
+        if (/^[^\s{}]/) {
+            undef $in_valgrind_warning;
+
+        } elsif (/^\{$/) {
+            push @{ $rec->{valgrind_warnings} }, $_;
+            next;
+
+        } else {
+            $rec->{valgrind_warnings}[-1] .= $_;
+            next;
+        }
+    }
+
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
 
+        undef $in_valgrind_warning;
         if ($subj =~ /^t([rvw]*)-(ngx_[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
-            warn "$mode: $module\n";
+            #warn "$mode: $module\n";
+
+            if ($rec) {
+                if (!$rec->{commit}) {
+                    my $line = $rec->{line};
+                    die "line $line: No git commit found.\n";
+                }
+
+                @{ $rec->{valgrind_warnings} } = uniq @{ $rec->{valgrind_warnings} };
+            }
 
             $rec = {
                 module => $module,
                 mode => $mode,
+                line => $.,
+                tests_pass => 0,
+                valgrind_pass => 1,
+                failures => [],
+                valgrind_warnings => [],
             };
 
             push @records, $rec;
         }
+
+    } elsif ($rec && /^commit ([0-9a-f]+)$/) {
+        $rec->{commit} = $1;
+
+    } elsif ($rec && /^All tests successful/) {
+        $rec->{tests_pass} = 1;
+
+    } elsif ($rec && /^==\d+==\s+/) {
+        if ($in_valgrind_warning) {
+            next;
+
+        } else {
+            $rec->{valgrind_pass} = 0;
+            $in_valgrind_warning = 1;
+        }
+
+    } elsif ($rec && /^\#\s+Failed test '(.*?)'$/) {
+        my $name = $1;
+        #warn "$rec->{module}: $rec->{mode}: $name\n";
+        push @{ $rec->{failures} }, [$name];
+
+    } elsif ($rec && m{^t/(\S+\.t) \.+ $}) {
+
+        my $file = $1;
+        #warn "file $file\n";
+        my $failures = $rec->{failures};
+        my $i = @$failures - 1;
+        while ($i >= 0) {
+            my $f = $failures->[$i];
+            if (@$f > 1) {
+                last;
+            }
+
+            unshift @$f, $file;
+
+            #warn $rec->{module}, ": ", $rec->{mode}, ": ",
+                #join(": ", @$f), "\n";
+
+            $i--;
+        }
+    }
+}
+
+for my $rec (@records) {
+    my $mode = $rec->{mode};
+    my $module = $rec->{module};
+
+    print $mode, ": ";
+    print $module, ": ";
+
+    if ($rec->{tests_pass} && $rec->{valgrind_pass}) {
+        print "\e[32mPASS\e[39m\n";
+
+    } else {
+        print "\e[31mFAIL\e[39m\n";
+    }
+
+    if (@{ $rec->{valgrind_warnings} }) {
+        print @{ $rec->{valgrind_warnings} };
     }
 }
 

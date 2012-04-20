@@ -227,7 +227,7 @@ ngx_auth_request {
 }
 
 ngx_coolkit {
-    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkitest-nginx-module;
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
 luajit {
@@ -328,6 +328,11 @@ run-mysql {
 mysql {
     prog mysqld_safe;
     yum mysql mysql-server;
+
+    # mysql -u root
+    # mysql> create database ngx_test;
+    # mysql> create user 'ngx_test'@'localhost' identified by 'ngx_test';
+    # mysql> grant all privileges on ngx_test.* to 'ngx_test'@'localhost' with grant option;
 }
 
 run-memcached {
@@ -1998,6 +2003,7 @@ run-etcproxy-nginx {
     running 'etcproxy 1234 1984';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy 1234 1984 > /dev/null &';
+    sh 'sleep 0.5';
 }
 
 run-etcproxy-mysql {
@@ -2005,6 +2011,7 @@ run-etcproxy-mysql {
     running 'etcproxy 3307 3306';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy 3307 3306 > /dev/null &';
+    sh 'sleep 0.5';
     dep etcproxy run-mysql;
 }
 
@@ -2013,6 +2020,7 @@ run-etcproxy-memcached {
     running 'etcproxy 11984 11211';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy 11984 11211 > /dev/null &';
+    sh 'sleep 0.5';
     dep etcproxy run-memcached;
 }
 
@@ -2021,6 +2029,7 @@ run-etcproxy-redis {
     running 'etcproxy 6380 6379';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy 6380 6379 > /dev/null &';
+    sh 'sleep 0.5';
     dep etcproxy run-redis;
 }
 
@@ -2029,6 +2038,7 @@ run-etcproxy-postgres {
     running 'etcproxy 5433 5432';
     cwd ~/git/etcproxy;
     sh 'nohup ./etcproxy 5433 5432 > /dev/null &';
+    sh 'sleep 0.5';
     dep etcproxy run-postgres;
 }
 

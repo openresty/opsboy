@@ -278,7 +278,8 @@ sub make ($) {
 
             if (!good_git_repos($dir)) {
                 if (-d $dir) {
-                    sh("rm", "-rf", $dir);
+                    sh("rm", "-rf", "$dir/*");
+                    sh("rm", "-rf", "$dir/.git");
                 }
 
                 sh("git", "clone", $url, $dir);
