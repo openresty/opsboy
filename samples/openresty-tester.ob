@@ -201,8 +201,8 @@ ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
 
     env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
-    env LUAJIT_LIB /usr/local/openresty/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty/luajit/include/luajit-2.0;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
     dep luajit ndk;
 }
 
@@ -311,7 +311,7 @@ run-postgres {
 
 postgres {
     prog pg_ctl;
-    yum postgresql-server postgresql-server-devel;
+    yum postgresql-server;
 
     # vim /var/lib/pgsql9/data/pg_hba.conf
     # psql> create user ngx_test with password 'ngx_test';
