@@ -4,7 +4,7 @@ This is a rule-based sysadmin script generator.
     ./opsboy samples/openresty-tester.ob -o openresty-tester.pl
 
     # on the target machine
-    ./openresty-test.pl make t-ngx_lua --git-pull force=1
+    ./openresty-test.pl make t-ngx_lua tv-ngx_srcache --git-pull force=1
 
 Installation on the Developer Host Machine
 
