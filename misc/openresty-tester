@@ -26,26 +26,36 @@ lockfile=/var/lock/subsys/$prog
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
-args=`ec2-metadata -d|sed 's/^user-data: //'`
+userdata=`ec2-metadata -d|sed 's/^user-data:\s*//'`
+if [ "$userdata" = "not available" ]; then
+    userdata=
+fi
 
 start() {
-    [ -x $exec ] || exit 5
-    ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
-    if [ $? = 0 ]; then
-        echo "openresty-tester.pl already running"
+    if [ -z "$userdata" ]; then
+        echo "No tasks found."
 	action $"Starting $prog: " /bin/true
         ret=0
+
     else
-        nohup $exec $args > dev/null 2>&1 &
-        sleep 1
+        [ -x $exec ] || exit 5
         ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
-        ret=$?
-        if [ "$ret" = 0 ]; then
-            touch $lockfile
+        if [ $? = 0 ]; then
+            echo "openresty-tester.pl already running"
             action $"Starting $prog: " /bin/true
+            ret=0
         else
-            action $"Starting $prog: " /bin/false
-            tail $logfile
+            nohup $exec $userdata > dev/null 2>&1 &
+            sleep 1
+            ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
+            ret=$?
+            if [ "$ret" = 0 ]; then
+                touch $lockfile
+                action $"Starting $prog: " /bin/true
+            else
+                action $"Starting $prog: " /bin/false
+                tail $logfile
+            fi
         fi
     fi
     return $ret
