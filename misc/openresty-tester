@@ -30,15 +30,15 @@ args=`ec2-metadata -d|sed 's/^user-data: //'`
 
 start() {
     [ -x $exec ] || exit 5
-    ps aux|grep $exec|grep -v grep
+    ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
     if [ $? = 0 ]; then
-        action "$exec already running"
+        echo "openresty-tester.pl already running"
 	action $"Starting $prog: " /bin/true
         ret=0
     else
         $exec $args
         sleep 1
-        ps aux|grep openresty-tester.pl|grep -v grep
+        ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
         ret=$?
         if [ "$ret" = 0 ]; then
             touch $lockfile
@@ -55,7 +55,7 @@ stop() {
     ret=1
     TIMEOUT="$STOPTIMEOUT"
     while [ $TIMEOUT -gt 0 ]; do
-        pid=`ps aux|grep $exec|grep -v grep|awk '{print $1}'`
+        pid=`ps aux|grep openresty-tester.pl|grep -v grep|awk '{print $2}'`
         if [ -n "$pid" ]; then
             kill -0 $pid || break
             sleep 1
@@ -64,6 +64,7 @@ stop() {
             rm -f $lockfile
 	    action $"Stopping $prog: " /bin/true
             ret=0
+            break
         fi
     done
     return $ret

@@ -4,10 +4,10 @@ rootdir=/home/ec2-user
 exec=$rootdir/openresty-tester.pl
 user=ec2-user
 logfile=$rootdir/openresty-tester.log
-run="sudo -u $user sh -c"
 args="$@"
+run='su --session-command='
 
-$run "whoami > $logfile 2>&1"
-$run "date +'%Y-%m-%d %H:%M:%S' >> $logfile 2>&1"
-$run "PATH=$PATH nohup $exec make --git-pull $args >> $logfile 2>&1 &"
+$run"whoami > $logfile 2>&1" $user
+$run"date +'%Y-%m-%d %H:%M:%S' >> $logfile 2>&1" $user
+$run"PATH=$PATH nohup $exec make --git-pull $args >> $logfile 2>&1 &" $user
 
