@@ -7,12 +7,15 @@ logfile=$rootdir/openresty-tester.log
 args="$@"
 run='su --session-command='
 name=ortest_`date +'%Y%m%d-%H%M%S'`_`hostname`
-logfile2=$rootdir/$name.log
+logfile2=/tmp/$name.log
 
-$run"whoami > $logfile 2>&1" $user
+#$run"whoami > $logfile 2>&1" $user
 $run"date +'%Y-%m-%d %H:%M:%S' >> $logfile 2>&1" $user
 $run"PATH=$PATH $exec make --git-pull $args >> $logfile 2>&1" $user
+
 $run"cp $logfile $logfile2" $user
-$run"tar -czf /tmp/$name.tar.gz $logfile2" $user
+$run"cd /tmp && tar -czf $name.tar.gz $name.log" $user
 $run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz" $user
+
+shutdown -P now
 
