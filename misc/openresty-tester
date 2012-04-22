@@ -36,7 +36,7 @@ start() {
 	action $"Starting $prog: " /bin/true
         ret=0
     else
-        $exec $args
+        nohup $exec $args > dev/null 2>&1 &
         sleep 1
         ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
         ret=$?
@@ -45,7 +45,7 @@ start() {
             action $"Starting $prog: " /bin/true
         else
             action $"Starting $prog: " /bin/false
-            cat $logfile
+            tail $logfile
         fi
     fi
     return $ret
