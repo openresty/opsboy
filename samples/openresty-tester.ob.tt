@@ -588,6 +588,11 @@ valgrind {
 
 opsboy {
     git git://github.com/agentzh/opsboy.git ~/git/opsboy;
-    dep cc;
+    dep cc parse-recdescent;
+}
+
+parse-recdescent {
+    test 'perl -MParse::RecDescent -e1';
+    yum perl-Parse-RecDescent;
 }
 
