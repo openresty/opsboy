@@ -2019,3 +2019,8 @@ valgrind {
     dep cc;
 }
 
+opsboy {
+    git git://github.com/agentzh/opsboy.git ~/git/opsboy;
+    dep cc;
+}
+
