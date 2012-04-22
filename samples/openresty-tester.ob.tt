@@ -10,15 +10,6 @@ force = 0;
 ragel_version = 6.7;
 valgrind_version = 3.7.0;
 
-[%- servers = [
-        ['nginx', 1984, 1234],
-        ['mysql', 3306, 3307],
-        ['memcached', 11211, 11984],
-        ['redis', 6379, 6380],
-        ['postgres', 5432, 5433],
-    ]
--%]
-
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
@@ -32,9 +23,11 @@ valgrind_version = 3.7.0;
 
     [%- IF type.match("r") -%]
 
-        [%- FOREACH serv IN servers %]
-    dep run-etcproxy-[% serv.0 %];
-        [%- END %]
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     [%- END -%]
 
@@ -43,6 +36,7 @@ valgrind_version = 3.7.0;
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -298,7 +292,8 @@ git {
 }
 
 mockeagain {
-    file ~/git/mockeagain/mockeagain.so;
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
     dep mockeagain-git;
 }
@@ -590,26 +585,4 @@ valgrind {
     sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
     dep cc;
 }
-
-[%- FOR server IN servers;
-        name = server.0;
-        port = server.1;
-        new_port = server.2 %]
-run-etcproxy-[% name %] {
-    [%- tag = name;
-       IF tag == "postgres";
-            tag = "postgresql";
-       ELSIF tag == "nginx";
-            tag = "client";
-       END %]
-    env TEST_NGINX_[% tag | upper %]_PORT [% new_port %];
-    running 'etcproxy [% new_port %] [% port %]';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy [% new_port %] [% port %] > /dev/null &';
-    sh 'sleep 0.5';
-    [%- IF name != "nginx" %]
-    dep etcproxy run-[% name %];
-    [%- END %]
-}
-[% END -%]
 

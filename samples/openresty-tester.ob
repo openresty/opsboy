@@ -281,7 +281,8 @@ git {
 }
 
 mockeagain {
-    file ~/git/mockeagain/mockeagain.so;
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
     dep mockeagain-git;
 }
@@ -1146,11 +1147,11 @@ tr-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1174,11 +1175,11 @@ tr-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1201,11 +1202,11 @@ tr-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1228,11 +1229,11 @@ tr-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1256,11 +1257,11 @@ tr-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1285,11 +1286,11 @@ tr-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1315,11 +1316,11 @@ tr-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1346,11 +1347,11 @@ tr-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1374,11 +1375,11 @@ tr-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1402,11 +1403,11 @@ tr-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1429,11 +1430,11 @@ tr-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1457,11 +1458,11 @@ tr-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1484,11 +1485,11 @@ tr-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1511,11 +1512,11 @@ tr-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1538,11 +1539,11 @@ tr-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    dep run-etcproxy-nginx;
-    dep run-etcproxy-mysql;
-    dep run-etcproxy-memcached;
-    dep run-etcproxy-redis;
-    dep run-etcproxy-postgres;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1572,6 +1573,7 @@ tw-ngx_srcache {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1600,6 +1602,7 @@ tw-ngx_set_misc {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1627,6 +1630,7 @@ tw-ngx_headers_more {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1654,6 +1658,7 @@ tw-ngx_rds_json {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1682,6 +1687,7 @@ tw-ngx_rds_csv {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1711,6 +1717,7 @@ tw-ngx_drizzle {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1741,6 +1748,7 @@ tw-ngx_lua {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1772,6 +1780,7 @@ tw-ngx_memc {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1800,6 +1809,7 @@ tw-ngx_redis2 {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1828,6 +1838,7 @@ tw-ngx_xss {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1855,6 +1866,7 @@ tw-ngx_echo {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1883,6 +1895,7 @@ tw-ngx_eval {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1910,6 +1923,7 @@ tw-ngx_form_input {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1937,6 +1951,7 @@ tw-ngx_array_var {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1964,6 +1979,7 @@ tw-ngx_postgres {
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -2001,49 +2017,5 @@ valgrind {
     tarball valgrind-$valgrind_version.tar.bz2;
     sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
     dep cc;
-}
-
-run-etcproxy-nginx {
-    env TEST_NGINX_CLIENT_PORT 1234;
-    running 'etcproxy 1234 1984';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy 1234 1984 > /dev/null &';
-    sh 'sleep 0.5';
-}
-
-run-etcproxy-mysql {
-    env TEST_NGINX_MYSQL_PORT 3307;
-    running 'etcproxy 3307 3306';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy 3307 3306 > /dev/null &';
-    sh 'sleep 0.5';
-    dep etcproxy run-mysql;
-}
-
-run-etcproxy-memcached {
-    env TEST_NGINX_MEMCACHED_PORT 11984;
-    running 'etcproxy 11984 11211';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy 11984 11211 > /dev/null &';
-    sh 'sleep 0.5';
-    dep etcproxy run-memcached;
-}
-
-run-etcproxy-redis {
-    env TEST_NGINX_REDIS_PORT 6380;
-    running 'etcproxy 6380 6379';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy 6380 6379 > /dev/null &';
-    sh 'sleep 0.5';
-    dep etcproxy run-redis;
-}
-
-run-etcproxy-postgres {
-    env TEST_NGINX_POSTGRESQL_PORT 5433;
-    running 'etcproxy 5433 5432';
-    cwd ~/git/etcproxy;
-    sh 'nohup ./etcproxy 5433 5432 > /dev/null &';
-    sh 'sleep 0.5';
-    dep etcproxy run-postgres;
 }
 
