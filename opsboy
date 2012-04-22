@@ -101,7 +101,7 @@ for my $target (@$ast) {
 
     #warn "target: $name\n";
     if ($entities{$name}) {
-        die "target $name redefined.\n";
+        die "target \"$name\" redefined.\n";
     }
 
     my %rules;
@@ -212,7 +212,7 @@ sub make ($) {
 
     my $rules = $entities->{$target};
     if (!$rules) {
-        die "target $target not defined.\n";
+        die "target \"$target\" not defined.\n";
     }
 
     my $deps = $rules->{dep};

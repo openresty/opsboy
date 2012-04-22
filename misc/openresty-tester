@@ -26,7 +26,7 @@ lockfile=/var/lock/subsys/$prog
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
-userdata=`ec2-metadata -d|sed 's/^user-data:\s*//'`
+userdata=`ec2-metadata -d|sed 's/^user-data: *//'`
 if [ "$userdata" = "not available" ]; then
     userdata=
 fi
