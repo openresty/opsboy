@@ -1571,7 +1571,7 @@ tw-ngx_srcache {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1599,7 +1599,7 @@ tw-ngx_set_misc {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1626,7 +1626,7 @@ tw-ngx_headers_more {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1653,7 +1653,7 @@ tw-ngx_rds_json {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1681,7 +1681,7 @@ tw-ngx_rds_csv {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1710,7 +1710,7 @@ tw-ngx_drizzle {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1740,7 +1740,7 @@ tw-ngx_lua {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1771,7 +1771,7 @@ tw-ngx_memc {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1799,7 +1799,7 @@ tw-ngx_redis2 {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1827,7 +1827,7 @@ tw-ngx_xss {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1854,7 +1854,7 @@ tw-ngx_echo {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1882,7 +1882,7 @@ tw-ngx_eval {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1909,7 +1909,7 @@ tw-ngx_form_input {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1936,7 +1936,7 @@ tw-ngx_array_var {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 
@@ -1963,7 +1963,7 @@ tw-ngx_postgres {
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
-    env MOCKEAGAIN_VERBOSE 1;
+    #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     dep mockeagain;
 

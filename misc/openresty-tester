@@ -1,0 +1,105 @@
+#!/bin/sh
+#
+# openresty-tester      This shell script takes care of starting and stopping
+#		        the OpenResty-Tester
+#
+# chkconfig: - 64 36
+# description:	OpenResty-Tester database server.
+# processname: openresty-tester
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+#. /etc/sysconfig/network
+
+rootdir=/home/ec2-user
+logfile=$rootdir/openresty-tester.log
+
+exec=$rootdir/openresty-tester-wrapper
+prog="openresty-tester"
+
+STOPTIMEOUT=60
+export PATH=/opt/aws/bin:/usr/local/bin:/usr/sbin:$PATH
+
+lockfile=/var/lock/subsys/$prog
+
+[ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
+
+args=`ec2-metadata -d|sed 's/^user-data: //'`
+
+start() {
+    [ -x $exec ] || exit 5
+    ps aux|grep $exec|grep -v grep
+    if [ $? = 0 ]; then
+        action "$exec already running"
+	action $"Starting $prog: " /bin/true
+        ret=0
+    else
+        $exec $args
+        sleep 1
+        ps aux|grep openresty-tester.pl|grep -v grep
+        ret=$?
+        if [ "$ret" = 0 ]; then
+            touch $lockfile
+            action $"Starting $prog: " /bin/true
+        else
+            action $"Starting $prog: " /bin/false
+            cat $logfile
+        fi
+    fi
+    return $ret
+}
+
+stop() {
+    ret=1
+    TIMEOUT="$STOPTIMEOUT"
+    while [ $TIMEOUT -gt 0 ]; do
+        pid=`ps aux|grep $exec|grep -v grep|awk '{print $1}'`
+        if [ -n "$pid" ]; then
+            kill -0 $pid || break
+            sleep 1
+            let TIMEOUT=${TIMEOUT}-1
+        else
+            rm -f $lockfile
+	    action $"Stopping $prog: " /bin/true
+            ret=0
+        fi
+    done
+    return $ret
+}
+
+restart(){
+    stop
+    start
+}
+
+condrestart(){
+    [ -e $lockfile ] && restart || :
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    condrestart)
+        if [ -f /var/lock/subsys/$prog ] ; then
+            stop
+            # avoid race
+            sleep 3
+            start
+        fi
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|restart|condrestart}"
+        ret=1
+esac
+exit $ret
+
