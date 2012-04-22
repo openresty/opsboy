@@ -16,6 +16,7 @@ $run"PATH=$PATH $exec make --git-pull $args >> $logfile 2>&1" $user
 $run"cp $logfile $logfile2" $user
 $run"cd /tmp && tar -czf $name.tar.gz $name.log" $user
 $run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz" $user
+$run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 
 shutdown -P now
 
