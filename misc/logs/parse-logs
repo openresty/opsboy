@@ -68,13 +68,19 @@ while (<>) {
         }
     }
 
-    if (!defined $date && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) {
+    if (!defined $date && /^(?:DATE )?\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) {
         $date = $&;
         next;
     }
 
     if (!defined $arch) {
-        if (/^Linux 
+        if (/^(?:ARCH )?Linux .*\bi386\b/) {
+            $arch = 'linux i386';
+
+        } elsif (/^(?:ARCH )?Linux .*\bx86_64\b/) {
+            $arch = 'linux x86_64';
+        }
+    }
 
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
@@ -241,9 +247,19 @@ for my $rec (@records) {
     }
 }
 
+my $json_xs = JSON::XS->new->ascii->pretty;
+
+my $res = {
+    arch => $arch,
+    date => $date,
+    records => \@records,
+};
+
 open my $out, ">$outfile" or
     die "Cannot open $outfile for writing: $!\n";
-print $out JSON::XS->new->ascii->pretty->encode(\@records);
+
+print $out $json_xs->encode($res);
+
 close $out;
 
 sub usage {
