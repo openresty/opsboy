@@ -3,3 +3,5 @@
 *.swo
 *.pl
 out*
+misc/logs/ortest/
+misc/mysqld

@@ -1,0 +1,13 @@
+logfiles=$(wildcard ortest/*.log)
+jsonfiles=$(patsubst %.log,%.json,$(logfiles))
+
+.PHONY: pull parse
+
+parse: $(jsonfiles)
+
+pull:
+	./sync
+
+%.json: %.log
+	./parse-logs -o $@ $<
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#set -x
+rsync -cvr agentzh.org:~/ortest/ ortest/ || exit 1
+cd ortest/ || exit 1
+for tar in $(ls *.tar.gz); do
+    log=${tar%.tar.gz}.log
+    if [ ! -f $log ]; then
+        tar -xzf $tar || exit 1
+    fi
+done
+

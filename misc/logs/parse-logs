@@ -1,0 +1,212 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+use List::MoreUtils qw( uniq );
+
+my %opts;
+getopts('o:', \%opts) or die "Usage: $0 -o <outfile> <infile>\n";
+
+my %white_list = (
+    ngx_rds_csv => [
+        ['w', 'pg.t'],
+        ['r', 'sanity-stream.t', 'TEST 1: sanity'],
+        ['r', 'sanity-stream.t', 'TEST 2: keep-alive'],
+        ['r', 'sanity-stream.t', 'TEST 7: single row, single col'],
+        ['r', 'sanity-stream.t', 'TEST 9: text blob field'],
+        ['r', 'sanity-stream.t', 'TEST 12: date type'],
+    ],
+
+    #ngx_postgres => [['w']],
+
+    ngx_rds_json => [
+        ['w', 'pg.t'],
+        ['w', '000_init.t', 'TEST 8: cats - drop table'],
+        ['w', '000_init.t', 'TEST 9: cats - create table'],
+        ['w', '000_init.t', 'TEST 10: cats - insert value'],
+        ['w', '000_init.t', 'TEST 11: cats - insert value'],
+    ],
+
+    ngx_srcache => [
+        ['w', 'postgres-main.t'],
+        ['w', '000_init.t', '- pg -'],
+    ],
+
+    ngx_lua => [
+        ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
+    ],
+
+    ngx_echo => [
+        ['r', 'echo-timer.t'],
+    ],
+);
+
+my $in_valgrind_warning;
+my $rec;
+my @records;
+while (<>) {
+    if ($in_valgrind_warning) {
+        if (/^[^\s{}]/) {
+            undef $in_valgrind_warning;
+
+        } elsif (/^\{$/) {
+            push @{ $rec->{valgrind_warnings} }, $_;
+            next;
+
+        } else {
+            $rec->{valgrind_warnings}[-1] .= $_;
+            next;
+        }
+    }
+
+    if (/^making (\S+) \.\.\.$/) {
+        my $subj = $1;
+
+        undef $in_valgrind_warning;
+        if ($subj =~ /^t([rvw]*)-(ngx_[-_A-Za-z0-9]+)$/) {
+            my ($mode, $module) = ($1, $2);
+
+            #warn "$mode: $module\n";
+
+            if ($rec) {
+                if (!$rec->{commit}) {
+                    my $line = $rec->{line};
+                    die "line $line: No git commit found.\n";
+                }
+
+                @{ $rec->{valgrind_warnings} } = uniq @{ $rec->{valgrind_warnings} };
+            }
+
+            $rec = {
+                module => $module,
+                mode => $mode,
+                line => $.,
+                tests_pass => 0,
+                valgrind_pass => 1,
+                failures => [],
+                valgrind_warnings => [],
+            };
+
+            push @records, $rec;
+        }
+
+    } elsif ($rec && /^commit ([0-9a-f]+)$/) {
+        $rec->{commit} = $1;
+
+    } elsif ($rec && /^All tests successful/) {
+        $rec->{tests_pass} = 1;
+
+    } elsif ($rec && /^==\d+==\s+/) {
+        if ($in_valgrind_warning) {
+            next;
+
+        } else {
+            $rec->{valgrind_pass} = 0;
+            $in_valgrind_warning = 1;
+        }
+
+    } elsif ($rec && /^\#\s+Failed test '(.*?)'?$/) {
+        my $name = $1;
+        #warn "$rec->{module}: $rec->{mode}: $name\n";
+        push @{ $rec->{failures} }, [$name];
+
+    } elsif ($rec && m{^t/(\S+\.t) \.+ $}) {
+
+        my $file = $1;
+        #warn "file $file\n";
+        my $failures = $rec->{failures};
+        my $i = @$failures - 1;
+        while ($i >= 0) {
+            my $f = $failures->[$i];
+            if (@$f > 1) {
+                last;
+            }
+
+            unshift @$f, $file;
+
+            #warn $rec->{module}, ": ", $rec->{mode}, ": ",
+                #join(": ", @$f), "\n";
+
+            $i--;
+        }
+    }
+}
+
+for my $rec (@records) {
+    my $mode = $rec->{mode};
+    my $module = $rec->{module};
+
+    print $mode, ": ";
+    print $module, ": ";
+
+    if ($rec->{tests_pass} && $rec->{valgrind_pass}) {
+        print "\e[32mPASS\e[39m\n";
+
+    } else {
+
+        my @fails;
+
+        my $specs = $white_list{$module};
+        if ($specs) {
+            for my $f (@{ $rec->{failures} }) {
+                my $expected;
+                for my $spec (@$specs) {
+                    if ($mode =~ /$spec->[0]/) {
+                        #warn "mode $mode matched $spec->[0]";
+                        my $file = $spec->[1];
+
+                        if (defined $file) {
+                            if ($f->[0] eq $file) {
+                                #warn "Hit $file!";
+                                my $test = $spec->[2];
+                                if (defined $test) {
+                                    if ($f->[1] =~ /$test/) {
+                                        #warn "Matched \"$f->[1]\" with \"$test\"";
+                                        $expected = 1;
+                                        last;
+
+                                    }
+
+                                } else {
+                                    #warn "Matched mode $spec->[0] and file $spec->[1]";
+                                    $expected = 1;
+                                    last;
+                                }
+                            }
+
+                        } else {
+                            #warn "Matched mode $spec->[0]";
+                            $expected = 1;
+                            last;
+                        }
+                    }
+                }
+
+                unless ($expected) {
+                    push @fails, $f;
+                }
+            }
+
+        } else {
+            @fails = @{ $rec->{failures} };
+        }
+
+        if (!@fails) {
+            print "\e[33mPASS\e[39m\n";
+
+        } else {
+            print "\e[31mFAIL\e[39m\n";
+
+            if (@fails && ($module ne 'ngx_postgres' || $mode !~ /w/)) {
+                print join("\n", map { "@$_" } @fails), "\n";
+            }
+        }
+    }
+
+    if (@{ $rec->{valgrind_warnings} }) {
+        #print @{ $rec->{valgrind_warnings} };
+    }
+}
+
