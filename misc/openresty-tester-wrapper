@@ -19,5 +19,5 @@ $run"cd /tmp && tar -czf $name.tar.gz $name.log > $mlog 2>&1" $user
 $run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz > $mlog 2>&1" $user
 $run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 
-shutdown -P +5
+shutdown -P +3
 

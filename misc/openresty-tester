@@ -19,7 +19,7 @@ logfile=$rootdir/openresty-tester.log
 exec=$rootdir/openresty-tester-wrapper
 prog="openresty-tester"
 
-STOPTIMEOUT=60
+STOPTIMEOUT=5
 export PATH=/opt/aws/bin:/usr/local/bin:/usr/sbin:$PATH
 
 lockfile=/var/lock/subsys/$prog
