@@ -580,6 +580,7 @@ ngx-postgres-build-script {
 valgrind {
     env PATH /opt/valgrind/bin:$PATH;
     file /opt/valgrind/bin/valgrind;
+    cwd /tmp;
     fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
     tarball valgrind-$valgrind_version.tar.bz2;
     sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
