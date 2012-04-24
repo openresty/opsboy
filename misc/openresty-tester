@@ -45,7 +45,10 @@ start() {
             action $"Starting $prog: " /bin/true
             ret=0
         else
-            cd $rootdir/git/opsboy && git reset --hard && git pull && make || exit 5
+            cd $rootdir/git/opsboy
+            git reset --hard
+            git pull
+            make
             nohup $exec $userdata > /dev/null 2>&1 &
             sleep 1
             ps aux|grep openresty-tester.pl|grep -v grep > /dev/null 2>&1
