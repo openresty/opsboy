@@ -2026,7 +2026,7 @@ opsboy {
 
 tt2 {
     test 'perl -MTemplate -e1';
-    yum perl-Template;
+    yum perl-Template-Toolkit;
 }
 
 parse-recdescent {
