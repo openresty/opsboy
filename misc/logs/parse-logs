@@ -119,6 +119,12 @@ while (<>) {
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
 
+    } elsif ($rec && /Files=(\d+), Tests=(\d+), (\d+) wallclock secs/) {
+
+        $rec->{files} = $1;
+        $rec->{tests} = $2;
+        $rec->{secs} = $3;
+
     } elsif ($rec && /^==\d+==\s+/) {
         if ($in_valgrind_warning) {
             next;

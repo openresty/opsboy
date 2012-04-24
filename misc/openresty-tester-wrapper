@@ -11,7 +11,7 @@ logfile2=/tmp/$name.log
 mlog=$rootdir/ortest.log
 
 #$run"whoami > $logfile 2>&1" $user
-$run"(echo -n 'DATE '; date +'%Y-%m-%d %H:%M:%S') > $logfile 2>&1" $user
+$run"(echo -n 'DATE '; TZ=GMT date +'%Y-%m-%d %H:%M:%S') > $logfile 2>&1" $user
 $run"(echo -n 'ARCH '; uname -a) >> $logfile 2>&1" $user
 $run"PATH=$PATH $exec make --git-pull $args >> $logfile 2>&1" $user
 
