@@ -501,7 +501,7 @@ t[% type %]-ngx_drizzle {
 
 t[% type %]-ngx_lua {
 
-    [%- IF NOT type.match("w") -%]
+    [%- IF NOT type.match("[wr]") -%]
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     [%- END -%]
 
