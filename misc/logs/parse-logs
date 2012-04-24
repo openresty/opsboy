@@ -5,9 +5,14 @@ use warnings;
 
 use Getopt::Std;
 use List::MoreUtils qw( uniq );
+use JSON::XS;
 
 my %opts;
-getopts('o:', \%opts) or die "Usage: $0 -o <outfile> <infile>\n";
+getopts('vo:', \%opts) or usage();
+
+my $outfile = $opts{o} or usage();
+
+my $verbose = $opts{v};
 
 my %white_list = (
     ngx_rds_csv => [
@@ -45,6 +50,8 @@ my %white_list = (
 
 my $in_valgrind_warning;
 my $rec;
+my $date;
+my $arch;
 my @records;
 while (<>) {
     if ($in_valgrind_warning) {
@@ -60,6 +67,14 @@ while (<>) {
             next;
         }
     }
+
+    if (!defined $date && /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) {
+        $date = $&;
+        next;
+    }
+
+    if (!defined $arch) {
+        if (/^Linux 
 
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
@@ -138,11 +153,16 @@ for my $rec (@records) {
     my $mode = $rec->{mode};
     my $module = $rec->{module};
 
-    print $mode, ": ";
-    print $module, ": ";
+    if ($verbose) {
+        print $mode, ": ", $module, ": ";
+    }
 
     if ($rec->{tests_pass} && $rec->{valgrind_pass}) {
-        print "\e[32mPASS\e[39m\n";
+        if ($verbose) {
+            print "\e[32mPASS\e[39m\n";
+        }
+
+        $rec->{result} = 'PASS';
 
     } else {
 
@@ -194,13 +214,24 @@ for my $rec (@records) {
         }
 
         if (!@fails) {
-            print "\e[33mPASS\e[39m\n";
+            if ($verbose) {
+                print "\e[33mPASS\e[39m\n";
+            }
+
+            $rec->{result} = '~PASS';
 
         } else {
-            print "\e[31mFAIL\e[39m\n";
+            if ($verbose) {
+                print "\e[31mFAIL\e[39m\n";
+            }
+
+            $rec->{result} = 'FAIL';
+            $rec->{true_fails} = \@fails;
 
             if (@fails && ($module ne 'ngx_postgres' || $mode !~ /w/)) {
-                print join("\n", map { "@$_" } @fails), "\n";
+                if ($verbose) {
+                    print join("\n", map { "@$_" } @fails), "\n";
+                }
             }
         }
     }
@@ -208,5 +239,14 @@ for my $rec (@records) {
     if (@{ $rec->{valgrind_warnings} }) {
         #print @{ $rec->{valgrind_warnings} };
     }
+}
+
+open my $out, ">$outfile" or
+    die "Cannot open $outfile for writing: $!\n";
+print $out JSON::XS->new->ascii->pretty->encode(\@records);
+close $out;
+
+sub usage {
+    die "Usage: $0 [-v] -o <outfile> <infile>\n";
 }
 

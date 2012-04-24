@@ -8,6 +8,6 @@ parse: $(jsonfiles)
 pull:
 	./sync
 
-%.json: %.log
+%.json: %.log parse-logs
 	./parse-logs -o $@ $<
 
