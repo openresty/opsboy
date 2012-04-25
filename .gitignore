@@ -5,3 +5,4 @@
 out*
 misc/logs/ortest/
 misc/mysqld
+misc/logs/html/*.html

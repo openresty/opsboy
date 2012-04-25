@@ -1,0 +1,37 @@
+table.result {
+    border-width: 2pt;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+table.result tr {
+    padding: 10pt;
+    border-width: 2pt;
+    border-style: solid;
+    border-collapse: collapse;
+}
+
+table.result td, th {
+    padding: 10pt;
+    border-width: 2pt;
+    border-style: solid;
+    border-collapse: collapse;
+    width: 25%;
+    text-align: center;
+}
+
+a.pass {
+    color: green;
+    font-weight: bold;
+}
+
+a.almost_pass {
+    color: orange;
+    font-weight: bold;
+}
+
+a.fail {
+    color: red;
+    font-weight: bold;
+}
+

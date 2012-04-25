@@ -89,6 +89,7 @@ for my $jsonfile (@jsonfiles) {
 
 my $tt2 = Template->new;
 
-$tt2->process('index.tt', { ast => $data }, 'index.html')
+mkdir 'html/' if ! -d 'html/';
+$tt2->process('index.tt', { ast => $data }, 'html/index.html')
     or die $tt2->error();
 

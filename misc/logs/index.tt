@@ -1,0 +1,83 @@
+[% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Modules' -%]
+
+[% BLOCK gen_result_cell -%]
+    [%- mode = module.$key %]
+    [%- IF mode %]
+        [% res = mode.result %]
+    <td>
+        [%- IF res == "PASS" %]
+        <a href="" class="pass">PASS</a>
+        [%- ELSIF res == "~PASS" %]
+        <a href="" class="almost_pass">PASS</a>
+        [%- ELSE %]
+        <a href="" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] total)">FAIL</a>
+        [%- END -%]
+    </td>
+    [%- ELSE -%]
+    <td>-</td>
+    [%- END %]
+[% END %]
+<html>
+<head>
+    <link type='text/css' rel='stylesheet' href="main.css">
+    <title>[% title %]</title>
+</head>
+<body>
+<h1>[% title %]</h1>
+<ul>
+[% FOREACH arch_name IN ast.keys.sort -%]
+<li>
+    [%- arch = ast.$arch_name;
+        arch_anchor = arch_name.replace('[^-\w]', '_', 'g');
+        arch.anchor = arch_anchor %]
+    <a href="#[% arch_anchor %]">
+        [% arch_name | ucfirst | html %]
+    </a>
+    <ul>
+    [%- FOREACH nginx_ver IN arch.keys.sort -%]
+        [%- IF nginx_ver == "anchor"; NEXT; END -%]
+        [%- nginx_anchor = arch_anchor _ '_' _ nginx_ver.replace('[^-\w]', '_', 'g');
+            nginx = arch.$nginx_ver;
+            nginx.anchor = nginx_anchor -%]
+        <li>
+            <a href="#[% nginx_anchor %]">
+                [%- nginx_ver | html %]
+            </a>
+        </li>
+    [%- END %]
+    </ul>
+</li>
+[% END -%]
+</ul>
+[% FOREACH arch_name IN ast.keys -%]
+    [%- arch = ast.$arch_name %]
+<h2><a name="[% arch.anchor %]">[% arch_name | ucfirst | html %]</a></h2>
+    [%- FOREACH nginx_ver IN arch.keys.sort %]
+        [%- IF nginx_ver == "anchor"; NEXT; END;
+            nginx = arch.$nginx_ver -%]
+    <h3><a name="[% nginx._anchor %]">[% nginx_ver | html %]</a></h3>
+    <table class="result">
+        <tr>
+            <th>Component</th>
+            <th>plain</th>
+            <th>mockeagain(R)</th>
+            <th>mockeagain(W)</th>
+        </tr>
+        [%- FOREACH mod_name IN nginx.keys.sort %]
+        <tr>
+            [%- IF mod_name == "anchor"; NEXT; END %]
+            [%- module = nginx.$mod_name; %]
+
+            <td>[% mod_name | html %]</td>
+
+            [%- PROCESS gen_result_cell key="" %]
+            [%- PROCESS gen_result_cell key="r" %]
+            [%- PROCESS gen_result_cell key="w" %]
+        </tr>
+        [%- END %]
+    </table>
+    [%- END %]
+[% END %]
+</body>
+</html>
+
