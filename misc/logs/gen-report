@@ -1,0 +1,94 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use JSON::XS;
+use Template;
+
+my $dir = shift
+    or die "No input directory specified.\n";
+
+my @jsonfiles = glob "$dir/*.json";
+if (!@jsonfiles) {
+    die "No JSON files found under $dir/.\n";
+}
+
+my $data = {
+};
+
+my $jsonxs = JSON::XS->new->ascii;
+
+for my $jsonfile (@jsonfiles) {
+    open my $in, $jsonfile
+        or die "Cannot open $jsonfile for reading: $!\n";
+    my $json = do { local $/; <$in> };
+    close $in;
+
+    my $ast = $jsonxs->decode($json);
+
+    my $arch = $ast->{arch};
+    my $arch_group;
+    if (!defined $data->{$arch}) {
+        $arch_group = {};
+        $data->{$arch} = $arch_group;
+
+    } else {
+        $arch_group = $data->{$arch};
+    }
+
+    my $test_date = $ast->{date};
+
+    my $recs = $ast->{records};
+    for my $rec (@$recs) {
+        my $nginx_version = $rec->{nginx_version};
+        my $nginx_group;
+        if (!defined $arch_group->{$nginx_version}) {
+            $nginx_group = {};
+            $arch_group->{$nginx_version} = $nginx_group;
+        } else {
+            $nginx_group = $arch_group->{$nginx_version};
+        }
+
+        my $module = $rec->{module};
+        my $module_group;
+        if (!defined $nginx_group->{$module}) {
+            $module_group = {};
+            $nginx_group->{$module} = $module_group;
+        } else {
+            $module_group = $nginx_group->{$module};
+        }
+
+        my $mode = $rec->{mode};
+        my $mode_group;
+        if (!defined $module_group->{$mode}) {
+            $mode_group = {};
+            $module_group->{$mode} = $mode_group;
+        } else {
+            $mode_group = $module_group->{$mode};
+        }
+
+        if (defined $mode_group->{test_date}
+            && defined $mode_group->{commit_date}
+            && ($test_date lt $mode_group->{test_date}
+            || $rec->{commit_date} < $mode_group->{commit_date}))
+        {
+            warn "Skip $arch > $nginx_version > $module > $mode ($test_date).\n";
+            next;
+        }
+
+        $mode_group->{test_date} = $test_date;
+        $mode_group->{commit_date} = $rec->{commit_date};
+        $mode_group->{result} = $rec->{result};
+        $mode_group->{failures} = $rec->{failures};
+        $mode_group->{true_fails} = $rec->{true_fails};
+    }
+}
+
+#print $jsonxs->pretty->encode($data);
+
+my $tt2 = Template->new;
+
+$tt2->process('index.tt', { ast => $data }, 'index.html')
+    or die $tt2->error();
+

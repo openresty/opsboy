@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use Date::Parse;
 use Getopt::Std;
 use List::MoreUtils qw( uniq );
 use JSON::XS;
@@ -115,6 +116,15 @@ while (<>) {
 
     } elsif ($rec && /^commit ([0-9a-f]+)$/) {
         $rec->{commit} = $1;
+
+    } elsif ($rec && defined $rec->{commit} && !defined $rec->{commit_date}
+             && /Date:\s+([A-Z][a-z]{2} [A-Z][a-z]{2} \d+ .*)/)
+    {
+        $rec->{commit_date} = str2time($1);
+
+    } elsif ($rec && !defined $rec->{nginx_version} && m{^nginx version: (.*)}) {
+        (my $ver = $1) =~ s/without pool/no pool/;
+        $rec->{nginx_version} = $ver;
 
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
