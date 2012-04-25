@@ -14,6 +14,23 @@ if (!@jsonfiles) {
     die "No JSON files found under $dir/.\n";
 }
 
+my %github_links = (
+    ngx_array_var => ['agentzh', 'array-var-nginx-module'],
+    ngx_drizzle => ['chaoslawful', 'drizzle-nginx-module'],
+    ngx_echo => ['agentzh', 'echo-nginx-module'],
+    ngx_eval => ['agentzh', 'nginx-eval-module'],
+    ngx_headers_more => ['agentzh', 'headers-more-nginx-module'],
+    ngx_lua => ['chaoslawful', 'lua-nginx-module'],
+    ngx_memc => ['agentzh', 'memc-nginx-module'],
+    ngx_postgres => ['FRiCKLE', 'ngx_postgres'],
+    ngx_rds_csv => ['agentzh', 'rds-csv-nginx-module'],
+    ngx_rds_json => ['agentzh', 'rds-json-nginx-module'],
+    ngx_redis2 => ['agentzh', 'redis2-nginx-module'],
+    ngx_set_misc => ['agentzh', 'set-misc-nginx-module'],
+    ngx_srcache => ['agentzh', 'srcache-nginx-module'],
+    ngx_xss => ['agentzh', 'xss-nginx-module'],
+);
+
 my $data = {
 };
 
@@ -82,9 +99,11 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{test_date} = $test_date;
         $mode_group->{commit_date} = $rec->{commit_date};
         $mode_group->{result} = $rec->{result};
-        $mode_group->{failures} = $rec->{failures};
+        $mode_group->{expected_fails} = $rec->{expected_fails};
         $mode_group->{true_fails} = $rec->{true_fails};
         $mode_group->{tests} = $rec->{tests};
+        $mode_group->{files} = $rec->{files};
+        $mode_group->{commit} = substr($rec->{commit}, 0, 8);
     }
 }
 
@@ -114,12 +133,24 @@ for my $arch_name (sort keys %$data) {
                 $mode->{link} = $link;
 
                 my $outfile = "html/$link";
+                $mode->{failures} ||= [];
+                $mode->{true_fails} ||= [];
+
+                my $github_link = $github_links{$module_name};
+                if ($github_link) {
+                    #warn "Found github link for $module_name\n";
+                    $github_link = "github.com/$github_link->[0]/$github_link->[1]";
+
+                } else {
+                    #warn "NOT Found github link for $module_name\n";
+                }
 
                 $tt2->process('details.tt', {
                     name => $module_name,
                     arch => $arch_name,
                     mode => $mode_name,
                     rec => $mode,
+                    github_link => $github_link,
                 }, $outfile) or die $tt2->error();
 
                 warn "wrote $outfile\n";

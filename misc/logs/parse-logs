@@ -188,7 +188,7 @@ for my $rec (@records) {
 
     } else {
 
-        my @fails;
+        my (@fails, @expected_fails);
 
         my $specs = $white_list{$module};
         if ($specs) {
@@ -226,7 +226,10 @@ for my $rec (@records) {
                     }
                 }
 
-                unless ($expected) {
+                if ($expected) {
+                    push @expected_fails, $f;
+
+                } else {
                     push @fails, $f;
                 }
             }
@@ -234,6 +237,10 @@ for my $rec (@records) {
         } else {
             @fails = @{ $rec->{failures} };
         }
+
+        $rec->{true_fails} = \@fails;
+        $rec->{expected_fails} = \@expected_fails;
+        $rec->{failures} = [];
 
         if (!@fails) {
             if ($verbose) {
@@ -248,7 +255,6 @@ for my $rec (@records) {
             }
 
             $rec->{result} = 'FAIL';
-            $rec->{true_fails} = \@fails;
 
             if (@fails && ($module ne 'ngx_postgres' || $mode !~ /w/)) {
                 if ($verbose) {

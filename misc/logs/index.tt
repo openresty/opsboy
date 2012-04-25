@@ -37,9 +37,9 @@
         [%- IF res == "PASS" %]
         <a href="[% mode_link %]" class="pass" title="All [% mode.tests %] tests successful">PASS</a>
         [%- ELSIF res == "~PASS" %]
-        <a href="[% mode_link %]" class="almost_pass" title="[% mode.tests - mode.failures.size %] tests pass, [% mode.failures.size %] failures expected">PASS</a>
+        <a href="[% mode_link %]" class="almost_pass" title="[% mode.tests - mode.expected_fails.size %] tests pass, [% mode.expected_fails.size %] failures expected">PASS</a>
         [%- ELSE %]
-        <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] failures total), [% mode.tests - mode.failures.size %] pass">FAIL</a>
+        <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.true_fails.size + mode.expected_fails.size %] failures total), [% mode.tests - mode.true_fails.size - mode.expected_fails.size %] pass">FAIL</a>
         [%- END -%]
     </td>
     [%- ELSE -%]
@@ -85,6 +85,7 @@
         [%- IF nginx_ver == "anchor"; NEXT; END;
             nginx = arch.$nginx_ver -%]
     <h3><a name="[% nginx.anchor %]">[% nginx_ver.replace('no pool', '<a href="http://github.com/shrimp/no-pool-nginx/">no pool</a>') %]</a></h3>
+    <div class="report">
     <table class="result">
         <tr>
             <th>Component</th>
@@ -104,6 +105,7 @@
         </tr>
         [%- END %]
     </table>
+    </div>
     [%- END %]
 [% END %]
 [% USE date -%]
