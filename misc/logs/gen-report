@@ -69,12 +69,14 @@ for my $jsonfile (@jsonfiles) {
         }
 
         if (defined $mode_group->{test_date}
-            && defined $mode_group->{commit_date}
-            && ($test_date lt $mode_group->{test_date}
-            || $rec->{commit_date} < $mode_group->{commit_date}))
+            && defined $mode_group->{commit_date})
         {
-            warn "Skip $arch > $nginx_version > $module > $mode ($test_date).\n";
-            next;
+            if ($test_date lt $mode_group->{test_date}) {
+                warn "Skip $arch > $nginx_version > $module > $mode ($test_date).\n";
+                next;
+            }
+
+            #warn "Overriding $arch > $nginx_version > $module > $mode ($test_date later than $mode_group->{test_date})\n";
         }
 
         $mode_group->{test_date} = $test_date;
@@ -86,11 +88,54 @@ for my $jsonfile (@jsonfiles) {
     }
 }
 
-print $jsonxs->pretty->encode($data);
+#print $jsonxs->pretty->encode($data);
+
+mkdir 'html/' if ! -d 'html/';
 
 my $tt2 = Template->new;
 
-mkdir 'html/' if ! -d 'html/';
+for my $arch_name (sort keys %$data) {
+    my $arch = $data->{$arch_name};
+    (my $arch_anchor = $arch_name) =~ s/[^-\w]/_/g;
+    for my $ngx_ver (sort keys %$arch) {
+        my $ngx = $arch->{$ngx_ver};
+        (my $ngx_anchor = $ngx_ver) =~ s/[^-\w]/_/g;
+        $ngx_anchor = $arch_anchor . '_' . $ngx_anchor;
+
+        for my $module_name (sort keys %$ngx) {
+            my $module = $ngx->{$module_name};
+
+            for my $mode_name (sort keys %$module) {
+                my $mode = $module->{$mode_name};
+
+                my $link = $ngx_anchor . '_' . $module_name . '_'
+                    . $mode_name . '.html';
+
+                $mode->{link} = $link;
+
+                my $outfile = "html/$link";
+
+                $tt2->process('details.tt', {
+                    name => $module_name,
+                    arch => $arch_name,
+                    mode => $mode_name,
+                    rec => $mode,
+                }, $outfile) or die $tt2->error();
+
+                warn "wrote $outfile\n";
+            }
+        }
+
+        $ngx->{anchor} = $ngx_anchor;
+    }
+    #warn $arch_name;
+    $arch->{anchor} = $arch_anchor;
+}
+
+my $outfile = "html/index.html";
+
 $tt2->process('index.tt', { ast => $data }, 'html/index.html')
     or die $tt2->error();
+
+warn "wrote $outfile\n";
 

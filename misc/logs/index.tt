@@ -32,13 +32,14 @@
     [%- mode = module.$key %]
     [%- IF mode %]
         [% res = mode.result %]
+        [% mode_link = mode.link %]
     <td>
         [%- IF res == "PASS" %]
-        <a href="" class="pass" title="All [% mode.tests %] tests successful">PASS</a>
+        <a href="[% mode_link %]" class="pass" title="All [% mode.tests %] tests successful">PASS</a>
         [%- ELSIF res == "~PASS" %]
-        <a href="" class="almost_pass" title="[% mode.tests - mode.failures.size %] tests pass, [% mode.failures.size %] failures expected">PASS</a>
+        <a href="[% mode_link %]" class="almost_pass" title="[% mode.tests - mode.failures.size %] tests pass, [% mode.failures.size %] failures expected">PASS</a>
         [%- ELSE %]
-        <a href="" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] failures total), [% mode.tests - mode.failures.size %] pass">FAIL</a>
+        <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] failures total), [% mode.tests - mode.failures.size %] pass">FAIL</a>
         [%- END -%]
     </td>
     [%- ELSE -%]
@@ -47,26 +48,25 @@
 [% END %]
 <html>
 <head>
-    <link type='text/css' rel='stylesheet' href="main.css">
     <title>[% title %]</title>
+    <link type='text/css' rel='stylesheet' href="main.css">
 </head>
 <body>
 <h1>[% title %]</h1>
 <ul>
 [% FOREACH arch_name IN ast.keys.sort -%]
 <li>
+    [%- IF arch_name == "anchor"; NEXT; END %]
     [%- arch = ast.$arch_name;
-        arch_anchor = arch_name.replace('[^-\w]', '_', 'g');
-        arch.anchor = arch_anchor %]
+        arch_anchor = arch.anchor %]
     <a href="#[% arch_anchor %]">
         [% arch_name | ucfirst | html %]
     </a>
     <ul>
     [%- FOREACH nginx_ver IN arch.keys.sort -%]
         [%- IF nginx_ver == "anchor"; NEXT; END -%]
-        [%- nginx_anchor = arch_anchor _ '_' _ nginx_ver.replace('[^-\w]', '_', 'g');
-            nginx = arch.$nginx_ver;
-            nginx.anchor = nginx_anchor -%]
+        [%- nginx = arch.$nginx_ver;
+            nginx_anchor = nginx.anchor -%]
         <li>
             <a href="#[% nginx_anchor %]">
                 [%- nginx_ver | html %]
@@ -78,12 +78,13 @@
 [% END -%]
 </ul>
 [% FOREACH arch_name IN ast.keys -%]
+    [%- IF nginx_ver == "anchor"; NEXT; END %]
     [%- arch = ast.$arch_name %]
 <h2><a name="[% arch.anchor %]">[% arch_name | ucfirst | html %]</a></h2>
     [%- FOREACH nginx_ver IN arch.keys.sort %]
         [%- IF nginx_ver == "anchor"; NEXT; END;
             nginx = arch.$nginx_ver -%]
-    <h3><a name="[% nginx._anchor %]">[% nginx_ver.replace('no pool', '<a href="http://github.com/shrimp/no-pool-nginx/">no pool</a>') %]</a></h3>
+    <h3><a name="[% nginx.anchor %]">[% nginx_ver.replace('no pool', '<a href="http://github.com/shrimp/no-pool-nginx/">no pool</a>') %]</a></h3>
     <table class="result">
         <tr>
             <th>Component</th>
