@@ -35,7 +35,7 @@
         <td>[% rec.files %]</td>
         <td>[% rec.tests %]</td>
         [%- unexpected = rec.true_fails.size %]
-        <td><span class="[% unexpected ? 'fails' : 'success' %]">[% unexpected %]</span></td>
+        <td><span class="[% unexpected ? 'fails' : 'success' %]">[% unexpected | html %]</span></td>
         <td><span class="success">[% rec.expected_fails.size %]</span></td>
     </tr>
 </table>
@@ -49,10 +49,10 @@
     </tr>
 [% FOREACH f IN rec.true_fails %]
     <tr>
-        <td>[% f.0 %]</td>
-        <td>[% f.1 %]</td>
-        <td>[% f.2 %]</td>
-        <td>[% f.3 %]</td>
+        <td>[% f.0 | html %]</td>
+        <td>[% f.1 | html %]</td>
+        <td>[% f.2 | html %]</td>
+        <td>[% f.3 | html %]</td>
     </tr>
 [% END %]
 </table>
@@ -66,10 +66,10 @@
     </tr>
 [% FOREACH f IN rec.expected_fails %]
     <tr>
-        <td>[% f.0 %]</td>
-        <td>[% f.1 %]</td>
-        <td>[% f.2 %]</td>
-        <td>[% f.3 %]</td>
+        <td>[% f.0 | html %]</td>
+        <td>[% f.1 | html %]</td>
+        <td>[% f.2 | html %]</td>
+        <td>[% f.3 | html %]</td>
     </tr>
 [% END %]
 </table>
