@@ -82,10 +82,11 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{result} = $rec->{result};
         $mode_group->{failures} = $rec->{failures};
         $mode_group->{true_fails} = $rec->{true_fails};
+        $mode_group->{tests} = $rec->{tests};
     }
 }
 
-#print $jsonxs->pretty->encode($data);
+print $jsonxs->pretty->encode($data);
 
 my $tt2 = Template->new;
 

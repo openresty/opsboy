@@ -6,11 +6,11 @@
         [% res = mode.result %]
     <td>
         [%- IF res == "PASS" %]
-        <a href="" class="pass">PASS</a>
+        <a href="" class="pass" title="All [% mode.tests %] tests successful">PASS</a>
         [%- ELSIF res == "~PASS" %]
-        <a href="" class="almost_pass">PASS</a>
+        <a href="" class="almost_pass" title="[% mode.tests - mode.failures.size %] tests pass, [% mode.failures.size %] failures expected">PASS</a>
         [%- ELSE %]
-        <a href="" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] total)">FAIL</a>
+        <a href="" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.failures.size %] failures total), [% mode.tests - mode.failures.size %] pass">FAIL</a>
         [%- END -%]
     </td>
     [%- ELSE -%]

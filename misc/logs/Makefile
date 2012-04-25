@@ -8,7 +8,7 @@ parse: $(jsonfiles)
 pull:
 	./sync
 
-gen:
+gen: parse gen-report
 	./gen-report ortest
 
 %.json: %.log parse-logs
