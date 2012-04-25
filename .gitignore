@@ -4,5 +4,6 @@
 *.pl
 out*
 misc/logs/ortest/
+misc/logs/upload
 misc/mysqld
 misc/logs/html/*.html

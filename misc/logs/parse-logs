@@ -129,7 +129,7 @@ while (<>) {
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
 
-    } elsif ($rec && /Files=(\d+), Tests=(\d+), (\d+) wallclock secs/) {
+    } elsif ($rec && /^Files=(\d+),\s+Tests=(\d+),\s+(\d+)\s+wallclock secs/) {
 
         $rec->{files} = $1;
         $rec->{tests} = $2;

@@ -1,3 +1,7 @@
+body {
+    font-family: Monospace, Serif;
+}
+
 table.result {
     border-width: 2pt;
     border-style: solid;

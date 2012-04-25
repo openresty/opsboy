@@ -1,7 +1,7 @@
 logfiles=$(wildcard ortest/*.log)
 jsonfiles=$(patsubst %.log,%.json,$(logfiles))
 
-.PHONY: pull parse
+.PHONY: pull parse upload gen
 
 parse: $(jsonfiles)
 
@@ -13,4 +13,7 @@ gen: parse gen-report
 
 %.json: %.log parse-logs
 	./parse-logs -o $@ $<
+
+upload:
+	./upload
 
