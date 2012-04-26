@@ -3,6 +3,8 @@
 *.swo
 *.pl
 out*
+misc/logs/ast.json
+misc/logs/html/archive/
 misc/logs/ortest/
 misc/logs/upload
 misc/mysqld
