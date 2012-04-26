@@ -209,6 +209,9 @@ for my $rec (@records) {
 
         $rec->{result} = 'PASS';
 
+        $rec->{true_fails} = [];
+        $rec->{expected_fails} = [];
+
     } else {
 
         my (@fails, @expected_fails);

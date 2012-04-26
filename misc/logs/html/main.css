@@ -42,13 +42,17 @@ table.summary tr {
     border-collapse: collapse;
 }
 
+.none {
+    font-style: italic;
+}
+
 table.summary td,
 table.summary th {
     padding: 15pt;
     border-width: 2pt;
     border-style: solid;
     border-collapse: collapse;
-    width: 20%;
+    width: 14.4%;
     text-align: center;
 }
 
