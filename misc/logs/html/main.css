@@ -100,8 +100,17 @@ table.result th {
     border-width: 2pt;
     border-style: solid;
     border-collapse: collapse;
-    width: 25%;
+    width: 20%;
     text-align: center;
+}
+
+table.testcase td.test-details {
+    padding: 10pt;
+    border-width: 2pt;
+    border-style: solid;
+    border-collapse: collapse;
+    width: 20%;
+    text-align: left;
 }
 
 a.pass {

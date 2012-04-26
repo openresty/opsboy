@@ -109,7 +109,11 @@ for my $jsonfile (@jsonfiles) {
     }
 }
 
-#print $jsonxs->pretty->encode($data);
+my $outfile = "ast.json";
+open my $out, ">$outfile"
+    or die "Cannot open $outfile for writing: $!\n";
+print $out $jsonxs->pretty->encode($data);
+close $out;
 
 mkdir 'html/' if ! -d 'html/';
 
@@ -165,7 +169,7 @@ for my $arch_name (sort keys %$data) {
     $arch->{anchor} = $arch_anchor;
 }
 
-my $outfile = "html/index.html";
+$outfile = "html/index.html";
 
 $tt2->process('index.tt', { ast => $data }, 'html/index.html')
     or die $tt2->error();

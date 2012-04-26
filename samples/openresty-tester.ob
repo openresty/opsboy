@@ -12,16 +12,16 @@ valgrind_version = 3.7.0;
 
 
 t {
+    dep t-ngx_array_var;
+    dep t-ngx_redis2;
+    dep t-ngx_lua;
     dep t-ngx_srcache;
     dep t-ngx_memc;
     dep t-ngx_set_misc;
     dep t-ngx_xss;
     dep t-ngx_drizzle;
     dep t-ngx_rds_json;
-    dep t-ngx_redis2;
     dep t-ngx_echo;
-    dep t-ngx_lua;
-    dep t-ngx_array_var;
     dep t-ngx_postgres;
     dep t-ngx_eval;
     dep t-ngx_headers_more;
@@ -29,16 +29,25 @@ t {
 }
 
 tv {
+    dep tv1 tv2;
+}
+
+tv1 {
+
+    dep tv-ngx_array_var;
+    dep tv-ngx_redis2;
+    dep tv-ngx_lua;
+}
+
+tv2 {
+
     dep tv-ngx_srcache;
     dep tv-ngx_memc;
     dep tv-ngx_set_misc;
     dep tv-ngx_xss;
     dep tv-ngx_drizzle;
     dep tv-ngx_rds_json;
-    dep tv-ngx_redis2;
     dep tv-ngx_echo;
-    dep tv-ngx_lua;
-    dep tv-ngx_array_var;
     dep tv-ngx_postgres;
     dep tv-ngx_eval;
     dep tv-ngx_headers_more;
@@ -46,6 +55,10 @@ tv {
 }
 
 tr {
+
+    dep tr-ngx_redis2;
+
+    dep tr-ngx_lua;
 
     dep tr-ngx_srcache;
 
@@ -55,11 +68,7 @@ tr {
 
     dep tr-ngx_rds_json;
 
-    dep tr-ngx_redis2;
-
     dep tr-ngx_echo;
-
-    dep tr-ngx_lua;
 
     dep tr-ngx_postgres;
 
@@ -71,16 +80,16 @@ tr {
 }
 
 tw {
+    dep tw-ngx_array_var;
+    dep tw-ngx_redis2;
+    dep tw-ngx_lua;
     dep tw-ngx_srcache;
     dep tw-ngx_memc;
     dep tw-ngx_set_misc;
     dep tw-ngx_xss;
     dep tw-ngx_drizzle;
     dep tw-ngx_rds_json;
-    dep tw-ngx_redis2;
     dep tw-ngx_echo;
-    dep tw-ngx_lua;
-    dep tw-ngx_array_var;
     dep tw-ngx_postgres;
     dep tw-ngx_eval;
     dep tw-ngx_headers_more;

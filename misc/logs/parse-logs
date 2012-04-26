@@ -47,10 +47,24 @@ my %white_list = (
     ngx_lua => [
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
+        ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
     ],
 
     ngx_echo => [
         ['r', 'echo-timer.t'],
+        ['v', 'echo-timer.t', 'TEST 1: timer without explicit reset - response_body_like - response is expected'],
+        ['v', 'echo-timer.t', 'TEST 2: timer without explicit reset and sleep - response_body_like - response is expected'],
+        ['v', 'echo-timer.t', 'TEST 3: timing accumulated sleeps - response_body_like - response is expected'],
+        ['v', 'echo-timer.t', 'TEST 5: reset timer between sleeps - response_body_like - response is expected'],
+        ['v', 'echo-timer.t', 'TEST 6: reset timer between blocking sleeps - response_body_like - response is expected'],
+        ['v', 'location-async.t', 'TEST 6: timed multiple subrequests (blocking sleep) - response_body_like - response is expected'],
+        ['v', 'location-async.t', 'TEST 7: timed multiple subrequests (non-blocking sleep) - response_body_like - response is expected'],
+        ['v', 'location.t', 'TEST 8: timed multiple subrequests (non-blocking sleep) - response_body_like - response is expected'],
+        ['v', 'location.t', 'TEST 7: timed multiple subrequests (blocking sleep) - response_body_like - response is expected'],
+        ['v', 'subrequest-async.t', 'TEST 8: timed multiple subrequests (non-blocking sleep) - response_body_like - response is expected'],
+        ['v', 'subrequest-async.t', 'TEST 7: timed multiple subrequests (blocking sleep) - response_body_like - response is expected'],
+        ['v', 'subrequest.t', 'TEST 6: timed multiple subrequests (blocking sleep) - response_body_like - response is expected'],
+        ['v', 'subrequest.t', 'TEST 7: timed multiple subrequests (non-blocking sleep) - response_body_like - response is expected'],
     ],
 );
 
@@ -61,19 +75,18 @@ my $rec;
 my $date;
 my $arch;
 my @records;
+my $test_name;
 while (<>) {
     if ($in_valgrind_warning) {
-        if (/^[^\s{}]/) {
+        if (/^\}$/) {
             undef $in_valgrind_warning;
-
-        } elsif (/^\{$/) {
-            push @{ $rec->{valgrind_warnings} }, $_;
-            next;
+            $failure->{details} .= $_;
 
         } else {
-            $rec->{valgrind_warnings}[-1] .= $_;
-            next;
+            $failure->{details} .= $_;
         }
+
+        next;
     }
 
     if ($in_failure && !/^\# /) {
@@ -97,7 +110,6 @@ while (<>) {
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
 
-        undef $in_valgrind_warning;
         if ($subj =~ /^t([rvw]*)-(ngx_[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
@@ -109,7 +121,20 @@ while (<>) {
                     die "line $line: No git commit found.\n";
                 }
 
-                @{ $rec->{valgrind_warnings} } = uniq @{ $rec->{valgrind_warnings} };
+                my $n = @{ $rec->{failures} };
+                if ($n >= 2) {
+                    my $a = $rec->{failures}[$n - 1];
+                    my $b = $rec->{failures}[$n - 2];
+                    if ($a->{file} eq $b->{file}
+                        && $a->{name} eq $b->{name}
+                        && $a->{details} eq $b->{details})
+                    {
+                        #warn "remove duplicate test failures";
+                        pop @{ $rec->{failures} };
+                    }
+                }
+
+                #@{ $rec->{failures} } = uniq @{ $rec->{failures} };
             }
 
             $rec = {
@@ -146,14 +171,22 @@ while (<>) {
         $rec->{tests} = $2;
         $rec->{secs} = $3;
 
-    } elsif ($rec && /^==\d+==\s+/) {
-        if ($in_valgrind_warning) {
-            next;
+    } elsif (/^TEST \d+: .*/) {
+        $test_name = $&;
 
-        } else {
-            $rec->{valgrind_pass} = 0;
-            $in_valgrind_warning = 1;
-        }
+    } elsif ($rec && /^==\d+==\s+/) {
+        $failure = {
+            name => $test_name,
+            details => $_,
+        };
+
+        push @{ $rec->{failures} }, $failure;
+
+        #warn "Found valgrind warning: $&\n";
+
+        $in_valgrind_warning = 1;
+
+        $rec->{valgrind_pass} = 0;
 
     } elsif ($rec && /^\#\s+Failed test '(.*?)'?$/) {
         my $name = $1;
@@ -176,7 +209,7 @@ while (<>) {
 
         $failure->{details} .= "$s\n";
 
-    } elsif ($rec && m{^t/(\S+\.t) \.+ $}) {
+    } elsif ($rec && m{^t/(\S+\.t) \.+ }) {
 
         my $file = $1;
         #warn "file $file\n";

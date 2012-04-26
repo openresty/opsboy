@@ -66,8 +66,8 @@
             </a>
         [%- END %]
         </td>
-        <td>[% f.name | html %]</td>
-        <td>[% f.details | html | html_line_break %]</td>
+        <td class="test-details">[% f.name | html %]</td>
+        <td class="test-details">[% f.details | html | html_line_break %]</td>
     </tr>
 [% END %]
 </table>

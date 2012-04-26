@@ -64,9 +64,10 @@ valgrind_version = 3.7.0;
 [% END -%]
 
 [%- mods = [
+    'array_var', 'redis2', 'lua',
     'srcache', 'memc', 'set_misc', 'xss',
-    'drizzle', 'rds_json', 'redis2', 'echo',
-    'lua', 'array_var', 'postgres', 'eval',
+    'drizzle', 'rds_json',  'echo',
+    'postgres', 'eval',
     'headers_more', 'rds_csv'
    ]
 -%]
@@ -78,9 +79,24 @@ t {
 }
 
 tv {
-[% FOREACH name IN mods -%]
+    dep tv1 tv2;
+}
+
+tv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
     dep tv-ngx_[% name %];
-[% END -%]
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+tv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    dep tv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
 }
 
 tr {
