@@ -102,5 +102,6 @@
 <span class="none">(none)</span>
 [% END %]
 <p>Go back to <a href="index.html">the index page</a>.</p>
+<p/>
 </body>
 </html>

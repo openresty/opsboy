@@ -48,6 +48,7 @@ table.summary tr {
 
 .header {
     font-style: italic;
+    color: darkgrey;
 }
 
 table.summary td,
