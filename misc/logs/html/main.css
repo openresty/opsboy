@@ -46,6 +46,10 @@ table.summary tr {
     font-style: italic;
 }
 
+.header {
+    font-style: italic;
+}
+
 table.summary td,
 table.summary th {
     padding: 15pt;
