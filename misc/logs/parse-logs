@@ -46,6 +46,7 @@ my %white_list = (
 
     ngx_lua => [
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
+        ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
     ],
 
     ngx_echo => [
@@ -230,7 +231,7 @@ for my $rec (@records) {
                                 #warn "Hit $file!";
                                 my $test = $spec->[2];
                                 if (defined $test) {
-                                    if ($f->{name} =~ /$test/) {
+                                    if ($f->{name} =~ /(?:$test)|\Q$test\E/) {
                                         #warn "Matched \"$f->{name}\" with \"$test\"";
                                         $expected = 1;
                                         last;
