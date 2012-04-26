@@ -21,7 +21,7 @@
     [% link = module_info.$mod_name %]
     <td>
         [%- IF link %]
-        <a href="http://[% link %]">[%- mod_name %]</a>
+        <a href="[% link.match('github\.com') ? 'https' : 'http' %]://[% link %]">[%- mod_name %]</a>
         [%- ELSE %]
         [%- mod_name %]
         [%- END %]
@@ -84,14 +84,14 @@
     [%- FOREACH nginx_ver IN arch.keys.sort %]
         [%- IF nginx_ver == "anchor"; NEXT; END;
             nginx = arch.$nginx_ver -%]
-    <h3><a name="[% nginx.anchor %]">[% nginx_ver.replace('no pool', '<a href="http://github.com/shrimp/no-pool-nginx/">no pool</a>') %]</a></h3>
+    <h3><a name="[% nginx.anchor %]">[% nginx_ver.replace('no pool', '<a href="https://github.com/shrimp/no-pool-nginx/">no pool</a>') %]</a></h3>
     <div class="report">
     <table class="result">
         <tr>
             <th>Component</th>
             <th>plain</th>
-            <th><a href="http://github.com/agentzh/mockeagain">mockeagain</a> (R)</th>
-            <th><a href="http://github.com/agentzh/mockeagain">mockeagain</a> (W)</th>
+            <th><a href="https://github.com/agentzh/mockeagain">mockeagain</a> (R)</th>
+            <th><a href="https://github.com/agentzh/mockeagain">mockeagain</a> (W)</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>

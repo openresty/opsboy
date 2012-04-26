@@ -27,7 +27,7 @@
     <tr>
         <td>
             [%- IF github_link %]
-            <a title="[% rec.test_date %]" href="http://[% github_link %]/commit/[% rec.commit %]">
+            <a title="[% rec.test_date %]" href="https://[% github_link %]/commit/[% rec.commit %]">
             [%- END %]
             [%- rec.commit %]
             [%- IF github_link %]
@@ -53,7 +53,15 @@
     </tr>
 [% FOREACH f IN rec.true_fails %]
     <tr>
-        <td>[% f.file | html %]</td>
+        <td>
+        [%- IF github_link %]
+            <a title="[% rec.test_date %]" href="https://[% github_link %]/blob/[% rec.commit %]/t/[% f.file %]">
+        [%- END %]
+            [% f.file | html %]
+        [%- IF github_link %]
+            </a>
+        [%- END %]
+        </td>
         <td>[% f.name | html %]</td>
         <td>[% f.details | html | html_line_break %]</td>
     </tr>
