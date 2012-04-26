@@ -145,7 +145,7 @@ for my $arch_name (sort keys %$data) {
                     #warn "NOT Found github link for $module_name\n";
                 }
 
-                $tt2->process('details.tt', {
+                $tt2->process('detailed.tt', {
                     name => $module_name,
                     arch => $arch_name,
                     mode => $mode_name,

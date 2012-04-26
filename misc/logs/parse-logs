@@ -17,6 +17,10 @@ my $verbose = $opts{v};
 
 my %white_list = (
     ngx_rds_csv => [
+        ['w', '000_init.t', 'TEST 11: cats - drop table'],
+        ['w', '000_init.t', 'TEST 12: cats - create table'],
+        ['w', '000_init.t', 'TEST 13: cats - insert value'],
+        ['w', '000_init.t', 'TEST 14: cats - insert value'],
         ['w', 'pg.t'],
         ['r', 'sanity-stream.t', 'TEST 1: sanity'],
         ['r', 'sanity-stream.t', 'TEST 2: keep-alive'],
@@ -49,6 +53,8 @@ my %white_list = (
     ],
 );
 
+my $failure;
+my $in_failure;
 my $in_valgrind_warning;
 my $rec;
 my $date;
@@ -67,6 +73,10 @@ while (<>) {
             $rec->{valgrind_warnings}[-1] .= $_;
             next;
         }
+    }
+
+    if ($in_failure && !/^\# /) {
+        undef $in_failure;
     }
 
     if (!defined $date && /^(?:DATE )?\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) {
@@ -147,7 +157,23 @@ while (<>) {
     } elsif ($rec && /^\#\s+Failed test '(.*?)'?$/) {
         my $name = $1;
         #warn "$rec->{module}: $rec->{mode}: $name\n";
-        push @{ $rec->{failures} }, [$name];
+        $failure = {
+            name => $name,
+        };
+
+        push @{ $rec->{failures} }, $failure;
+
+        $in_failure = 1;
+
+    } elsif ($rec && $in_failure && /^\# (.*)/) {
+        my $s = $1;
+        if ($s =~ /^\s*at .*?\w+\.pm line \d+\.$/
+            || $s =~ /^\s*Looks like you failed \d+ tests of \d+\.\s*$/)
+        {
+            next;
+        }
+
+        $failure->{details} .= "$s\n";
 
     } elsif ($rec && m{^t/(\S+\.t) \.+ $}) {
 
@@ -157,14 +183,11 @@ while (<>) {
         my $i = @$failures - 1;
         while ($i >= 0) {
             my $f = $failures->[$i];
-            if (@$f > 1) {
+            if (defined $f->{file}) {
                 last;
             }
 
-            unshift @$f, $file;
-
-            #warn $rec->{module}, ": ", $rec->{mode}, ": ",
-                #join(": ", @$f), "\n";
+            $f->{file} = $file;
 
             $i--;
         }
@@ -200,12 +223,12 @@ for my $rec (@records) {
                         my $file = $spec->[1];
 
                         if (defined $file) {
-                            if ($f->[0] eq $file) {
+                            if ($f->{file} eq $file) {
                                 #warn "Hit $file!";
                                 my $test = $spec->[2];
                                 if (defined $test) {
-                                    if ($f->[1] =~ /$test/) {
-                                        #warn "Matched \"$f->[1]\" with \"$test\"";
+                                    if ($f->{name} =~ /$test/) {
+                                        #warn "Matched \"$f->{name}\" with \"$test\"";
                                         $expected = 1;
                                         last;
 
@@ -240,7 +263,7 @@ for my $rec (@records) {
 
         $rec->{true_fails} = \@fails;
         $rec->{expected_fails} = \@expected_fails;
-        $rec->{failures} = [];
+        delete $rec->{failures};
 
         if (!@fails) {
             if ($verbose) {
