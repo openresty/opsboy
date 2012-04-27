@@ -81,6 +81,7 @@
     </ul>
 </li>
 [% END -%]
+<li><a href="#maintainer">Maintainer</a></li>
 </ul>
 [% FOREACH arch_name IN ast.keys -%]
     [%- IF nginx_ver == "anchor"; NEXT; END %]
@@ -116,6 +117,9 @@
     [%- END %]
 [% END %]
 <p/>
+<h2><a name="maintainer">Maintainer</a></h2>
+<p>Zhang "agentzh" Yichun (章亦春) &lt;agentzh@gmail.com&gt;</p>
+<p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
 </body>
 </html>
 
