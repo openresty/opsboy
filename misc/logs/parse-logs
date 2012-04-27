@@ -99,8 +99,8 @@ while (<>) {
         undef $in_failure;
     }
 
-    if (!defined $date && /^(?:DATE )?\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/) {
-        $date = $&;
+    if (!defined $date && /^(?:DATE )?(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})$/) {
+        $date = $1;
         next;
     }
 

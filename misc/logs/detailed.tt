@@ -21,12 +21,12 @@
 <table class="summary">
     <tr>
         <th>Commit</th>
-        <th>Testing Time (GMT)</th>
+        <th>Testing Time</th>
         <th>Unexpected<br/>Failures</th>
         <th>Expected<br/>Failures</th>
         <th>Files</th>
         <th>Tests</th>
-        <th>Elapsed Time (in seconds)</th>
+        <th>Elapsed Time</th>
     </tr>
     <tr>
         <td>
@@ -38,13 +38,13 @@
             </a>
             [%- END %]
         </td>
-        <td>[% rec.test_date %]</td>
+        <td>[% rec.test_date %] GMT</td>
         [%- unexpected = rec.true_fails.size %]
         <td><span class="[% unexpected ? 'fails' : 'success' %]">[% unexpected | html %]</span></td>
         <td><span class="success">[% rec.expected_fails.size %]</span></td>
         <td>[% rec.files %]</td>
         <td>[% rec.tests %]</td>
-        <td>[% rec.elapsed %]</td>
+        <td>[% rec.elapsed %] sec</td>
     </tr>
 </table>
 <h2><a name="unexpected">Unexpected Failures</a></h2>
