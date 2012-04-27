@@ -128,7 +128,7 @@
 [% END %]
 <p/>
 <h2><a name="maintainer">Maintainer</a></h2>
-<p>Zhang "agentzh" Yichun (章亦春) &lt;agentzh@gmail.com&gt;</p>
+<p>Zhang "agentzh" Yichun (章亦春) &lt;agentzh@gmail.com&gt; <a href="http://agentzh.org/">http://agentzh.org</a></p>
 <p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
 </body>
 </html>
