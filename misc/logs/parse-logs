@@ -50,6 +50,10 @@ my %white_list = (
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
     ],
 
+    ngx_headers_more => [
+        ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module - '],
+    ],
+
     ngx_echo => [
         ['r', 'echo-timer.t'],
         ['rv', 'request-body.t', 'TEST 1: big client body buffered into temp files'],
