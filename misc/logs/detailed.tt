@@ -31,7 +31,7 @@
     <tr>
         <td>
             [%- IF github_link %]
-            <a title="[% rec.test_date %]" href="https://[% github_link %]/commit/[% rec.commit %]">
+            <a target="_blank" title="[% rec.test_date %]" href="https://[% github_link %]/commit/[% rec.commit %]">
             [%- END %]
             [%- rec.commit %]
             [%- IF github_link %]
@@ -59,7 +59,7 @@
     <tr>
         <td>
         [%- IF github_link %]
-            <a href="https://[% github_link %]/blob/[% rec.commit %]/t/[% f.file %]">
+            <a target="_blank" href="https://[% github_link %]/blob/[% rec.commit %]/t/[% f.file %]">
         [%- END %]
             [% f.file | html %]
         [%- IF github_link %]
@@ -86,7 +86,7 @@
     <tr>
         <td>
         [%- IF github_link %]
-            <a href="https://[% github_link %]/blob/[% rec.commit %]/t/[% f.file %]">
+            <a target="_blank" href="https://[% github_link %]/blob/[% rec.commit %]/t/[% f.file %]">
         [%- END %]
             [% f.file | html %]
         [%- IF github_link %]

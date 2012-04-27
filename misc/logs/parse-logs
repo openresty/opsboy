@@ -55,6 +55,7 @@ my %white_list = (
         ['v', 'echo-timer.t', 'TEST 1: timer without explicit reset - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 2: timer without explicit reset and sleep - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 3: timing accumulated sleeps - response_body_like - response is expected'],
+        ['v', 'echo-timer.t', 'TEST 4: timer with explicit reset but without sleep - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 5: reset timer between sleeps - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 6: reset timer between blocking sleeps - response_body_like - response is expected'],
         ['v', 'location-async.t', 'TEST 6: timed multiple subrequests (blocking sleep) - response_body_like - response is expected'],
