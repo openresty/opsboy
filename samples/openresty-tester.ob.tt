@@ -108,6 +108,27 @@ tr {
 [% END -%]
 }
 
+trv {
+    dep trv1 trv2;
+}
+
+trv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
+    dep trv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+trv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    dep trv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
 tw {
 [% FOREACH name IN mods -%]
     dep tw-ngx_[% name %];
@@ -470,7 +491,7 @@ cpan {
     dep cc;
 }
 
-[% types = ['', 'v', 'r', 'w'] %]
+[% types = ['', 'v', 'r', 'rv', 'w'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
