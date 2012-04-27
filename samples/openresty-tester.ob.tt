@@ -47,9 +47,9 @@ valgrind_version = 3.7.0;
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     [%- IF name == "lua" %]
-    sh 'sh ./util/build2.sh $nginx_version || touch config && sh ./util/build2.sh $nginx_version';
+    sh 'sh ./util/build2.sh $nginx_version || (touch config && sh ./util/build2.sh $nginx_version)';
     [%- ELSE %]
-    sh 'sh ./util/build.sh $nginx_version || touch config && sh ./util/build.sh $nginx_version';
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
     [%- END %]
 
     sh 'nginx -V';
