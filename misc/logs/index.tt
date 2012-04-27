@@ -18,6 +18,14 @@
     }
 -%]
 
+[% BLOCK memcheck -%]
+<a target="_blank" href="http://valgrind.org/docs/manual/mc-manual.html">valgrind/memcheck</a>
+[%- END -%]
+
+[% BLOCK mockeagain -%]
+<a target="_blank" href="https://github.com/agentzh/mockeagain">mockeagain</a>
+[%- END -%]
+
 [% BLOCK gen_module_cell -%]
     [% link = module_info.$mod_name %]
     <td>
@@ -106,9 +114,10 @@
         <tr>
             <th>Component</th>
             <th>plain</th>
-            <th><a target="_blank" href="http://valgrind.org/docs/manual/mc-manual.html">valgrind memcheck</a></th>
-            <th><a target="_blank" href="https://github.com/agentzh/mockeagain">mockeagain</a> (R)</th>
-            <th><a target="_blank" href="https://github.com/agentzh/mockeagain">mockeagain</a> (W)</th>
+            <th>[% PROCESS memcheck %]</th>
+            <th>[% PROCESS mockeagain %](R)</th>
+            <th>[% PROCESS mockeagain %](R)<br/>[% PROCESS memcheck %]</th>
+            <th>[% PROCESS mockeagain %](W)</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -119,6 +128,7 @@
             [%- PROCESS gen_result_cell key="" %]
             [%- PROCESS gen_result_cell key="v" %]
             [%- PROCESS gen_result_cell key="r" %]
+            [%- PROCESS gen_result_cell key="rv" %]
             [%- PROCESS gen_result_cell key="w" %]
         </tr>
         [%- END %]

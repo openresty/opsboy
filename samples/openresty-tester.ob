@@ -55,27 +55,16 @@ tv2 {
 }
 
 tr {
-
     dep tr-ngx_redis2;
-
     dep tr-ngx_lua;
-
     dep tr-ngx_srcache;
-
     dep tr-ngx_memc;
-
     dep tr-ngx_drizzle;
-
     dep tr-ngx_rds_json;
-
     dep tr-ngx_echo;
-
     dep tr-ngx_postgres;
-
     dep tr-ngx_eval;
-
     dep tr-ngx_headers_more;
-
     dep tr-ngx_rds_csv;
 }
 
@@ -103,13 +92,10 @@ trv2 {
 }
 
 tw {
-    dep tw-ngx_array_var;
     dep tw-ngx_redis2;
     dep tw-ngx_lua;
     dep tw-ngx_srcache;
     dep tw-ngx_memc;
-    dep tw-ngx_set_misc;
-    dep tw-ngx_xss;
     dep tw-ngx_drizzle;
     dep tw-ngx_rds_json;
     dep tw-ngx_echo;

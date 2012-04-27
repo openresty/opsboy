@@ -103,7 +103,7 @@ tr {
 [% FOREACH name IN mods -%]
     [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
             NEXT;
-        END %]
+        END -%]
     dep tr-ngx_[% name %];
 [% END -%]
 }
@@ -139,6 +139,9 @@ trv2 {
 
 tw {
 [% FOREACH name IN mods -%]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            NEXT;
+        END -%]
     dep tw-ngx_[% name %];
 [% END -%]
 }
