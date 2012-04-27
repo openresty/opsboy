@@ -6,15 +6,16 @@ body {
 
 table.testcase {
     margin-left: 2em;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
     width: 90%;
+    table-layout:fixed;
 }
 
 table.testcase tr {
     padding: 5pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
 }
@@ -22,16 +23,17 @@ table.testcase tr {
 table.testcase td,
 table.testcase th {
     padding: 15pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
-    width: 33%;
+    width: 20%;
+    border-color: #777;
     text-align: center;
 }
 
 table.summary {
     margin-left: 2em;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
     width: 90%;
@@ -39,7 +41,7 @@ table.summary {
 
 table.summary tr {
     padding: 5pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
 }
@@ -56,11 +58,13 @@ table.summary tr {
 table.summary td,
 table.summary th {
     padding: 15pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
+    border-color: #777;
     width: 14.4%;
     text-align: center;
+    word-wrap: break-word;
 }
 
 .fails {
@@ -79,7 +83,7 @@ table.result {
     margin-right: auto;
      */
     margin-left: 1em;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
 }
@@ -90,7 +94,7 @@ div.report {
 
 table.result tr {
     padding: 6pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
 }
@@ -98,20 +102,24 @@ table.result tr {
 table.result td,
 table.result th {
     padding: 6pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
     width: 16.7%;
     text-align: center;
+    word-wrap: break-word;
+    border-color: #777;
 }
 
 table.testcase td.test-details {
     padding: 10pt;
-    border-width: 2pt;
+    border-width: 1pt;
     border-style: solid;
     border-collapse: collapse;
-    width: 20%;
+    width: 40%;
     text-align: left;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 
 a.pass {

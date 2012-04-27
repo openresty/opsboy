@@ -52,6 +52,7 @@ my %white_list = (
 
     ngx_echo => [
         ['r', 'echo-timer.t'],
+        ['rv', 'request-body.t', 'TEST 1: big client body buffered into temp files'],
         ['v', 'echo-timer.t', 'TEST 1: timer without explicit reset - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 2: timer without explicit reset and sleep - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 3: timing accumulated sleeps - response_body_like - response is expected'],
