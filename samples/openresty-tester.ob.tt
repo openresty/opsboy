@@ -146,6 +146,35 @@ tw {
 [% END -%]
 }
 
+twv {
+    dep twv1 twv2;
+}
+
+twv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            i = i + 1;
+            NEXT;
+        END %]
+    dep twv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+twv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            i = i + 1;
+            NEXT;
+        END %]
+    dep twv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
 etcproxy {
     git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
     dep erlang;
@@ -502,7 +531,7 @@ cpan {
     dep cc;
 }
 
-[% types = ['', 'v', 'r', 'rv', 'w'] %]
+[% types = ['', 'v', 'r', 'rv', 'w', 'wv'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
