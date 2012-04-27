@@ -85,7 +85,6 @@ trv {
 
 trv1 {
 
-    dep trv-ngx_array_var;
     dep trv-ngx_redis2;
     dep trv-ngx_lua;
 }
@@ -94,8 +93,6 @@ trv2 {
 
     dep trv-ngx_srcache;
     dep trv-ngx_memc;
-    dep trv-ngx_set_misc;
-    dep trv-ngx_xss;
     dep trv-ngx_drizzle;
     dep trv-ngx_rds_json;
     dep trv-ngx_echo;

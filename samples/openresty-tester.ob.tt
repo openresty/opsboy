@@ -116,6 +116,10 @@ trv1 {
 [% i = 0 -%]
 [% WHILE i < 3 -%]
     [%- name = mods.$i %]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            i = i + 1;
+            NEXT;
+        END %]
     dep trv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
@@ -124,6 +128,10 @@ trv1 {
 trv2 {
 [% WHILE i < mods.size -%]
     [%- name = mods.$i %]
+    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
+            i = i + 1;
+            NEXT;
+        END %]
     dep trv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
