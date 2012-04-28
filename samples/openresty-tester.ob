@@ -936,6 +936,7 @@ t-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
@@ -1404,6 +1405,7 @@ tv-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
@@ -1944,6 +1946,7 @@ tr-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
@@ -2520,6 +2523,7 @@ trv-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
@@ -3078,6 +3082,7 @@ tw-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
@@ -3672,6 +3677,7 @@ twv-ngx_coolkit {
 
     dep nginx-module-test ngx_coolkit;
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 

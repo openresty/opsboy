@@ -662,6 +662,7 @@ t[% type %]-ngx_iconv {
 t[% type %]-ngx_coolkit {
     [%- PROCESS build_nginx_module name="coolkit" -%]
 
+    dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
