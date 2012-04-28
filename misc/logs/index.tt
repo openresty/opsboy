@@ -118,6 +118,7 @@
             <th>[% PROCESS mockeagain %](R)</th>
             <th>[% PROCESS mockeagain %](R)<br/>[% PROCESS memcheck %]</th>
             <th>[% PROCESS mockeagain %](W)</th>
+            <th>[% PROCESS mockeagain %](W)<br/>[% PROCESS memcheck %]</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -130,6 +131,7 @@
             [%- PROCESS gen_result_cell key="r" %]
             [%- PROCESS gen_result_cell key="rv" %]
             [%- PROCESS gen_result_cell key="w" %]
+            [%- PROCESS gen_result_cell key="wv" %]
         </tr>
         [%- END %]
     </table>

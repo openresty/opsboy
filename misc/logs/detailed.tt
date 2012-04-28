@@ -1,5 +1,18 @@
-[% DEFAULT title = "Detailed Test Report for " _ name _ " in "
-        _ arch _ (mode ? " (" _ mode _ ")" : "") %]
+[% BLOCK gen_file_count -%]
+    [%- IF github_link -%]
+        <a target="_blank" href="https://[% github_link %]/blob/[% rec.commit %]/t/">
+    [%- END -%]
+
+        [%- rec.files -%]
+
+    [%- IF github_link -%]
+        </a>
+    [%- END -%]
+
+[% END -%]
+
+[%- DEFAULT title = "Detailed Test Report for " _ name _ " in "
+        _ arch _ (mode ? " (" _ mode _ ")" : "") -%]
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title>[% title %]</title>
@@ -42,7 +55,7 @@
         [%- unexpected = rec.true_fails.size %]
         <td><span class="[% unexpected ? 'fails' : 'success' %]">[% unexpected | html %]</span></td>
         <td><span class="success">[% rec.expected_fails.size %]</span></td>
-        <td>[% rec.files %]</td>
+        <td>[% PROCESS gen_file_count %]</td>
         <td>[% rec.tests %]</td>
         <td>[% rec.elapsed %] sec</td>
     </tr>
