@@ -31,6 +31,10 @@ my %white_list = (
 
     #ngx_postgres => [['w']],
 
+    ngx_form_input => [
+        ['r', 'upload.t', 'TEST 1: big upload - '],
+    ],
+
     ngx_rds_json => [
         ['w', 'pg.t'],
         ['w', '000_init.t', 'TEST 8: cats - drop table'],

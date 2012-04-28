@@ -15,6 +15,7 @@ if (!@jsonfiles) {
 }
 
 my %github_links = (
+    ngx_encrypted_session => ['agentzh', 'encrypted-session-nginx-module'],
     ngx_array_var => ['agentzh', 'array-var-nginx-module'],
     ngx_drizzle => ['chaoslawful', 'drizzle-nginx-module'],
     ngx_echo => ['agentzh', 'echo-nginx-module'],

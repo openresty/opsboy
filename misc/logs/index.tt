@@ -1,6 +1,7 @@
 [% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Modules' -%]
 
 [%- module_info = {
+        ngx_encrypted_session => 'github.com/agentzh/encrypted-session-nginx-module',
         ngx_array_var => 'wiki.nginx.org/HttpArrayVarModule',
         ngx_drizzle => 'wiki.nginx.org/HttpDrizzleModule',
         ngx_echo => 'wiki.nginx.org/HttpEchoModule',

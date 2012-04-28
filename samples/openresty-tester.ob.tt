@@ -12,6 +12,9 @@ valgrind_version = 3.7.0;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
+    env TEST_NGINX_USE_VALGRIND '';
+    env MOCKEAGAIN '';
+    env LD_PRELOAD '';
 
     [%- IF type.match("v") -%]
 
@@ -23,7 +26,7 @@ valgrind_version = 3.7.0;
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env MOCKEAGAIN r;
     dep mockeagain;
 
@@ -35,7 +38,7 @@ valgrind_version = 3.7.0;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     dep mockeagain;
 
     [%- END -%]
