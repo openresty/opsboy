@@ -11,6 +11,9 @@ ragel_version = 6.7;
 valgrind_version = 3.7.0;
 
 
+
+
+
 t {
     dep t-ngx_array_var;
     dep t-ngx_redis2;
@@ -30,6 +33,11 @@ t {
     dep t-ngx_form_input;
     dep t-ngx_coolkit;
     dep t-ngx_iconv;
+    dep t-lua-resty-memcached;
+    dep t-lua-resty-redis;
+    dep t-lua-resty-mysql;
+    dep t-lua-resty-string;
+    dep t-lua-resty-upload;
 }
 
 tv {
@@ -307,6 +315,33 @@ ngx_openresty-debug {
     sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre;
 }
+
+
+lua-resty-memcached {
+    git git://github.com/agentzh/lua-resty-memcached.git ~/git/lua-resty-memcached;
+    dep ngx_lua;
+}
+
+lua-resty-redis {
+    git git://github.com/agentzh/lua-resty-redis.git ~/git/lua-resty-redis;
+    dep ngx_lua;
+}
+
+lua-resty-mysql {
+    git git://github.com/agentzh/lua-resty-mysql.git ~/git/lua-resty-mysql;
+    dep ngx_lua;
+}
+
+lua-resty-string {
+    git git://github.com/agentzh/lua-resty-string.git ~/git/lua-resty-string;
+    dep ngx_lua;
+}
+
+lua-resty-upload {
+    git git://github.com/agentzh/lua-resty-upload.git ~/git/lua-resty-upload;
+    dep ngx_lua;
+}
+
 
 ngx_headers_more {
     git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
@@ -940,6 +975,112 @@ t-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+t-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+t-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+t-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+t-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+t-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+
 
 tv-ngx_srcache {
     always;
@@ -958,8 +1099,8 @@ tv-ngx_srcache {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_srcache;
 
@@ -984,8 +1125,8 @@ tv-ngx_set_misc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -1009,8 +1150,8 @@ tv-ngx_headers_more {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_headers_more;
 
@@ -1034,8 +1175,8 @@ tv-ngx_rds_json {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -1060,8 +1201,8 @@ tv-ngx_rds_csv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_csv;
 
@@ -1087,8 +1228,8 @@ tv-ngx_drizzle {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -1115,8 +1256,8 @@ tv-ngx_lua {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_lua;
 
@@ -1144,8 +1285,8 @@ tv-ngx_memc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -1170,8 +1311,8 @@ tv-ngx_redis2 {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_redis2;
 
@@ -1196,8 +1337,8 @@ tv-ngx_xss {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -1221,8 +1362,8 @@ tv-ngx_echo {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_echo;
 
@@ -1247,8 +1388,8 @@ tv-ngx_eval {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -1272,8 +1413,8 @@ tv-ngx_form_input {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_form_input;
 
@@ -1297,8 +1438,8 @@ tv-ngx_array_var {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -1322,8 +1463,8 @@ tv-ngx_postgres {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_postgres;
 
@@ -1350,8 +1491,8 @@ tv-ngx_encrypted_session {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -1375,8 +1516,8 @@ tv-ngx_iconv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_iconv;
 
@@ -1400,13 +1541,129 @@ tv-ngx_coolkit {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_coolkit;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+tv-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+tv-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+tv-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+tv-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+tv-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
 }
 
 
@@ -1950,6 +2207,142 @@ tr-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+tr-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+
 
 trv-ngx_srcache {
     always;
@@ -1974,8 +2367,8 @@ trv-ngx_srcache {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_srcache;
 
@@ -2006,8 +2399,8 @@ trv-ngx_set_misc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -2037,8 +2430,8 @@ trv-ngx_headers_more {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_headers_more;
 
@@ -2068,8 +2461,8 @@ trv-ngx_rds_json {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -2100,8 +2493,8 @@ trv-ngx_rds_csv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_csv;
 
@@ -2133,8 +2526,8 @@ trv-ngx_drizzle {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -2167,8 +2560,8 @@ trv-ngx_lua {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_lua;
 
@@ -2202,8 +2595,8 @@ trv-ngx_memc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -2234,8 +2627,8 @@ trv-ngx_redis2 {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_redis2;
 
@@ -2266,8 +2659,8 @@ trv-ngx_xss {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -2297,8 +2690,8 @@ trv-ngx_echo {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_echo;
 
@@ -2329,8 +2722,8 @@ trv-ngx_eval {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -2360,8 +2753,8 @@ trv-ngx_form_input {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_form_input;
 
@@ -2391,8 +2784,8 @@ trv-ngx_array_var {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -2422,8 +2815,8 @@ trv-ngx_postgres {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_postgres;
 
@@ -2456,8 +2849,8 @@ trv-ngx_encrypted_session {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -2487,8 +2880,8 @@ trv-ngx_iconv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_iconv;
 
@@ -2518,13 +2911,159 @@ trv-ngx_coolkit {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_coolkit;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+trv-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+trv-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+trv-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+trv-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+trv-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
 }
 
 
@@ -3086,6 +3625,147 @@ tw-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+tw-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+
 
 twv-ngx_srcache {
     always;
@@ -3111,8 +3791,8 @@ twv-ngx_srcache {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_srcache;
 
@@ -3144,8 +3824,8 @@ twv-ngx_set_misc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -3176,8 +3856,8 @@ twv-ngx_headers_more {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_headers_more;
 
@@ -3208,8 +3888,8 @@ twv-ngx_rds_json {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -3241,8 +3921,8 @@ twv-ngx_rds_csv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_rds_csv;
 
@@ -3275,8 +3955,8 @@ twv-ngx_drizzle {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -3310,8 +3990,8 @@ twv-ngx_lua {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_lua;
 
@@ -3346,8 +4026,8 @@ twv-ngx_memc {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -3379,8 +4059,8 @@ twv-ngx_redis2 {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_redis2;
 
@@ -3412,8 +4092,8 @@ twv-ngx_xss {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -3444,8 +4124,8 @@ twv-ngx_echo {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_echo;
 
@@ -3477,8 +4157,8 @@ twv-ngx_eval {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -3509,8 +4189,8 @@ twv-ngx_form_input {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_form_input;
 
@@ -3541,8 +4221,8 @@ twv-ngx_array_var {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -3573,8 +4253,8 @@ twv-ngx_postgres {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_postgres;
 
@@ -3608,8 +4288,8 @@ twv-ngx_encrypted_session {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -3640,8 +4320,8 @@ twv-ngx_iconv {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_iconv;
 
@@ -3672,13 +4352,164 @@ twv-ngx_coolkit {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
-    dep valgrind;
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
 
     dep nginx-module-test ngx_coolkit;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+twv-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build.sh $nginx_version || (touch config && sh ./util/build.sh $nginx_version)';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
 }
 
 
@@ -3719,5 +4550,40 @@ tt2 {
 parse-recdescent {
     test 'perl -MParse::RecDescent -e1';
     yum perl-Parse-RecDescent;
+}
+
+build-ngx_lua {
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+
+    sh 'sh ./util/build2.sh $nginx_version || (touch config && sh ./util/build2.sh $nginx_version)';
+
+    sh 'nginx -V';
+    dep valgrind;
+
+
+    dep nginx-module-test ngx_lua;
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
 }
 

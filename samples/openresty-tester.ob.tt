@@ -10,11 +10,7 @@ force = 0;
 ragel_version = 6.7;
 valgrind_version = 3.7.0;
 
-[% BLOCK build_nginx_module %]
-    always;
-    cwd ~/git/[% name %]-nginx-module;
-    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
-
+[%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
 
     [%- IF type.match("v") -%]
@@ -55,12 +51,33 @@ valgrind_version = 3.7.0;
     [%- END %]
 
     sh 'nginx -V';
+
+    [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+    [%- END -%]
 
     [%- IF type.match("v") -%]
     dep valgrind;
     [%- END %]
+[% END -%]
+
+[% BLOCK build_lua_lib %]
+    always;
+    cwd ~/git/lua-[% name %];
+    env PATH '~/git/lua-[% name %]/work/nginx/sbin:$PATH';
+
+    [%- PROCESS nginx_test_config -%]
+
+    dep ngx_lua nginx-module-test lua-[% name %];
+[% END %]
+
+[% BLOCK build_nginx_module %]
+    always;
+    cwd ~/git/[% name %]-nginx-module;
+    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+
+    [%- PROCESS nginx_test_config %]
 
     dep nginx-module-test [% "ngx_" _ name.replace("-", "_", "g") %];
 [% END -%]
@@ -76,6 +93,13 @@ valgrind_version = 3.7.0;
    ]
 -%]
 
+[%- lualibs = [
+        'resty-memcached', 'resty-redis',
+        'resty-mysql', 'resty-string',
+        'resty-upload',
+    ]
+%]
+
 [%- cpu_mods = {
         array_var => 1,
         xss => 1,
@@ -88,6 +112,9 @@ valgrind_version = 3.7.0;
 t {
 [% FOREACH name IN mods -%]
     dep t-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep t-lua-[% name %];
 [% END -%]
 }
 
@@ -335,6 +362,13 @@ ngx_openresty-debug {
     sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre;
 }
+
+[% FOREACH name IN lualibs %]
+lua-[% name %] {
+    git git://github.com/agentzh/lua-[% name %].git ~/git/lua-[% name %];
+    dep ngx_lua;
+}
+[% END %]
 
 ngx_headers_more {
     git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
@@ -666,6 +700,14 @@ t[% type %]-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+[% FOREACH name IN lualibs -%]
+t[% type %]-lua-[% name %] {
+    [%- PROCESS build_lua_lib name=name -%]
+
+    dep build-ngx_lua;
+}
+[% END -%]
+
 [%- END %]
 
 ngx-postgres-build-script {
@@ -705,5 +747,15 @@ tt2 {
 parse-recdescent {
     test 'perl -MParse::RecDescent -e1';
     yum perl-Parse-RecDescent;
+}
+
+build-ngx_lua {
+    [%- PROCESS build_nginx_module name="lua" no_test=1 -%]
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
 }
 
