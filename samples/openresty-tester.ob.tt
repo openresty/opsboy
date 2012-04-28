@@ -15,6 +15,8 @@ valgrind_version = 3.7.0;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     [%- IF type.match("v") -%]
 
     env TEST_NGINX_USE_VALGRIND 1;

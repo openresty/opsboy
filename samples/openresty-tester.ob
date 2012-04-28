@@ -492,6 +492,8 @@ t-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -514,6 +516,8 @@ t-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -534,6 +538,8 @@ t-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -556,6 +562,8 @@ t-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -577,6 +585,8 @@ t-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -601,6 +611,8 @@ t-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -624,6 +636,8 @@ t-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -650,6 +664,8 @@ t-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -671,6 +687,8 @@ t-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -694,6 +712,8 @@ t-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -714,6 +734,8 @@ t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -737,6 +759,8 @@ t-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -757,6 +781,8 @@ t-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -779,6 +805,8 @@ t-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -799,6 +827,8 @@ t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -825,6 +855,8 @@ tv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -849,6 +881,8 @@ tv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -871,6 +905,8 @@ tv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -895,6 +931,8 @@ tv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -918,6 +956,8 @@ tv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -944,6 +984,8 @@ tv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -969,6 +1011,8 @@ tv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -997,6 +1041,8 @@ tv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1020,6 +1066,8 @@ tv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1045,6 +1093,8 @@ tv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1067,6 +1117,8 @@ tv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1092,6 +1144,8 @@ tv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1114,6 +1168,8 @@ tv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1138,6 +1194,8 @@ tv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1160,6 +1218,8 @@ tv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1187,6 +1247,8 @@ tr-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1216,6 +1278,8 @@ tr-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1242,6 +1306,8 @@ tr-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1270,6 +1336,8 @@ tr-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1297,6 +1365,8 @@ tr-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1327,6 +1397,8 @@ tr-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1356,6 +1428,8 @@ tr-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1388,6 +1462,8 @@ tr-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1415,6 +1491,8 @@ tr-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1444,6 +1522,8 @@ tr-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1470,6 +1550,8 @@ tr-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1499,6 +1581,8 @@ tr-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1525,6 +1609,8 @@ tr-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1553,6 +1639,8 @@ tr-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
@@ -1579,6 +1667,8 @@ tr-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -1611,6 +1701,8 @@ trv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1641,6 +1733,8 @@ trv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1669,6 +1763,8 @@ trv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1699,6 +1795,8 @@ trv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1728,6 +1826,8 @@ trv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1760,6 +1860,8 @@ trv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1791,6 +1893,8 @@ trv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1825,6 +1929,8 @@ trv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1854,6 +1960,8 @@ trv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1885,6 +1993,8 @@ trv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1913,6 +2023,8 @@ trv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1944,6 +2056,8 @@ trv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1972,6 +2086,8 @@ trv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2002,6 +2118,8 @@ trv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2030,6 +2148,8 @@ trv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2064,6 +2184,8 @@ tw-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2093,6 +2215,8 @@ tw-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2120,6 +2244,8 @@ tw-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2149,6 +2275,8 @@ tw-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2177,6 +2305,8 @@ tw-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2208,6 +2338,8 @@ tw-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2238,6 +2370,8 @@ tw-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2271,6 +2405,8 @@ tw-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2299,6 +2435,8 @@ tw-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2329,6 +2467,8 @@ tw-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2356,6 +2496,8 @@ tw-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2386,6 +2528,8 @@ tw-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2413,6 +2557,8 @@ tw-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2442,6 +2588,8 @@ tw-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2469,6 +2617,8 @@ tw-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2502,6 +2652,8 @@ twv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2533,6 +2685,8 @@ twv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2562,6 +2716,8 @@ twv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2593,6 +2749,8 @@ twv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2623,6 +2781,8 @@ twv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2656,6 +2816,8 @@ twv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2688,6 +2850,8 @@ twv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2723,6 +2887,8 @@ twv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2753,6 +2919,8 @@ twv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2785,6 +2953,8 @@ twv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2814,6 +2984,8 @@ twv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2846,6 +3018,8 @@ twv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2875,6 +3049,8 @@ twv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -2906,6 +3082,8 @@ twv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_EVENT_TYPE '';
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -2935,6 +3113,8 @@ twv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
