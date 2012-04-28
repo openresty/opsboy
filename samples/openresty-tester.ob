@@ -918,8 +918,8 @@ t-ngx_iconv {
 
 t-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -934,7 +934,7 @@ t-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -1384,8 +1384,8 @@ tv-ngx_iconv {
 
 tv-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -1402,7 +1402,7 @@ tv-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
     dep valgrind;
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -1920,8 +1920,8 @@ tr-ngx_iconv {
 
 tr-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -1942,7 +1942,7 @@ tr-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -2494,8 +2494,8 @@ trv-ngx_iconv {
 
 trv-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -2518,7 +2518,7 @@ trv-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
     dep valgrind;
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -3053,8 +3053,8 @@ tw-ngx_iconv {
 
 tw-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -3076,7 +3076,7 @@ tw-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -3645,8 +3645,8 @@ twv-ngx_iconv {
 
 twv-ngx_coolkit {
     always;
-    cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
 
@@ -3670,7 +3670,7 @@ twv-ngx_coolkit {
     sh 'prove -I../test-nginx/lib -r t || exit 0';
     dep valgrind;
 
-    dep nginx-module-test ngx_iconv;
+    dep nginx-module-test ngx_coolkit;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
