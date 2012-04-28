@@ -4384,6 +4384,7 @@ parse-recdescent {
     yum perl-Parse-RecDescent;
 }
 
+
 build-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
@@ -4391,22 +4392,13 @@ build-ngx_lua {
 
     env TEST_NGINX_EVENT_TYPE '';
 
-    env TEST_NGINX_USE_VALGRIND 1;
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
-    dep mockeagain;
-
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     sh 'sh ./util/build2.sh $nginx_version || (touch config && sh ./util/build2.sh $nginx_version)';
     sh 'nginx -V';
-    dep valgrind;
+
 
 
     dep nginx-module-test ngx_lua;

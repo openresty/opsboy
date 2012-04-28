@@ -751,6 +751,7 @@ parse-recdescent {
     yum perl-Parse-RecDescent;
 }
 
+[% type="" %]
 build-ngx_lua {
     [%- PROCESS build_nginx_module name="lua" no_test=1 -%]
 
