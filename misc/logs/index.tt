@@ -1,6 +1,14 @@
-[% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Modules' -%]
+[% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Components' -%]
 
 [%- module_info = {
+        'lua-resty-upload' => 'github.com/agentzh/lua-resty-upload',
+        'lua-resty-string' => 'github.com/agentzh/lua-resty-string',
+        'lua-resty-mysql' => 'github.com/agentzh/lua-resty-mysql',
+        'lua-resty-redis' => 'github.com/agentzh/lua-resty-redis',
+        'lua-resty-memcached' => 'github.com/agentzh/lua-resty-memcached',
+        ngx_iconv => 'github.com/calio/iconv-nginx-module',
+        ngx_form_input => 'github.com/calio/form-input-nginx-module',
+        ngx_coolkit => 'github.com/FRiCKLE/ngx_coolkit',
         ngx_encrypted_session => 'github.com/agentzh/encrypted-session-nginx-module',
         ngx_array_var => 'wiki.nginx.org/HttpArrayVarModule',
         ngx_drizzle => 'wiki.nginx.org/HttpDrizzleModule',

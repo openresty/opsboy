@@ -15,6 +15,14 @@ if (!@jsonfiles) {
 }
 
 my %github_links = (
+    'lua-resty-upload' => ['agentzh', 'lua-resty-upload'],
+    'lua-resty-string' => ['agentzh', 'lua-resty-string'],
+    'lua-resty-mysql' => ['agentzh', 'lua-resty-mysql'],
+    'lua-resty-redis' => ['agentzh', 'lua-resty-redis'],
+    'lua-resty-memcached' => ['agentzh', 'lua-resty-memcached'],
+    ngx_iconv => ['calio', 'iconv-nginx-module'],
+    ngx_form_input => ['calio', 'form-input-nginx-module'],
+    ngx_coolkit => ['FRiCKLE', 'ngx_coolkit'],
     ngx_encrypted_session => ['agentzh', 'encrypted-session-nginx-module'],
     ngx_array_var => ['agentzh', 'array-var-nginx-module'],
     ngx_drizzle => ['chaoslawful', 'drizzle-nginx-module'],
