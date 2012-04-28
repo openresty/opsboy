@@ -62,7 +62,7 @@ valgrind_version = 3.7.0;
     dep valgrind;
     [%- END %]
 
-    dep nginx-module-test [% "ngx_" _ name.replace("-", "_") %];
+    dep nginx-module-test [% "ngx_" _ name.replace("-", "_", "g") %];
 [% END -%]
 
 [%- mods = [
@@ -70,8 +70,19 @@ valgrind_version = 3.7.0;
     'srcache', 'memc', 'set_misc', 'xss',
     'drizzle', 'rds_json',  'echo',
     'postgres', 'eval',
-    'headers_more', 'rds_csv'
+    'headers_more', 'rds_csv',
+    'encrypted_session', 'form_input',
+    'coolkit', 'iconv',
    ]
+-%]
+
+[%- cpu_mods = {
+        array_var => 1,
+        xss => 1,
+        set_misc => 1,
+        coolkit => 1,
+        encrypted_session => 1,
+    }
 -%]
 
 t {
@@ -103,9 +114,7 @@ tv2 {
 
 tr {
 [% FOREACH name IN mods -%]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            NEXT;
-        END -%]
+    [%- IF cpu_mods.$name; NEXT; END -%]
     dep tr-ngx_[% name %];
 [% END -%]
 }
@@ -118,10 +127,7 @@ trv1 {
 [% i = 0 -%]
 [% WHILE i < 3 -%]
     [%- name = mods.$i %]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            i = i + 1;
-            NEXT;
-        END %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
     dep trv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
@@ -130,10 +136,7 @@ trv1 {
 trv2 {
 [% WHILE i < mods.size -%]
     [%- name = mods.$i %]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            i = i + 1;
-            NEXT;
-        END %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
     dep trv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
@@ -141,9 +144,7 @@ trv2 {
 
 tw {
 [% FOREACH name IN mods -%]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            NEXT;
-        END -%]
+    [%- IF cpu_mods.$name; NEXT; END -%]
     dep tw-ngx_[% name %];
 [% END -%]
 }
@@ -156,10 +157,7 @@ twv1 {
 [% i = 0 -%]
 [% WHILE i < 3 -%]
     [%- name = mods.$i %]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            i = i + 1;
-            NEXT;
-        END %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
     dep twv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
@@ -168,10 +166,7 @@ twv1 {
 twv2 {
 [% WHILE i < mods.size -%]
     [%- name = mods.$i %]
-    [%- IF name == "set_misc" OR name == "array_var" OR name == "xss";
-            i = i + 1;
-            NEXT;
-        END %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
     dep twv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
@@ -262,6 +257,11 @@ ngx_rds_csv {
 
 ngx_array_var {
     git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    dep ndk;
+}
+
+ngx_encrypted_session {
+    git git://github.com/agentzh/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
     dep ndk;
 }
 
@@ -647,6 +647,24 @@ t[% type %]-ngx_postgres {
     dep ngx_auth_request run-postgres;
 }
 
+t[% type %]-ngx_encrypted_session {
+    [%- PROCESS build_nginx_module name="encrypted-session" -%]
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_iconv {
+    [%- PROCESS build_nginx_module name="iconv" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+t[% type %]-ngx_coolkit {
+    [%- PROCESS build_nginx_module name="iconv" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
 [%- END %]
 
 ngx-postgres-build-script {
@@ -654,6 +672,13 @@ ngx-postgres-build-script {
     cwd ~/git/postgres-nginx-module/util;
     fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
     sh 'mv ngx-postgres-build.sh build.sh';
+}
+
+ngx-coolkit-build-script {
+    file ~/git/coolkit-nginx-module/util/build.sh;
+    cwd ~/git/coolkit-nginx-module/util;
+    fetch 'http://agentzh.org/misc/nginx/ngx-coolkit-build.sh';
+    sh 'mv ngx-coolkit-build.sh build.sh';
 }
 
 valgrind {
