@@ -1012,6 +1012,7 @@ t-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 t-lua-resty-string {
@@ -1565,6 +1566,7 @@ tv-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 tv-lua-resty-string {
@@ -2206,6 +2208,7 @@ tr-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 tr-lua-resty-string {
@@ -2897,6 +2900,7 @@ trv-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 trv-lua-resty-string {
@@ -3571,6 +3575,7 @@ tw-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 tw-lua-resty-string {
@@ -4285,6 +4290,7 @@ twv-lua-resty-mysql {
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     dep build-ngx_lua;
 }
 twv-lua-resty-string {

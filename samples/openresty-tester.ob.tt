@@ -706,6 +706,10 @@ t[% type %]-ngx_coolkit {
 t[% type %]-lua-[% name %] {
     [%- PROCESS build_lua_lib name=name -%]
 
+    [%- IF name == "resty-mysql" %]
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    [%- END -%]
+
     dep build-ngx_lua;
 }
 [% END -%]
