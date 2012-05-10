@@ -8,4 +8,4 @@ misc/logs/html/archive/
 misc/logs/ortest/
 misc/logs/upload
 misc/mysqld
-misc/logs/html/*.html
+misc/logs/html/

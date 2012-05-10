@@ -27,16 +27,16 @@
     }
 -%]
 
-[% BLOCK memcheck -%]
+[%- BLOCK memcheck -%]
 <a target="_blank" href="http://valgrind.org/docs/manual/mc-manual.html">valgrind/memcheck</a>
 [%- END -%]
 
-[% BLOCK mockeagain -%]
+[%- BLOCK mockeagain -%]
 <a target="_blank" href="https://github.com/agentzh/mockeagain">mockeagain</a>
 [%- END -%]
 
-[% BLOCK gen_module_cell -%]
-    [% link = module_info.$mod_name %]
+[%- BLOCK gen_module_cell -%]
+    [%- link = module_info.$mod_name %]
     <td>
         [%- IF link %]
         <a target="_blank" href="[% link.match('github\.com') ? 'https' : 'http' %]://[% link %]">[%- mod_name %]</a>
@@ -44,13 +44,13 @@
         [%- mod_name %]
         [%- END %]
     </td>
-[% END -%]
+[%- END -%]
 
-[% BLOCK gen_result_cell -%]
-    [%- mode = module.$key %]
+[%- BLOCK gen_result_cell -%]
+    [%- mode = module.$key -%]
     [%- IF mode %]
-        [% res = mode.result %]
-        [% mode_link = mode.link %]
+        [%- res = mode.result %]
+        [%- mode_link = mode.link %]
     <td>
         [%- IF res == "PASS" %]
         <a href="[% mode_link %]" class="pass" title="All [% mode.tests %] tests successful, [% mode.elapsed %] sec, git [% mode.commit %]">PASS</a>
@@ -62,8 +62,8 @@
     </td>
     [%- ELSE -%]
     <td>-</td>
-    [%- END %]
-[% END -%]
+    [%- END -%]
+[%- END -%]
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title>[% title %]</title>
@@ -72,13 +72,13 @@
 </head>
 <body>
 
-[% PROCESS 'header.tt' %]
+[%- PROCESS 'header.tt' -%]
 
 <h1>[% title %]</h1>
 <ul>
 <li><a href="#reports">Reports</a>
 <ul>
-[% FOREACH arch_name IN ast.keys.sort -%]
+[%- FOREACH arch_name IN ast.keys.sort -%]
 <li>
     [%- IF arch_name == "anchor"; NEXT; END %]
     [%- arch = ast.$arch_name;
@@ -96,7 +96,7 @@
                 [%- nginx_ver | html %]
             </a>
         </li>
-    [%- END %]
+    [%- END -%]
     </ul>
 </li>
 [% END -%]
@@ -106,10 +106,10 @@
 </ul>
 <h2><a name="reports">Reports</a></h2>
 [% FOREACH arch_name IN ast.keys -%]
-    [%- IF nginx_ver == "anchor"; NEXT; END %]
-    [%- arch = ast.$arch_name %]
+    [%- IF nginx_ver == "anchor"; NEXT; END -%]
+    [%- arch = ast.$arch_name -%]
 <h3><a name="[% arch.anchor %]">[% arch_name | ucfirst | html %]</a></h3>
-    [%- FOREACH nginx_ver IN arch.keys.sort %]
+    [%- FOREACH nginx_ver IN arch.keys.sort -%]
         [%- IF nginx_ver == "anchor"; NEXT; END;
             nginx = arch.$nginx_ver -%]
     <h4>
@@ -142,15 +142,14 @@
             [%- PROCESS gen_result_cell key="w" %]
             [%- PROCESS gen_result_cell key="wv" %]
         </tr>
-        [%- END %]
+        [%- END -%]
     </table>
     </div>
-    [%- END %]
-[% END %]
+    [%- END -%]
+[% END -%]
 <p/>
 <h2><a name="maintainer">Maintainer</a></h2>
 <p>Zhang "agentzh" Yichun (章亦春) &lt;agentzh@gmail.com&gt; <a href="http://agentzh.org/">http://agentzh.org</a></p>
 <p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
 </body>
 </html>
-
