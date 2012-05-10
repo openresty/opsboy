@@ -102,6 +102,7 @@
 [% END -%]
 </ul>
 </li>
+<li><a href="#archive">Archive</a></li>
 <li><a href="#maintainer">Maintainer</a></li>
 </ul>
 <h2><a name="reports">Reports</a></h2>
@@ -148,8 +149,14 @@
     [%- END -%]
 [% END -%]
 <p/>
+
+<h2><a name="archive">Archive</a></h2>
+<p>Historical reports can be found here:</p>
+<p>&nbsp; <a href="archive/">http://qa.openresty.org/archive/</a></p>
+
 <h2><a name="maintainer">Maintainer</a></h2>
 <p>Zhang "agentzh" Yichun (章亦春) &lt;agentzh@gmail.com&gt; <a href="http://agentzh.org/">http://agentzh.org</a></p>
 <p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
+
 </body>
 </html>
