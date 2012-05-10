@@ -708,7 +708,6 @@ t-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1301,7 +1300,6 @@ tv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -1952,7 +1950,6 @@ tr-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2683,7 +2680,6 @@ trv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -3442,7 +3438,6 @@ tw-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4196,7 +4191,6 @@ twv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
 
@@ -4813,7 +4807,6 @@ build-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
-    env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 

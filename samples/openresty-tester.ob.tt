@@ -14,7 +14,9 @@ valgrind_version = 3.7.0;
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+    [%- UNLESS name == "lua" %]
     env LD_PRELOAD '';
+    [%- END %]
 
     [%- IF type.match("v") -%]
 

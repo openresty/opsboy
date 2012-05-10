@@ -1,0 +1,88 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+use List::MoreUtils qw( any );
+
+sub usage ();
+
+my %opts;
+getopts("f", \%opts) or usage();
+
+my %cpu_lualibs = (
+    'resty-string' => 1,
+);
+
+my %cpu_mods = (
+    array_var => 1,
+    xss => 1,
+    set_misc => 1,
+    coolkit => 1,
+    encrypted_session => 1,
+);
+
+my @mods = (
+    'array_var', 'redis2', 'lua',
+    'srcache', 'memc', 'set_misc', 'xss',
+    'drizzle', 'rds_json',  'echo',
+    'postgres', 'eval',
+    'headers_more', 'rds_csv',
+    'encrypted_session', 'form_input',
+    'coolkit', 'iconv',
+);
+
+my @lualibs = (
+    'resty-memcached', 'resty-redis',
+    'resty-mysql', 'resty-string',
+    'resty-upload',
+);
+
+if (!@ARGV) {
+    usage();
+}
+
+my @goals;
+
+for my $lib (@ARGV) {
+    if ($lib =~ /^ngx_(.+)/) {
+        my $name = $1;
+        if (! any { $name eq $_ } @mods) {
+            die "Unknown nginx module $lib\n";
+        }
+
+        push @goals, "t-$lib", "tv-$lib";
+
+        if (!$cpu_mods{$name}) {
+            for my $m (qw<tr tw trv twv>) {
+                push @goals, "$m-$lib";
+            }
+        }
+
+    } elsif ($lib =~ /^lua-(.+)/) {
+        my $name = $1;
+
+        if (! any { $name eq $_ } @lualibs) {
+            die "Unknown lua library $lib\n";
+        }
+
+        push @goals, "t-$lib", "tv-$lib";
+
+        if (!$cpu_lualibs{$name}) {
+            for my $m (qw<tr tw trv twv>) {
+                push @goals, "$m-$lib";
+            }
+        }
+
+    } else {
+        die "Unknown component $lib\n";
+    }
+}
+
+print "@goals\n";
+
+sub usage () {
+    die "$0 [-f] ngx_foo lua-resty-blah ...\n";
+}
+
