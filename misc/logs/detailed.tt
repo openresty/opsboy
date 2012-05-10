@@ -44,7 +44,7 @@
     <tr>
         <td>
             [%- IF github_link %]
-            <a target="_blank" title="[% rec.test_date %]" href="https://[% github_link %]/commit/[% rec.commit %]">
+            <a target="_blank" title="[% date.format(time => rec.commit_date, format="%Y-%m-%d %H:%M:%S" gmt => 1) %] GMT" href="https://[% github_link %]/commit/[% rec.commit %]">
             [%- END %]
             [%- rec.commit %]
             [%- IF github_link %]
