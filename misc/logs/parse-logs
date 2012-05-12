@@ -46,12 +46,14 @@ my %white_list = (
     ngx_srcache => [
         ['w', 'postgres-main.t'],
         ['w', '000_init.t', '- pg -'],
+        ['w', 'conditional-get.t', 'TEST 7: cache hit (I-U-S conditional GET, 412) - '],
     ],
 
     ngx_lua => [
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
+        ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false - '],
     ],
 
     ngx_headers_more => [
