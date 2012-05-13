@@ -28,6 +28,7 @@
     <li><a href="#summary">Summary</a></li>
     <li><a href="#unexpected">Unexpected Failures</a></li>
     <li><a href="#expected">Expected Failures</a></li>
+    <li><a href="#warnings">Warnings</a></li>
 </ul>
 [% USE date -%]
 <h2><a name="summary">Summary</a></h2>
@@ -111,6 +112,17 @@
     </tr>
 [% END %]
 </table>
+[% ELSE %]
+<span class="none">(none)</span>
+[% END %]
+
+<h2><a name="warnings">Warnings<a></h2>
+[% IF rec.warns AND rec.warns.size %]
+<ul>
+[% FOREACH w IN rec.warns %]
+<li>[% w %]</li>
+[% END %]
+</ul>
 [% ELSE %]
 <span class="none">(none)</span>
 [% END %]

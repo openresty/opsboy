@@ -157,6 +157,7 @@ while (<>) {
                 valgrind_pass => 1,
                 failures => [],
                 valgrind_warnings => [],
+                warns => [],
             };
 
             push @records, $rec;
@@ -173,6 +174,15 @@ while (<>) {
     } elsif ($rec && !defined $rec->{nginx_version} && m{^nginx version: (.*)}) {
         (my $ver = $1) =~ s/without pool/no pool/;
         $rec->{nginx_version} = $ver;
+
+    } elsif ($rec && /WARNING: (.+)/) {
+        my $warning = $1;
+        #warn "Found warning: $1\n";
+        if (@{ $rec->{warns} } && $rec->{warns}[-1] eq $warning) {
+            next;
+        }
+
+        push @{ $rec->{warns} }, $warning;
 
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
