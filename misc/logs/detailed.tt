@@ -29,6 +29,9 @@
 [% IF rec.config_error %]
     <li><a href="#config_err">Configure Error</a></li>
 [% END %]
+[% IF rec.comp_errors %]
+    <li><a href="#comp_err">Compilation Error</a></li>
+[% END %]
     <li><a href="#unexpected">Unexpected Failures</a></li>
     <li><a href="#expected">Expected Failures</a></li>
     <li><a href="#warnings">Warnings</a></li>
@@ -67,8 +70,16 @@
 [% IF rec.config_error %]
 <h2><a name="config_err">Configure Error</a></h2>
 <p>
-[% rec.config_error %]
+[% rec.config_error | html | html_line_break %]
 </p>
+[% END %]
+[% IF rec.comp_errors %]
+<h2><a name="comp_err">Compilation Errors</a></h2>
+    [%- FOREACH err IN rec.comp_errors %]
+<p>
+[% err | html | html_line_break %]
+</p>
+    [%- END %]
 [% END %]
 <h2><a name="unexpected">Unexpected Failures</a></h2>
 [% IF rec.true_fails.size %]

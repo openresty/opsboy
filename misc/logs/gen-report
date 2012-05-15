@@ -117,6 +117,7 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{elapsed} = $rec->{secs};
         $mode_group->{warns} = $rec->{warns};
         $mode_group->{config_error} = $rec->{config_error};
+        $mode_group->{comp_errors} = $rec->{comp_errors};
     }
 }
 

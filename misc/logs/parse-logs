@@ -158,6 +158,7 @@ while (<>) {
                 failures => [],
                 valgrind_warnings => [],
                 warns => [],
+                comp_errors => [],
             };
 
             push @records, $rec;
@@ -177,6 +178,9 @@ while (<>) {
 
     } elsif ($rec && m{^\./configure: error: (.+)}) {
         $rec->{config_error} = $1;
+
+    } elsif ($rec && m{^/home/\S+?\w+\.c:\d+:\d+: error: .*}) {
+        push @{ $rec->{comp_errors} }, $&;
 
     } elsif ($rec && /\bWARNING: (.+)/) {
         my $warning = $1;
@@ -262,6 +266,10 @@ for my $rec (@records) {
 
     if ($verbose) {
         print $mode, ": ", $module, ": ";
+    }
+
+    if ($rec->{comp_errors}) {
+        @{ $rec->{comp_errors} } = uniq @{ $rec->{comp_errors} };
     }
 
     if ($rec->{tests_pass} && $rec->{valgrind_pass}) {
