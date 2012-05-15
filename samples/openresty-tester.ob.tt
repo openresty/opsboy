@@ -14,6 +14,10 @@ valgrind_version = 3.7.0;
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     [%- UNLESS name == "lua" %]
     env LD_PRELOAD '';
     [%- END %]
@@ -279,6 +283,7 @@ libdrizzle {
     fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
     tarball drizzle7-2011.07.21.tar.gz;
     sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && sudo make install-libdrizzle-1.0';
+    dep cc;
 }
 
 ngx_rds_json {
@@ -367,7 +372,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc46 --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -417,6 +422,7 @@ mockeagain {
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
     dep mockeagain-git;
+    dep cc;
 }
 
 mockeagain-git {
@@ -435,6 +441,7 @@ redis {
     fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
     tarball redis-$redis_version.tar.gz;
     sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
+    dep cc;
 }
 
 run-postgres {
@@ -508,8 +515,8 @@ axel {
 }
 
 cc {
-    prog gcc;
-    yum gcc;
+    prog gcc46;
+    yum gcc46;
     dep make;
 }
 

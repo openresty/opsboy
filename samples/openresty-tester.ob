@@ -225,6 +225,7 @@ libdrizzle {
     fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
     tarball drizzle7-2011.07.21.tar.gz;
     sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && sudo make install-libdrizzle-1.0';
+    dep cc;
 }
 
 ngx_rds_json {
@@ -313,7 +314,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc46 --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -383,6 +384,7 @@ mockeagain {
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
     dep mockeagain-git;
+    dep cc;
 }
 
 mockeagain-git {
@@ -401,6 +403,7 @@ redis {
     fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
     tarball redis-$redis_version.tar.gz;
     sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
+    dep cc;
 }
 
 run-postgres {
@@ -474,8 +477,8 @@ axel {
 }
 
 cc {
-    prog gcc;
-    yum gcc;
+    prog gcc46;
+    yum gcc46;
     dep make;
 }
 
@@ -552,6 +555,10 @@ t-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -578,6 +585,10 @@ t-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -603,6 +614,10 @@ t-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -628,6 +643,10 @@ t-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -654,6 +673,10 @@ t-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -681,6 +704,10 @@ t-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -710,6 +737,10 @@ t-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
@@ -737,6 +768,10 @@ t-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -763,6 +798,10 @@ t-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -789,6 +828,10 @@ t-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -814,6 +857,10 @@ t-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -840,6 +887,10 @@ t-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -865,6 +916,10 @@ t-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -890,6 +945,10 @@ t-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -915,6 +974,10 @@ t-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -943,6 +1006,10 @@ t-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -968,6 +1035,10 @@ t-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -993,6 +1064,10 @@ t-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1019,6 +1094,10 @@ t-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1041,6 +1120,10 @@ t-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1063,6 +1146,10 @@ t-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1086,6 +1173,10 @@ t-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1108,6 +1199,10 @@ t-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1132,6 +1227,10 @@ tv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1160,6 +1259,10 @@ tv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1187,6 +1290,10 @@ tv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1214,6 +1321,10 @@ tv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1242,6 +1353,10 @@ tv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1271,6 +1386,10 @@ tv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1302,6 +1421,10 @@ tv-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -1331,6 +1454,10 @@ tv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1359,6 +1486,10 @@ tv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1387,6 +1518,10 @@ tv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1414,6 +1549,10 @@ tv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1442,6 +1581,10 @@ tv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1469,6 +1612,10 @@ tv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1496,6 +1643,10 @@ tv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1523,6 +1674,10 @@ tv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1553,6 +1708,10 @@ tv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1580,6 +1739,10 @@ tv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1607,6 +1770,10 @@ tv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1635,6 +1802,10 @@ tv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1659,6 +1830,10 @@ tv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1683,6 +1858,10 @@ tv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1708,6 +1887,10 @@ tv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1732,6 +1915,10 @@ tv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1758,6 +1945,10 @@ tr-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1790,6 +1981,10 @@ tr-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1821,6 +2016,10 @@ tr-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1852,6 +2051,10 @@ tr-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1884,6 +2087,10 @@ tr-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1917,6 +2124,10 @@ tr-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -1952,6 +2163,10 @@ tr-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
@@ -1985,6 +2200,10 @@ tr-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2017,6 +2236,10 @@ tr-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2049,6 +2272,10 @@ tr-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2080,6 +2307,10 @@ tr-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2112,6 +2343,10 @@ tr-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2143,6 +2378,10 @@ tr-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2174,6 +2413,10 @@ tr-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2205,6 +2448,10 @@ tr-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2239,6 +2486,10 @@ tr-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2270,6 +2521,10 @@ tr-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2301,6 +2556,10 @@ tr-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2333,6 +2592,10 @@ tr-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2361,6 +2624,10 @@ tr-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2389,6 +2656,10 @@ tr-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2418,6 +2689,10 @@ tr-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2446,6 +2721,10 @@ tr-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2476,6 +2755,10 @@ trv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2510,6 +2793,10 @@ trv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2543,6 +2830,10 @@ trv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2576,6 +2867,10 @@ trv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2610,6 +2905,10 @@ trv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2645,6 +2944,10 @@ trv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2682,6 +2985,10 @@ trv-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2717,6 +3024,10 @@ trv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2751,6 +3062,10 @@ trv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2785,6 +3100,10 @@ trv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2818,6 +3137,10 @@ trv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2852,6 +3175,10 @@ trv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2885,6 +3212,10 @@ trv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2918,6 +3249,10 @@ trv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2951,6 +3286,10 @@ trv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -2987,6 +3326,10 @@ trv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3020,6 +3363,10 @@ trv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3053,6 +3400,10 @@ trv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3087,6 +3438,10 @@ trv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3117,6 +3472,10 @@ trv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3147,6 +3506,10 @@ trv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3178,6 +3541,10 @@ trv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3208,6 +3575,10 @@ trv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3240,6 +3611,10 @@ tw-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3273,6 +3648,10 @@ tw-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3305,6 +3684,10 @@ tw-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3337,6 +3720,10 @@ tw-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3370,6 +3757,10 @@ tw-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3404,6 +3795,10 @@ tw-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3440,6 +3835,10 @@ tw-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3474,6 +3873,10 @@ tw-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3507,6 +3910,10 @@ tw-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3540,6 +3947,10 @@ tw-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3572,6 +3983,10 @@ tw-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3605,6 +4020,10 @@ tw-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3637,6 +4056,10 @@ tw-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3669,6 +4092,10 @@ tw-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3701,6 +4128,10 @@ tw-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3736,6 +4167,10 @@ tw-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3768,6 +4203,10 @@ tw-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3800,6 +4239,10 @@ tw-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3833,6 +4276,10 @@ tw-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3862,6 +4309,10 @@ tw-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3891,6 +4342,10 @@ tw-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3921,6 +4376,10 @@ tw-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3950,6 +4409,10 @@ tw-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3981,6 +4444,10 @@ twv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4016,6 +4483,10 @@ twv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4050,6 +4521,10 @@ twv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4084,6 +4559,10 @@ twv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4119,6 +4598,10 @@ twv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4155,6 +4638,10 @@ twv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4193,6 +4680,10 @@ twv-ngx_lua {
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
+
     env TEST_NGINX_USE_VALGRIND 1;
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -4229,6 +4720,10 @@ twv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4264,6 +4759,10 @@ twv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4299,6 +4798,10 @@ twv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4333,6 +4836,10 @@ twv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4368,6 +4875,10 @@ twv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4402,6 +4913,10 @@ twv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4436,6 +4951,10 @@ twv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4470,6 +4989,10 @@ twv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4507,6 +5030,10 @@ twv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4541,6 +5068,10 @@ twv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4575,6 +5106,10 @@ twv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4610,6 +5145,10 @@ twv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4641,6 +5180,10 @@ twv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4672,6 +5215,10 @@ twv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4704,6 +5251,10 @@ twv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4735,6 +5286,10 @@ twv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
     env LD_PRELOAD '';
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4808,6 +5363,10 @@ build-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
