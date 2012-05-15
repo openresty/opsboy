@@ -53,7 +53,7 @@ my %white_list = (
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
-        ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false - '],
+        ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
     ],
 
     ngx_headers_more => [
@@ -175,7 +175,10 @@ while (<>) {
         (my $ver = $1) =~ s/without pool/no pool/;
         $rec->{nginx_version} = $ver;
 
-    } elsif ($rec && /WARNING: (.+)/) {
+    } elsif ($rec && m{^\./configure: error: (.+)}) {
+        $rec->{config_error} = $1;
+
+    } elsif ($rec && /\bWARNING: (.+)/) {
         my $warning = $1;
         #warn "Found warning: $1\n";
         if (@{ $rec->{warns} } && $rec->{warns}[-1] eq $warning) {
@@ -183,6 +186,9 @@ while (<>) {
         }
 
         push @{ $rec->{warns} }, $warning;
+
+    } elsif ($rec && m{\./util/build2?\.sh (\d+\.\d+\.\d+)\b}) {
+        $rec->{nginx_version} = "nginx/$1 (no pool)";
 
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
@@ -324,7 +330,7 @@ for my $rec (@records) {
         $rec->{expected_fails} = \@expected_fails;
         delete $rec->{failures};
 
-        if (!@fails) {
+        if (!@fails && !defined $rec->{config_error}) {
             if ($verbose) {
                 print "\e[33mPASS\e[39m\n";
             }

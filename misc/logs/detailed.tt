@@ -26,6 +26,9 @@
 <h1>[% title %]</h1>
 <ul>
     <li><a href="#summary">Summary</a></li>
+[% IF rec.config_error %]
+    <li><a href="#config_err">Configure Error</a></li>
+[% END %]
     <li><a href="#unexpected">Unexpected Failures</a></li>
     <li><a href="#expected">Expected Failures</a></li>
     <li><a href="#warnings">Warnings</a></li>
@@ -61,6 +64,12 @@
         <td>[% rec.elapsed %] sec</td>
     </tr>
 </table>
+[% IF rec.config_error %]
+<h2><a name="config_err">Configure Error</a></h2>
+<p>
+[% rec.config_error %]
+</p>
+[% END %]
 <h2><a name="unexpected">Unexpected Failures</a></h2>
 [% IF rec.true_fails.size %]
 <table class="testcase">
