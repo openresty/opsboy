@@ -13,7 +13,7 @@ mlog=$rootdir/ortest.log
 #$run"whoami > $logfile 2>&1" $user
 $run"(echo -n 'DATE '; TZ=GMT date +'%Y-%m-%d %H:%M:%S') > $logfile 2>&1" $user
 $run"(echo -n 'ARCH '; uname -a) >> $logfile 2>&1" $user
-$run"PATH=$PATH $exec make --git-pull $args >> $logfile 2>&1" $user
+$run"PATH=$PATH $exec make -k --git-pull $args >> $logfile 2>&1" $user
 
 $run"cp $logfile $logfile2 > $mlog" $user
 $run"cd /tmp && tar -czf $name.tar.gz $name.log > $mlog 2>&1" $user
