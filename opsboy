@@ -10,7 +10,7 @@ use File::Copy;
 
 my %opts;
 getopts("co:", \%opts) or
-    die "Usage: $0 [-c] <input-file>\n";
+    die "Usage: $0 [-c] [-o <outfile>] <infile>\n";
 
 my $compile_only = $opts{c};
 my $outfile = $opts{o} || "a.pl";
@@ -450,6 +450,8 @@ sub main () {
         die "unknown command: $cmd\n";
     }
 
+    my $keep_going;
+
     my $begin = time();
 
     if (@ARGV) {
@@ -464,6 +466,9 @@ sub main () {
                 if ($arg eq '--git-pull') {
                     $git_pull = 1;
 
+                } elsif ($arg eq '-k') {
+                    $keep_going = 1;
+
                 } else {
                     die "unknown option: $arg\n";
                 }
@@ -475,7 +480,17 @@ sub main () {
         }
 
         for my $goal (@goals) {
-            make ($goal);
+            if ($keep_going) {
+                eval {
+                    make($goal);
+                };
+                if ($@) {
+                    warn $@;
+                }
+
+            } else {
+                make($goal);
+            }
         }
 
     } else {
