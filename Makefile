@@ -9,5 +9,5 @@ openresty-tester.pl: samples/openresty-tester.ob opsboy
 	tpage $< > out.ob && mv out.ob $@
 
 test: all
-	./openresty-tester.pl check
+	./openresty-tester.pl check -k --git-pull
 

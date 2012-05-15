@@ -450,12 +450,9 @@ sub main () {
         die "unknown command: $cmd\n";
     }
 
-    my $keep_going;
-
-    my $begin = time();
+    my ($keep_going, @goals);
 
     if (@ARGV) {
-        my @goals;
         for my $arg (@ARGV) {
             if ($arg =~ /^([A-Za-z][-\w]*)=(.*)/) {
                 $ENV{$1} = $2;
@@ -478,23 +475,26 @@ sub main () {
 
             push @goals, $arg;
         }
+    }
 
-        for my $goal (@goals) {
-            if ($keep_going) {
-                eval {
-                    make($goal);
-                };
-                if ($@) {
-                    warn $@;
-                }
+    if (!@goals) {
+        push @goals, $default_goal;
+    }
 
-            } else {
+    my $begin = time();
+
+    for my $goal (@goals) {
+        if ($keep_going) {
+            eval {
                 make($goal);
+            };
+            if ($@) {
+                warn $@;
             }
-        }
 
-    } else {
-        make($default_goal);
+        } else {
+            make($goal);
+        }
     }
 
     my $elapsed = time() - $begin;
