@@ -330,7 +330,7 @@ for my $rec (@records) {
         $rec->{expected_fails} = \@expected_fails;
         delete $rec->{failures};
 
-        if (!@fails && !defined $rec->{config_error}) {
+        if (!@fails && $rec->{tests}) {
             if ($verbose) {
                 print "\e[33mPASS\e[39m\n";
             }
