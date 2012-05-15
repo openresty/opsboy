@@ -1,4 +1,4 @@
-jobs = 1;
+jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
 openresty_version = 1.0.15.5rc2;
@@ -558,6 +558,7 @@ t-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -588,6 +589,7 @@ t-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -617,6 +619,7 @@ t-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -646,6 +649,7 @@ t-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -676,6 +680,7 @@ t-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -707,6 +712,7 @@ t-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -739,6 +745,7 @@ t-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     sh 'PAGER= git log HEAD^..HEAD';
@@ -771,6 +778,7 @@ t-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -801,6 +809,7 @@ t-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -831,6 +840,7 @@ t-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -860,6 +870,7 @@ t-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -890,6 +901,7 @@ t-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -919,6 +931,7 @@ t-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -948,6 +961,7 @@ t-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -977,6 +991,7 @@ t-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1009,6 +1024,7 @@ t-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1038,6 +1054,7 @@ t-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1067,6 +1084,7 @@ t-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1097,6 +1115,7 @@ t-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1123,6 +1142,7 @@ t-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1149,6 +1169,7 @@ t-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1176,6 +1197,7 @@ t-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1202,6 +1224,7 @@ t-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1230,6 +1253,7 @@ tv-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1262,6 +1286,7 @@ tv-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1293,6 +1318,7 @@ tv-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1324,6 +1350,7 @@ tv-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1356,6 +1383,7 @@ tv-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1389,6 +1417,7 @@ tv-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1423,6 +1452,7 @@ tv-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -1457,6 +1487,7 @@ tv-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1489,6 +1520,7 @@ tv-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1521,6 +1553,7 @@ tv-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1552,6 +1585,7 @@ tv-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1584,6 +1618,7 @@ tv-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1615,6 +1650,7 @@ tv-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1646,6 +1682,7 @@ tv-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1677,6 +1714,7 @@ tv-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1711,6 +1749,7 @@ tv-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1742,6 +1781,7 @@ tv-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1773,6 +1813,7 @@ tv-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1805,6 +1846,7 @@ tv-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1833,6 +1875,7 @@ tv-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1861,6 +1904,7 @@ tv-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1890,6 +1934,7 @@ tv-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1918,6 +1963,7 @@ tv-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1948,6 +1994,7 @@ tr-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -1984,6 +2031,7 @@ tr-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2019,6 +2067,7 @@ tr-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2054,6 +2103,7 @@ tr-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2090,6 +2140,7 @@ tr-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2127,6 +2178,7 @@ tr-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2165,6 +2217,7 @@ tr-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     env TEST_NGINX_EVENT_TYPE poll;
@@ -2203,6 +2256,7 @@ tr-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2239,6 +2293,7 @@ tr-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2275,6 +2330,7 @@ tr-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2310,6 +2366,7 @@ tr-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2346,6 +2403,7 @@ tr-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2381,6 +2439,7 @@ tr-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2416,6 +2475,7 @@ tr-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2451,6 +2511,7 @@ tr-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2489,6 +2550,7 @@ tr-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2524,6 +2586,7 @@ tr-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2559,6 +2622,7 @@ tr-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2595,6 +2659,7 @@ tr-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2627,6 +2692,7 @@ tr-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2659,6 +2725,7 @@ tr-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2692,6 +2759,7 @@ tr-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2724,6 +2792,7 @@ tr-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2758,6 +2827,7 @@ trv-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2796,6 +2866,7 @@ trv-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2833,6 +2904,7 @@ trv-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2870,6 +2942,7 @@ trv-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2908,6 +2981,7 @@ trv-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2947,6 +3021,7 @@ trv-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -2987,6 +3062,7 @@ trv-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -3027,6 +3103,7 @@ trv-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3065,6 +3142,7 @@ trv-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3103,6 +3181,7 @@ trv-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3140,6 +3219,7 @@ trv-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3178,6 +3258,7 @@ trv-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3215,6 +3296,7 @@ trv-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3252,6 +3334,7 @@ trv-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3289,6 +3372,7 @@ trv-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3329,6 +3413,7 @@ trv-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3366,6 +3451,7 @@ trv-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3403,6 +3489,7 @@ trv-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3441,6 +3528,7 @@ trv-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3475,6 +3563,7 @@ trv-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3509,6 +3598,7 @@ trv-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3544,6 +3634,7 @@ trv-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3578,6 +3669,7 @@ trv-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3614,6 +3706,7 @@ tw-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3651,6 +3744,7 @@ tw-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3687,6 +3781,7 @@ tw-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3723,6 +3818,7 @@ tw-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3760,6 +3856,7 @@ tw-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3798,6 +3895,7 @@ tw-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3837,6 +3935,7 @@ tw-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
@@ -3876,6 +3975,7 @@ tw-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3913,6 +4013,7 @@ tw-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3950,6 +4051,7 @@ tw-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -3986,6 +4088,7 @@ tw-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4023,6 +4126,7 @@ tw-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4059,6 +4163,7 @@ tw-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4095,6 +4200,7 @@ tw-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4131,6 +4237,7 @@ tw-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4170,6 +4277,7 @@ tw-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4206,6 +4314,7 @@ tw-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4242,6 +4351,7 @@ tw-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4279,6 +4389,7 @@ tw-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4312,6 +4423,7 @@ tw-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4345,6 +4457,7 @@ tw-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4379,6 +4492,7 @@ tw-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4412,6 +4526,7 @@ tw-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4447,6 +4562,7 @@ twv-ngx_srcache {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4486,6 +4602,7 @@ twv-ngx_set_misc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4524,6 +4641,7 @@ twv-ngx_headers_more {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4562,6 +4680,7 @@ twv-ngx_rds_json {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4601,6 +4720,7 @@ twv-ngx_rds_csv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4641,6 +4761,7 @@ twv-ngx_drizzle {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4682,6 +4803,7 @@ twv-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -4723,6 +4845,7 @@ twv-ngx_memc {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4762,6 +4885,7 @@ twv-ngx_redis2 {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4801,6 +4925,7 @@ twv-ngx_xss {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4839,6 +4964,7 @@ twv-ngx_echo {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4878,6 +5004,7 @@ twv-ngx_eval {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4916,6 +5043,7 @@ twv-ngx_form_input {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4954,6 +5082,7 @@ twv-ngx_array_var {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -4992,6 +5121,7 @@ twv-ngx_postgres {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5033,6 +5163,7 @@ twv-ngx_encrypted_session {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5071,6 +5202,7 @@ twv-ngx_iconv {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5109,6 +5241,7 @@ twv-ngx_coolkit {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5148,6 +5281,7 @@ twv-lua-resty-memcached {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5183,6 +5317,7 @@ twv-lua-resty-redis {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5218,6 +5353,7 @@ twv-lua-resty-mysql {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5254,6 +5390,7 @@ twv-lua-resty-string {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5289,6 +5426,7 @@ twv-lua-resty-upload {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
 
@@ -5366,6 +5504,7 @@ build-ngx_lua {
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
 
 
     sh 'PAGER= git log HEAD^..HEAD';
