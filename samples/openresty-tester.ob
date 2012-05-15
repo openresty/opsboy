@@ -1,7 +1,7 @@
 jobs = 1;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
-openresty_version = 1.0.11.28;
+openresty_version = 1.0.15.5rc2;
 ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.10;
 ngx_auth_request_version = 0.2;
@@ -306,6 +306,7 @@ luajit {
 }
 
 ngx_openresty-debug {
+    test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
     file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
     file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
     file /usr/local/openresty-debug/nginx/sbin/nginx;
