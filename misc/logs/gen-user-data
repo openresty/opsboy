@@ -52,13 +52,15 @@ for my $lib (@ARGV) {
             die "Unknown nginx module $lib\n";
         }
 
-        push @goals, "t-$lib", "tv-$lib";
+        push @goals, "t-$lib";
 
         if (!$cpu_mods{$name}) {
             for my $m (qw<tr tw trv twv>) {
                 push @goals, "$m-$lib";
             }
         }
+
+        push @goals, "tv-$lib";
 
     } elsif ($lib =~ /^lua-(.+)/) {
         my $name = $1;
@@ -67,13 +69,15 @@ for my $lib (@ARGV) {
             die "Unknown lua library $lib\n";
         }
 
-        push @goals, "t-$lib", "tv-$lib";
+        push @goals, "t-$lib";
 
         if (!$cpu_lualibs{$name}) {
             for my $m (qw<tr tw trv twv>) {
                 push @goals, "$m-$lib";
             }
         }
+
+        push @goals, "tv-$lib";
 
     } else {
         die "Unknown component $lib\n";
