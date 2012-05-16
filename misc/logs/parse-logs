@@ -54,6 +54,7 @@ my %white_list = (
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
+        ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
     ],
 
     ngx_headers_more => [
@@ -180,6 +181,9 @@ while (<>) {
         $rec->{config_error} = $1;
 
     } elsif ($rec && m{^/home/\S+?\w+\.c:\d+:\d+: error: .*}) {
+        push @{ $rec->{comp_errors} }, $&;
+
+    } elsif ($rec && m{^sh: -c: line \d+: .*error}) {
         push @{ $rec->{comp_errors} }, $&;
 
     } elsif ($rec && /\bWARNING: (.+)/) {

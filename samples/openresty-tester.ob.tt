@@ -56,9 +56,9 @@ valgrind_version = 3.7.0;
 
     [%- UNLESS no_build -%]
     [%- IF name == "lua" %]
-    sh 'sh ./util/build2.sh $nginx_version || (if [ -z "$force" -o "$force" -eq "0" ]; then touch config && sh ./util/build2.sh $nginx_version; else; exit 1; fi)';
+    sh 'sh ./util/build2.sh $nginx_version || ([ -z "$force" -o "$force" -eq "0" ] && touch config && sh ./util/build2.sh $nginx_version)';
     [%- ELSE %]
-    sh 'sh ./util/build.sh $nginx_version || (if [ -z "$force" -o "$force" -eq "0" ]; then touch config && sh ./util/build.sh $nginx_version; else; exit 1; fi)';
+    sh 'sh ./util/build.sh $nginx_version || ([ -z "$force" -o "$force" -eq "0" ] && touch config && sh ./util/build.sh $nginx_version)';
     [%- END %]
     [%- END -%]
 
