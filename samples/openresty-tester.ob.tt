@@ -52,13 +52,13 @@ valgrind_version = 3.7.0;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" -ne "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
 
     [%- UNLESS no_build -%]
     [%- IF name == "lua" %]
-    sh 'sh ./util/build2.sh $nginx_version || ([ -z "$force" -o "$force" -eq "0" ] && touch config && sh ./util/build2.sh $nginx_version)';
+    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     [%- ELSE %]
-    sh 'sh ./util/build.sh $nginx_version || ([ -z "$force" -o "$force" -eq "0" ] && touch config && sh ./util/build.sh $nginx_version)';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     [%- END %]
     [%- END -%]
 
