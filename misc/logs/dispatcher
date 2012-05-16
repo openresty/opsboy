@@ -1,0 +1,152 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+use JSON::XS;
+use POSIX qw( ceil );
+use List::Util qw( sum );
+
+my %opts;
+getopts("a:t:", \%opts) or
+    die "Usage: $0 -t <minutes> -a <arch> <component>...\n";
+
+my $arch = $opts{a}
+    or die "No -a <arch> option specified.\n";
+
+my $Mins = $opts{t}
+    or die "No -t <minutes> option specified.\n";
+
+my @goals;
+my @comps = @ARGV;
+if (@comps) {
+    @goals = split /\s+/, `./gen-user-data @comps`;
+}
+
+my $jsonxs = JSON::XS->new->ascii;
+
+my $infile = "ast.json";
+open my $in, $infile
+    or die "Cannot open $infile for reading: $!\n";
+
+my $json = do { local $/; <$in> };
+
+close $in;
+
+my $ast = $jsonxs->decode($json);
+
+my $arch_tree = $ast->{$arch}
+    or die "No $arch found in $infile.\n";
+
+my %elapsed;
+while (my ($ngx, $ngx_tree) = each %$arch_tree) {
+    #warn $ngx;
+    while (my ($comp, $comp_tree) = each %$ngx_tree) {
+        #warn "$comp";
+        while (my ($mode, $rec) = each %$comp_tree) {
+            my $elapsed = $rec->{elapsed};
+            my $name = "t$mode-$comp";
+            #if (defined $elapsed) {
+                #warn "$name: $elapsed\n";
+            $elapsed{$name} = $elapsed;
+            #}
+        }
+    }
+}
+
+if (!@goals) {
+    @goals = keys %elapsed;
+}
+
+my $sum = 0;
+my @new_goals;
+for my $goal (@goals) {
+    if (!defined $elapsed{$goal}) {
+        warn "WARNING: elapsed time for $goal is not found.\n";
+        next;
+    }
+
+    $sum += $elapsed{$goal};
+    push @new_goals, $goal;
+}
+
+@goals = @new_goals;
+
+@goals = sort { $elapsed{$b} <=> $elapsed{$a} } @goals;
+
+warn "@goals\n";
+
+my $Secs = $Mins * 60;
+my $n = ceil($sum / $Secs);
+print "Requires at least $n machines.\n";
+
+my @buckets;
+while (1) {
+    warn "trying $n nodes...\n";
+
+    undef @buckets;
+    my @gs = @goals;
+    my $rest;
+    while (@gs) {
+        if (!defined $rest) {
+            $rest = @gs;
+
+        } else {
+            if ($rest == @gs) {
+                last;
+            }
+
+            $rest = @gs;
+        }
+
+        warn "gs: ", scalar @gs;
+        for (my $i = 0; $i < $n && @gs; $i++) {
+            warn "checking node $i ($n)...\n";
+
+            $buckets[$i] ||= [];
+            my $bucket = $buckets[$i];
+
+            if (@$bucket) {
+                my $secs = sum map { $elapsed{$_} } @$bucket;
+                $secs += $elapsed{$gs[0]};
+                my $mins = ceil($secs/60);
+                if ($mins > $Mins) {
+                    next;
+                }
+            }
+
+            my $g = shift @gs;
+            push @$bucket, $g;
+        }
+    }
+
+    if (@gs) {
+        $n++;
+        next;
+    }
+
+    my $retry;
+
+    for my $bucket (@buckets) {
+        my $secs = sum map { $elapsed{$_} } @$bucket;
+        my $mins = ceil($secs/60);
+        if ($mins > $Mins && @$bucket > 1) {
+            $retry = 1;
+            last;
+        }
+    }
+
+    last if not $retry;
+
+    $n++;
+}
+
+my $i = 1;
+for my $bucket (@buckets) {
+    my $secs = sum map { $elapsed{$_} } @$bucket;
+    my $mins = ceil($secs/60);
+    warn "bucket $i: @$bucket ($mins min)\n";
+    $i++;
+}
+

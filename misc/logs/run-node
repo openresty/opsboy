@@ -1,0 +1,44 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Std;
+
+my %ami_config = (
+    'linux i386' => 'ami-cce84fa5',
+    'linux x86_64' => 'ami-4217b32b',
+);
+
+my %opts;
+getopts("ca:k:t:", \%opts) or
+    die "Usage: $0 [-t <instance-type>] [-k <key-pair-name>] -a <arch> <user-data>\n";
+
+my $arch = $opts{a}
+    or die "No -a <arch> option specified.\n";
+
+my $ami = $ami_config{$arch}
+    or die "Unknown architecture $arch.\n";
+
+my $keypair = $opts{k} || 'agentzh';
+
+my $instance_type = $opts{t} || 'c1.medium';
+
+my $user_data = join (" ", @ARGV)
+    or die "No user data specified.\n";
+
+my @cmd = ("ec2-run-instances", $ami, "-k", $keypair, "-d", $user_data,
+        "-t", $instance_type, '--availability-zone', 'us-east-1b',
+        '--instance-initiated-shutdown-behavior', 'terminate',
+        '-g', 'quick-start-1');
+
+my $check = $opts{c};
+
+print "@cmd\n";
+
+if ($check) {
+    exit;
+}
+
+system @cmd;
+
