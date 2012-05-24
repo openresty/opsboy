@@ -7,16 +7,21 @@ use Getopt::Std;
 use JSON::XS;
 use POSIX qw( ceil );
 use List::Util qw( sum );
+use Parallel::ForkManager;
 
 my %opts;
-getopts("a:t:", \%opts) or
-    die "Usage: $0 -t <minutes> -a <arch> <component>...\n";
+getopts("a:t:rf", \%opts) or
+    die "Usage: $0 [-r] [-f] -t <minutes> -a <arch> <component>...\n";
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
 
 my $Mins = $opts{t}
     or die "No -t <minutes> option specified.\n";
+
+my $run = $opts{r};
+
+my $force = $opts{f};
 
 my @goals;
 my @comps = @ARGV;
@@ -75,7 +80,7 @@ for my $goal (@goals) {
 
 @goals = sort { $elapsed{$b} <=> $elapsed{$a} } @goals;
 
-warn "@goals\n";
+#warn "@goals\n";
 
 my $Secs = $Mins * 60;
 my $n = ceil($sum / $Secs);
@@ -83,7 +88,7 @@ print "Requires at least $n machines.\n";
 
 my @buckets;
 while (1) {
-    warn "trying $n nodes...\n";
+    #warn "trying $n nodes...\n";
 
     undef @buckets;
     my @gs = @goals;
@@ -100,9 +105,9 @@ while (1) {
             $rest = @gs;
         }
 
-        warn "gs: ", scalar @gs;
+        #warn "gs: ", scalar @gs;
         for (my $i = 0; $i < $n && @gs; $i++) {
-            warn "checking node $i ($n)...\n";
+            #warn "checking node $i ($n)...\n";
 
             $buckets[$i] ||= [];
             my $bucket = $buckets[$i];
@@ -146,7 +151,28 @@ my $i = 1;
 for my $bucket (@buckets) {
     my $secs = sum map { $elapsed{$_} } @$bucket;
     my $mins = ceil($secs/60);
+    if ($force) {
+        push @$bucket, "force=1";
+    }
     warn "bucket $i: @$bucket ($mins min)\n";
     $i++;
+
+}
+
+if ($run) {
+    my $pm = Parallel::ForkManager->new(10);
+
+    for my $bucket (@buckets) {
+        my $pid = $pm->start and next;
+
+        my @cmd = ('./run-node', '-a', $arch, @$bucket);
+        print "command: @cmd\n";
+        system(@cmd) == 0
+            or warn "failed to start the node. abort.\n";
+
+        $pm->finish;
+    }
+
+    $pm->wait_all_children();
 }
 
