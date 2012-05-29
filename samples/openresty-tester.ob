@@ -564,7 +564,7 @@ t-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -595,7 +595,7 @@ t-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -625,7 +625,7 @@ t-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -655,7 +655,7 @@ t-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -686,7 +686,7 @@ t-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -718,7 +718,7 @@ t-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -750,7 +750,7 @@ t-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -784,7 +784,7 @@ t-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -815,7 +815,7 @@ t-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -846,7 +846,7 @@ t-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -876,7 +876,7 @@ t-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -907,7 +907,7 @@ t-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -937,7 +937,7 @@ t-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -967,7 +967,7 @@ t-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -997,7 +997,7 @@ t-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1030,7 +1030,7 @@ t-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1060,7 +1060,7 @@ t-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1090,7 +1090,7 @@ t-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1121,7 +1121,7 @@ t-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1148,7 +1148,7 @@ t-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1175,7 +1175,7 @@ t-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1203,7 +1203,7 @@ t-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1230,7 +1230,7 @@ t-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1261,7 +1261,7 @@ tv-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1294,7 +1294,7 @@ tv-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1326,7 +1326,7 @@ tv-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1358,7 +1358,7 @@ tv-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1391,7 +1391,7 @@ tv-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1425,7 +1425,7 @@ tv-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1459,7 +1459,7 @@ tv-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -1495,7 +1495,7 @@ tv-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1528,7 +1528,7 @@ tv-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1561,7 +1561,7 @@ tv-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1593,7 +1593,7 @@ tv-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1626,7 +1626,7 @@ tv-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1658,7 +1658,7 @@ tv-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1690,7 +1690,7 @@ tv-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1722,7 +1722,7 @@ tv-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1757,7 +1757,7 @@ tv-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1789,7 +1789,7 @@ tv-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1821,7 +1821,7 @@ tv-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -1854,7 +1854,7 @@ tv-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1883,7 +1883,7 @@ tv-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1912,7 +1912,7 @@ tv-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1942,7 +1942,7 @@ tv-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -1971,7 +1971,7 @@ tv-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2006,7 +2006,7 @@ tr-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2043,7 +2043,7 @@ tr-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2079,7 +2079,7 @@ tr-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2115,7 +2115,7 @@ tr-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2152,7 +2152,7 @@ tr-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2190,7 +2190,7 @@ tr-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2228,7 +2228,7 @@ tr-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -2268,7 +2268,7 @@ tr-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2305,7 +2305,7 @@ tr-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2342,7 +2342,7 @@ tr-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2378,7 +2378,7 @@ tr-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2415,7 +2415,7 @@ tr-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2451,7 +2451,7 @@ tr-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2487,7 +2487,7 @@ tr-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2523,7 +2523,7 @@ tr-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2562,7 +2562,7 @@ tr-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2598,7 +2598,7 @@ tr-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2634,7 +2634,7 @@ tr-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2671,7 +2671,7 @@ tr-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2704,7 +2704,7 @@ tr-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2737,7 +2737,7 @@ tr-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2771,7 +2771,7 @@ tr-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2804,7 +2804,7 @@ tr-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -2841,7 +2841,7 @@ trv-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2880,7 +2880,7 @@ trv-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2918,7 +2918,7 @@ trv-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2956,7 +2956,7 @@ trv-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -2995,7 +2995,7 @@ trv-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3035,7 +3035,7 @@ trv-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3075,7 +3075,7 @@ trv-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -3117,7 +3117,7 @@ trv-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3156,7 +3156,7 @@ trv-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3195,7 +3195,7 @@ trv-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3233,7 +3233,7 @@ trv-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3272,7 +3272,7 @@ trv-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3310,7 +3310,7 @@ trv-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3348,7 +3348,7 @@ trv-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3386,7 +3386,7 @@ trv-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3427,7 +3427,7 @@ trv-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3465,7 +3465,7 @@ trv-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3503,7 +3503,7 @@ trv-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3542,7 +3542,7 @@ trv-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -3577,7 +3577,7 @@ trv-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -3612,7 +3612,7 @@ trv-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -3648,7 +3648,7 @@ trv-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -3683,7 +3683,7 @@ trv-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -3719,7 +3719,7 @@ tw-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3757,7 +3757,7 @@ tw-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3794,7 +3794,7 @@ tw-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3831,7 +3831,7 @@ tw-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3869,7 +3869,7 @@ tw-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3908,7 +3908,7 @@ tw-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -3947,7 +3947,7 @@ tw-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -3988,7 +3988,7 @@ tw-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4026,7 +4026,7 @@ tw-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4064,7 +4064,7 @@ tw-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4101,7 +4101,7 @@ tw-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4139,7 +4139,7 @@ tw-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4176,7 +4176,7 @@ tw-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4213,7 +4213,7 @@ tw-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4250,7 +4250,7 @@ tw-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4290,7 +4290,7 @@ tw-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4327,7 +4327,7 @@ tw-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4364,7 +4364,7 @@ tw-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4402,7 +4402,7 @@ tw-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -4436,7 +4436,7 @@ tw-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -4470,7 +4470,7 @@ tw-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -4505,7 +4505,7 @@ tw-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -4539,7 +4539,7 @@ tw-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -4577,7 +4577,7 @@ twv-ngx_srcache {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4617,7 +4617,7 @@ twv-ngx_set_misc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4656,7 +4656,7 @@ twv-ngx_headers_more {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4695,7 +4695,7 @@ twv-ngx_rds_json {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4735,7 +4735,7 @@ twv-ngx_rds_csv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4776,7 +4776,7 @@ twv-ngx_drizzle {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4817,7 +4817,7 @@ twv-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
@@ -4860,7 +4860,7 @@ twv-ngx_memc {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4900,7 +4900,7 @@ twv-ngx_redis2 {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4940,7 +4940,7 @@ twv-ngx_xss {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -4979,7 +4979,7 @@ twv-ngx_echo {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5019,7 +5019,7 @@ twv-ngx_eval {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5058,7 +5058,7 @@ twv-ngx_form_input {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5097,7 +5097,7 @@ twv-ngx_array_var {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5136,7 +5136,7 @@ twv-ngx_postgres {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5178,7 +5178,7 @@ twv-ngx_encrypted_session {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5217,7 +5217,7 @@ twv-ngx_iconv {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5256,7 +5256,7 @@ twv-ngx_coolkit {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
@@ -5296,7 +5296,7 @@ twv-lua-resty-memcached {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -5332,7 +5332,7 @@ twv-lua-resty-redis {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -5368,7 +5368,7 @@ twv-lua-resty-mysql {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -5405,7 +5405,7 @@ twv-lua-resty-string {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -5441,7 +5441,7 @@ twv-lua-resty-upload {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
@@ -5509,7 +5509,7 @@ build-ngx_lua {
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -f buildroot/nginx-$nginx_version.tar.gz; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
 
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
