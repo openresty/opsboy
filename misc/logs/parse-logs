@@ -55,6 +55,10 @@ my %white_list = (
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
         ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
+        ['v', '023-rewrite/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],
+        ['v', '024-access/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],
+        ['v', '077-sleep.t', 'TEST 1: sleep 0.5 - content - response_body_like - response is expected'],
+        ['v', '077-sleep.t', 'TEST 3: sleep 0.5 in subrequest - content - response_body_like - response is expected'],
     ],
 
     ngx_headers_more => [
@@ -140,7 +144,8 @@ while (<>) {
                     my $b = $rec->{failures}[$n - 2];
                     if ($a->{file} eq $b->{file}
                         && $a->{name} eq $b->{name}
-                        && $a->{details} eq $b->{details})
+                        && ((!defined $a->{details} && !defined $b->{details})
+                            || $a->{details} eq $b->{details}))
                     {
                         #warn "remove duplicate test failures";
                         pop @{ $rec->{failures} };
