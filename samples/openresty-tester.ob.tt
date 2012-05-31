@@ -26,7 +26,7 @@ valgrind_version = 3.7.0;
         [%- IF type.match("v") %]
     env TEST_NGINX_SLEEP 0.2;
         [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.1;
+    env TEST_NGINX_SLEEP 0.15;
         [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
