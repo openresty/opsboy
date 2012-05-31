@@ -510,7 +510,7 @@ mysql {
 
 run-memcached {
     running 'memcached -d -p 11211';
-    sh 'memcached -d -p 11211';
+    sh 'memcached -d -p 11211 -l 127.0.0.1';
     dep memcached;
 }
 
