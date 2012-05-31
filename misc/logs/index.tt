@@ -131,8 +131,6 @@
             <th>[% PROCESS memcheck %]</th>
             <th>[% PROCESS mockeagain %](R)</th>
             <th>[% PROCESS mockeagain %](R)<br/>[% PROCESS memcheck %]</th>
-            <th>[% PROCESS mockeagain %](W)</th>
-            <th>[% PROCESS mockeagain %](W)<br/>[% PROCESS memcheck %]</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -144,11 +142,34 @@
             [%- PROCESS gen_result_cell key="v" %]
             [%- PROCESS gen_result_cell key="r" %]
             [%- PROCESS gen_result_cell key="rv" %]
-            [%- PROCESS gen_result_cell key="w" %]
-            [%- PROCESS gen_result_cell key="wv" %]
         </tr>
         [%- END -%]
     </table>
+    <br/>
+    <table class="result">
+        <tr>
+            <th>Component</th>
+            <th>[% PROCESS mockeagain %](W)</th>
+            <th>[% PROCESS mockeagain %](W)<br/>[% PROCESS memcheck %]</th>
+            <th>HUP reload</th>
+            <th>HUP reload<br/>[% PROCESS memcheck %]</th>
+        </tr>
+        [%- FOREACH mod_name IN nginx.keys.sort %]
+        <tr>
+            [%- IF mod_name == "anchor"; NEXT; END %]
+            [%- module = nginx.$mod_name; %]
+
+            [%- PROCESS gen_module_cell %]
+
+            [%- PROCESS gen_result_cell key="w" %]
+            [%- PROCESS gen_result_cell key="wv" %]
+
+            [%- PROCESS gen_result_cell key="h" %]
+            [%- PROCESS gen_result_cell key="hv" %]
+        </tr>
+        [%- END -%]
+    </table>
+
     </div>
     [%- END -%]
 [% END -%]

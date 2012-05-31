@@ -61,6 +61,7 @@ my %white_list = (
         ['v', '024-access/sleep.t', 'TEST 1: sleep 0.5 - response_body_like - response is expected'],
         ['v', '077-sleep.t', 'TEST 1: sleep 0.5 - content - response_body_like - response is expected'],
         ['v', '077-sleep.t', 'TEST 3: sleep 0.5 in subrequest - content - response_body_like - response is expected'],
+        ['h', '043-shdict.t'],
     ],
 
     ngx_headers_more => [
@@ -129,7 +130,7 @@ while (<>) {
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
 
-        if ($subj =~ /^t([rvw]*)-((?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
+        if ($subj =~ /^t([rvwh]*)-((?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
             #warn "$mode: $module\n";
@@ -170,6 +171,9 @@ while (<>) {
             };
 
             push @records, $rec;
+
+        } else {
+            undef $rec;
         }
 
     } elsif ($rec && /^commit ([0-9a-f]+)$/) {
