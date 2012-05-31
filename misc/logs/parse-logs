@@ -64,6 +64,10 @@ my %white_list = (
         ['h', '043-shdict.t'],
     ],
 
+    ngx_drizzle => [
+        ['h', 'status.t'],
+    ],
+
     ngx_headers_more => [
         ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module - '],
     ],
