@@ -152,6 +152,58 @@ twv2 {
     dep twv-ngx_iconv;
 }
 
+th {
+    dep th-ngx_array_var;
+    dep th-ngx_redis2;
+    dep th-ngx_lua;
+    dep th-ngx_srcache;
+    dep th-ngx_memc;
+    dep th-ngx_set_misc;
+    dep th-ngx_xss;
+    dep th-ngx_drizzle;
+    dep th-ngx_rds_json;
+    dep th-ngx_echo;
+    dep th-ngx_postgres;
+    dep th-ngx_eval;
+    dep th-ngx_headers_more;
+    dep th-ngx_rds_csv;
+    dep th-ngx_encrypted_session;
+    dep th-ngx_form_input;
+    dep th-ngx_coolkit;
+    dep th-ngx_iconv;
+    dep th-lua-resty-memcached;
+    dep th-lua-resty-redis;
+    dep th-lua-resty-mysql;
+    dep th-lua-resty-string;
+    dep th-lua-resty-upload;
+}
+
+thv {
+    dep thv-ngx_array_var;
+    dep thv-ngx_redis2;
+    dep thv-ngx_lua;
+    dep thv-ngx_srcache;
+    dep thv-ngx_memc;
+    dep thv-ngx_set_misc;
+    dep thv-ngx_xss;
+    dep thv-ngx_drizzle;
+    dep thv-ngx_rds_json;
+    dep thv-ngx_echo;
+    dep thv-ngx_postgres;
+    dep thv-ngx_eval;
+    dep thv-ngx_headers_more;
+    dep thv-ngx_rds_csv;
+    dep thv-ngx_encrypted_session;
+    dep thv-ngx_form_input;
+    dep thv-ngx_coolkit;
+    dep thv-ngx_iconv;
+    dep thv-lua-resty-memcached;
+    dep thv-lua-resty-redis;
+    dep thv-lua-resty-mysql;
+    dep thv-lua-resty-string;
+    dep thv-lua-resty-upload;
+}
+
 etcproxy {
     git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
     dep erlang;
@@ -553,7 +605,6 @@ t-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -561,6 +612,9 @@ t-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -584,7 +638,6 @@ t-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -592,6 +645,9 @@ t-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -614,7 +670,6 @@ t-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -622,6 +677,9 @@ t-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -644,7 +702,6 @@ t-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -652,6 +709,9 @@ t-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -675,7 +735,6 @@ t-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -683,6 +742,9 @@ t-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -707,7 +769,6 @@ t-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -715,6 +776,9 @@ t-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -740,13 +804,15 @@ t-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -773,7 +839,6 @@ t-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -781,6 +846,9 @@ t-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -804,7 +872,6 @@ t-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -812,6 +879,9 @@ t-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -835,7 +905,6 @@ t-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -843,6 +912,9 @@ t-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -865,7 +937,6 @@ t-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -873,6 +944,9 @@ t-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -896,7 +970,6 @@ t-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -904,6 +977,9 @@ t-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -926,7 +1002,6 @@ t-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -934,6 +1009,9 @@ t-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -956,7 +1034,6 @@ t-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -964,6 +1041,9 @@ t-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -986,7 +1066,6 @@ t-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -994,6 +1073,9 @@ t-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1019,7 +1101,6 @@ t-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1027,6 +1108,9 @@ t-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1049,7 +1133,6 @@ t-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1057,6 +1140,9 @@ t-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1079,7 +1165,6 @@ t-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1087,6 +1172,9 @@ t-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1110,7 +1198,6 @@ t-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1118,6 +1205,9 @@ t-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1137,7 +1227,6 @@ t-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1145,6 +1234,9 @@ t-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1164,7 +1256,6 @@ t-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1172,6 +1263,9 @@ t-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1192,7 +1286,6 @@ t-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1200,6 +1293,9 @@ t-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1219,7 +1315,6 @@ t-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1227,6 +1322,9 @@ t-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1248,7 +1346,6 @@ tv-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1257,7 +1354,10 @@ tv-ngx_srcache {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1281,7 +1381,6 @@ tv-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1290,7 +1389,10 @@ tv-ngx_set_misc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1313,7 +1415,6 @@ tv-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1322,7 +1423,10 @@ tv-ngx_headers_more {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1345,7 +1449,6 @@ tv-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1354,7 +1457,10 @@ tv-ngx_rds_json {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1378,7 +1484,6 @@ tv-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1387,7 +1492,10 @@ tv-ngx_rds_csv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1412,7 +1520,6 @@ tv-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1421,7 +1528,10 @@ tv-ngx_drizzle {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1447,7 +1557,6 @@ tv-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1455,7 +1564,10 @@ tv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
 
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1482,7 +1594,6 @@ tv-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1491,7 +1602,10 @@ tv-ngx_memc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1515,7 +1629,6 @@ tv-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1524,7 +1637,10 @@ tv-ngx_redis2 {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1548,7 +1664,6 @@ tv-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1557,7 +1672,10 @@ tv-ngx_xss {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1580,7 +1698,6 @@ tv-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1589,7 +1706,10 @@ tv-ngx_echo {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1613,7 +1733,6 @@ tv-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1622,7 +1741,10 @@ tv-ngx_eval {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1645,7 +1767,6 @@ tv-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1654,7 +1775,10 @@ tv-ngx_form_input {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1677,7 +1801,6 @@ tv-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1686,7 +1809,10 @@ tv-ngx_array_var {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1709,7 +1835,6 @@ tv-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1718,7 +1843,10 @@ tv-ngx_postgres {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1744,7 +1872,6 @@ tv-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1753,7 +1880,10 @@ tv-ngx_encrypted_session {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1776,7 +1906,6 @@ tv-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1785,7 +1914,10 @@ tv-ngx_iconv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1808,7 +1940,6 @@ tv-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1817,7 +1948,10 @@ tv-ngx_coolkit {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1841,7 +1975,6 @@ tv-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1850,7 +1983,10 @@ tv-lua-resty-memcached {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1870,7 +2006,6 @@ tv-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1879,7 +2014,10 @@ tv-lua-resty-redis {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1899,7 +2037,6 @@ tv-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1908,7 +2045,10 @@ tv-lua-resty-mysql {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1929,7 +2069,6 @@ tv-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1938,7 +2077,10 @@ tv-lua-resty-string {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1958,7 +2100,6 @@ tv-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1967,7 +2108,10 @@ tv-lua-resty-upload {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -1989,7 +2133,6 @@ tr-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1997,6 +2140,9 @@ tr-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2026,7 +2172,6 @@ tr-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2034,6 +2179,9 @@ tr-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2062,7 +2210,6 @@ tr-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2070,6 +2217,9 @@ tr-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2098,7 +2248,6 @@ tr-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2106,6 +2255,9 @@ tr-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2135,7 +2287,6 @@ tr-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2143,6 +2294,9 @@ tr-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2173,7 +2327,6 @@ tr-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2181,6 +2334,9 @@ tr-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2212,13 +2368,15 @@ tr-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2251,7 +2409,6 @@ tr-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2259,6 +2416,9 @@ tr-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2288,7 +2448,6 @@ tr-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2296,6 +2455,9 @@ tr-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2325,7 +2487,6 @@ tr-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2333,6 +2494,9 @@ tr-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2361,7 +2525,6 @@ tr-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2369,6 +2532,9 @@ tr-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2398,7 +2564,6 @@ tr-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2406,6 +2571,9 @@ tr-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2434,7 +2602,6 @@ tr-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2442,6 +2609,9 @@ tr-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2470,7 +2640,6 @@ tr-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2478,6 +2647,9 @@ tr-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2506,7 +2678,6 @@ tr-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2514,6 +2685,9 @@ tr-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2545,7 +2719,6 @@ tr-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2553,6 +2726,9 @@ tr-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2581,7 +2757,6 @@ tr-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2589,6 +2764,9 @@ tr-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2617,7 +2795,6 @@ tr-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2625,6 +2802,9 @@ tr-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2654,7 +2834,6 @@ tr-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2662,6 +2841,9 @@ tr-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2687,7 +2869,6 @@ tr-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2695,6 +2876,9 @@ tr-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2720,7 +2904,6 @@ tr-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2728,6 +2911,9 @@ tr-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2754,7 +2940,6 @@ tr-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2762,6 +2947,9 @@ tr-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2787,7 +2975,6 @@ tr-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2795,6 +2982,9 @@ tr-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2822,7 +3012,6 @@ trv-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2831,7 +3020,10 @@ trv-ngx_srcache {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2861,7 +3053,6 @@ trv-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2870,7 +3061,10 @@ trv-ngx_set_misc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2899,7 +3093,6 @@ trv-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2908,7 +3101,10 @@ trv-ngx_headers_more {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2937,7 +3133,6 @@ trv-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2946,7 +3141,10 @@ trv-ngx_rds_json {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -2976,7 +3174,6 @@ trv-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2985,7 +3182,10 @@ trv-ngx_rds_csv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3016,7 +3216,6 @@ trv-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3025,7 +3224,10 @@ trv-ngx_drizzle {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3057,7 +3259,6 @@ trv-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3065,7 +3266,10 @@ trv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
 
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3098,7 +3302,6 @@ trv-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3107,7 +3310,10 @@ trv-ngx_memc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3137,7 +3343,6 @@ trv-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3146,7 +3351,10 @@ trv-ngx_redis2 {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3176,7 +3384,6 @@ trv-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3185,7 +3392,10 @@ trv-ngx_xss {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3214,7 +3424,6 @@ trv-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3223,7 +3432,10 @@ trv-ngx_echo {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3253,7 +3465,6 @@ trv-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3262,7 +3473,10 @@ trv-ngx_eval {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3291,7 +3505,6 @@ trv-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3300,7 +3513,10 @@ trv-ngx_form_input {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3329,7 +3545,6 @@ trv-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3338,7 +3553,10 @@ trv-ngx_array_var {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3367,7 +3585,6 @@ trv-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3376,7 +3593,10 @@ trv-ngx_postgres {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3408,7 +3628,6 @@ trv-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3417,7 +3636,10 @@ trv-ngx_encrypted_session {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3446,7 +3668,6 @@ trv-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3455,7 +3676,10 @@ trv-ngx_iconv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3484,7 +3708,6 @@ trv-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3493,7 +3716,10 @@ trv-ngx_coolkit {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3523,7 +3749,6 @@ trv-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3532,7 +3757,10 @@ trv-lua-resty-memcached {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3558,7 +3786,6 @@ trv-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3567,7 +3794,10 @@ trv-lua-resty-redis {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3593,7 +3823,6 @@ trv-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3602,7 +3831,10 @@ trv-lua-resty-mysql {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3629,7 +3861,6 @@ trv-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3638,7 +3869,10 @@ trv-lua-resty-string {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3664,7 +3898,6 @@ trv-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3673,7 +3906,10 @@ trv-lua-resty-upload {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_EVENT_TYPE poll;
     #env MOCKEAGAIN_VERBOSE 1;
@@ -3701,7 +3937,6 @@ tw-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3709,6 +3944,9 @@ tw-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3739,7 +3977,6 @@ tw-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3747,6 +3984,9 @@ tw-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3776,7 +4016,6 @@ tw-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3784,6 +4023,9 @@ tw-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3813,7 +4055,6 @@ tw-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3821,6 +4062,9 @@ tw-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3851,7 +4095,6 @@ tw-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3859,6 +4102,9 @@ tw-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3890,7 +4136,6 @@ tw-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3898,6 +4143,9 @@ tw-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3930,13 +4178,15 @@ tw-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -3970,7 +4220,6 @@ tw-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3978,6 +4227,9 @@ tw-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4008,7 +4260,6 @@ tw-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4016,6 +4267,9 @@ tw-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4046,7 +4300,6 @@ tw-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4054,6 +4307,9 @@ tw-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4083,7 +4339,6 @@ tw-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4091,6 +4346,9 @@ tw-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4121,7 +4379,6 @@ tw-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4129,6 +4386,9 @@ tw-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4158,7 +4418,6 @@ tw-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4166,6 +4425,9 @@ tw-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4195,7 +4457,6 @@ tw-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4203,6 +4464,9 @@ tw-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4232,7 +4496,6 @@ tw-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4240,6 +4503,9 @@ tw-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4272,7 +4538,6 @@ tw-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4280,6 +4545,9 @@ tw-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4309,7 +4577,6 @@ tw-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4317,6 +4584,9 @@ tw-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4346,7 +4616,6 @@ tw-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4354,6 +4623,9 @@ tw-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4384,7 +4656,6 @@ tw-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4392,6 +4663,9 @@ tw-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4418,7 +4692,6 @@ tw-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4426,6 +4699,9 @@ tw-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4452,7 +4728,6 @@ tw-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4460,6 +4735,9 @@ tw-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4487,7 +4765,6 @@ tw-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4495,6 +4772,9 @@ tw-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4521,7 +4801,6 @@ tw-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4529,6 +4808,9 @@ tw-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4557,7 +4839,6 @@ twv-ngx_srcache {
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4566,7 +4847,10 @@ twv-ngx_srcache {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4597,7 +4881,6 @@ twv-ngx_set_misc {
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4606,7 +4889,10 @@ twv-ngx_set_misc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4636,7 +4922,6 @@ twv-ngx_headers_more {
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4645,7 +4930,10 @@ twv-ngx_headers_more {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4675,7 +4963,6 @@ twv-ngx_rds_json {
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4684,7 +4971,10 @@ twv-ngx_rds_json {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4715,7 +5005,6 @@ twv-ngx_rds_csv {
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4724,7 +5013,10 @@ twv-ngx_rds_csv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4756,7 +5048,6 @@ twv-ngx_drizzle {
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4765,7 +5056,10 @@ twv-ngx_drizzle {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4798,7 +5092,6 @@ twv-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4806,7 +5099,10 @@ twv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
 
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4840,7 +5136,6 @@ twv-ngx_memc {
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4849,7 +5144,10 @@ twv-ngx_memc {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4880,7 +5178,6 @@ twv-ngx_redis2 {
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4889,7 +5186,10 @@ twv-ngx_redis2 {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4920,7 +5220,6 @@ twv-ngx_xss {
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4929,7 +5228,10 @@ twv-ngx_xss {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4959,7 +5261,6 @@ twv-ngx_echo {
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4968,7 +5269,10 @@ twv-ngx_echo {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -4999,7 +5303,6 @@ twv-ngx_eval {
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5008,7 +5311,10 @@ twv-ngx_eval {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5038,7 +5344,6 @@ twv-ngx_form_input {
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5047,7 +5352,10 @@ twv-ngx_form_input {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5077,7 +5385,6 @@ twv-ngx_array_var {
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5086,7 +5393,10 @@ twv-ngx_array_var {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5116,7 +5426,6 @@ twv-ngx_postgres {
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5125,7 +5434,10 @@ twv-ngx_postgres {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5158,7 +5470,6 @@ twv-ngx_encrypted_session {
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5167,7 +5478,10 @@ twv-ngx_encrypted_session {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5197,7 +5511,6 @@ twv-ngx_iconv {
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5206,7 +5519,10 @@ twv-ngx_iconv {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5236,7 +5552,6 @@ twv-ngx_coolkit {
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5245,7 +5560,10 @@ twv-ngx_coolkit {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5276,7 +5594,6 @@ twv-lua-resty-memcached {
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5285,7 +5602,10 @@ twv-lua-resty-memcached {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5312,7 +5632,6 @@ twv-lua-resty-redis {
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5321,7 +5640,10 @@ twv-lua-resty-redis {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5348,7 +5670,6 @@ twv-lua-resty-mysql {
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5357,7 +5678,10 @@ twv-lua-resty-mysql {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5385,7 +5709,6 @@ twv-lua-resty-string {
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5394,7 +5717,10 @@ twv-lua-resty-string {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5421,7 +5747,6 @@ twv-lua-resty-upload {
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5430,7 +5755,10 @@ twv-lua-resty-upload {
 
     env LD_PRELOAD '';
 
+    env TEST_NGINX_USE_HUP '';
+
     env TEST_NGINX_USE_VALGRIND 1;
+
 
     env TEST_NGINX_POSTPONE_OUTPUT 1;
     env TEST_NGINX_EVENT_TYPE poll;
@@ -5438,6 +5766,1488 @@ twv-lua-resty-upload {
     env MOCKEAGAIN w;
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+
+
+th-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_srcache;
+
+    dep run-memcached run-redis run-mysql run-postgres;
+}
+
+
+th-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+th-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
+th-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_json;
+
+    dep run-mysql run-postgres;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+th-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
+}
+
+th-ngx_drizzle {
+    always;
+    cwd ~/git/drizzle-nginx-module;
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_drizzle;
+
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+th-ngx_lua {
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_lua;
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+th-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_memc;
+
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+th-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_redis2;
+
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+th-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
+}
+
+th-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_echo;
+
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+th-ngx_eval {
+    always;
+    cwd ~/git/eval-nginx-module;
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_eval;
+
+    dep run-memcached ngx_echo ngx_memc;
+}
+
+th-ngx_form_input {
+    always;
+    cwd ~/git/form-input-nginx-module;
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_form_input;
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+th-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+th-ngx_postgres {
+    always;
+    cwd ~/git/postgres-nginx-module;
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_postgres;
+
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+th-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+th-ngx_iconv {
+    always;
+    cwd ~/git/iconv-nginx-module;
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_iconv;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+th-ngx_coolkit {
+    always;
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_coolkit;
+
+    dep ngx-coolkit-build-script;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+th-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep build-ngx_lua;
+}
+th-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+
+
+thv-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_srcache;
+
+    dep run-memcached run-redis run-mysql run-postgres;
+}
+
+
+thv-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+thv-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
+thv-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_rds_json;
+
+    dep run-mysql run-postgres;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+thv-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
+}
+
+thv-ngx_drizzle {
+    always;
+    cwd ~/git/drizzle-nginx-module;
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_drizzle;
+
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+thv-ngx_lua {
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_lua;
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+thv-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_memc;
+
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+thv-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_redis2;
+
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+thv-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
+}
+
+thv-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_echo;
+
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+thv-ngx_eval {
+    always;
+    cwd ~/git/eval-nginx-module;
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_eval;
+
+    dep run-memcached ngx_echo ngx_memc;
+}
+
+thv-ngx_form_input {
+    always;
+    cwd ~/git/form-input-nginx-module;
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_form_input;
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+thv-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+thv-ngx_postgres {
+    always;
+    cwd ~/git/postgres-nginx-module;
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_postgres;
+
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+thv-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+thv-ngx_iconv {
+    always;
+    cwd ~/git/iconv-nginx-module;
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_iconv;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+thv-ngx_coolkit {
+    always;
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+
+    dep nginx-module-test ngx_coolkit;
+
+    dep ngx-coolkit-build-script;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+thv-lua-resty-memcached {
+    always;
+    cwd ~/git/lua-resty-memcached;
+    env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-memcached;
+
+    dep build-ngx_lua;
+}
+thv-lua-resty-redis {
+    always;
+    cwd ~/git/lua-resty-redis;
+    env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep build-ngx_lua;
+}
+thv-lua-resty-mysql {
+    always;
+    cwd ~/git/lua-resty-mysql;
+    env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-mysql;
+
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep build-ngx_lua;
+}
+thv-lua-resty-string {
+    always;
+    cwd ~/git/lua-resty-string;
+    env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep build-ngx_lua;
+}
+thv-lua-resty-upload {
+    always;
+    cwd ~/git/lua-resty-upload;
+    env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
 
     sh 'PAGER= git log HEAD^..HEAD';
 
@@ -5499,13 +7309,15 @@ build-ngx_lua {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
 
     sh 'PAGER= git log HEAD^..HEAD';
 

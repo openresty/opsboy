@@ -12,7 +12,6 @@ valgrind_version = 3.7.0;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
-    env TEST_NGINX_USE_VALGRIND '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -23,11 +22,19 @@ valgrind_version = 3.7.0;
     env LD_PRELOAD '';
     [%- END %]
 
+    [%- IF type.match("h") -%]
+    env TEST_NGINX_USE_HUP 1;
+    [%- ELSE %]
+    env TEST_NGINX_USE_HUP '';
+    [%- END %]
+
     [%- IF type.match("v") -%]
 
     env TEST_NGINX_USE_VALGRIND 1;
 
-    [%- END -%]
+    [%- ELSE -%]
+    env TEST_NGINX_USE_VALGRIND '';
+    [%- END %]
 
     [%- IF type.match("r") -%]
 
@@ -209,6 +216,24 @@ twv2 {
     dep twv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
+}
+
+th {
+[% FOREACH name IN mods -%]
+    dep th-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep th-lua-[% name %];
+[% END -%]
+}
+
+thv {
+[% FOREACH name IN mods -%]
+    dep thv-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep thv-lua-[% name %];
+[% END -%]
 }
 
 etcproxy {
@@ -583,7 +608,7 @@ cpan {
     dep cc;
 }
 
-[% types = ['', 'v', 'r', 'rv', 'w', 'wv'] %]
+[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
