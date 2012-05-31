@@ -763,6 +763,7 @@ t[% type %]-lua-[% name %] {
 
 ngx-postgres-build-script {
     file ~/git/postgres-nginx-module/util/build.sh;
+    test 'test -x ~/git/postgres-nginx-module/util/build.sh';
     cwd ~/git/postgres-nginx-module/util;
     fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
     sh 'mv ngx-postgres-build.sh build.sh && chmod +x build.sh';
@@ -770,6 +771,7 @@ ngx-postgres-build-script {
 
 ngx-coolkit-build-script {
     file ~/git/coolkit-nginx-module/util/build.sh;
+    test 'test -x ~/git/coolkit-nginx-module/util/build.sh';
     cwd ~/git/coolkit-nginx-module/util;
     fetch 'http://agentzh.org/misc/nginx/ngx-coolkit-build.sh';
     sh 'mv ngx-coolkit-build.sh build.sh && chmod +x build.sh';
