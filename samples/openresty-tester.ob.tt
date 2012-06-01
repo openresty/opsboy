@@ -11,7 +11,7 @@ ragel_version = 6.7;
 valgrind_version = 3.7.0;
 
 [%- BLOCK nginx_test_config %]
-    env TEST_NGINX_EVENT_TYPE '';
+    env TEST_NGINX_EVENT_TYPE 'epoll';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -23,7 +23,11 @@ valgrind_version = 3.7.0;
     [%- END %]
 
     [%- IF type.match("h") -%]
-    env TEST_NGINX_SLEEP 0.2;
+        [%- IF type.match("v") -%]
+    env TEST_NGINX_SLEEP 0.5;
+        [%- ELSE %]
+    env TEST_NGINX_SLEEP 1;
+        [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
     env TEST_NGINX_SLEEP '';
