@@ -61,7 +61,7 @@ my %white_list = (
         ['v', '024-access/sleep.t', 'TEST 1: sleep 0.5 - response_body_like - response is expected'],
         ['v', '077-sleep.t', 'TEST 1: sleep 0.5 - content - response_body_like - response is expected'],
         ['v', '077-sleep.t', 'TEST 3: sleep 0.5 in subrequest - content - response_body_like - response is expected'],
-        ['h', '043-shdict.t', '- response_body - response is expected'],
+        ['h', '043-shdict.t', '- response_body'],
         ['h', '009-log.t', 'TEST 16: ngx.log() big data - pattern "(?-xism:ah{1970}b)" matches a line in error.log'],
         ['h', '030-uri-args.t', 'TEST 12: rewrite uri and args'],
         ['h', '030-uri-args.t', 'TEST 30: ngx.encode_args (boolean values, false)'],
