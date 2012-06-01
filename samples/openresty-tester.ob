@@ -5933,7 +5933,7 @@ th-ngx_srcache {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -5967,7 +5967,7 @@ th-ngx_set_misc {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6000,7 +6000,7 @@ th-ngx_headers_more {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6033,7 +6033,7 @@ th-ngx_rds_json {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6067,7 +6067,7 @@ th-ngx_rds_csv {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6102,7 +6102,7 @@ th-ngx_drizzle {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6137,7 +6137,7 @@ th-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
 
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6174,7 +6174,7 @@ th-ngx_memc {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6208,7 +6208,7 @@ th-ngx_redis2 {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6242,7 +6242,7 @@ th-ngx_xss {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6275,7 +6275,7 @@ th-ngx_echo {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6309,7 +6309,7 @@ th-ngx_eval {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6342,7 +6342,7 @@ th-ngx_form_input {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6375,7 +6375,7 @@ th-ngx_array_var {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6408,7 +6408,7 @@ th-ngx_postgres {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6444,7 +6444,7 @@ th-ngx_encrypted_session {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6477,7 +6477,7 @@ th-ngx_iconv {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6510,7 +6510,7 @@ th-ngx_coolkit {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6544,7 +6544,7 @@ th-lua-resty-memcached {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6574,7 +6574,7 @@ th-lua-resty-redis {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6604,7 +6604,7 @@ th-lua-resty-mysql {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6635,7 +6635,7 @@ th-lua-resty-string {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6665,7 +6665,7 @@ th-lua-resty-upload {
 
     env LD_PRELOAD '';
 
-    env TEST_NGINX_SLEEP 1;
+    env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
     env TEST_NGINX_USE_VALGRIND '';
 
@@ -6696,7 +6696,7 @@ thv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6731,7 +6731,7 @@ thv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6765,7 +6765,7 @@ thv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6799,7 +6799,7 @@ thv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6834,7 +6834,7 @@ thv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6870,7 +6870,7 @@ thv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6906,7 +6906,7 @@ thv-ngx_lua {
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6944,7 +6944,7 @@ thv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -6979,7 +6979,7 @@ thv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7014,7 +7014,7 @@ thv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7048,7 +7048,7 @@ thv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7083,7 +7083,7 @@ thv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7117,7 +7117,7 @@ thv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7151,7 +7151,7 @@ thv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7185,7 +7185,7 @@ thv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7222,7 +7222,7 @@ thv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7256,7 +7256,7 @@ thv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7290,7 +7290,7 @@ thv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7325,7 +7325,7 @@ thv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7356,7 +7356,7 @@ thv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7387,7 +7387,7 @@ thv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7419,7 +7419,7 @@ thv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
@@ -7450,7 +7450,7 @@ thv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
-    env TEST_NGINX_SLEEP 0.5;
+    env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
     env TEST_NGINX_USE_VALGRIND 1;
