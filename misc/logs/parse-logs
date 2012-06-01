@@ -219,6 +219,15 @@ while (<>) {
     } elsif ($rec && /^All tests successful/) {
         $rec->{tests_pass} = 1;
 
+    } elsif ($rec && /\# Looks like you planned \d+ tests? but ran \d+\./) {
+
+        $failure = {
+            name => '',
+            details => $&,
+        };
+
+        push @{ $rec->{failures} }, $failure;
+
     } elsif ($rec && /^Files=(\d+),\s+Tests=(\d+),\s+(\d+)\s+wallclock secs/) {
 
         $rec->{files} = $1;
