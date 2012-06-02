@@ -20,6 +20,10 @@ valgrind_version = 3.7.0;
 
     [%- UNLESS name == "lua" %]
     env LD_PRELOAD '';
+    [%- END -%]
+
+    [%- IF type.match("l") %]
+    env TEST_NGINX_CHECK_LEAK 1;
     [%- END %]
 
     [%- IF type.match("h") -%]
@@ -239,6 +243,15 @@ thv {
 [% END -%]
 [% FOREACH name IN lualibs -%]
     dep thv-lua-[% name %];
+[% END -%]
+}
+
+tl {
+[% FOREACH name IN mods -%]
+    dep tl-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tl-lua-[% name %];
 [% END -%]
 }
 
@@ -614,7 +627,7 @@ cpan {
     dep cc;
 }
 
-[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv'] %]
+[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv', 'l'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
