@@ -7540,6 +7540,7 @@ tl-ngx_srcache {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7575,6 +7576,7 @@ tl-ngx_set_misc {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7609,6 +7611,7 @@ tl-ngx_headers_more {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7643,6 +7646,7 @@ tl-ngx_rds_json {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7678,6 +7682,7 @@ tl-ngx_rds_csv {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7714,6 +7719,7 @@ tl-ngx_drizzle {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7750,6 +7756,7 @@ tl-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
 
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7788,6 +7795,7 @@ tl-ngx_memc {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7823,6 +7831,7 @@ tl-ngx_redis2 {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7858,6 +7867,7 @@ tl-ngx_xss {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7892,6 +7902,7 @@ tl-ngx_echo {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7927,6 +7938,7 @@ tl-ngx_eval {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7961,6 +7973,7 @@ tl-ngx_form_input {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -7995,6 +8008,7 @@ tl-ngx_array_var {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8029,6 +8043,7 @@ tl-ngx_postgres {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8066,6 +8081,7 @@ tl-ngx_encrypted_session {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8100,6 +8116,7 @@ tl-ngx_iconv {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8134,6 +8151,7 @@ tl-ngx_coolkit {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8169,6 +8187,7 @@ tl-lua-resty-memcached {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8200,6 +8219,7 @@ tl-lua-resty-redis {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8231,6 +8251,7 @@ tl-lua-resty-mysql {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8263,6 +8284,7 @@ tl-lua-resty-string {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -8294,6 +8316,7 @@ tl-lua-resty-upload {
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';

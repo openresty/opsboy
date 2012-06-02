@@ -25,6 +25,7 @@ libev_version = 4.11;
 
     [%- IF type.match("l") %]
     env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
     [%- END %]
 
     [%- IF type.match("h") -%]
