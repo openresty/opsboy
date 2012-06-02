@@ -35,6 +35,10 @@ my %white_list = (
         ['r', 'upload.t', 'TEST 1: big upload - '],
     ],
 
+    ngx_memc => [
+        ['v', 'exptime.t', 'TEST 1: set exptime - response_body_like'],
+    ],
+
     ngx_rds_json => [
         ['w', 'pg.t'],
         ['w', '000_init.t', 'TEST 8: cats - drop table'],
@@ -108,12 +112,15 @@ while (<>) {
         if (/^\}$/) {
             undef $in_valgrind_warning;
             $failure->{details} .= $_;
+            next;
+
+        } elsif (/^(?:\{|\s+|==\d+== )/) {
+            $failure->{details} .= $_;
+            next;
 
         } else {
-            $failure->{details} .= $_;
+            undef $in_valgrind_warning;
         }
-
-        next;
     }
 
     if ($in_failure && !/^\# /) {
@@ -180,6 +187,7 @@ while (<>) {
             push @records, $rec;
 
         } else {
+            #warn "ignoring $subj\n";
             undef $rec;
         }
 
@@ -327,7 +335,7 @@ for my $rec (@records) {
                         my $file = $spec->[1];
 
                         if (defined $file) {
-                            if ($f->{file} eq $file) {
+                            if (defined $f->{file} && $f->{file} eq $file) {
                                 #warn "Hit $file!";
                                 my $test = $spec->[2];
                                 if (defined $test) {
