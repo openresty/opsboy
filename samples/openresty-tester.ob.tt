@@ -9,6 +9,7 @@ pcre_version = 8.30;
 force = 0;
 ragel_version = 6.7;
 valgrind_version = 3.7.0;
+libev_version = 4.11;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE 'epoll';
@@ -578,6 +579,35 @@ prove {
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
     dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
+    dep ab weighttp;
+}
+
+ab {
+    prog ab;
+    yum httpd-tools;
+}
+
+weighttp {
+    prog weighttp;
+    git https://github.com/lighttpd/weighttp ~/git/weighttp;
+    cwd ~/git/weighttp;
+    sh './waf configure && ./waf build && sudo ./waf install';
+    dep libev python;
+}
+
+python {
+    prog python;
+    yum python;
+}
+
+libev {
+    file /usr/local/lib/libev.so;
+    file /usr/local/include/ev.h;
+    cwd /tmp;
+    fetch http://dist.schmorp.de/libev/libev-$libev_version.tar.gz;
+    tarball libev-$libev_version.tar.gz;
+    sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
+    dep cxx cc;
 }
 
 parallel-forkmanager {
