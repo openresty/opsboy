@@ -144,7 +144,7 @@ while (<>) {
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
 
-        if ($subj =~ /^t([rvwh]*)-((?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
+        if ($subj =~ /^t([rvwhl]*)-((?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
             #warn "$mode: $module\n";

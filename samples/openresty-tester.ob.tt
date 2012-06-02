@@ -493,7 +493,7 @@ redis {
 
 run-postgres {
     running 'postgres: writer process';
-    sh 'sudo service postgresql start || sudo service postgresql initdb';
+    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
     dep postgres;
 }
 
@@ -509,7 +509,7 @@ postgres {
 
 run-mysql {
     running 'mysqld --';
-    sh 'sudo service mysqld start';
+    sh 'sudo service mysqld start || (sleep 10 && sudo service mysqld start)';
     dep mysql;
 }
 
