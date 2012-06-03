@@ -107,6 +107,8 @@ my $date;
 my $arch;
 my @records;
 my $test_name;
+my $leak_test_samples;
+
 while (<>) {
     if ($in_valgrind_warning) {
         if (/^\}$/) {
@@ -224,8 +226,31 @@ while (<>) {
     } elsif ($rec && m{\./util/build2?\.sh (\d+\.\d+\.\d+)\b}) {
         $rec->{nginx_version} = "nginx/$1 (no pool)";
 
-    } elsif ($rec && /^All tests successful/) {
+    } elsif ($rec && $rec->{mode} !~ /l/ && /^All tests successful/) {
         $rec->{tests_pass} = 1;
+
+    } elsif ($rec && $rec->{mode} =~ /l/ && /LeakTest: \[(.*?)\]/) {
+        $leak_test_samples = $1;
+
+    } elsif ($rec && $rec->{mode} =~ /l/ && /LeakTest: k=(\d+(?:\.\d+)?)/) {
+        my $k = $1;
+        if ($k >= 10) {
+            $leak_test_samples ||= '';
+            $failure = {
+                name => $test_name,
+                details => "$_\nRSS Samples (in KB):\n$leak_test_samples",
+            };
+
+            push @{ $rec->{failures} }, $failure;
+        }
+
+    } elsif ($rec && /^Bailout called\./) {
+        $failure = {
+            name => '',
+            details => $_,
+        };
+
+        push @{ $rec->{failures} }, $failure;
 
     } elsif ($rec && /\# Looks like you planned \d+ tests? but ran \d+\./) {
 
@@ -245,7 +270,7 @@ while (<>) {
     } elsif (/^TEST \d+: .*/) {
         $test_name = $&;
 
-    } elsif ($rec && /^==\d+==\s+/) {
+    } elsif ($rec && $rec->{mode} =~ /v/ && /^==\d+==\s+/) {
         $failure = {
             name => $test_name,
             details => $_,
@@ -259,7 +284,7 @@ while (<>) {
 
         $rec->{valgrind_pass} = 0;
 
-    } elsif ($rec && /^\#\s+Failed test '(.*?)'?$/) {
+    } elsif ($rec && $rec->{mode} !~ /l/ && /^\#\s+Failed test '(.*?)'?$/) {
         my $name = $1;
         #warn "$rec->{module}: $rec->{mode}: $name\n";
         $failure = {
@@ -270,7 +295,7 @@ while (<>) {
 
         $in_failure = 1;
 
-    } elsif ($rec && $in_failure && /^\# (.*)/) {
+    } elsif ($rec && $rec->{mode} !~ /l/ && $in_failure && /^\# (.*)/) {
         my $s = $1;
         if ($s =~ /^\s*at .*?\w+\.pm line \d+\.$/
             || $s =~ /^\s*Looks like you failed \d+ tests of \d+\.\s*$/)
@@ -311,7 +336,9 @@ for my $rec (@records) {
         @{ $rec->{comp_errors} } = uniq @{ $rec->{comp_errors} };
     }
 
-    if ($rec->{tests_pass} && $rec->{valgrind_pass}) {
+    if (($rec->{tests_pass} && $rec->{valgrind_pass})
+        || ($rec->{mode} =~ /l/ && !@{ $rec->{failures} }))
+    {
         if ($verbose) {
             print "\e[32mPASS\e[39m\n";
         }

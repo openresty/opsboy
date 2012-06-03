@@ -58,7 +58,7 @@
         <a href="[% mode_link %]" class="almost_pass" title="[% mode.tests - mode.expected_fails.size %] tests pass, [% mode.expected_fails.size %] failures expected, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">PASS</a>
         [%- ELSIF mode.config_error %]
         <a href="[% mode_link %]" class="fail" title="configure failed, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
-        [%- ELSIF mode.comp_errors %]
+        [%- ELSIF mode.comp_errors.size %]
         <a href="[% mode_link %]" class="fail" title="compilation failed, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
         [%- ELSE %]
         <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.true_fails.size + mode.expected_fails.size %] failures total), [% mode.tests - mode.true_fails.size - mode.expected_fails.size %] pass, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
@@ -169,7 +169,23 @@
         </tr>
         [%- END -%]
     </table>
+    <br/>
+    <table class="result">
+        <tr>
+            <th>Component</th>
+            <th>check leak</th>
+        </tr>
+        [%- FOREACH mod_name IN nginx.keys.sort %]
+        <tr>
+            [%- IF mod_name == "anchor"; NEXT; END %]
+            [%- module = nginx.$mod_name; %]
 
+            [%- PROCESS gen_module_cell %]
+
+            [%- PROCESS gen_result_cell key="l" %]
+        </tr>
+        [%- END -%]
+    </table>
     </div>
     [%- END -%]
 [% END -%]
