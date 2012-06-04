@@ -7,6 +7,7 @@ use Date::Parse;
 use Getopt::Std;
 use List::MoreUtils qw( uniq );
 use JSON::XS;
+use List::Util qw( max );
 
 my %opts;
 getopts('vo:', \%opts) or usage();
@@ -239,6 +240,7 @@ while (<>) {
             $failure = {
                 name => $test_name,
                 details => "$_\nRSS Samples (in KB):\n$leak_test_samples",
+                chart => gen_chart_uri($leak_test_samples),
             };
 
             push @{ $rec->{failures} }, $failure;
@@ -459,5 +461,18 @@ close $out;
 
 sub usage {
     die "Usage: $0 [-v] -o <outfile> <infile>\n";
+}
+
+sub gen_chart_uri {
+    my $samples = shift;
+    if (!$samples) {
+        return undef;
+    }
+
+    my @ys = split /\s+/, $samples;
+    my $max = max @ys;
+    @ys = map { sprintf "%.0f", ($_ * 100 / $max) } @ys;
+    my $ys = join ",", @ys;
+    return "https://chart.googleapis.com/chart?cht=lc&chd=t:$ys&chs=200x80&chco=3072F3"
 }
 

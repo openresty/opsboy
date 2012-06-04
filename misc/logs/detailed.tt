@@ -101,7 +101,14 @@
         [%- END %]
         </td>
         <td class="test-details">[% f.name | html %]</td>
-        <td class="test-details">[% f.details | html | html_line_break %]</td>
+        <td class="test-details">
+        [% f.details | html | html_line_break %]
+        [% IF f.chart %]
+        <p>
+        <img src="[% f.chart %]">
+        </p>
+        [% END %]
+        </td>
     </tr>
 [% END %]
 </table>
@@ -128,7 +135,14 @@
         [%- END %]
         </td>
         <td class="test-details">[% f.name | html %]</td>
-        <td class="test-details">[% f.details | html | html_line_break %]</td>
+        <td class="test-details">
+        [% f.details | html | html_line_break %]
+        [% IF f.chart %]
+        <p>
+        <img src="[% f.chart %]">
+        </p>
+        [% END %]
+        </td>
     </tr>
 [% END %]
 </table>
