@@ -12,7 +12,7 @@ valgrind_version = 3.7.0;
 libev_version = 4.11;
 
 [%- BLOCK nginx_test_config %]
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -26,6 +26,8 @@ libev_version = 4.11;
     [%- IF type.match("l") %]
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+    [%- ELSE %]
+    env TEST_NGINX_CHECK_LEAK '';
     [%- END %]
 
     [%- IF type.match("h") -%]

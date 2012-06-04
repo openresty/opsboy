@@ -660,7 +660,7 @@ t-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -668,6 +668,7 @@ t-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -694,7 +695,7 @@ t-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -702,6 +703,7 @@ t-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -727,7 +729,7 @@ t-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -735,6 +737,7 @@ t-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -760,7 +763,7 @@ t-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -768,6 +771,7 @@ t-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -794,7 +798,7 @@ t-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -802,6 +806,7 @@ t-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -829,7 +834,7 @@ t-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -837,6 +842,7 @@ t-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -865,13 +871,14 @@ t-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -901,7 +908,7 @@ t-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -909,6 +916,7 @@ t-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -935,7 +943,7 @@ t-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -943,6 +951,7 @@ t-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -969,7 +978,7 @@ t-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -977,6 +986,7 @@ t-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1002,7 +1012,7 @@ t-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1010,6 +1020,7 @@ t-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1036,7 +1047,7 @@ t-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1044,6 +1055,7 @@ t-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1069,7 +1081,7 @@ t-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1077,6 +1089,7 @@ t-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1102,7 +1115,7 @@ t-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1110,6 +1123,7 @@ t-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1135,7 +1149,7 @@ t-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1143,6 +1157,7 @@ t-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1171,7 +1186,7 @@ t-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1179,6 +1194,7 @@ t-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1204,7 +1220,7 @@ t-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1212,6 +1228,7 @@ t-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1237,7 +1254,7 @@ t-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1245,6 +1262,7 @@ t-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1271,7 +1289,7 @@ t-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1279,6 +1297,7 @@ t-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1301,7 +1320,7 @@ t-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1309,6 +1328,7 @@ t-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1331,7 +1351,7 @@ t-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1339,6 +1359,7 @@ t-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1362,7 +1383,7 @@ t-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1370,6 +1391,7 @@ t-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1392,7 +1414,7 @@ t-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1400,6 +1422,7 @@ t-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1424,7 +1447,7 @@ tv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1432,6 +1455,7 @@ tv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1460,7 +1484,7 @@ tv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1468,6 +1492,7 @@ tv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1495,7 +1520,7 @@ tv-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1503,6 +1528,7 @@ tv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1530,7 +1556,7 @@ tv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1538,6 +1564,7 @@ tv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1566,7 +1593,7 @@ tv-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1574,6 +1601,7 @@ tv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1603,7 +1631,7 @@ tv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1611,6 +1639,7 @@ tv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1641,13 +1670,14 @@ tv-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1679,7 +1709,7 @@ tv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1687,6 +1717,7 @@ tv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1715,7 +1746,7 @@ tv-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1723,6 +1754,7 @@ tv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1751,7 +1783,7 @@ tv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1759,6 +1791,7 @@ tv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1786,7 +1819,7 @@ tv-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1794,6 +1827,7 @@ tv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1822,7 +1856,7 @@ tv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1830,6 +1864,7 @@ tv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1857,7 +1892,7 @@ tv-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1865,6 +1900,7 @@ tv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1892,7 +1928,7 @@ tv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1900,6 +1936,7 @@ tv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1927,7 +1964,7 @@ tv-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1935,6 +1972,7 @@ tv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -1965,7 +2003,7 @@ tv-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -1973,6 +2011,7 @@ tv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2000,7 +2039,7 @@ tv-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2008,6 +2047,7 @@ tv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2035,7 +2075,7 @@ tv-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2043,6 +2083,7 @@ tv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2071,7 +2112,7 @@ tv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2079,6 +2120,7 @@ tv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2103,7 +2145,7 @@ tv-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2111,6 +2153,7 @@ tv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2135,7 +2178,7 @@ tv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2143,6 +2186,7 @@ tv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2168,7 +2212,7 @@ tv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2176,6 +2220,7 @@ tv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2200,7 +2245,7 @@ tv-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2208,6 +2253,7 @@ tv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2234,7 +2280,7 @@ tr-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2242,6 +2288,7 @@ tr-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2274,7 +2321,7 @@ tr-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2282,6 +2329,7 @@ tr-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2313,7 +2361,7 @@ tr-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2321,6 +2369,7 @@ tr-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2352,7 +2401,7 @@ tr-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2360,6 +2409,7 @@ tr-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2392,7 +2442,7 @@ tr-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2400,6 +2450,7 @@ tr-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2433,7 +2484,7 @@ tr-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2441,6 +2492,7 @@ tr-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2475,13 +2527,14 @@ tr-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2517,7 +2570,7 @@ tr-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2525,6 +2578,7 @@ tr-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2557,7 +2611,7 @@ tr-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2565,6 +2619,7 @@ tr-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2597,7 +2652,7 @@ tr-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2605,6 +2660,7 @@ tr-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2636,7 +2692,7 @@ tr-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2644,6 +2700,7 @@ tr-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2676,7 +2733,7 @@ tr-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2684,6 +2741,7 @@ tr-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2715,7 +2773,7 @@ tr-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2723,6 +2781,7 @@ tr-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2754,7 +2813,7 @@ tr-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2762,6 +2821,7 @@ tr-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2793,7 +2853,7 @@ tr-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2801,6 +2861,7 @@ tr-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2835,7 +2896,7 @@ tr-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2843,6 +2904,7 @@ tr-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2874,7 +2936,7 @@ tr-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2882,6 +2944,7 @@ tr-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2913,7 +2976,7 @@ tr-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2921,6 +2984,7 @@ tr-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2953,7 +3017,7 @@ tr-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2961,6 +3025,7 @@ tr-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -2989,7 +3054,7 @@ tr-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -2997,6 +3062,7 @@ tr-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3025,7 +3091,7 @@ tr-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3033,6 +3099,7 @@ tr-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3062,7 +3129,7 @@ tr-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3070,6 +3137,7 @@ tr-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3098,7 +3166,7 @@ tr-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3106,6 +3174,7 @@ tr-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3136,7 +3205,7 @@ trv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3144,6 +3213,7 @@ trv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3178,7 +3248,7 @@ trv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3186,6 +3256,7 @@ trv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3219,7 +3290,7 @@ trv-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3227,6 +3298,7 @@ trv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3260,7 +3332,7 @@ trv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3268,6 +3340,7 @@ trv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3302,7 +3375,7 @@ trv-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3310,6 +3383,7 @@ trv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3345,7 +3419,7 @@ trv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3353,6 +3427,7 @@ trv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3389,13 +3464,14 @@ trv-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3433,7 +3509,7 @@ trv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3441,6 +3517,7 @@ trv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3475,7 +3552,7 @@ trv-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3483,6 +3560,7 @@ trv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3517,7 +3595,7 @@ trv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3525,6 +3603,7 @@ trv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3558,7 +3637,7 @@ trv-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3566,6 +3645,7 @@ trv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3600,7 +3680,7 @@ trv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3608,6 +3688,7 @@ trv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3641,7 +3722,7 @@ trv-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3649,6 +3730,7 @@ trv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3682,7 +3764,7 @@ trv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3690,6 +3772,7 @@ trv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3723,7 +3806,7 @@ trv-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3731,6 +3814,7 @@ trv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3767,7 +3851,7 @@ trv-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3775,6 +3859,7 @@ trv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3808,7 +3893,7 @@ trv-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3816,6 +3901,7 @@ trv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3849,7 +3935,7 @@ trv-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3857,6 +3943,7 @@ trv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3891,7 +3978,7 @@ trv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3899,6 +3986,7 @@ trv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3929,7 +4017,7 @@ trv-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3937,6 +4025,7 @@ trv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -3967,7 +4056,7 @@ trv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -3975,6 +4064,7 @@ trv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4006,7 +4096,7 @@ trv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4014,6 +4104,7 @@ trv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4044,7 +4135,7 @@ trv-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4052,6 +4143,7 @@ trv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4084,7 +4176,7 @@ tw-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4092,6 +4184,7 @@ tw-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4125,7 +4218,7 @@ tw-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4133,6 +4226,7 @@ tw-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4165,7 +4259,7 @@ tw-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4173,6 +4267,7 @@ tw-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4205,7 +4300,7 @@ tw-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4213,6 +4308,7 @@ tw-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4246,7 +4342,7 @@ tw-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4254,6 +4350,7 @@ tw-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4288,7 +4385,7 @@ tw-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4296,6 +4393,7 @@ tw-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4331,13 +4429,14 @@ tw-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4374,7 +4473,7 @@ tw-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4382,6 +4481,7 @@ tw-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4415,7 +4515,7 @@ tw-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4423,6 +4523,7 @@ tw-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4456,7 +4557,7 @@ tw-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4464,6 +4565,7 @@ tw-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4496,7 +4598,7 @@ tw-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4504,6 +4606,7 @@ tw-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4537,7 +4640,7 @@ tw-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4545,6 +4648,7 @@ tw-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4577,7 +4681,7 @@ tw-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4585,6 +4689,7 @@ tw-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4617,7 +4722,7 @@ tw-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4625,6 +4730,7 @@ tw-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4657,7 +4763,7 @@ tw-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4665,6 +4771,7 @@ tw-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4700,7 +4807,7 @@ tw-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4708,6 +4815,7 @@ tw-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4740,7 +4848,7 @@ tw-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4748,6 +4856,7 @@ tw-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4780,7 +4889,7 @@ tw-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4788,6 +4897,7 @@ tw-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4821,7 +4931,7 @@ tw-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4829,6 +4939,7 @@ tw-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4858,7 +4969,7 @@ tw-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4866,6 +4977,7 @@ tw-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4895,7 +5007,7 @@ tw-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4903,6 +5015,7 @@ tw-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4933,7 +5046,7 @@ tw-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4941,6 +5054,7 @@ tw-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -4970,7 +5084,7 @@ tw-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -4978,6 +5092,7 @@ tw-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5009,7 +5124,7 @@ twv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5017,6 +5132,7 @@ twv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5052,7 +5168,7 @@ twv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5060,6 +5176,7 @@ twv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5094,7 +5211,7 @@ twv-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5102,6 +5219,7 @@ twv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5136,7 +5254,7 @@ twv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5144,6 +5262,7 @@ twv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5179,7 +5298,7 @@ twv-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5187,6 +5306,7 @@ twv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5223,7 +5343,7 @@ twv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5231,6 +5351,7 @@ twv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5268,13 +5389,14 @@ twv-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5313,7 +5435,7 @@ twv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5321,6 +5443,7 @@ twv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5356,7 +5479,7 @@ twv-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5364,6 +5487,7 @@ twv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5399,7 +5523,7 @@ twv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5407,6 +5531,7 @@ twv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5441,7 +5566,7 @@ twv-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5449,6 +5574,7 @@ twv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5484,7 +5610,7 @@ twv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5492,6 +5618,7 @@ twv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5526,7 +5653,7 @@ twv-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5534,6 +5661,7 @@ twv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5568,7 +5696,7 @@ twv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5576,6 +5704,7 @@ twv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5610,7 +5739,7 @@ twv-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5618,6 +5747,7 @@ twv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5655,7 +5785,7 @@ twv-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5663,6 +5793,7 @@ twv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5697,7 +5828,7 @@ twv-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5705,6 +5836,7 @@ twv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5739,7 +5871,7 @@ twv-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5747,6 +5879,7 @@ twv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5782,7 +5915,7 @@ twv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5790,6 +5923,7 @@ twv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5821,7 +5955,7 @@ twv-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5829,6 +5963,7 @@ twv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5860,7 +5995,7 @@ twv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5868,6 +6003,7 @@ twv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5900,7 +6036,7 @@ twv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5908,6 +6044,7 @@ twv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5939,7 +6076,7 @@ twv-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5947,6 +6084,7 @@ twv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
@@ -5980,7 +6118,7 @@ th-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -5988,6 +6126,7 @@ th-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6014,7 +6153,7 @@ th-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6022,6 +6161,7 @@ th-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6047,7 +6187,7 @@ th-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6055,6 +6195,7 @@ th-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6080,7 +6221,7 @@ th-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6088,6 +6229,7 @@ th-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6114,7 +6256,7 @@ th-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6122,6 +6264,7 @@ th-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6149,7 +6292,7 @@ th-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6157,6 +6300,7 @@ th-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6185,13 +6329,14 @@ th-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6221,7 +6366,7 @@ th-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6229,6 +6374,7 @@ th-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6255,7 +6401,7 @@ th-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6263,6 +6409,7 @@ th-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6289,7 +6436,7 @@ th-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6297,6 +6444,7 @@ th-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6322,7 +6470,7 @@ th-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6330,6 +6478,7 @@ th-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6356,7 +6505,7 @@ th-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6364,6 +6513,7 @@ th-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6389,7 +6539,7 @@ th-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6397,6 +6547,7 @@ th-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6422,7 +6573,7 @@ th-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6430,6 +6581,7 @@ th-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6455,7 +6607,7 @@ th-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6463,6 +6615,7 @@ th-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6491,7 +6644,7 @@ th-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6499,6 +6652,7 @@ th-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6524,7 +6678,7 @@ th-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6532,6 +6686,7 @@ th-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6557,7 +6712,7 @@ th-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6565,6 +6720,7 @@ th-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6591,7 +6747,7 @@ th-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6599,6 +6755,7 @@ th-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6621,7 +6778,7 @@ th-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6629,6 +6786,7 @@ th-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6651,7 +6809,7 @@ th-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6659,6 +6817,7 @@ th-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6682,7 +6841,7 @@ th-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6690,6 +6849,7 @@ th-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6712,7 +6872,7 @@ th-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6720,6 +6880,7 @@ th-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP 0.8;
     env TEST_NGINX_USE_HUP 1;
@@ -6744,7 +6905,7 @@ thv-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6752,6 +6913,7 @@ thv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6779,7 +6941,7 @@ thv-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6787,6 +6949,7 @@ thv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6813,7 +6976,7 @@ thv-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6821,6 +6984,7 @@ thv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6847,7 +7011,7 @@ thv-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6855,6 +7019,7 @@ thv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6882,7 +7047,7 @@ thv-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6890,6 +7055,7 @@ thv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6918,7 +7084,7 @@ thv-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -6926,6 +7092,7 @@ thv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6955,13 +7122,14 @@ thv-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -6992,7 +7160,7 @@ thv-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7000,6 +7168,7 @@ thv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7027,7 +7196,7 @@ thv-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7035,6 +7204,7 @@ thv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7062,7 +7232,7 @@ thv-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7070,6 +7240,7 @@ thv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7096,7 +7267,7 @@ thv-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7104,6 +7275,7 @@ thv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7131,7 +7303,7 @@ thv-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7139,6 +7311,7 @@ thv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7165,7 +7338,7 @@ thv-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7173,6 +7346,7 @@ thv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7199,7 +7373,7 @@ thv-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7207,6 +7381,7 @@ thv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7233,7 +7408,7 @@ thv-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7241,6 +7416,7 @@ thv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7270,7 +7446,7 @@ thv-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7278,6 +7454,7 @@ thv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7304,7 +7481,7 @@ thv-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7312,6 +7489,7 @@ thv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7338,7 +7516,7 @@ thv-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7346,6 +7524,7 @@ thv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7373,7 +7552,7 @@ thv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7381,6 +7560,7 @@ thv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7404,7 +7584,7 @@ thv-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7412,6 +7592,7 @@ thv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7435,7 +7616,7 @@ thv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7443,6 +7624,7 @@ thv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7467,7 +7649,7 @@ thv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7475,6 +7657,7 @@ thv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7498,7 +7681,7 @@ thv-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7506,6 +7689,7 @@ thv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
 
     env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
     env TEST_NGINX_USE_HUP 1;
 
@@ -7531,7 +7715,7 @@ tl-ngx_srcache {
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7567,7 +7751,7 @@ tl-ngx_set_misc {
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7602,7 +7786,7 @@ tl-ngx_headers_more {
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7637,7 +7821,7 @@ tl-ngx_rds_json {
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7673,7 +7857,7 @@ tl-ngx_rds_csv {
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7710,7 +7894,7 @@ tl-ngx_drizzle {
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7748,7 +7932,7 @@ tl-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7786,7 +7970,7 @@ tl-ngx_memc {
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7822,7 +8006,7 @@ tl-ngx_redis2 {
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7858,7 +8042,7 @@ tl-ngx_xss {
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7893,7 +8077,7 @@ tl-ngx_echo {
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7929,7 +8113,7 @@ tl-ngx_eval {
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7964,7 +8148,7 @@ tl-ngx_form_input {
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -7999,7 +8183,7 @@ tl-ngx_array_var {
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8034,7 +8218,7 @@ tl-ngx_postgres {
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8072,7 +8256,7 @@ tl-ngx_encrypted_session {
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8107,7 +8291,7 @@ tl-ngx_iconv {
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8142,7 +8326,7 @@ tl-ngx_coolkit {
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8178,7 +8362,7 @@ tl-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-resty-memcached/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8210,7 +8394,7 @@ tl-lua-resty-redis {
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-resty-redis/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8242,7 +8426,7 @@ tl-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-resty-mysql/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8275,7 +8459,7 @@ tl-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-resty-string/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8307,7 +8491,7 @@ tl-lua-resty-upload {
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-resty-upload/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
@@ -8383,13 +8567,14 @@ build-ngx_lua {
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_EVENT_TYPE 'epoll';
+    env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
 
+    env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_SLEEP '';
     env TEST_NGINX_USE_HUP '';
