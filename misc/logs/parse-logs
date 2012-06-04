@@ -389,6 +389,17 @@ for my $rec (@records) {
                 }
 
                 if ($expected) {
+                    if (@expected_fails) {
+                        my $last = $expected_fails[-1];
+                        if ($last->{file} eq $f->{file}
+                            && $last->{name} eq $f->{name}
+                            && ((!defined $last->{details} && !defined $f->{details})
+                                || $last->{details} eq $f->{details}))
+                        {
+                            pop @expected_fails;
+                        }
+                    }
+
                     push @expected_fails, $f;
 
                 } else {
