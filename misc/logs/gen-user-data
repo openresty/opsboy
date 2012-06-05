@@ -79,8 +79,22 @@ for my $lib (@ARGV) {
 
         push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib";
 
+    } elsif ($lib =~ /^t(.*)-(\S+)$/) {
+        my ($mode, $name) = ($1, $2);
+        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/) {
+            die "Unknown testing mode $mode in goal $lib\n";
+        }
+
+        if (!(any { "lua-$_" eq $name } @lualibs)
+            && !(any { "ngx_$_" eq $name } @mods))
+        {
+            die "Unknown component $name in user goal $lib\n";
+        }
+
+        push @goals, $lib;
+
     } else {
-        die "Unknown component $lib\n";
+        die "Unknown component or goal $lib\n";
     }
 }
 

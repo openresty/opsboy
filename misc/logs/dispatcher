@@ -27,6 +27,9 @@ my @goals;
 my @comps = @ARGV;
 if (@comps) {
     @goals = split /\s+/, `./gen-user-data @comps`;
+    if ($? != 0) {
+        die "aborted.\n";
+    }
 }
 
 my $jsonxs = JSON::XS->new->ascii;

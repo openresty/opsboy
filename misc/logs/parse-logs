@@ -62,6 +62,7 @@ my %white_list = (
         ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['v', '023-rewrite/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],
         ['v', '023-rewrite/sleep.t', 'TEST 1: sleep 0.5 - response_body_like - response is expected'],
+        ['v', '023-rewrite/sleep.t', 'TEST 5: sleep 0.5 - multi-times - response_body_like'],
         ['v', '024-access/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],
         ['v', '024-access/sleep.t', 'TEST 1: sleep 0.5 - response_body_like - response is expected'],
         ['v', '077-sleep.t', 'TEST 1: sleep 0.5 - content - response_body_like - response is expected'],
@@ -507,7 +508,7 @@ sub get_stable_point {
         return undef;
     }
 
-    my $m = int (($n - 1) / 2);
+    my $m = int (($n - 1) * 0.65);
     if ($m < 0) {
         $m = 0;
     }
