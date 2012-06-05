@@ -7,7 +7,7 @@ use Date::Parse;
 use Getopt::Std;
 use List::MoreUtils qw( uniq );
 use JSON::XS;
-use List::Util qw( max );
+use List::Util qw( max sum );
 
 my %opts;
 getopts('vo:', \%opts) or usage();
@@ -237,10 +237,19 @@ while (<>) {
         my $k = $1;
         if ($k >= 10) {
             $leak_test_samples ||= '';
+
+            my @samples = split /\s+/, $leak_test_samples;
+            my $up_edges = get_up_edges(\@samples);
+            my $stable = get_stable_point(\@samples);
+
             $failure = {
                 name => $test_name,
-                details => "$_\nRSS Samples (in KB):\n$leak_test_samples",
+                details => "${_}Up-Edges: $up_edges\n"
+                            . "Stable point: ". ($stable || "N/A") . "\n\n"
+                            . "RSS Samples (in KB):\n$leak_test_samples",
                 chart => gen_chart_uri($leak_test_samples),
+                stable => $stable,
+                up_edges => $up_edges,
             };
 
             push @{ $rec->{failures} }, $failure;
@@ -413,6 +422,21 @@ for my $rec (@records) {
             @fails = @{ $rec->{failures} };
         }
 
+        if ($rec->{mode} =~ /l/) {
+            my @fails2;
+            for my $fail (@fails) {
+                if ($fail->{stable}
+                    || (defined $fail->{up_edges} && $fail->{up_edges} < 10))
+                {
+                    push @expected_fails, $fail;
+
+                } else {
+                    push @fails2, $fail;
+                }
+            }
+            @fails = @fails2;
+        }
+
         $rec->{true_fails} = \@fails;
         $rec->{expected_fails} = \@expected_fails;
         delete $rec->{failures};
@@ -474,5 +498,58 @@ sub gen_chart_uri {
     @ys = map { sprintf "%.0f", ($_ * 100 / $max) } @ys;
     my $ys = join ",", @ys;
     return "https://chart.googleapis.com/chart?cht=lc&chd=t:$ys&chs=200x80&chco=3072F3"
+}
+
+sub get_stable_point {
+    my $samples = shift;
+    my $n = @$samples;
+    if (!$n) {
+        return undef;
+    }
+
+    my $m = int (($n - 1) / 2);
+    if ($m < 0) {
+        $m = 0;
+    }
+
+    my $p;
+    for (my $i = $m; $i < $n; $i++) {
+        if (!defined $p) {
+            $p = $samples->[$i];
+        } else {
+            if ($p == $samples->[$i]) {
+                next;
+            }
+
+            return undef;
+        }
+    }
+
+    return $p;
+}
+
+sub get_up_edges {
+    my $samples = shift;
+    if (!@$samples) {
+        return 0;
+    }
+
+    my @ys = @$samples;
+    my $a = shift @ys;
+    my $edges = 0;
+    while (@ys) {
+        my $b = shift @ys;
+        my $diff = $b - $a;
+        if ($diff > 0) {
+            $edges++;
+
+        } elsif ($diff < 0) {
+            $edges--;
+        }
+
+        $a = $b;
+    }
+
+    return $edges;
 }
 
