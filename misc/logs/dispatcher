@@ -72,7 +72,7 @@ my @new_goals;
 for my $goal (@goals) {
     if (!defined $elapsed{$goal}) {
         warn "WARNING: elapsed time for $goal is not found.\n";
-        next;
+        $elapsed{$goal} = 60 * 10; # default to 10 min
     }
 
     $sum += $elapsed{$goal};
