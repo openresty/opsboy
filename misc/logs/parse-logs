@@ -58,6 +58,8 @@ my %white_list = (
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
+        ['v', '023-rewrite/tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like'],
+        ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
         ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['v', '023-rewrite/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],

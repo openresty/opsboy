@@ -79,7 +79,7 @@ for my $lib (@ARGV) {
 
         push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib";
 
-    } elsif ($lib =~ /^t(.*)-(\S+)$/) {
+    } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
         my ($mode, $name) = ($1, $2);
         if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/) {
             die "Unknown testing mode $mode in goal $lib\n";
