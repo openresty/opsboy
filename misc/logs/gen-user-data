@@ -81,7 +81,7 @@ for my $lib (@ARGV) {
 
     } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
         my ($mode, $name) = ($1, $2);
-        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/) {
+        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/ && $mode ne '') {
             die "Unknown testing mode $mode in goal $lib\n";
         }
 

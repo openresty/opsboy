@@ -62,15 +62,8 @@ my %white_list = (
         ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
         ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
-        ['v', '062-count.t', 'TEST 13: entries under ngx. (log by lua) - pattern "ngx. entry count: 72" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 5: ngx.ctx available in log_by_lua (not defined yet) - pattern "ngx.ctx.counter: nil" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 5: ngx.ctx available in log_by_lua (not defined yet) - pattern "lua release ngx.ctx" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 7: ngx.ctx used in different locations and different ctx (1) - pattern "ngx.ctx.counter: nil" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 7: ngx.ctx used in different locations and different ctx (1) - pattern "lua release ngx.ctx" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 3: log_by_lua_file & content_by_lua - pattern "Hello from log_by_lua: 8" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 2: log_by_lua_file - pattern "Hello from log_by_lua: /lua" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 1: log_by_lua - pattern "Hello from log_by_lua: /lua" matches a line in error.log'],
-        ['v', '075-logby.t', 'TEST 6: log_by_lua + shared dict - pattern "(?-xism:/lua200: [12])" matches a line in error.log'],
+        ['v', '062-count.t', 'matches a line in error.log'],
+        ['v', '075-logby.t', 'matches a line in error.log'],
         ['v', '023-rewrite/sleep.t', 'TEST 3: sleep 0.5 in subrequestg - response_body_like - response is expected'],
         ['v', '023-rewrite/sleep.t', 'TEST 1: sleep 0.5 - response_body_like - response is expected'],
         ['v', '023-rewrite/sleep.t', 'TEST 5: sleep 0.5 - multi-times - response_body_like'],
@@ -175,7 +168,7 @@ while (<>) {
                     my $a = $rec->{failures}[$n - 1];
                     my $b = $rec->{failures}[$n - 2];
                     if (((!defined $a->{file} && !defined $b->{file}) || $a->{file} eq $b->{file})
-                        && $a->{name} eq $b->{name}
+                        && ((!defined $a->{name} && !defined $b->{name}) || $a->{name} eq $b->{name})
                         && ((!defined $a->{details} && !defined $b->{details})
                             || $a->{details} eq $b->{details}))
                     {
