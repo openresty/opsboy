@@ -154,9 +154,10 @@ my $i = 1;
 for my $bucket (@buckets) {
     my $secs = sum map { $elapsed{$_} } @$bucket;
     my $mins = ceil($secs/60);
-    if ($force) {
-        push @$bucket, "force=1";
-    }
+    #if ($force) {
+    # always add force=1 to be safe
+    push @$bucket, "force=1";
+    #}
     warn "bucket $i: @$bucket ($mins min)\n";
     $i++;
 
