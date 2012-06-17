@@ -3,7 +3,7 @@ ngx_redis_version = 0.3.6;
 nginx_version = 1.0.15;
 openresty_version = 1.0.15.7;
 ngx_upstream_keepalive_version = 0.7;
-redis_version = 2.4.10;
+redis_version = 2.4.14;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
 force = 0;
@@ -486,6 +486,7 @@ run-redis {
 
 redis {
     prog redis-server;
+    test 'redis-server -v|grep $redis_version';
     cwd /tmp;
     fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
     tarball redis-$redis_version.tar.gz;
