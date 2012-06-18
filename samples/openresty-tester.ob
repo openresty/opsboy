@@ -85,6 +85,11 @@ tr {
     dep tr-ngx_rds_csv;
     dep tr-ngx_form_input;
     dep tr-ngx_iconv;
+    dep tr-lua-resty-memcached;
+    dep tr-lua-resty-redis;
+    dep tr-lua-resty-mysql;
+    dep tr-lua-resty-string;
+    dep tr-lua-resty-upload;
 }
 
 trv {
@@ -126,6 +131,11 @@ tw {
     dep tw-ngx_rds_csv;
     dep tw-ngx_form_input;
     dep tw-ngx_iconv;
+    dep tw-lua-resty-memcached;
+    dep tw-lua-resty-redis;
+    dep tw-lua-resty-mysql;
+    dep tw-lua-resty-string;
+    dep tw-lua-resty-upload;
 }
 
 twv {

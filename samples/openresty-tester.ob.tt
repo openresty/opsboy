@@ -177,6 +177,9 @@ tr {
     [%- IF cpu_mods.$name; NEXT; END -%]
     dep tr-ngx_[% name %];
 [% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tr-lua-[% name %];
+[% END -%]
 }
 
 trv {
@@ -206,6 +209,9 @@ tw {
 [% FOREACH name IN mods -%]
     [%- IF cpu_mods.$name; NEXT; END -%]
     dep tw-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tw-lua-[% name %];
 [% END -%]
 }
 
