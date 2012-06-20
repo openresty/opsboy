@@ -33,11 +33,15 @@ my %white_list = (
     #ngx_postgres => [['w']],
 
     ngx_form_input => [
-        ['r', 'upload.t', 'TEST 1: big upload - '],
+        ['r', 'upload.t', 'TEST 1: big upload'],
+        ['r', 'upload.t', 'Looks like you planned 2 tests but ran 3'],
     ],
 
     ngx_memc => [
         ['v', 'exptime.t', 'TEST 1: set exptime - response_body_like'],
+        ['r', 'storage.t', 'client socket timed out - TEST 18: set and get too big values'],
+        ['w', 'storage.t', 'TEST 18: set and get too big values'],
+        ['r', 'storage.t', 'Looks like you planned 76 tests but ran 78.'],
     ],
 
     ngx_rds_json => [
@@ -272,8 +276,8 @@ while (<>) {
     } elsif ($rec && /\# Looks like you planned \d+ tests? but ran \d+\./) {
 
         $failure = {
-            name => '',
-            details => $&,
+            name => $&,
+            details => '',
         };
 
         push @{ $rec->{failures} }, $failure;
