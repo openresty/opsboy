@@ -39,9 +39,12 @@ my %white_list = (
 
     ngx_memc => [
         ['v', 'exptime.t', 'TEST 1: set exptime - response_body_like'],
-        ['r', 'storage.t', 'client socket timed out - TEST 18: set and get too big values'],
+        ['w', 'keepalive/storage.t', 'TEST 18: set and get too big values'],
+        ['r', 'keepalive/storage.t', 'TEST 18: set and get too big values'],
         ['w', 'storage.t', 'TEST 18: set and get too big values'],
+        ['r', 'storage.t', 'TEST 18: set and get too big values'],
         ['r', 'storage.t', 'Looks like you planned 76 tests but ran 78.'],
+        ['r', 'keepalive/storage.t', 'Looks like you planned 74 tests but ran 76.'],
     ],
 
     ngx_rds_json => [
@@ -87,12 +90,14 @@ my %white_list = (
     ],
 
     ngx_headers_more => [
-        ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module - '],
+        ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module'],
+        ['rv', 'input.t', 'Looks like you planned 112 tests but ran 114.'],
     ],
 
     ngx_echo => [
         ['r', 'echo-timer.t'],
         ['rv', 'request-body.t', 'TEST 1: big client body buffered into temp files'],
+        ['rv', 'request-body.t', 'Looks like you planned 4 tests but ran 6.'],
         ['v', 'echo-timer.t', 'TEST 1: timer without explicit reset - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 2: timer without explicit reset and sleep - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 3: timing accumulated sleeps - response_body_like - response is expected'],
