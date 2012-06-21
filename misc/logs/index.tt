@@ -61,7 +61,7 @@
         [%- ELSIF mode.comp_errors.size %]
         <a href="[% mode_link %]" class="fail" title="compilation failed, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
         [%- ELSE %]
-        <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.true_fails.size + mode.expected_fails.size %] failures total), [% mode.tests - mode.true_fails.size - mode.expected_fails.size %] pass, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
+        <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.true_fails.size + mode.expected_fails.size %] failures total), [% mode.tests ? mode.tests - mode.true_fails.size - mode.expected_fails.size : 0 %] pass, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
         [%- END -%]
     </td>
     [%- ELSE -%]

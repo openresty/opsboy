@@ -216,6 +216,15 @@ while (<>) {
         (my $ver = $1) =~ s/without pool/no pool/;
         $rec->{nginx_version} = $ver;
 
+    } elsif ($rec && m{^(nginx: \[(?:emerg|alert|error)\]) (.*)}) {
+
+        $failure = {
+            name => $1,
+            details => $2,
+        };
+
+        push @{ $rec->{failures} }, $failure;
+
     } elsif ($rec && m{^\./configure: error: (.+)}) {
         $rec->{config_error} = $1;
 
@@ -265,10 +274,10 @@ while (<>) {
             push @{ $rec->{failures} }, $failure;
         }
 
-    } elsif ($rec && /^Bailout called\./) {
+    } elsif ($rec && /^(Bailout called\.\s*)(.*)/) {
         $failure = {
-            name => '',
-            details => $_,
+            name => $1,
+            details => $2,
         };
 
         push @{ $rec->{failures} }, $failure;
