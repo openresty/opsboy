@@ -100,6 +100,11 @@ trv1 {
 
     dep trv-ngx_redis2;
     dep trv-ngx_lua;
+    dep trv-lua-resty-memcached;
+    dep trv-lua-resty-redis;
+    dep trv-lua-resty-mysql;
+    dep trv-lua-resty-string;
+    dep trv-lua-resty-upload;
 }
 
 trv2 {
@@ -146,6 +151,11 @@ twv1 {
 
     dep twv-ngx_redis2;
     dep twv-ngx_lua;
+    dep trv-lua-resty-memcached;
+    dep trv-lua-resty-redis;
+    dep trv-lua-resty-mysql;
+    dep trv-lua-resty-string;
+    dep trv-lua-resty-upload;
 }
 
 twv2 {

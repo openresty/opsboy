@@ -194,6 +194,9 @@ trv1 {
     dep trv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
+[% FOREACH name IN lualibs -%]
+    dep trv-lua-[% name %];
+[% END -%]
 }
 
 trv2 {
@@ -227,6 +230,9 @@ twv1 {
     dep twv-ngx_[% name %];
     [%- i = i + 1 -%]
 [% END %]
+[% FOREACH name IN lualibs -%]
+    dep trv-lua-[% name %];
+[% END -%]
 }
 
 twv2 {
