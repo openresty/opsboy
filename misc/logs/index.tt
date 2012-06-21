@@ -82,7 +82,9 @@
 <ul>
 <li><a href="#reports">Reports</a>
 <ul>
-[%- FOREACH arch_name IN ast.keys.sort -%]
+[%- arch_names = ast.keys.sort.reverse %]
+[%- nginx_vers_table = {} %]
+[%- FOREACH arch_name IN arch_names -%]
 <li>
     [%- IF arch_name == "anchor"; NEXT; END %]
     [%- arch = ast.$arch_name;
@@ -91,7 +93,9 @@
         [% arch_name | ucfirst | html %]
     </a>
     <ul>
-    [%- FOREACH nginx_ver IN arch.keys.sort -%]
+    [%- nginx_vers = arch.keys.sort.reverse %]
+    [%- nginx_vers_table.$arch_name = nginx_vers %]
+    [%- FOREACH nginx_ver IN nginx_vers -%]
         [%- IF nginx_ver == "anchor"; NEXT; END -%]
         [%- nginx = arch.$nginx_ver;
             nginx_anchor = nginx.anchor -%]
@@ -110,11 +114,11 @@
 <li><a href="#maintainer">Maintainer</a></li>
 </ul>
 <h2><a name="reports">Reports</a></h2>
-[% FOREACH arch_name IN ast.keys -%]
-    [%- IF nginx_ver == "anchor"; NEXT; END -%]
+[% FOREACH arch_name IN arch_names -%]
     [%- arch = ast.$arch_name -%]
 <h3><a name="[% arch.anchor %]">[% arch_name | ucfirst | html %]</a></h3>
-    [%- FOREACH nginx_ver IN arch.keys.sort -%]
+    [%- nginx_vers = nginx_vers_table.$arch_name %]
+    [%- FOREACH nginx_ver IN nginx_vers -%]
         [%- IF nginx_ver == "anchor"; NEXT; END;
             nginx = arch.$nginx_ver -%]
     <h4>
