@@ -72,7 +72,7 @@ if (!@goals) {
 my $sum = 0;
 my @new_goals;
 for my $goal (@goals) {
-    if ($goal =~ qr/$exclude/) {
+    if (defined $exclude && $goal =~ qr/$exclude/) {
         #warn "INFO: excluding goal $goal ...\n";
         next;
     }

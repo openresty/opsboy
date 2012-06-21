@@ -79,6 +79,33 @@ for my $lib (@ARGV) {
 
         push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib";
 
+    } elsif ($lib =~ /^t([a-z]*)$/) {
+        my $mode = $1;
+
+        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/ && $mode ne '') {
+            die "Unknown testing mode $mode in goal $lib\n";
+        }
+
+        for my $name (@mods) {
+            my $lib = "ngx_$name";
+
+            if ($cpu_mods{$name} && $mode =~ /[wr]/) {
+                next;
+            }
+
+            push @goals, "t$mode-$lib";
+        }
+
+        for my $name (@lualibs) {
+            my $lib = "lua-$name";
+
+            if ($cpu_lualibs{$name} && $mode =~ /[wr]/) {
+                next;
+            }
+
+            push @goals, "t$mode-$lib";
+        }
+
     } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
         my ($mode, $name) = ($1, $2);
         if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/ && $mode ne '') {
