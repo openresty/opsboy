@@ -10,8 +10,8 @@ use List::Util qw( sum );
 use Parallel::ForkManager;
 
 my %opts;
-getopts("a:t:rf", \%opts) or
-    die "Usage: $0 [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+getopts("a:t:e:rf", \%opts) or
+    die "Usage: $0 [-e exclude-pattern] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
@@ -22,6 +22,8 @@ my $Mins = $opts{t}
 my $run = $opts{r};
 
 my $force = $opts{f};
+
+my $exclude = $opts{e};
 
 my @goals;
 my @comps = @ARGV;
@@ -70,6 +72,11 @@ if (!@goals) {
 my $sum = 0;
 my @new_goals;
 for my $goal (@goals) {
+    if ($goal =~ qr/$exclude/) {
+        #warn "INFO: excluding goal $goal ...\n";
+        next;
+    }
+
     if (!defined $elapsed{$goal}) {
         warn "WARNING: elapsed time for $goal is not found.\n";
         $elapsed{$goal} = 60 * 10; # default to 10 min
