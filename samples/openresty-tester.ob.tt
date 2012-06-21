@@ -98,7 +98,7 @@ libev_version = 4.11;
 [% BLOCK build_lua_lib %]
     always;
     cwd ~/git/lua-[% name %];
-    env PATH '~/git/lua-[% name %]/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     [%- PROCESS nginx_test_config no_build=1 -%]
 
