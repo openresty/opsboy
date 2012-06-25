@@ -209,7 +209,7 @@ while (<>) {
             undef $rec;
         }
 
-    } elsif ($rec && /^commit ([0-9a-f]+)$/) {
+    } elsif ($rec && !defined $rec->{commit} && /^commit ([0-9a-f]+)$/) {
         $rec->{commit} = $1;
 
     } elsif ($rec && defined $rec->{commit} && !defined $rec->{commit_date}
