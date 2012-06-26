@@ -16,7 +16,11 @@ libev_version = 4.11;
     env MOCKEAGAIN '';
 
     env NGX_BUILD_CC gcc46;
+    [%- IF type.match("o") %]
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    [%- ELSE %]
     env NGX_BUILD_OPT -O1;
+    [%- END %]
     env NGX_BUILD_JOBS $jobs;
 
     [%- UNLESS name == "lua" %]
@@ -148,6 +152,12 @@ t {
 [% END -%]
 [% FOREACH name IN lualibs -%]
     dep t-lua-[% name %];
+[% END -%]
+}
+
+to {
+[% FOREACH name IN mods -%]
+    dep to-ngx_[% name %];
 [% END -%]
 }
 
@@ -673,7 +683,7 @@ cpan {
     dep cc;
 }
 
-[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv', 'l'] %]
+[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv', 'l', 'o'] %]
 [% FOREACH type = types %]
 
 t[% type %]-ngx_srcache {
@@ -805,6 +815,8 @@ t[% type %]-ngx_coolkit {
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
+
+[%- IF type == "o"; NEXT; END -%]
 
 [% FOREACH name IN lualibs -%]
 t[% type %]-lua-[% name %] {

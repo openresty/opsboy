@@ -41,6 +41,27 @@ t {
     dep t-lua-resty-upload;
 }
 
+to {
+    dep to-ngx_array_var;
+    dep to-ngx_redis2;
+    dep to-ngx_lua;
+    dep to-ngx_srcache;
+    dep to-ngx_memc;
+    dep to-ngx_set_misc;
+    dep to-ngx_xss;
+    dep to-ngx_drizzle;
+    dep to-ngx_rds_json;
+    dep to-ngx_echo;
+    dep to-ngx_postgres;
+    dep to-ngx_eval;
+    dep to-ngx_headers_more;
+    dep to-ngx_rds_csv;
+    dep to-ngx_encrypted_session;
+    dep to-ngx_form_input;
+    dep to-ngx_coolkit;
+    dep to-ngx_iconv;
+}
+
 tv {
     dep tv1 tv2;
 }
@@ -8538,6 +8559,636 @@ tl-lua-resty-upload {
     dep ngx_lua nginx-module-test lua-resty-upload;
 
     dep build-ngx_lua;
+}
+
+
+to-ngx_srcache {
+    always;
+    cwd ~/git/srcache-nginx-module;
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_srcache;
+
+    dep run-memcached run-redis run-mysql run-postgres;
+}
+
+
+to-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+to-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
+to-ngx_rds_json {
+    always;
+    cwd ~/git/rds-json-nginx-module;
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_json;
+
+    dep run-mysql run-postgres;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+to-ngx_rds_csv {
+    always;
+    cwd ~/git/rds-csv-nginx-module;
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_rds_csv;
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
+}
+
+to-ngx_drizzle {
+    always;
+    cwd ~/git/drizzle-nginx-module;
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_drizzle;
+
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+to-ngx_lua {
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    always;
+    cwd ~/git/lua-nginx-module;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_lua;
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+to-ngx_memc {
+    always;
+    cwd ~/git/memc-nginx-module;
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_memc;
+
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+to-ngx_redis2 {
+    always;
+    cwd ~/git/redis2-nginx-module;
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_redis2;
+
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+to-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
+}
+
+to-ngx_echo {
+    always;
+    cwd ~/git/echo-nginx-module;
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_echo;
+
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+to-ngx_eval {
+    always;
+    cwd ~/git/eval-nginx-module;
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_eval;
+
+    dep run-memcached ngx_echo ngx_memc;
+}
+
+to-ngx_form_input {
+    always;
+    cwd ~/git/form-input-nginx-module;
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_form_input;
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+to-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+to-ngx_postgres {
+    always;
+    cwd ~/git/postgres-nginx-module;
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_postgres;
+
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+to-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+to-ngx_iconv {
+    always;
+    cwd ~/git/iconv-nginx-module;
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_iconv;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+to-ngx_coolkit {
+    always;
+    cwd ~/git/coolkit-nginx-module;
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+
+    dep nginx-module-test ngx_coolkit;
+
+    dep ngx-coolkit-build-script;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
 
