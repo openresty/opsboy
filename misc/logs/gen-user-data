@@ -82,7 +82,7 @@ for my $lib (@ARGV) {
     } elsif ($lib =~ /^t([a-z]*)$/) {
         my $mode = $1;
 
-        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/ && $mode ne '') {
+        if ($mode !~ /^(?:[rwh]?v|[rwh]|[lo])$/ && $mode ne '') {
             die "Unknown testing mode $mode in goal $lib\n";
         }
 
@@ -96,19 +96,21 @@ for my $lib (@ARGV) {
             push @goals, "t$mode-$lib";
         }
 
-        for my $name (@lualibs) {
-            my $lib = "lua-$name";
+        if ($mode ne 'o') {
+            for my $name (@lualibs) {
+                my $lib = "lua-$name";
 
-            if ($cpu_lualibs{$name} && $mode =~ /[wr]/) {
-                next;
+                if ($cpu_lualibs{$name} && $mode =~ /[wr]/) {
+                    next;
+                }
+
+                push @goals, "t$mode-$lib";
             }
-
-            push @goals, "t$mode-$lib";
         }
 
     } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
         my ($mode, $name) = ($1, $2);
-        if ($mode !~ /^(?:[rwh]?v|[rwh]|l)$/ && $mode ne '') {
+        if ($mode !~ /^(?:[rwh]?v|[rwh]|[lo])$/ && $mode ne '') {
             die "Unknown testing mode $mode in goal $lib\n";
         }
 
@@ -116,6 +118,10 @@ for my $lib (@ARGV) {
             && !(any { "ngx_$_" eq $name } @mods))
         {
             die "Unknown component $name in user goal $lib\n";
+        }
+
+        if ($mode eq 'o' && any { "lua-$_" eq $name } @lualibs) {
+            die "The \"o\" testing mode could not work for $name.\n";
         }
 
         push @goals, $lib;
