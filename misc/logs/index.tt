@@ -155,8 +155,8 @@
             <th>Component</th>
             <th>[% PROCESS mockeagain %](W)</th>
             <th>[% PROCESS mockeagain %](W)<br/>[% PROCESS memcheck %]</th>
-            <th>HUP reload</th>
-            <th>HUP reload<br/>[% PROCESS memcheck %]</th>
+            <th><a href="http://search.cpan.org/perldoc?Test::Nginx::Socket#TEST_NGINX_USE_HUP" target="_blank">HUP reload</a></th>
+            <th><a href="http://search.cpan.org/perldoc?Test::Nginx::Socket#TEST_NGINX_USE_HUP" target="_blank">HUP reload</a><br/>[% PROCESS memcheck %]</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -177,7 +177,12 @@
     <table class="result">
         <tr>
             <th>Component</th>
-            <th>check leak</th>
+            <th>
+                <a href="http://search.cpan.org/perldoc?Test::Nginx::Socket#TEST_NGINX_CHECK_LEAK" target="_blank">
+                check leak
+                </a>
+            </th>
+            <th>gcc -O3<br/>-funsigned-char</th>
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -187,6 +192,7 @@
             [%- PROCESS gen_module_cell %]
 
             [%- PROCESS gen_result_cell key="l" %]
+            [%- PROCESS gen_result_cell key="o" %]
         </tr>
         [%- END -%]
     </table>
