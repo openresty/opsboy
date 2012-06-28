@@ -60,7 +60,7 @@ for my $lib (@ARGV) {
             }
         }
 
-        push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib";
+        push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib", "to-$lib";
 
     } elsif ($lib =~ /^lua-(.+)/) {
         my $name = $1;
