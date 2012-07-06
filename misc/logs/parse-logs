@@ -83,6 +83,9 @@ my %white_list = (
         ['h', '009-log.t', 'TEST 16: ngx.log() big data - pattern "(?-xism:ah{1970}b)" matches a line in error.log'],
         ['h', '030-uri-args.t', 'TEST 12: rewrite uri and args'],
         ['h', '030-uri-args.t', 'TEST 30: ngx.encode_args (boolean values, false)'],
+        ['h', '023-rewrite/socket-keepalive.t', 'TEST 11: sanity (uds) - pattern "lua socket keepalive: free connection pool for " should not match any line in error.log'],
+        ['h', '068-socket-keepalive.t', 'TEST 11: sanity (uds) - pattern "lua socket keepalive: free connection pool for " should not match any line in error.log'],
+        ['h', '005-exit.t', qr/\[alert\] .*? open socket .*? left in connect/],
     ],
 
     ngx_drizzle => [
