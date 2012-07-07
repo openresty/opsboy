@@ -94,7 +94,7 @@ my %white_list = (
 
     ngx_headers_more => [
         ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module'],
-        ['rv', 'input.t', 'Looks like you planned 112 tests but ran 114.'],
+        ['rv', 'input.t', qr/Looks like you planned \d+ tests but ran \d+\./],
     ],
 
     ngx_echo => [

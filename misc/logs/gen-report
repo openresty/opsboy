@@ -68,6 +68,10 @@ for my $jsonfile (@jsonfiles) {
     my $recs = $ast->{records};
     for my $rec (@$recs) {
         my $nginx_version = $rec->{nginx_version};
+        if ($nginx_version =~ /\b1\.0\.15\b/) {
+            next;
+        }
+
         my $nginx_group;
         if (!defined $arch_group->{$nginx_version}) {
             $nginx_group = {};
