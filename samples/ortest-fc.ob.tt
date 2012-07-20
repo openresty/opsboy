@@ -1,21 +1,19 @@
-jobs = 2;
+jobs = 8;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.1;
-openresty_version = 1.0.15.11;
+openresty_version = 1.2.1.9rc1;
 ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.14;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
 force = 0;
-ragel_version = 6.7;
-valgrind_version = 3.7.0;
 libev_version = 4.11;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_CC gcc;
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     [%- ELSE %]
@@ -306,11 +304,7 @@ ngx_memc {
 
 ragel {
     prog ragel;
-    cwd /tmp;
-    fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
-    tarball ragel-$ragel_version.tar.gz;
-    sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
-    dep cxx;
+    yum ragel;
 }
 
 cxx {
@@ -336,7 +330,7 @@ ngx_postgres {
 libpq {
     file /usr/lib64/libpq.so;
     file /usr/include/libpq-fe.h;
-    yum postgresql9-devel;
+    yum postgresql-devel;
 }
 
 ngx_drizzle {
@@ -443,7 +437,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc46 --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -587,8 +581,8 @@ axel {
 }
 
 cc {
-    prog gcc46;
-    yum gcc46;
+    prog gcc;
+    yum gcc;
     dep make;
 }
 
@@ -638,7 +632,7 @@ libev {
 
 parallel-forkmanager {
     test 'perl -MParallel::ForkManager -e1';
-    cpan Parallel::ForkManager;
+    yum perl-Parallel-ForkManager;
 }
 
 list-moreutils {
@@ -648,7 +642,7 @@ list-moreutils {
 
 test-longstring {
     test 'perl -MTest::LongString -e1';
-    cpan Test::LongString;
+    yum perl-Test-LongString;
 }
 
 time-hires {
@@ -739,7 +733,7 @@ t[% type %]-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -849,13 +843,8 @@ ngx-coolkit-build-script {
 }
 
 valgrind {
-    env PATH /opt/valgrind/bin:$PATH;
-    file /opt/valgrind/bin/valgrind;
-    cwd /tmp;
-    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
-    tarball valgrind-$valgrind_version.tar.bz2;
-    sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
-    dep cc;
+    file /usr/include/valgrind/valgrind.h;
+    yum valgrind valgrind-devel;
 }
 
 opsboy {

@@ -1,0 +1,886 @@
+jobs = 2;
+ngx_redis_version = 0.3.6;
+nginx_version = 1.2.1;
+openresty_version = 1.0.15.11;
+ngx_upstream_keepalive_version = 0.7;
+redis_version = 2.4.14;
+ngx_auth_request_version = 0.2;
+pcre_version = 8.30;
+force = 0;
+ragel_version = 6.7;
+valgrind_version = 3.7.0;
+libev_version = 4.11;
+
+[%- BLOCK nginx_test_config %]
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env NGX_BUILD_CC gcc46;
+    [%- IF type.match("o") %]
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    [%- ELSE %]
+    env NGX_BUILD_OPT -O1;
+    [%- END %]
+    env NGX_BUILD_JOBS $jobs;
+
+    [%- UNLESS name == "lua" %]
+    env LD_PRELOAD '';
+    [%- END -%]
+
+    [%- IF type.match("l") %]
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+    [%- ELSE %]
+    env TEST_NGINX_CHECK_LEAK '';
+    [%- END %]
+
+    [%- IF type.match("h") -%]
+        [%- IF type.match("v") -%]
+    env TEST_NGINX_SLEEP 0.4;
+        [%- ELSE %]
+    env TEST_NGINX_SLEEP 0.8;
+        [%- END %]
+    env TEST_NGINX_USE_HUP 1;
+    [%- ELSE %]
+    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_USE_HUP '';
+    [%- END %]
+
+    [%- IF type.match("v") -%]
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+    [%- ELSE -%]
+    env TEST_NGINX_USE_VALGRIND '';
+    [%- END %]
+
+    [%- IF type.match("r") -%]
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    [%- END -%]
+
+    [%- IF type.match("w") -%]
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    [%- END -%]
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    [%- UNLESS no_build -%]
+    [%- IF name == "lua" %]
+    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    [%- ELSE %]
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    [%- END %]
+    [%- END -%]
+
+    sh 'nginx -V';
+
+    [%- UNLESS no_test -%]
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+    [%- END -%]
+
+    [%- IF type.match("v") -%]
+    dep valgrind;
+    [%- END %]
+[% END -%]
+
+[% BLOCK build_lua_lib %]
+    always;
+    cwd ~/git/lua-[% name %];
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    [%- PROCESS nginx_test_config no_build=1 -%]
+
+    dep ngx_lua nginx-module-test lua-[% name %];
+[% END %]
+
+[% BLOCK build_nginx_module %]
+    always;
+    cwd ~/git/[% name %]-nginx-module;
+    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+
+    [%- PROCESS nginx_test_config no_build=0 %]
+
+    dep nginx-module-test [% "ngx_" _ name.replace("-", "_", "g") %];
+[% END -%]
+
+[%- mods = [
+    'array_var', 'redis2', 'lua',
+    'srcache', 'memc', 'set_misc', 'xss',
+    'drizzle', 'rds_json',  'echo',
+    'postgres', 'eval',
+    'headers_more', 'rds_csv',
+    'encrypted_session', 'form_input',
+    'coolkit', 'iconv',
+   ]
+-%]
+
+[%- lualibs = [
+        'resty-memcached', 'resty-redis',
+        'resty-mysql', 'resty-string',
+        'resty-upload',
+    ]
+%]
+
+[%- cpu_mods = {
+        array_var => 1,
+        xss => 1,
+        set_misc => 1,
+        coolkit => 1,
+        encrypted_session => 1,
+    }
+-%]
+
+t {
+[% FOREACH name IN mods -%]
+    dep t-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep t-lua-[% name %];
+[% END -%]
+}
+
+to {
+[% FOREACH name IN mods -%]
+    dep to-ngx_[% name %];
+[% END -%]
+}
+
+tv {
+    dep tv1 tv2;
+}
+
+tv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
+    dep tv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+tv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    dep tv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+tr {
+[% FOREACH name IN mods -%]
+    [%- IF cpu_mods.$name; NEXT; END -%]
+    dep tr-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tr-lua-[% name %];
+[% END -%]
+}
+
+trv {
+    dep trv1 trv2;
+}
+
+trv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
+    dep trv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+[% FOREACH name IN lualibs -%]
+    dep trv-lua-[% name %];
+[% END -%]
+}
+
+trv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
+    dep trv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+tw {
+[% FOREACH name IN mods -%]
+    [%- IF cpu_mods.$name; NEXT; END -%]
+    dep tw-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tw-lua-[% name %];
+[% END -%]
+}
+
+twv {
+    dep twv1 twv2;
+}
+
+twv1 {
+[% i = 0 -%]
+[% WHILE i < 3 -%]
+    [%- name = mods.$i %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
+    dep twv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+[% FOREACH name IN lualibs -%]
+    dep trv-lua-[% name %];
+[% END -%]
+}
+
+twv2 {
+[% WHILE i < mods.size -%]
+    [%- name = mods.$i %]
+    [%- IF cpu_mods.$name; i = i + 1; NEXT; END %]
+    dep twv-ngx_[% name %];
+    [%- i = i + 1 -%]
+[% END %]
+}
+
+th {
+[% FOREACH name IN mods -%]
+    dep th-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep th-lua-[% name %];
+[% END -%]
+}
+
+thv {
+[% FOREACH name IN mods -%]
+    dep thv-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep thv-lua-[% name %];
+[% END -%]
+}
+
+tl {
+[% FOREACH name IN mods -%]
+    dep tl-ngx_[% name %];
+[% END -%]
+[% FOREACH name IN lualibs -%]
+    dep tl-lua-[% name %];
+[% END -%]
+}
+
+etcproxy {
+    git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
+    dep erlang;
+}
+
+erlang {
+    prog erl erlc;
+    yum erlang;
+}
+
+ngx_srcache {
+    git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
+    dep ndk ngx_set_misc ngx_redis ngx_xss;
+    dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
+    dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
+    dep ngx_memc ngx_upstream_keepalive;
+}
+
+ngx_memc {
+    git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+    dep ragel;
+}
+
+ragel {
+    prog ragel;
+    cwd /tmp;
+    fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
+    tarball ragel-$ragel_version.tar.gz;
+    sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
+    dep cxx;
+}
+
+cxx {
+    prog g++;
+    yum gcc-c++;
+    dep make;
+}
+
+ngx_upstream_keepalive {
+    file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
+    cwd ~/work/nginx;
+    fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+    tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+}
+
+ngx_postgres {
+    git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
+    env LIBPQ_INC /usr/include;
+    env LIBPQ_LIB /usr/lib64;
+    dep libpq;
+}
+
+libpq {
+    file /usr/lib64/libpq.so;
+    file /usr/include/libpq-fe.h;
+    yum postgresql9-devel;
+}
+
+ngx_drizzle {
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    git git://github.com/chaoslawful/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
+    dep libdrizzle;
+}
+
+libdrizzle {
+    file /opt/drizzle/lib/libdrizzle.so;
+    file /opt/drizzle/include/libdrizzle-1.0/libdrizzle/drizzle.h;
+    cwd /tmp;
+    fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
+    tarball drizzle7-2011.07.21.tar.gz;
+    sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && sudo make install-libdrizzle-1.0';
+    dep cc;
+}
+
+ngx_rds_json {
+    git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+}
+
+ngx_rds_csv {
+    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
+}
+
+ngx_array_var {
+    git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    dep ndk;
+}
+
+ngx_encrypted_session {
+    git git://github.com/agentzh/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
+    dep ndk;
+}
+
+ngx_form_input {
+    git git://github.com/calio/form-input-nginx-module ~/git/form-input-nginx-module;
+    dep ndk;
+}
+
+ngx_xss {
+    git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+    dep ragel;
+}
+
+ngx_redis2 {
+    git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+    dep ragel;
+}
+
+ngx_eval {
+    git git://github.com/agentzh/nginx-eval-module.git ~/git/eval-nginx-module;
+}
+
+ngx_echo {
+    git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+}
+
+ngx_lua {
+    git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
+
+    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    dep luajit ndk;
+}
+
+pcrejit {
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    file /opt/pcrejit/lib/libpcre.so;
+    file /opt/pcrejit/include/pcre.h;
+
+    fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
+    tarball pcre-$pcre_version.tar.gz;
+    cwd /tmp;
+    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+}
+
+ngx_auth_request {
+    file ~/work/nginx/ngx_http_auth_request_module-$ngx_auth_request_version;
+    cwd ~/work/nginx;
+    fetch http://mdounin.ru/files/ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
+    tarball ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
+}
+
+ngx_coolkit {
+    git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
+}
+
+luajit {
+    dep ngx_openresty-debug;
+}
+
+ngx_openresty-debug {
+    test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
+    file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
+    file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
+    file /usr/local/openresty-debug/nginx/sbin/nginx;
+    cwd /tmp;
+    fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
+    tarball ngx_openresty-$openresty_version.tar.gz;
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc46 --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    dep libdrizzle openssl pcre valgrind;
+}
+
+[% FOREACH name IN lualibs %]
+lua-[% name %] {
+    git git://github.com/agentzh/lua-[% name %].git ~/git/lua-[% name %];
+    dep ngx_lua;
+}
+[% END %]
+
+ngx_headers_more {
+    git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
+}
+
+nginx-devel-utils {
+    git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
+    dep no-pool-nginx;
+    dep ngx_openresty;
+    dep patch;
+}
+
+ngx_set_misc {
+    git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+}
+
+ngx_iconv {
+    git git://github.com/calio/iconv-nginx-module ~/git/iconv-nginx-module;
+    dep ndk;
+}
+
+no-pool-nginx {
+    git git://github.com/shrimp/no-pool-nginx.git ~/git/no-pool-nginx;
+    dep patch;
+}
+
+ngx_openresty {
+    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+}
+
+git {
+    prog git;
+    yum git;
+}
+
+mockeagain {
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
+    sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
+    dep mockeagain-git;
+    dep cc;
+}
+
+mockeagain-git {
+    git git://github.com/agentzh/mockeagain.git ~/git/mockeagain;
+}
+
+run-redis {
+    running 'redis-server -';
+    sh '(echo "daemonize yes"; echo "loglevel warning")|redis-server -';
+    dep redis;
+}
+
+redis {
+    prog redis-server;
+    test 'redis-server -v|grep $redis_version';
+    cwd /tmp;
+    fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
+    tarball redis-$redis_version.tar.gz;
+    sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
+    dep cc;
+}
+
+run-postgres {
+    running 'postgres: writer process';
+    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
+    dep postgres;
+}
+
+postgres {
+    prog pg_ctl;
+    yum postgresql-server;
+
+    # vim /var/lib/pgsql9/data/pg_hba.conf
+    # psql> create user ngx_test with password 'ngx_test';
+    # psql> create database ngx_test;
+    # psql> grant all privileges on database ngx_test to ngx_test;
+}
+
+run-mysql {
+    running 'mysqld --';
+    sh 'sudo service mysqld start || (sleep 10 && sudo service mysqld start)';
+    dep mysql;
+}
+
+mysql {
+    prog mysqld_safe;
+    yum mysql mysql-server;
+
+    # mysql -u root
+    # mysql> create database ngx_test;
+    # mysql> create user 'ngx_test'@'localhost' identified by 'ngx_test';
+    # mysql> grant all privileges on ngx_test.* to 'ngx_test'@'localhost' with grant option;
+}
+
+run-memcached {
+    running 'memcached -d -p 11211';
+    sh 'memcached -d -p 11211 -l 127.0.0.1';
+    dep memcached;
+}
+
+memcached {
+    prog memcached;
+    yum memcached;
+}
+
+nginx-module-test {
+    always;
+    env PATH $PWD/work/nginx/sbin:$HOME/git/nginx-devel-utils:$PATH;
+    dep prove test-nginx no-pool-nginx nginx-devel-utils axel;
+    dep cc openssl pcre;
+}
+
+openssl {
+    file /usr/include/openssl/md5.h;
+
+    yum openssl-devel;
+}
+
+pcre {
+    prog pcre-config;
+    yum pcre-devel;
+}
+
+axel {
+    prog axel;
+    cwd /tmp;
+    fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
+    tarball axel-2.4.tar.bz2;
+    sh 'cd axel-2.4 && ./configure && make && sudo make install';
+    dep cc;
+}
+
+cc {
+    prog gcc46;
+    yum gcc46;
+    dep make;
+}
+
+make {
+    prog make;
+    yum make;
+}
+
+prove {
+    prog prove;
+    yum perl-Test-Harness;
+}
+
+test-nginx {
+    git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
+    dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
+    dep ab weighttp;
+}
+
+ab {
+    prog ab;
+    yum httpd-tools;
+}
+
+weighttp {
+    prog weighttp;
+    git https://github.com/lighttpd/weighttp ~/git/weighttp;
+    cwd ~/git/weighttp;
+    sh './waf configure && ./waf build && sudo ./waf install';
+    dep libev python;
+}
+
+python {
+    prog python;
+    yum python;
+}
+
+libev {
+    file /usr/local/lib/libev.so;
+    file /usr/local/include/ev.h;
+    cwd /tmp;
+    fetch http://dist.schmorp.de/libev/libev-$libev_version.tar.gz;
+    tarball libev-$libev_version.tar.gz;
+    sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
+    dep cxx cc;
+}
+
+parallel-forkmanager {
+    test 'perl -MParallel::ForkManager -e1';
+    cpan Parallel::ForkManager;
+}
+
+list-moreutils {
+    test 'perl -MList::MoreUtils -e1';
+    yum perl-List-MoreUtils;
+}
+
+test-longstring {
+    test 'perl -MTest::LongString -e1';
+    cpan Test::LongString;
+}
+
+time-hires {
+    test 'perl -MTime::HiRes -e1';
+    yum perl-Time-HiRes;
+}
+
+test-base {
+    test 'perl -e "require(q{Test/Base.pm});"';
+    yum perl-Test-Base;
+}
+
+patch {
+    prog patch;
+    yum patch;
+}
+
+ndk {
+    git git://github.com/simpl/ngx_devel_kit.git ~/git/ndk-nginx-module;
+}
+
+ngx_redis {
+    file ~/work/nginx/ngx_http_redis-$ngx_redis_version;
+    cwd ~/work/nginx;
+    fetch http://people.freebsd.org/~osa/ngx_http_redis-$ngx_redis_version.tar.gz;
+    tarball ngx_http_redis-$ngx_redis_version.tar.gz;
+}
+
+cpan {
+    prog cpan;
+    yum perl-CPAN;
+    dep cc;
+}
+
+[% types = ['', 'v', 'r', 'rv', 'w', 'wv', 'h', 'hv', 'l', 'o'] %]
+[% FOREACH type = types %]
+
+t[% type %]-ngx_srcache {
+    [%- PROCESS build_nginx_module name="srcache"  type=type -%]
+
+    dep run-memcached run-redis run-mysql run-postgres;
+}
+
+
+t[% type %]-ngx_set_misc {
+    [%- PROCESS build_nginx_module name="set-misc" -%]
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+t[% type %]-ngx_headers_more {
+    [%- PROCESS build_nginx_module name="headers-more" -%]
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
+t[% type %]-ngx_rds_json {
+    [%- PROCESS build_nginx_module name="rds-json" -%]
+
+    dep run-mysql run-postgres;
+    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+}
+
+t[% type %]-ngx_rds_csv {
+    [%- PROCESS build_nginx_module name="rds-csv" -%]
+
+    dep run-mysql run-postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
+    dep ngx_drizzle ngx_form_input ngx_postgres;
+}
+
+t[% type %]-ngx_drizzle {
+    [%- PROCESS build_nginx_module name="drizzle" -%]
+
+    dep run-mysql;
+    dep ngx_lua ngx_echo ngx_rds_json;
+    dep ngx_headers_more ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_lua {
+
+    [%- IF NOT type.match("[wr]") -%]
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
+    [%- END -%]
+
+    [%- PROCESS build_nginx_module name="lua" -%]
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
+    dep ngx_rds_json ngx_coolkit;
+}
+
+t[% type %]-ngx_memc {
+    [%- PROCESS build_nginx_module name="memc" -%]
+
+    dep run-memcached;
+    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+}
+
+t[% type %]-ngx_redis2 {
+    [%- PROCESS build_nginx_module name="redis2" -%]
+
+    dep run-redis;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+}
+
+t[% type %]-ngx_xss {
+    [%- PROCESS build_nginx_module name="xss" -%]
+
+    dep ngx_echo ndk ngx_lua;
+}
+
+t[% type %]-ngx_echo {
+    [%- PROCESS build_nginx_module name="echo" -%]
+
+    dep ndk ngx_set_misc ngx_eval ngx_xss;
+    dep ngx_rds_json ngx_headers_more ngx_lua;
+}
+
+t[% type %]-ngx_eval {
+    [%- PROCESS build_nginx_module name="eval" -%]
+
+    dep run-memcached ngx_echo ngx_memc;
+}
+
+t[% type %]-ngx_form_input {
+    [%- PROCESS build_nginx_module name="form-input" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_array_var;
+}
+
+t[% type %]-ngx_array_var {
+    [%- PROCESS build_nginx_module name="array-var" -%]
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_postgres {
+    [%- PROCESS build_nginx_module name="postgres" -%]
+
+    dep ngx-postgres-build-script;
+    dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
+    dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
+    dep ngx_auth_request run-postgres;
+}
+
+t[% type %]-ngx_encrypted_session {
+    [%- PROCESS build_nginx_module name="encrypted-session" -%]
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_iconv {
+    [%- PROCESS build_nginx_module name="iconv" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+t[% type %]-ngx_coolkit {
+    [%- PROCESS build_nginx_module name="coolkit" -%]
+
+    dep ngx-coolkit-build-script;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+[%- IF type == "o"; NEXT; END -%]
+
+[% FOREACH name IN lualibs -%]
+t[% type %]-lua-[% name %] {
+    [%- PROCESS build_lua_lib name=name -%]
+
+    [%- IF name == "resty-mysql" %]
+    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    [%- END -%]
+
+    dep build-ngx_lua;
+}
+[% END -%]
+
+[%- END %]
+
+ngx-postgres-build-script {
+    file ~/git/postgres-nginx-module/util/build.sh;
+    test 'test -x ~/git/postgres-nginx-module/util/build.sh';
+    cwd ~/git/postgres-nginx-module/util;
+    fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
+    sh 'mv ngx-postgres-build.sh build.sh && chmod +x build.sh';
+}
+
+ngx-coolkit-build-script {
+    file ~/git/coolkit-nginx-module/util/build.sh;
+    test 'test -x ~/git/coolkit-nginx-module/util/build.sh';
+    cwd ~/git/coolkit-nginx-module/util;
+    fetch 'http://agentzh.org/misc/nginx/ngx-coolkit-build.sh';
+    sh 'mv ngx-coolkit-build.sh build.sh && chmod +x build.sh';
+}
+
+valgrind {
+    env PATH /opt/valgrind/bin:$PATH;
+    file /opt/valgrind/bin/valgrind;
+    cwd /tmp;
+    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
+    tarball valgrind-$valgrind_version.tar.bz2;
+    sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
+    dep cc;
+}
+
+opsboy {
+    git git://github.com/agentzh/opsboy.git ~/git/opsboy;
+    dep cc parse-recdescent tt2;
+}
+
+tt2 {
+    test 'perl -MTemplate -e1';
+    yum perl-Template-Toolkit;
+}
+
+parse-recdescent {
+    test 'perl -MParse::RecDescent -e1';
+    yum perl-Parse-RecDescent;
+}
+
+[% type="" %]
+build-ngx_lua {
+    [%- PROCESS build_nginx_module name="lua" no_test=1 -%]
+
+    dep run-memcached run-redis run-mysql mockeagain;
+    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep ngx_echo ngx_memc ngx_headers_more;
+    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_rds_json ngx_coolkit;
+}
+

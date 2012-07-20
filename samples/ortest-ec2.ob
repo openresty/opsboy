@@ -941,7 +941,7 @@ t-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -1742,7 +1742,7 @@ tv-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -2603,7 +2603,7 @@ tr-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -3542,7 +3542,7 @@ trv-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -4506,7 +4506,7 @@ tw-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -5468,7 +5468,7 @@ twv-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -6399,7 +6399,7 @@ th-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -7193,7 +7193,7 @@ thv-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -8003,7 +8003,7 @@ tl-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -8806,7 +8806,7 @@ to-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
