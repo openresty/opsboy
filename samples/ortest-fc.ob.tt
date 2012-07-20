@@ -34,13 +34,13 @@ libev_version = 4.11;
 
     [%- IF type.match("h") -%]
         [%- IF type.match("v") -%]
-    env TEST_NGINX_SLEEP 0.4;
+    env TEST_NGINX_SLEEP 0.05;
         [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.8;
+    env TEST_NGINX_SLEEP 0.05;
         [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
-    env TEST_NGINX_SLEEP '';
+    env TEST_NGINX_SLEEP 0.005;
     env TEST_NGINX_USE_HUP '';
     [%- END %]
 
@@ -512,7 +512,7 @@ redis {
 
 run-postgres {
     running 'postgres: writer process';
-    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
+    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo postgresql-setup initdb';
     dep postgres;
 }
 
