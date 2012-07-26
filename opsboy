@@ -174,8 +174,8 @@ print $out Data::Dumper->Dump([\%entities], ['entities']);
 print $out "\nmain();\n";
 close $out;
 
-chmod 0700, $outfile or
-    die "failed to chmod 0700 $outfile: $!\n";
+chmod 0755, $outfile or
+    die "failed to chmod 0755 $outfile: $!\n";
 
 __DATA__
 #!/usr/bin/env perl
