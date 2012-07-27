@@ -10401,7 +10401,13 @@ build-ngx_lua {
 }
 
 systemtap {
-    dep stap dtrace kernel-debuginfo;
+    dep stap dtrace kernel-debuginfo staprun;
+}
+
+staprun {
+    prog /usr/bin/staprun;
+    yum systemtap-runtime;
+    sh 'sudo chmod a+x /usr/bin/staprun';
 }
 
 kernel-debuginfo {
