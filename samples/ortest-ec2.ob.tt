@@ -894,7 +894,17 @@ build-ngx_lua {
 }
 
 systemtap {
-    dep stap dtrace kernel-debuginfo staprun;
+    dep stap dtrace kernel-debuginfo staprun stapusr-grp stapdev-grp;
+}
+
+stapusr-grp {
+    test 'groups `whoami`|grep stapusr > /dev/null';
+    sh 'sudo usermod -a -G stapusr `whoami`';
+}
+
+stapdev-grp {
+    test 'groups `whoami`|grep stapdev > /dev/null';
+    sh 'sudo usermod -a -G stapdev `whoami`';
 }
 
 staprun {
