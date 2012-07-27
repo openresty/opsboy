@@ -728,6 +728,8 @@ t-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_srcache;
 
@@ -766,6 +768,8 @@ t-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -802,6 +806,8 @@ t-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -840,6 +846,8 @@ t-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -877,6 +885,8 @@ t-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -917,6 +927,8 @@ t-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -955,6 +967,8 @@ t-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -997,6 +1011,8 @@ t-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -1034,6 +1050,8 @@ t-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -1073,6 +1091,8 @@ t-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -1109,6 +1129,8 @@ t-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -1148,6 +1170,8 @@ t-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -1184,6 +1208,8 @@ t-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -1222,6 +1248,8 @@ t-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -1258,6 +1286,8 @@ t-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -1299,6 +1329,8 @@ t-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -1335,6 +1367,8 @@ t-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -1373,6 +1407,8 @@ t-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -1410,6 +1446,8 @@ t-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -1444,6 +1482,8 @@ t-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -1477,6 +1517,8 @@ t-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -1513,6 +1555,8 @@ t-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -1546,6 +1590,8 @@ t-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -1585,6 +1631,8 @@ tv-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -1626,6 +1674,8 @@ tv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -1664,6 +1714,8 @@ tv-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -1704,6 +1756,8 @@ tv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -1743,6 +1797,8 @@ tv-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -1785,6 +1841,8 @@ tv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -1825,6 +1883,8 @@ tv-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -1869,6 +1929,8 @@ tv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -1908,6 +1970,8 @@ tv-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -1949,6 +2013,8 @@ tv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -1987,6 +2053,8 @@ tv-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -2028,6 +2096,8 @@ tv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -2066,6 +2136,8 @@ tv-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -2106,6 +2178,8 @@ tv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -2144,6 +2218,8 @@ tv-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -2187,6 +2263,8 @@ tv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -2225,6 +2303,8 @@ tv-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -2265,6 +2345,8 @@ tv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -2304,6 +2386,8 @@ tv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -2340,6 +2424,8 @@ tv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -2375,6 +2461,8 @@ tv-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -2413,6 +2501,8 @@ tv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -2448,6 +2538,8 @@ tv-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -2491,6 +2583,8 @@ tr-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -2536,6 +2630,8 @@ tr-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -2578,6 +2674,8 @@ tr-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -2622,6 +2720,8 @@ tr-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -2665,6 +2765,8 @@ tr-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -2711,6 +2813,8 @@ tr-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -2755,6 +2859,8 @@ tr-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -2803,6 +2909,8 @@ tr-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -2846,6 +2954,8 @@ tr-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -2891,6 +3001,8 @@ tr-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -2933,6 +3045,8 @@ tr-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -2978,6 +3092,8 @@ tr-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -3020,6 +3136,8 @@ tr-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -3064,6 +3182,8 @@ tr-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -3106,6 +3226,8 @@ tr-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -3153,6 +3275,8 @@ tr-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -3195,6 +3319,8 @@ tr-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -3239,6 +3365,8 @@ tr-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -3282,6 +3410,8 @@ tr-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -3322,6 +3452,8 @@ tr-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -3361,6 +3493,8 @@ tr-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -3403,6 +3537,8 @@ tr-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -3442,6 +3578,8 @@ tr-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -3487,6 +3625,8 @@ trv-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -3534,6 +3674,8 @@ trv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -3578,6 +3720,8 @@ trv-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -3624,6 +3768,8 @@ trv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -3669,6 +3815,8 @@ trv-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -3717,6 +3865,8 @@ trv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -3763,6 +3913,8 @@ trv-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -3813,6 +3965,8 @@ trv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -3858,6 +4012,8 @@ trv-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -3905,6 +4061,8 @@ trv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -3949,6 +4107,8 @@ trv-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -3996,6 +4156,8 @@ trv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -4040,6 +4202,8 @@ trv-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -4086,6 +4250,8 @@ trv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -4130,6 +4296,8 @@ trv-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -4179,6 +4347,8 @@ trv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -4223,6 +4393,8 @@ trv-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -4269,6 +4441,8 @@ trv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -4314,6 +4488,8 @@ trv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -4356,6 +4532,8 @@ trv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -4397,6 +4575,8 @@ trv-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -4441,6 +4621,8 @@ trv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -4482,6 +4664,8 @@ trv-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -4526,6 +4710,8 @@ tw-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -4572,6 +4758,8 @@ tw-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -4615,6 +4803,8 @@ tw-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -4660,6 +4850,8 @@ tw-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -4704,6 +4896,8 @@ tw-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -4751,6 +4945,8 @@ tw-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -4796,6 +4992,8 @@ tw-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -4845,6 +5043,8 @@ tw-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -4889,6 +5089,8 @@ tw-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -4935,6 +5137,8 @@ tw-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -4978,6 +5182,8 @@ tw-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -5024,6 +5230,8 @@ tw-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -5067,6 +5275,8 @@ tw-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -5112,6 +5322,8 @@ tw-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -5155,6 +5367,8 @@ tw-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -5203,6 +5417,8 @@ tw-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -5246,6 +5462,8 @@ tw-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -5291,6 +5509,8 @@ tw-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -5335,6 +5555,8 @@ tw-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -5376,6 +5598,8 @@ tw-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -5416,6 +5640,8 @@ tw-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -5459,6 +5685,8 @@ tw-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -5499,6 +5727,8 @@ tw-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -5545,6 +5775,8 @@ twv-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -5593,6 +5825,8 @@ twv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -5638,6 +5872,8 @@ twv-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -5685,6 +5921,8 @@ twv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -5731,6 +5969,8 @@ twv-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -5780,6 +6020,8 @@ twv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -5827,6 +6069,8 @@ twv-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -5878,6 +6122,8 @@ twv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -5924,6 +6170,8 @@ twv-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -5972,6 +6220,8 @@ twv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -6017,6 +6267,8 @@ twv-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -6065,6 +6317,8 @@ twv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -6110,6 +6364,8 @@ twv-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -6157,6 +6413,8 @@ twv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -6202,6 +6460,8 @@ twv-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -6252,6 +6512,8 @@ twv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -6297,6 +6559,8 @@ twv-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -6344,6 +6608,8 @@ twv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -6390,6 +6656,8 @@ twv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -6433,6 +6701,8 @@ twv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -6475,6 +6745,8 @@ twv-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -6520,6 +6792,8 @@ twv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -6563,6 +6837,8 @@ twv-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-upload;
 
     dep build-ngx_lua;
@@ -6599,6 +6875,8 @@ th-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -6638,6 +6916,8 @@ th-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -6674,6 +6954,8 @@ th-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -6712,6 +6994,8 @@ th-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -6749,6 +7033,8 @@ th-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -6789,6 +7075,8 @@ th-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -6827,6 +7115,8 @@ th-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -6869,6 +7159,8 @@ th-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -6906,6 +7198,8 @@ th-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -6945,6 +7239,8 @@ th-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -6981,6 +7277,8 @@ th-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -7020,6 +7318,8 @@ th-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -7056,6 +7356,8 @@ th-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -7094,6 +7396,8 @@ th-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -7130,6 +7434,8 @@ th-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -7171,6 +7477,8 @@ th-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -7207,6 +7515,8 @@ th-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -7245,6 +7555,8 @@ th-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -7282,6 +7594,8 @@ th-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -7316,6 +7630,8 @@ th-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -7349,6 +7665,8 @@ th-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -7385,6 +7703,8 @@ th-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -7418,6 +7738,8 @@ th-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -7456,6 +7778,8 @@ thv-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -7496,6 +7820,8 @@ thv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -7533,6 +7859,8 @@ thv-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -7572,6 +7900,8 @@ thv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -7610,6 +7940,8 @@ thv-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -7651,6 +7983,8 @@ thv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -7690,6 +8024,8 @@ thv-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -7733,6 +8069,8 @@ thv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -7771,6 +8109,8 @@ thv-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -7811,6 +8151,8 @@ thv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -7848,6 +8190,8 @@ thv-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -7888,6 +8232,8 @@ thv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -7925,6 +8271,8 @@ thv-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -7964,6 +8312,8 @@ thv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -8001,6 +8351,8 @@ thv-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -8043,6 +8395,8 @@ thv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -8080,6 +8434,8 @@ thv-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -8119,6 +8475,8 @@ thv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -8157,6 +8515,8 @@ thv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -8192,6 +8552,8 @@ thv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -8226,6 +8588,8 @@ thv-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -8263,6 +8627,8 @@ thv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -8297,6 +8663,8 @@ thv-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -8335,6 +8703,8 @@ tl-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -8375,6 +8745,8 @@ tl-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -8412,6 +8784,8 @@ tl-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -8451,6 +8825,8 @@ tl-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -8489,6 +8865,8 @@ tl-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -8530,6 +8908,8 @@ tl-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -8569,6 +8949,8 @@ tl-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -8612,6 +8994,8 @@ tl-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -8650,6 +9034,8 @@ tl-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -8690,6 +9076,8 @@ tl-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -8727,6 +9115,8 @@ tl-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -8767,6 +9157,8 @@ tl-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -8804,6 +9196,8 @@ tl-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -8843,6 +9237,8 @@ tl-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -8880,6 +9276,8 @@ tl-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -8922,6 +9320,8 @@ tl-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -8959,6 +9359,8 @@ tl-ngx_iconv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_iconv;
@@ -8998,6 +9400,8 @@ tl-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_coolkit;
 
@@ -9036,6 +9440,8 @@ tl-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
     dep build-ngx_lua;
@@ -9071,6 +9477,8 @@ tl-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-redis;
 
     dep build-ngx_lua;
@@ -9105,6 +9513,8 @@ tl-lua-resty-mysql {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
@@ -9142,6 +9552,8 @@ tl-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
     dep ngx_lua nginx-module-test lua-resty-string;
 
     dep build-ngx_lua;
@@ -9176,6 +9588,8 @@ tl-lua-resty-upload {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
@@ -9213,6 +9627,8 @@ to-ngx_srcache {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_srcache;
@@ -9252,6 +9668,8 @@ to-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_set_misc;
 
@@ -9288,6 +9706,8 @@ to-ngx_headers_more {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_headers_more;
@@ -9326,6 +9746,8 @@ to-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_rds_json;
 
@@ -9363,6 +9785,8 @@ to-ngx_rds_csv {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_rds_csv;
@@ -9403,6 +9827,8 @@ to-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_drizzle;
 
@@ -9441,6 +9867,8 @@ to-ngx_lua {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_lua;
@@ -9483,6 +9911,8 @@ to-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_memc;
 
@@ -9520,6 +9950,8 @@ to-ngx_redis2 {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_redis2;
@@ -9559,6 +9991,8 @@ to-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_xss;
 
@@ -9595,6 +10029,8 @@ to-ngx_echo {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_echo;
@@ -9634,6 +10070,8 @@ to-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_eval;
 
@@ -9670,6 +10108,8 @@ to-ngx_form_input {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_form_input;
@@ -9708,6 +10148,8 @@ to-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_array_var;
 
@@ -9744,6 +10186,8 @@ to-ngx_postgres {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_postgres;
@@ -9785,6 +10229,8 @@ to-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_encrypted_session;
 
@@ -9822,6 +10268,8 @@ to-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_iconv;
 
@@ -9858,6 +10306,8 @@ to-ngx_coolkit {
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
 
 
     dep nginx-module-test ngx_coolkit;
@@ -9938,6 +10388,8 @@ build-ngx_lua {
     sh 'nginx -V';
 
 
+    dep systemtap;
+
 
     dep nginx-module-test ngx_lua;
 
@@ -9946,5 +10398,19 @@ build-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+systemtap {
+    dep stap dtrace;
+}
+
+stap {
+    prog stap;
+    yum systemtap;
+}
+
+dtrace {
+    prog dtrace;
+    yum systemtap-sdt-devel;
 }
 

@@ -104,6 +104,8 @@ libev_version = 4.11;
     [%- IF type.match("v") -%]
     dep valgrind;
     [%- END %]
+
+    dep systemtap;
 [% END -%]
 
 [% BLOCK build_lua_lib %]
@@ -889,5 +891,19 @@ build-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+systemtap {
+    dep stap dtrace;
+}
+
+stap {
+    prog stap;
+    yum systemtap;
+}
+
+dtrace {
+    prog dtrace;
+    yum systemtap-sdt-devel;
 }
 
