@@ -11,7 +11,8 @@ pull:
 	./sync
 
 gen: parse gen-report
-	rm html/*.*
+	-mkdir -p html
+	-rm html/*.*
 	./gen-report ortest
 	mkdir -p $(dirname)
 	cp main.css html/

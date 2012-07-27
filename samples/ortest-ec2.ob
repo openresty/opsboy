@@ -705,9 +705,12 @@ t-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -740,9 +743,12 @@ t-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -774,9 +780,12 @@ t-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -808,9 +817,12 @@ t-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -843,9 +855,12 @@ t-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -879,9 +894,12 @@ t-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -916,9 +934,12 @@ t-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -953,9 +974,12 @@ t-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -988,9 +1012,12 @@ t-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1023,9 +1050,12 @@ t-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1057,9 +1087,12 @@ t-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1092,9 +1125,12 @@ t-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1126,9 +1162,12 @@ t-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1160,9 +1199,12 @@ t-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1194,9 +1236,12 @@ t-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1231,9 +1276,12 @@ t-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1265,9 +1313,12 @@ t-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1299,9 +1350,12 @@ t-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1334,9 +1388,12 @@ t-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1365,9 +1422,12 @@ t-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1396,9 +1456,12 @@ t-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1428,9 +1491,12 @@ t-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1459,9 +1525,12 @@ t-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1492,9 +1561,12 @@ tv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1529,9 +1601,12 @@ tv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1565,9 +1640,12 @@ tv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1601,9 +1679,12 @@ tv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1638,9 +1719,12 @@ tv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1676,9 +1760,12 @@ tv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1715,9 +1802,12 @@ tv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -1754,9 +1844,12 @@ tv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1791,9 +1884,12 @@ tv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1828,9 +1924,12 @@ tv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1864,9 +1963,12 @@ tv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1901,9 +2003,12 @@ tv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1937,9 +2042,12 @@ tv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -1973,9 +2081,12 @@ tv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2009,9 +2120,12 @@ tv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2048,9 +2162,12 @@ tv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2084,9 +2201,12 @@ tv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2120,9 +2240,12 @@ tv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2157,9 +2280,12 @@ tv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2190,9 +2316,12 @@ tv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2223,9 +2352,12 @@ tv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2257,9 +2389,12 @@ tv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2290,9 +2425,12 @@ tv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2325,9 +2463,12 @@ tr-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2366,9 +2507,12 @@ tr-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2406,9 +2550,12 @@ tr-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2446,9 +2593,12 @@ tr-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2487,9 +2637,12 @@ tr-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2529,9 +2682,12 @@ tr-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2572,9 +2728,12 @@ tr-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -2615,9 +2774,12 @@ tr-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2656,9 +2818,12 @@ tr-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2697,9 +2862,12 @@ tr-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2737,9 +2905,12 @@ tr-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2778,9 +2949,12 @@ tr-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2818,9 +2992,12 @@ tr-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2858,9 +3035,12 @@ tr-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2898,9 +3078,12 @@ tr-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2941,9 +3124,12 @@ tr-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -2981,9 +3167,12 @@ tr-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3021,9 +3210,12 @@ tr-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3062,9 +3254,12 @@ tr-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3099,9 +3294,12 @@ tr-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3136,9 +3334,12 @@ tr-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3174,9 +3375,12 @@ tr-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3211,9 +3415,12 @@ tr-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3250,9 +3457,12 @@ trv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3293,9 +3503,12 @@ trv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3335,9 +3548,12 @@ trv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3377,9 +3593,12 @@ trv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3420,9 +3639,12 @@ trv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3464,9 +3686,12 @@ trv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3509,9 +3734,12 @@ trv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -3554,9 +3782,12 @@ trv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3597,9 +3828,12 @@ trv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3640,9 +3874,12 @@ trv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3682,9 +3919,12 @@ trv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3725,9 +3965,12 @@ trv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3767,9 +4010,12 @@ trv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3809,9 +4055,12 @@ trv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3851,9 +4100,12 @@ trv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3896,9 +4148,12 @@ trv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3938,9 +4193,12 @@ trv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -3980,9 +4238,12 @@ trv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4023,9 +4284,12 @@ trv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4062,9 +4326,12 @@ trv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4101,9 +4368,12 @@ trv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4141,9 +4411,12 @@ trv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4180,9 +4453,12 @@ trv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4221,9 +4497,12 @@ tw-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4263,9 +4542,12 @@ tw-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4304,9 +4586,12 @@ tw-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4345,9 +4630,12 @@ tw-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4387,9 +4675,12 @@ tw-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4430,9 +4721,12 @@ tw-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4474,9 +4768,12 @@ tw-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -4518,9 +4815,12 @@ tw-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4560,9 +4860,12 @@ tw-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4602,9 +4905,12 @@ tw-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4643,9 +4949,12 @@ tw-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4685,9 +4994,12 @@ tw-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4726,9 +5038,12 @@ tw-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4767,9 +5082,12 @@ tw-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4808,9 +5126,12 @@ tw-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4852,9 +5173,12 @@ tw-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4893,9 +5217,12 @@ tw-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4934,9 +5261,12 @@ tw-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -4976,9 +5306,12 @@ tw-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5014,9 +5347,12 @@ tw-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5052,9 +5388,12 @@ tw-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5091,9 +5430,12 @@ tw-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5129,9 +5471,12 @@ tw-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5169,9 +5514,12 @@ twv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5213,9 +5561,12 @@ twv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5256,9 +5607,12 @@ twv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5299,9 +5653,12 @@ twv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5343,9 +5700,12 @@ twv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5388,9 +5748,12 @@ twv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5434,9 +5797,12 @@ twv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -5480,9 +5846,12 @@ twv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5524,9 +5893,12 @@ twv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5568,9 +5940,12 @@ twv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5611,9 +5986,12 @@ twv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5655,9 +6033,12 @@ twv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5698,9 +6079,12 @@ twv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5741,9 +6125,12 @@ twv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5784,9 +6171,12 @@ twv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5830,9 +6220,12 @@ twv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5873,9 +6266,12 @@ twv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5916,9 +6312,12 @@ twv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -5960,9 +6359,12 @@ twv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6000,9 +6402,12 @@ twv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6040,9 +6445,12 @@ twv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6081,9 +6489,12 @@ twv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6121,9 +6532,12 @@ twv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6163,9 +6577,12 @@ th-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6198,9 +6615,12 @@ th-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6232,9 +6652,12 @@ th-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6266,9 +6689,12 @@ th-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6301,9 +6727,12 @@ th-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6337,9 +6766,12 @@ th-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6374,9 +6806,12 @@ th-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -6411,9 +6846,12 @@ th-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6446,9 +6884,12 @@ th-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6481,9 +6922,12 @@ th-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6515,9 +6959,12 @@ th-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6550,9 +6997,12 @@ th-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6584,9 +7034,12 @@ th-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6618,9 +7071,12 @@ th-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6652,9 +7108,12 @@ th-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6689,9 +7148,12 @@ th-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6723,9 +7185,12 @@ th-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6757,9 +7222,12 @@ th-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6792,9 +7260,12 @@ th-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6823,9 +7294,12 @@ th-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6854,9 +7328,12 @@ th-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6886,9 +7363,12 @@ th-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6917,9 +7397,12 @@ th-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6950,9 +7433,12 @@ thv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -6986,9 +7472,12 @@ thv-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7021,9 +7510,12 @@ thv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7056,9 +7548,12 @@ thv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7092,9 +7587,12 @@ thv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7129,9 +7627,12 @@ thv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7167,9 +7668,12 @@ thv-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_SLEEP 0.4;
@@ -7205,9 +7709,12 @@ thv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7241,9 +7748,12 @@ thv-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7277,9 +7787,12 @@ thv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7312,9 +7825,12 @@ thv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7348,9 +7864,12 @@ thv-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7383,9 +7902,12 @@ thv-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7418,9 +7940,12 @@ thv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7453,9 +7978,12 @@ thv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7491,9 +8019,12 @@ thv-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7526,9 +8057,12 @@ thv-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7561,9 +8095,12 @@ thv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7597,9 +8134,12 @@ thv-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7629,9 +8169,12 @@ thv-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7661,9 +8204,12 @@ thv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7694,9 +8240,12 @@ thv-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7726,9 +8275,12 @@ thv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -7760,9 +8312,12 @@ tl-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7796,9 +8351,12 @@ tl-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7831,9 +8389,12 @@ tl-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7866,9 +8427,12 @@ tl-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7902,9 +8466,12 @@ tl-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7939,9 +8506,12 @@ tl-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -7977,9 +8547,12 @@ tl-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
@@ -8015,9 +8588,12 @@ tl-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8051,9 +8627,12 @@ tl-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8087,9 +8666,12 @@ tl-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8122,9 +8704,12 @@ tl-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8158,9 +8743,12 @@ tl-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8193,9 +8781,12 @@ tl-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8228,9 +8819,12 @@ tl-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8263,9 +8857,12 @@ tl-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8301,9 +8898,12 @@ tl-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8336,9 +8936,12 @@ tl-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8371,9 +8974,12 @@ tl-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8407,9 +9013,12 @@ tl-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8439,9 +9048,12 @@ tl-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8471,9 +9083,12 @@ tl-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8504,9 +9119,12 @@ tl-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8536,9 +9154,12 @@ tl-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK 1;
@@ -8570,9 +9191,12 @@ to-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8605,9 +9229,12 @@ to-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8639,9 +9266,12 @@ to-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8673,9 +9303,12 @@ to-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8708,9 +9341,12 @@ to-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8744,9 +9380,12 @@ to-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8781,9 +9420,12 @@ to-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 
@@ -8818,9 +9460,12 @@ to-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8853,9 +9498,12 @@ to-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8888,9 +9536,12 @@ to-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8922,9 +9573,12 @@ to-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8957,9 +9611,12 @@ to-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -8991,9 +9648,12 @@ to-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9025,9 +9685,12 @@ to-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9059,9 +9722,12 @@ to-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9096,9 +9762,12 @@ to-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9130,9 +9799,12 @@ to-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9164,9 +9836,12 @@ to-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP '';
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env LD_PRELOAD '';
     env TEST_NGINX_CHECK_LEAK '';
@@ -9242,9 +9917,12 @@ build-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    env TEST_NGINX_USE_STAP 1;
+
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     env TEST_NGINX_CHECK_LEAK '';
 

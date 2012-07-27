@@ -15,6 +15,12 @@ libev_version = 4.11;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    [%- IF type == "" %]
+    env TEST_NGINX_USE_STAP 1;
+    [%- ELSE %]
+    env TEST_NGINX_USE_STAP '';
+    [%- END %]
+
     env NGX_BUILD_CC gcc46;
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
@@ -22,6 +28,7 @@ libev_version = 4.11;
     env NGX_BUILD_OPT -O1;
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     [%- UNLESS name == "lua" %]
     env LD_PRELOAD '';
