@@ -45,6 +45,7 @@ command: 'git'
        | 'always'
        | 'sh'
        | 'yum'
+       | 'debuginfo'
        | 'prog'
        | 'fetch'
        | 'tarball'
@@ -349,8 +350,14 @@ sub make ($) {
         my $pkgs = $rules->{yum};
         if ($pkgs) {
             for my $pkg (@$pkgs) {
-                $pkg =~ s/`([^`]*)`/`$1`/ge;
-                sh("sudo", "yum", "install", $pkg, "-y");
+                sh("sudo yum install $pkg -y");
+            }
+        }
+
+        $pkgs = $rules->{debuginfo};
+        if ($pkgs) {
+            for my $pkg (@$pkgs) {
+                sh("sudo debuginfo-install $pkg -y");
             }
         }
 
