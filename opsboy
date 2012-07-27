@@ -349,6 +349,7 @@ sub make ($) {
         my $pkgs = $rules->{yum};
         if ($pkgs) {
             for my $pkg (@$pkgs) {
+                $pkg =~ s/`([^`]*)`/`$1`/ge;
                 sh("sudo", "yum", "install", $pkg, "-y");
             }
         }

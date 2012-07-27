@@ -10401,7 +10401,12 @@ build-ngx_lua {
 }
 
 systemtap {
-    dep stap dtrace;
+    dep stap dtrace kernel-debuginfo;
+}
+
+kernel-debuginfo {
+    test 'ls /usr/lib/debug/lib/modules/`uname -r`/kernel/* > /dev/null 2>&1';
+    yum 'kernel-debuginfo-`uname -r`';
 }
 
 stap {
