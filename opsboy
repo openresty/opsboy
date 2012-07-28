@@ -227,6 +227,33 @@ sub make ($) {
         }
     }
 
+    my $fetches = $rules->{fetch};
+    if (defined $fetches) {
+        if (!$deps) {
+            $rules->{dep} = ['wget'];
+        } else {
+            unshift @$deps, 'wget';
+        }
+    }
+
+    my $pkgs = $rules->{debuginfo};
+    if ($pkgs) {
+        if (!$deps) {
+            $rules->{dep} = ['yum-utils'];
+        } else {
+            unshift @$deps, 'yum-utils';
+        }
+    }
+
+    my $tarball = $rules->{tarball};
+    if ($tarball) {
+        if (!$deps) {
+            $rules->{dep} = ['tar'];
+        } else {
+            unshift @$deps, 'tar';
+        }
+    }
+
     if ($deps) {
         for my $dep (@$deps) {
             make($dep);

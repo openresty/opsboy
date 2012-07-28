@@ -929,3 +929,18 @@ dtrace {
     yum systemtap-sdt-devel;
 }
 
+yum-utils {
+    prog debuginfo-install;
+    yum yum-utils;
+}
+
+wget {
+    prog wget;
+    yum wget;
+}
+
+tar {
+    prog tar;
+    yum install tar;
+}
+

@@ -16,7 +16,8 @@ openresty-tester.pl: ortest-ec2.pl
 	tpage $< > out.ob && mv out.ob $@
 
 test: all
-	./openresty-tester.pl check -k --git-pull
+	./ortest-ec2.pl check -k --git-pull
+	./ortest-fc.pl check -k --git-pull
 
 clean:
 	rm -f openresty-tester.pl ortest-*.pl samples/*.ob

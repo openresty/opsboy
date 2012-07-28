@@ -10660,3 +10660,24 @@ dtrace {
     yum systemtap-sdt-devel;
 }
 
+yum-utils {
+    prog debuginfo-install;
+    yum yum-utils;
+}
+
+wget {
+    prog wget;
+    yum wget;
+}
+
+tar {
+    prog tar;
+    yum tar;
+    dep bzip2;
+}
+
+bzip2 {
+    prog bzip2;
+    yum bzip2;
+}
+
