@@ -726,6 +726,7 @@ t-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -766,6 +767,7 @@ t-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -805,6 +807,7 @@ t-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -844,6 +847,7 @@ t-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -884,6 +888,7 @@ t-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -925,6 +930,7 @@ t-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -966,6 +972,7 @@ t-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1009,6 +1016,7 @@ t-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1049,6 +1057,7 @@ t-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1089,6 +1098,7 @@ t-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1128,6 +1138,7 @@ t-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1168,6 +1179,7 @@ t-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1207,6 +1219,7 @@ t-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1246,6 +1259,7 @@ t-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1285,6 +1299,7 @@ t-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1327,6 +1342,7 @@ t-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1366,6 +1382,7 @@ t-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1405,6 +1422,7 @@ t-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1444,6 +1462,7 @@ t-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1480,6 +1499,7 @@ t-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1516,6 +1536,7 @@ t-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1553,6 +1574,7 @@ t-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1589,6 +1611,7 @@ t-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -1630,6 +1653,7 @@ tv-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1672,6 +1696,7 @@ tv-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1713,6 +1738,7 @@ tv-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1754,6 +1780,7 @@ tv-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1796,6 +1823,7 @@ tv-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1839,6 +1867,7 @@ tv-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1882,6 +1911,7 @@ tv-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1927,6 +1957,7 @@ tv-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -1969,6 +2000,7 @@ tv-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2011,6 +2043,7 @@ tv-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2052,6 +2085,7 @@ tv-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2094,6 +2128,7 @@ tv-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2135,6 +2170,7 @@ tv-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2176,6 +2212,7 @@ tv-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2217,6 +2254,7 @@ tv-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2261,6 +2299,7 @@ tv-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2302,6 +2341,7 @@ tv-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2343,6 +2383,7 @@ tv-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2384,6 +2425,7 @@ tv-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2422,6 +2464,7 @@ tv-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2460,6 +2503,7 @@ tv-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2499,6 +2543,7 @@ tv-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2537,6 +2582,7 @@ tv-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -2582,6 +2628,7 @@ tr-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2628,6 +2675,7 @@ tr-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2673,6 +2721,7 @@ tr-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2718,6 +2767,7 @@ tr-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2764,6 +2814,7 @@ tr-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2811,6 +2862,7 @@ tr-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2858,6 +2910,7 @@ tr-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2907,6 +2960,7 @@ tr-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2953,6 +3007,7 @@ tr-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -2999,6 +3054,7 @@ tr-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3044,6 +3100,7 @@ tr-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3090,6 +3147,7 @@ tr-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3135,6 +3193,7 @@ tr-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3180,6 +3239,7 @@ tr-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3225,6 +3285,7 @@ tr-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3273,6 +3334,7 @@ tr-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3318,6 +3380,7 @@ tr-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3363,6 +3426,7 @@ tr-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3408,6 +3472,7 @@ tr-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3450,6 +3515,7 @@ tr-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3492,6 +3558,7 @@ tr-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3535,6 +3602,7 @@ tr-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3577,6 +3645,7 @@ tr-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -3624,6 +3693,7 @@ trv-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3672,6 +3742,7 @@ trv-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3719,6 +3790,7 @@ trv-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3766,6 +3838,7 @@ trv-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3814,6 +3887,7 @@ trv-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3863,6 +3937,7 @@ trv-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3912,6 +3987,7 @@ trv-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -3963,6 +4039,7 @@ trv-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4011,6 +4088,7 @@ trv-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4059,6 +4137,7 @@ trv-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4106,6 +4185,7 @@ trv-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4154,6 +4234,7 @@ trv-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4201,6 +4282,7 @@ trv-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4248,6 +4330,7 @@ trv-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4295,6 +4378,7 @@ trv-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4345,6 +4429,7 @@ trv-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4392,6 +4477,7 @@ trv-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4439,6 +4525,7 @@ trv-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4486,6 +4573,7 @@ trv-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4530,6 +4618,7 @@ trv-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4574,6 +4663,7 @@ trv-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4619,6 +4709,7 @@ trv-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4663,6 +4754,7 @@ trv-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -4709,6 +4801,7 @@ tw-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4756,6 +4849,7 @@ tw-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4802,6 +4896,7 @@ tw-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4848,6 +4943,7 @@ tw-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4895,6 +4991,7 @@ tw-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4943,6 +5040,7 @@ tw-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -4991,6 +5089,7 @@ tw-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5041,6 +5140,7 @@ tw-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5088,6 +5188,7 @@ tw-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5135,6 +5236,7 @@ tw-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5181,6 +5283,7 @@ tw-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5228,6 +5331,7 @@ tw-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5274,6 +5378,7 @@ tw-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5320,6 +5425,7 @@ tw-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5366,6 +5472,7 @@ tw-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5415,6 +5522,7 @@ tw-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5461,6 +5569,7 @@ tw-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5507,6 +5616,7 @@ tw-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5553,6 +5663,7 @@ tw-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5596,6 +5707,7 @@ tw-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5639,6 +5751,7 @@ tw-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5683,6 +5796,7 @@ tw-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5726,6 +5840,7 @@ tw-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -5774,6 +5889,7 @@ twv-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -5823,6 +5939,7 @@ twv-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -5871,6 +5988,7 @@ twv-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -5919,6 +6037,7 @@ twv-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -5968,6 +6087,7 @@ twv-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6018,6 +6138,7 @@ twv-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6068,6 +6189,7 @@ twv-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6120,6 +6242,7 @@ twv-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6169,6 +6292,7 @@ twv-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6218,6 +6342,7 @@ twv-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6266,6 +6391,7 @@ twv-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6315,6 +6441,7 @@ twv-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6363,6 +6490,7 @@ twv-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6411,6 +6539,7 @@ twv-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6459,6 +6588,7 @@ twv-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6510,6 +6640,7 @@ twv-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6558,6 +6689,7 @@ twv-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6606,6 +6738,7 @@ twv-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6654,6 +6787,7 @@ twv-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6699,6 +6833,7 @@ twv-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6744,6 +6879,7 @@ twv-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6790,6 +6926,7 @@ twv-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6835,6 +6972,7 @@ twv-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -6874,6 +7012,7 @@ th-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -6914,6 +7053,7 @@ th-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -6953,6 +7093,7 @@ th-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -6992,6 +7133,7 @@ th-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7032,6 +7174,7 @@ th-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7073,6 +7216,7 @@ th-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7114,6 +7258,7 @@ th-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7157,6 +7302,7 @@ th-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7197,6 +7343,7 @@ th-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7237,6 +7384,7 @@ th-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7276,6 +7424,7 @@ th-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7316,6 +7465,7 @@ th-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7355,6 +7505,7 @@ th-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7394,6 +7545,7 @@ th-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7433,6 +7585,7 @@ th-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7475,6 +7628,7 @@ th-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7514,6 +7668,7 @@ th-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7553,6 +7708,7 @@ th-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7592,6 +7748,7 @@ th-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7628,6 +7785,7 @@ th-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7664,6 +7822,7 @@ th-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7701,6 +7860,7 @@ th-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7737,6 +7897,7 @@ th-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -7777,6 +7938,7 @@ thv-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -7818,6 +7980,7 @@ thv-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -7858,6 +8021,7 @@ thv-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -7898,6 +8062,7 @@ thv-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -7939,6 +8104,7 @@ thv-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -7981,6 +8147,7 @@ thv-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8023,6 +8190,7 @@ thv-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8067,6 +8235,7 @@ thv-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8108,6 +8277,7 @@ thv-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8149,6 +8319,7 @@ thv-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8189,6 +8360,7 @@ thv-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8230,6 +8402,7 @@ thv-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8270,6 +8443,7 @@ thv-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8310,6 +8484,7 @@ thv-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8350,6 +8525,7 @@ thv-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8393,6 +8569,7 @@ thv-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8433,6 +8610,7 @@ thv-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8473,6 +8651,7 @@ thv-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8513,6 +8692,7 @@ thv-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8550,6 +8730,7 @@ thv-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8587,6 +8768,7 @@ thv-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8625,6 +8807,7 @@ thv-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8662,6 +8845,7 @@ thv-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
 
     dep systemtap;
@@ -8702,6 +8886,7 @@ tl-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8743,6 +8928,7 @@ tl-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8783,6 +8969,7 @@ tl-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8823,6 +9010,7 @@ tl-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8864,6 +9052,7 @@ tl-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8906,6 +9095,7 @@ tl-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8948,6 +9138,7 @@ tl-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -8992,6 +9183,7 @@ tl-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9033,6 +9225,7 @@ tl-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9074,6 +9267,7 @@ tl-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9114,6 +9308,7 @@ tl-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9155,6 +9350,7 @@ tl-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9195,6 +9391,7 @@ tl-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9235,6 +9432,7 @@ tl-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9275,6 +9473,7 @@ tl-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9318,6 +9517,7 @@ tl-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9358,6 +9558,7 @@ tl-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9398,6 +9599,7 @@ tl-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9438,6 +9640,7 @@ tl-lua-resty-memcached {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9475,6 +9678,7 @@ tl-lua-resty-redis {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9512,6 +9716,7 @@ tl-lua-resty-mysql {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9550,6 +9755,7 @@ tl-lua-resty-string {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9587,6 +9793,7 @@ tl-lua-resty-upload {
 
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9626,6 +9833,7 @@ to-ngx_srcache {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9666,6 +9874,7 @@ to-ngx_set_misc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9705,6 +9914,7 @@ to-ngx_headers_more {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9744,6 +9954,7 @@ to-ngx_rds_json {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9784,6 +9995,7 @@ to-ngx_rds_csv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9825,6 +10037,7 @@ to-ngx_drizzle {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9866,6 +10079,7 @@ to-ngx_lua {
     sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9909,6 +10123,7 @@ to-ngx_memc {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9949,6 +10164,7 @@ to-ngx_redis2 {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -9989,6 +10205,7 @@ to-ngx_xss {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10028,6 +10245,7 @@ to-ngx_echo {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10068,6 +10286,7 @@ to-ngx_eval {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10107,6 +10326,7 @@ to-ngx_form_input {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10146,6 +10366,7 @@ to-ngx_array_var {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10185,6 +10406,7 @@ to-ngx_postgres {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10227,6 +10449,7 @@ to-ngx_encrypted_session {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10266,6 +10489,7 @@ to-ngx_iconv {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
@@ -10305,6 +10529,7 @@ to-ngx_coolkit {
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V';
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -L 'syscall.*' > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
 
     dep systemtap;
