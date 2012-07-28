@@ -1,4 +1,4 @@
-jobs = 8;
+jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.1;
 openresty_version = 1.2.1.9rc1;
@@ -13,6 +13,12 @@ libev_version = 4.11;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
+    [%- IF type == "" %]
+    env TEST_NGINX_USE_STAP 1;
+    [%- ELSE %]
+    env TEST_NGINX_USE_STAP '';
+    [%- END %]
+
     env NGX_BUILD_CC gcc;
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
@@ -20,6 +26,7 @@ libev_version = 4.11;
     env NGX_BUILD_OPT -O1;
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
 
     [%- UNLESS name == "lua" %]
     env LD_PRELOAD '';
@@ -89,12 +96,15 @@ libev_version = 4.11;
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
+    sh 'stap-nginx -e "probe syscall.* { exit() } probe timer.ms(2) { exit() }" > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
     dep valgrind;
     [%- END %]
+
+    dep systemtap;
 [% END -%]
 
 [% BLOCK build_lua_lib %]
@@ -871,5 +881,40 @@ build-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+systemtap {
+    dep stap dtrace kernel-debuginfo staprun stapusr-grp stapdev-grp;
+}
+
+stapusr-grp {
+    test 'groups `whoami`|grep stapusr > /dev/null';
+    sh 'sudo usermod -a -G stapusr `whoami`';
+}
+
+stapdev-grp {
+    test 'groups `whoami`|grep stapdev > /dev/null';
+    sh 'sudo usermod -a -G stapdev `whoami`';
+}
+
+staprun {
+    prog /usr/bin/staprun;
+    yum systemtap-runtime;
+    sh 'sudo chmod a+x /usr/bin/staprun';
+}
+
+kernel-debuginfo {
+    test 'ls /usr/lib/debug/lib/modules/`uname -r`/kernel/* > /dev/null 2>&1';
+    debuginfo 'kernel-`uname -r`';
+}
+
+stap {
+    prog stap;
+    yum systemtap;
+}
+
+dtrace {
+    prog dtrace;
+    yum systemtap-sdt-devel;
 }
 
