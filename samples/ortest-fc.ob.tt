@@ -530,7 +530,8 @@ postgres {
     prog pg_ctl;
     yum postgresql-server;
 
-    # vim /var/lib/pgsql9/data/pg_hba.conf
+    # edit /var/lib/pgsql/data/pg_hba.conf
+    #   and change "peer", "trust", and "ident" to "md5".
     # psql> create user ngx_test with password 'ngx_test';
     # psql> create database ngx_test;
     # psql> grant all privileges on database ngx_test to ngx_test;
