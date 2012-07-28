@@ -14,7 +14,8 @@ my %ami_config = (
     #'linux x86_64' => 'ami-4217b32b',
     #'linux x86_64' => 'ami-181bbd71', # ortest-linux-x86_64
     #'linux x86_64' => 'ami-d40daebd', # ortest-linux-x86_64-2
-    'linux x86_64' => 'ami-dbf75fb2', # ortest-linux-x86_64-3
+    #'linux x86_64' => 'ami-dbf75fb2', # ortest-linux-x86_64-3
+    'linux x86_64' => 'ami-efa50d86', # ortest-linux-x86_64-4
 );
 
 my %opts;
