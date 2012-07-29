@@ -98,7 +98,6 @@ libev_version = 4.11;
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'stap-nginx -e "probe syscall.* { exit() } probe timer.ms(2) { exit() }" > /dev/null || exit 0';
     sh 'prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
