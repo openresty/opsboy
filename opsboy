@@ -53,7 +53,7 @@ command: 'git'
        | <error>
 
 argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
-        | /[^;"\s]+/
+        | /(?:`[^`]+`|[^;"\s])+/
         | <error>
 
 identifier: /[A-Za-z][-\w]*/

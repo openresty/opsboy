@@ -41,13 +41,13 @@ libev_version = 4.11;
 
     [%- IF type.match("h") -%]
         [%- IF type.match("v") -%]
-    env TEST_NGINX_SLEEP 0.05;
+    env TEST_NGINX_SLEEP 0.2;
         [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.05;
+    env TEST_NGINX_SLEEP 0.4;
         [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.005;
+    env TEST_NGINX_SLEEP 0.015;
     env TEST_NGINX_USE_HUP '';
     [%- END %]
 
@@ -860,7 +860,12 @@ valgrind {
 
 opsboy {
     git git://github.com/agentzh/opsboy.git ~/git/opsboy;
-    dep cc parse-recdescent tt2;
+    dep cc parse-recdescent tt2 perl-appconfig;
+}
+
+perl-appconfig {
+    test 'perl -MAppConfig -e1';
+    yum perl-AppConfig;
 }
 
 tt2 {
@@ -885,7 +890,12 @@ build-ngx_lua {
 }
 
 systemtap {
-    dep stap dtrace kernel-debuginfo staprun stapusr-grp stapdev-grp;
+    dep stap dtrace kernel-debuginfo staprun stapusr-grp stapdev-grp kernel-devel;
+}
+
+kernel-devel {
+    test 'ls /lib/modules/`uname -r`/build/.config';
+    yum kernel-devel-`uname -r`;
 }
 
 stapusr-grp {
