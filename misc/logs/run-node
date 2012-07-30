@@ -6,7 +6,8 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-99f75ff0', # ortest-linux-i386-3
+    'linux i386' => 'ami-6d8d2504', # ortest-linux-i386-4
+    #'linux i386' => 'ami-99f75ff0', # ortest-linux-i386-3
     #'linux i386' => 'ami-e6e1438f', # ortest-linux-i386-2
     #'linux i386' => 'ami-0abd1d63', # ortest-linux-i386
     #'linux i386' => 'ami-cce84fa5',
@@ -15,7 +16,7 @@ my %ami_config = (
     #'linux x86_64' => 'ami-181bbd71', # ortest-linux-x86_64
     #'linux x86_64' => 'ami-d40daebd', # ortest-linux-x86_64-2
     #'linux x86_64' => 'ami-dbf75fb2', # ortest-linux-x86_64-3
-    'linux x86_64' => 'ami-efa50d86', # ortest-linux-x86_64-4
+    'linux x86_64' => 'ami-518c2438', # ortest-linux-x86_64-4
 );
 
 my %opts;

@@ -42,16 +42,12 @@ libev_version = 4.11;
     [%- END %]
 
     [%- IF type.match("h") -%]
-        [%- IF type.match("v") -%]
-    env TEST_NGINX_SLEEP 0.4;
-        [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.2;
-        [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.015;
     env TEST_NGINX_USE_HUP '';
     [%- END %]
+
+    env TEST_NGINX_SLEEP 0.015;
 
     [%- IF type.match("v") -%]
 
