@@ -133,7 +133,7 @@ libev_version = 4.11;
     'postgres', 'eval',
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
-    'coolkit', 'iconv',
+    'coolkit', 'iconv', 'example_lua',
    ]
 -%]
 
@@ -399,6 +399,15 @@ ngx_eval {
 
 ngx_echo {
     git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+}
+
+ngx_example_lua {
+    git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
+
+    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    dep ngx_lua;
 }
 
 ngx_lua {
@@ -730,6 +739,12 @@ t[% type %]-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_example_lua {
+    [%- PROCESS build_nginx_module name="example-lua" -%]
+
+    dep ngx_echo ngx_lua;
 }
 
 t[% type %]-ngx_lua {

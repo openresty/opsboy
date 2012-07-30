@@ -744,7 +744,7 @@ t[% type %]-ngx_drizzle {
 }
 
 t[% type %]-ngx_example_lua {
-    [%- PROCESS build_nginx_module name="example_lua" -%]
+    [%- PROCESS build_nginx_module name="example-lua" -%]
 
     dep ngx_echo ngx_lua;
 }

@@ -960,8 +960,8 @@ t-ngx_drizzle {
 
 t-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1937,8 +1937,8 @@ tv-ngx_drizzle {
 
 tv-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2974,8 +2974,8 @@ tr-ngx_drizzle {
 
 tr-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4095,8 +4095,8 @@ trv-ngx_drizzle {
 
 trv-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5246,8 +5246,8 @@ tw-ngx_drizzle {
 
 tw-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6391,8 +6391,8 @@ twv-ngx_drizzle {
 
 twv-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7512,8 +7512,8 @@ th-ngx_drizzle {
 
 th-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8465,8 +8465,8 @@ thv-ngx_drizzle {
 
 thv-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9454,8 +9454,8 @@ tl-ngx_drizzle {
 
 tl-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10437,8 +10437,8 @@ to-ngx_drizzle {
 
 to-ngx_example_lua {
     always;
-    cwd ~/git/example_lua-nginx-module;
-    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+    cwd ~/git/example-lua-nginx-module;
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
