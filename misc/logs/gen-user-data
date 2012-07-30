@@ -21,6 +21,7 @@ my %cpu_mods = (
     set_misc => 1,
     coolkit => 1,
     encrypted_session => 1,
+    example_lua => 1,
 );
 
 my @mods = (
@@ -30,7 +31,7 @@ my @mods = (
     'postgres', 'eval',
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
-    'coolkit', 'iconv',
+    'coolkit', 'iconv', 'example_lua',
 );
 
 my @lualibs = (

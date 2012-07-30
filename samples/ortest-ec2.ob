@@ -34,6 +34,7 @@ t {
     dep t-ngx_form_input;
     dep t-ngx_coolkit;
     dep t-ngx_iconv;
+    dep t-ngx_example_lua;
     dep t-lua-resty-memcached;
     dep t-lua-resty-redis;
     dep t-lua-resty-mysql;
@@ -60,6 +61,7 @@ to {
     dep to-ngx_form_input;
     dep to-ngx_coolkit;
     dep to-ngx_iconv;
+    dep to-ngx_example_lua;
 }
 
 tv {
@@ -90,6 +92,7 @@ tv2 {
     dep tv-ngx_form_input;
     dep tv-ngx_coolkit;
     dep tv-ngx_iconv;
+    dep tv-ngx_example_lua;
 }
 
 tr {
@@ -213,6 +216,7 @@ th {
     dep th-ngx_form_input;
     dep th-ngx_coolkit;
     dep th-ngx_iconv;
+    dep th-ngx_example_lua;
     dep th-lua-resty-memcached;
     dep th-lua-resty-redis;
     dep th-lua-resty-mysql;
@@ -239,6 +243,7 @@ thv {
     dep thv-ngx_form_input;
     dep thv-ngx_coolkit;
     dep thv-ngx_iconv;
+    dep thv-ngx_example_lua;
     dep thv-lua-resty-memcached;
     dep thv-lua-resty-redis;
     dep thv-lua-resty-mysql;
@@ -265,6 +270,7 @@ tl {
     dep tl-ngx_form_input;
     dep tl-ngx_coolkit;
     dep tl-ngx_iconv;
+    dep tl-ngx_example_lua;
     dep tl-lua-resty-memcached;
     dep tl-lua-resty-redis;
     dep tl-lua-resty-mysql;
@@ -387,6 +393,15 @@ ngx_eval {
 
 ngx_echo {
     git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+}
+
+ngx_example_lua {
+    git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
+
+    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    dep ngx_lua;
 }
 
 ngx_lua {
@@ -941,6 +956,46 @@ t-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+t-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 t-ngx_lua {
@@ -1878,6 +1933,48 @@ tv-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+tv-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 tv-ngx_lua {
@@ -2873,6 +2970,52 @@ tr-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+tr-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 tr-ngx_lua {
@@ -3948,6 +4091,54 @@ trv-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+trv-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 trv-ngx_lua {
@@ -5053,6 +5244,53 @@ tw-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
+tw-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
+}
+
 tw-ngx_lua {
 
     always;
@@ -6151,6 +6389,55 @@ twv-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
+twv-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
+}
+
 twv-ngx_lua {
 
     always;
@@ -7223,6 +7510,45 @@ th-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
+th-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
+}
+
 th-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     always;
@@ -8135,6 +8461,47 @@ thv-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+thv-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 thv-ngx_lua {
@@ -9085,6 +9452,47 @@ tl-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
+tl-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
+}
+
 tl-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so $LD_PRELOAD';
     always;
@@ -10025,6 +10433,46 @@ to-ngx_drizzle {
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
+}
+
+to-ngx_example_lua {
+    always;
+    cwd ~/git/example_lua-nginx-module;
+    env PATH '~/git/example_lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_example_lua;
+
+    dep ngx_echo ngx_lua;
 }
 
 to-ngx_lua {
