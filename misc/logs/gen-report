@@ -38,6 +38,7 @@ my %github_links = (
     ngx_set_misc => ['agentzh', 'set-misc-nginx-module'],
     ngx_srcache => ['agentzh', 'srcache-nginx-module'],
     ngx_xss => ['agentzh', 'xss-nginx-module'],
+    ngx_example_lua => ['agentzh', 'nginx-example-lua-module'],
 );
 
 my $data = {
