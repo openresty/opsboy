@@ -161,8 +161,12 @@ while (<>) {
         if (/^(?:ARCH )?Linux .*\bi386\b/) {
             $arch = 'linux i386';
 
+            warn "$arch\n";
+
         } elsif (/^(?:ARCH )?Linux .*\bx86_64\b/) {
             $arch = 'linux x86_64';
+
+            warn "$arch\n";
         }
     }
 
@@ -172,7 +176,7 @@ while (<>) {
         if ($subj =~ /^t([rvwhlo]*)-((?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
-            #warn "$mode: $module\n";
+            print "t$mode-$module\t";
 
             if ($rec) {
                 if (!$rec->{commit}) {
@@ -583,4 +587,6 @@ sub get_up_edges {
 
     return $edges;
 }
+
+print "\n";
 
