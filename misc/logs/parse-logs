@@ -82,6 +82,7 @@ my %white_list = (
         ['v', '018-ndk.t', 'matches a line in error.log'],
         ['v', '085-if.t', 'TEST 6: log_by_lua inherited by location if - pattern "from log by lua" matches a line in error.log'],
         ['v', '089-phase.t', 'TEST 8: get_phase in log_by_lua - pattern "log" matches a line in error.log'],
+        ['v', '087-udp-socket.t', 'TEST 9: read timeout and resend - pattern "lua udp socket read timed out" matches a line in error.log'],
         ['h', '043-shdict.t', '- response_body'],
         ['h', '009-log.t', 'TEST 16: ngx.log() big data - pattern "(?-xism:ah{1970}b)" matches a line in error.log'],
         ['h', '023-rewrite/socket-keepalive.t', 'TEST 11: sanity (uds) - pattern "lua tcp socket keepalive: free connection pool for " should not match any line in error.log'],
