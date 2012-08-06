@@ -80,7 +80,7 @@ libev_version = 4.11;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config; fi';
 
     [%- UNLESS no_build -%]
     [%- IF name == "lua" %]
