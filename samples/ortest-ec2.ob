@@ -40,6 +40,7 @@ t {
     dep t-lua-resty-mysql;
     dep t-lua-resty-string;
     dep t-lua-resty-upload;
+    dep t-lua-resty-dns;
 }
 
 to {
@@ -114,6 +115,7 @@ tr {
     dep tr-lua-resty-mysql;
     dep tr-lua-resty-string;
     dep tr-lua-resty-upload;
+    dep tr-lua-resty-dns;
 }
 
 trv {
@@ -129,6 +131,7 @@ trv1 {
     dep trv-lua-resty-mysql;
     dep trv-lua-resty-string;
     dep trv-lua-resty-upload;
+    dep trv-lua-resty-dns;
 }
 
 trv2 {
@@ -165,6 +168,7 @@ tw {
     dep tw-lua-resty-mysql;
     dep tw-lua-resty-string;
     dep tw-lua-resty-upload;
+    dep tw-lua-resty-dns;
 }
 
 twv {
@@ -180,6 +184,7 @@ twv1 {
     dep trv-lua-resty-mysql;
     dep trv-lua-resty-string;
     dep trv-lua-resty-upload;
+    dep trv-lua-resty-dns;
 }
 
 twv2 {
@@ -222,6 +227,7 @@ th {
     dep th-lua-resty-mysql;
     dep th-lua-resty-string;
     dep th-lua-resty-upload;
+    dep th-lua-resty-dns;
 }
 
 thv {
@@ -249,6 +255,7 @@ thv {
     dep thv-lua-resty-mysql;
     dep thv-lua-resty-string;
     dep thv-lua-resty-upload;
+    dep thv-lua-resty-dns;
 }
 
 tl {
@@ -276,6 +283,7 @@ tl {
     dep tl-lua-resty-mysql;
     dep tl-lua-resty-string;
     dep tl-lua-resty-upload;
+    dep tl-lua-resty-dns;
 }
 
 etcproxy {
@@ -476,6 +484,11 @@ lua-resty-string {
 
 lua-resty-upload {
     git git://github.com/agentzh/lua-resty-upload.git ~/git/lua-resty-upload;
+    dep ngx_lua;
+}
+
+lua-resty-dns {
+    git git://github.com/agentzh/lua-resty-dns.git ~/git/lua-resty-dns;
     dep ngx_lua;
 }
 
@@ -1675,6 +1688,43 @@ t-lua-resty-upload {
 
     dep build-ngx_lua;
 }
+t-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep build-ngx_lua;
+}
 
 
 tv-ngx_srcache {
@@ -2685,6 +2735,45 @@ tv-lua-resty-upload {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+tv-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
 
     dep build-ngx_lua;
 }
@@ -3794,6 +3883,49 @@ tr-lua-resty-upload {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
 
     dep build-ngx_lua;
 }
@@ -4954,6 +5086,51 @@ trv-lua-resty-upload {
 
     dep build-ngx_lua;
 }
+trv-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep build-ngx_lua;
+}
 
 
 tw-ngx_srcache {
@@ -6084,6 +6261,50 @@ tw-lua-resty-upload {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
 
     dep build-ngx_lua;
 }
@@ -7268,6 +7489,52 @@ twv-lua-resty-upload {
 
     dep build-ngx_lua;
 }
+twv-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep build-ngx_lua;
+}
 
 
 th-ngx_srcache {
@@ -8206,6 +8473,42 @@ th-lua-resty-upload {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
 
     dep build-ngx_lua;
 }
@@ -9198,6 +9501,44 @@ thv-lua-resty-upload {
 
     dep build-ngx_lua;
 }
+thv-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep build-ngx_lua;
+}
 
 
 tl-ngx_srcache {
@@ -10184,6 +10525,44 @@ tl-lua-resty-upload {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
+
+    dep build-ngx_lua;
+}
+tl-lua-resty-dns {
+    always;
+    cwd ~/git/lua-resty-dns;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-dns;
 
     dep build-ngx_lua;
 }

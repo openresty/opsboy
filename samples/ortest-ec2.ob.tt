@@ -138,7 +138,7 @@ libev_version = 4.11;
 [%- lualibs = [
         'resty-memcached', 'resty-redis',
         'resty-mysql', 'resty-string',
-        'resty-upload',
+        'resty-upload', 'resty-dns',
     ]
 %]
 

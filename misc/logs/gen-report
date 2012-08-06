@@ -15,6 +15,7 @@ if (!@jsonfiles) {
 }
 
 my %github_links = (
+    'lua-resty-dns' => ['agentzh', 'lua-resty-dns'],
     'lua-resty-upload' => ['agentzh', 'lua-resty-upload'],
     'lua-resty-string' => ['agentzh', 'lua-resty-string'],
     'lua-resty-mysql' => ['agentzh', 'lua-resty-mysql'],

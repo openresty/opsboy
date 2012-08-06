@@ -37,7 +37,7 @@ my @mods = (
 my @lualibs = (
     'resty-memcached', 'resty-redis',
     'resty-mysql', 'resty-string',
-    'resty-upload',
+    'resty-upload', 'resty-dns',
 );
 
 if (!@ARGV) {

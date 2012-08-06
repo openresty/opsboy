@@ -1,6 +1,7 @@
 [% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Components' -%]
 
 [%- module_info = {
+        'lua-resty-dns' => 'github.com/agentzh/lua-resty-dns',
         'lua-resty-upload' => 'github.com/agentzh/lua-resty-upload',
         'lua-resty-string' => 'github.com/agentzh/lua-resty-string',
         'lua-resty-mysql' => 'github.com/agentzh/lua-resty-mysql',
