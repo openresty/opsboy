@@ -17,6 +17,12 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'lua-resty-dns' => [
+        ['v', 'mock.t', qr/pattern "\[error\]" should not match any line in error.log but matches line ".*?lua udp socket read timed out/],
+        ['v', 'mock.t', 'TEST 10: timeout - response_body - response is expected'],
+        ['v', 'mock.t', 'pattern "lua udp socket read timed out" matches a line in error.log'],
+    ],
+
     ngx_rds_csv => [
         ['w', '000_init.t', 'TEST 11: cats - drop table'],
         ['w', '000_init.t', 'TEST 12: cats - create table'],
