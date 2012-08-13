@@ -10,8 +10,8 @@ use List::Util qw( sum );
 use Parallel::ForkManager;
 
 my %opts;
-getopts("a:t:e:rf", \%opts) or
-    die "Usage: $0 [-e exclude-pattern] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+getopts("a:t:e:v:rf", \%opts) or
+    die "Usage: $0 [-e exclude-pattern] [-v <nginx-version>] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
@@ -24,6 +24,11 @@ my $run = $opts{r};
 my $force = $opts{f};
 
 my $exclude = $opts{e};
+
+my $nginx_ver = $opts{v};
+if (defined $nginx_ver && $nginx_ver !~ /^\d+\.\d+\.\d+$/) {
+    die "Bad nginx version number specified in the -v option: $nginx_ver\n";
+}
 
 my @goals;
 my @comps = @ARGV;
@@ -161,13 +166,16 @@ my $i = 1;
 for my $bucket (@buckets) {
     my $secs = sum map { $elapsed{$_} } @$bucket;
     my $mins = ceil($secs/60);
-    #if ($force) {
+
     # always add force=1 to be safe
     push @$bucket, "force=1";
-    #}
+
+    if (defined $nginx_ver) {
+        push @$bucket, "nginx_version=$nginx_ver";
+    }
+
     warn "bucket $i: @$bucket ($mins min)\n";
     $i++;
-
 }
 
 if ($run) {
