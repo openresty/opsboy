@@ -198,6 +198,11 @@ sub main ();
 sub can_run ($);
 sub sh (@);
 
+my $freebsd;
+if ($^O eq'freebsd') {
+    $freebsd = 1;
+}
+
 sub make ($) {
     my $target = shift;
 
@@ -377,7 +382,11 @@ sub make ($) {
         my $pkgs = $rules->{yum};
         if ($pkgs) {
             for my $pkg (@$pkgs) {
-                sh("sudo yum install $pkg -y");
+                if ($freebsd) {
+                    sh("sudo pkg_add -r $pkg");
+                } else {
+                    sh("sudo yum install $pkg -y");
+                }
             }
         }
 

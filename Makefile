@@ -1,10 +1,11 @@
 .PHONY: all ec2 fc test clean
-.PRECIOUS: samples/ortest-fc.ob samples/ortest-ec2.ob
+.PRECIOUS: samples/ortest-fc.ob samples/ortest-ec2.ob samples/ortest-fb.ob
 
-all: ec2 fc
+all: ec2 fc fb
 
 ec2: openresty-tester.pl
 fc: ortest-fc.pl
+fb: ortest-fb.pl
 
 openresty-tester.pl: ortest-ec2.pl
 	cp -p $< $@
