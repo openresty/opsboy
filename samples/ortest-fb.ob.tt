@@ -1,7 +1,9 @@
+# OpenResty Tester Deployment Script for FreeBSD 9
+
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.1;
-openresty_version = 1.2.1.13;
+openresty_version = 1.2.1.14rc2;
 ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.14;
 ngx_auth_request_version = 0.2;
@@ -500,9 +502,15 @@ git {
 mockeagain {
     always;
     #file ~/git/mockeagain/mockeagain.so;
-    sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
+    sh 'cd ~/git/mockeagain && LD_PRELOAD= gmake';
     dep mockeagain-git;
-    dep cc;
+    dep cc libexecinfo;
+}
+
+libexecinfo {
+    file /usr/local/include/execinfo.h;
+    file /usr/local/lib/libexecinfo.so;
+    yum libexecinfo;
 }
 
 mockeagain-git {
