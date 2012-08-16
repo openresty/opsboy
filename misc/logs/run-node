@@ -6,8 +6,8 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-6d8d2504', # ortest-linux-i386-4
-    #'linux i386' => 'ami-99f75ff0', # ortest-linux-i386-3
+    'linux i386' => 'ami-d366d3ba', # ortest-linux-i386-5
+    #'linux i386' => 'ami-6d8d2504', # ortest-linux-i386-4
     #'linux x86_64' => 'ami-518c2438', # ortest-linux-x86_64-4
     'linux x86_64' => 'ami-799a2f10', # ortest-linux-x86_64-5
 );
