@@ -70,7 +70,9 @@ for my $jsonfile (@jsonfiles) {
     my $recs = $ast->{records};
     for my $rec (@$recs) {
         my $nginx_version = $rec->{nginx_version};
-        if ($nginx_version =~ /\b1\.0\.15\b/) {
+        if ($nginx_version =~ /\b1\.0\.15\b/
+            || $nginx_version =~ /\b1\.2\.1\b/)
+        {
             next;
         }
 
