@@ -9,7 +9,9 @@ use List::MoreUtils qw( any );
 sub usage ();
 
 my %opts;
-getopts("f", \%opts) or usage();
+getopts("e:f", \%opts) or usage();
+
+my $exclude = $opts{e};
 
 my %cpu_lualibs = (
     'resty-string' => 1,
@@ -132,9 +134,19 @@ for my $lib (@ARGV) {
     }
 }
 
+if (defined $exclude) {
+    my @skipped = grep { $_ eq $exclude || /^(?:$exclude)$/ } @goals;
+    if (@skipped) {
+        warn "WARNING: skipping goals @skipped\n";
+    }
+
+    @goals = grep { my $e = $_; !any { $_ eq $e } @skipped  } @goals;
+}
+
 print "@goals\n";
+#print scalar @goals;
 
 sub usage () {
-    die "$0 [-f] ngx_foo lua-resty-blah ...\n";
+    die "$0 [-e <exclude-pattern>] [-f] ngx_foo lua-resty-blah ...\n";
 }
 
