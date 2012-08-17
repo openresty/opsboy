@@ -135,7 +135,7 @@ for my $lib (@ARGV) {
 }
 
 if (defined $exclude) {
-    my @skipped = grep { $_ eq $exclude || /^(?:$exclude)$/ } @goals;
+    my @skipped = grep { $_ eq $exclude || /$exclude/ } @goals;
     if (@skipped) {
         warn "WARNING: skipping goals @skipped\n";
     }

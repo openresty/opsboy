@@ -24,6 +24,10 @@ my $run = $opts{r};
 my $force = $opts{f};
 
 my $exclude = $opts{e};
+my $exclude_opt = '';
+if (defined $exclude) {
+    $exclude_opt = "-e '$exclude'";
+}
 
 my $nginx_ver = $opts{v};
 if (defined $nginx_ver && $nginx_ver !~ /^\d+\.\d+\.\d+$/) {
@@ -33,7 +37,7 @@ if (defined $nginx_ver && $nginx_ver !~ /^\d+\.\d+\.\d+$/) {
 my @goals;
 my @comps = @ARGV;
 if (@comps) {
-    @goals = split /\s+/, `./gen-user-data @comps`;
+    @goals = split /\s+/, `./gen-user-data $exclude_opt @comps`;
     if ($? != 0) {
         die "aborted.\n";
     }
@@ -77,11 +81,6 @@ if (!@goals) {
 my $sum = 0;
 my @new_goals;
 for my $goal (@goals) {
-    if (defined $exclude && $goal =~ qr/$exclude/) {
-        #warn "INFO: excluding goal $goal ...\n";
-        next;
-    }
-
     if (!defined $elapsed{$goal}) {
         warn "WARNING: elapsed time for $goal is not found.\n";
         $elapsed{$goal} = 60 * 10; # default to 10 min
