@@ -621,7 +621,7 @@ prove {
 
 test-nginx {
     git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
-    dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
+    dep test-base time-hires test-longstring list-moreutils;
     dep ab weighttp;
 }
 
