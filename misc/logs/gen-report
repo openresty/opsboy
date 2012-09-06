@@ -5,6 +5,7 @@ use warnings;
 
 use JSON::XS;
 use Template;
+use File::Copy "cp";
 
 my $dir = shift
     or die "No input directory specified.\n";
@@ -42,10 +43,18 @@ my %github_links = (
     ngx_example_lua => ['agentzh', 'nginx-example-lua-module'],
 );
 
+my $last_test_date;
+if (open my $in, "LAST_TIME") {
+    $last_test_date = <$in>;
+    close $in;
+}
+
 my $data = {
 };
 
 my $jsonxs = JSON::XS->new->ascii;
+
+my $new_test_date;
 
 for my $jsonfile (@jsonfiles) {
     open my $in, $jsonfile
@@ -66,6 +75,15 @@ for my $jsonfile (@jsonfiles) {
     }
 
     my $test_date = $ast->{date};
+
+    if (!defined $new_test_date || $new_test_date lt $test_date) {
+        $new_test_date = $test_date;
+    }
+
+    my $is_new;
+    if (defined $last_test_date && $test_date gt $last_test_date) {
+        $is_new = 1;
+    }
 
     my $recs = $ast->{records};
     for my $rec (@$recs) {
@@ -126,6 +144,7 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{warns} = $rec->{warns};
         $mode_group->{config_error} = $rec->{config_error};
         $mode_group->{comp_errors} = $rec->{comp_errors};
+        $mode_group->{is_new} = $is_new;
     }
 }
 
@@ -195,4 +214,18 @@ $tt2->process('index.tt', { ast => $data }, 'html/index.html')
     or die $tt2->error();
 
 warn "wrote $outfile\n";
+
+warn "New test date: $new_test_date\n";
+
+if (!defined $last_test_date || $new_test_date ne $last_test_date) {
+    if (defined $last_test_date) {
+        cp("LAST_TIME", "LAST_TIME.old") or
+            die "Cannot cp LAST_TIME to LAST_TIME.old\n";
+    }
+
+    open my $out, ">LAST_TIME" or
+        die "Cannot write to LAST_TIME: $!\n";
+    print $out $new_test_date;
+    close $out;
+}
 

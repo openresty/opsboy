@@ -55,7 +55,9 @@
         [%- mode_link = mode.link %]
     <td>
         [%- IF res == "PASS" %]
-        <a href="[% mode_link %]" class="pass" title="All [% mode.tests %] tests successful, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">PASS</a>
+        <a href="[% mode_link %]" class="pass" title="All [% mode.tests %] tests successful, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">
+        PASS
+        </a>
         [%- ELSIF res == "~PASS" %]
         <a href="[% mode_link %]" class="almost_pass" title="[% mode.tests - mode.expected_fails.size %] tests pass, [% mode.expected_fails.size %] failures expected, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">PASS</a>
         [%- ELSIF mode.config_error %]
@@ -65,6 +67,9 @@
         [%- ELSE %]
         <a href="[% mode_link %]" class="fail" title="[% mode.true_fails.size %] unexpected failures ([% mode.true_fails.size + mode.expected_fails.size %] failures total), [% mode.tests ? mode.tests - mode.true_fails.size - mode.expected_fails.size : 0 %] pass, [% mode.elapsed %] sec, git [% mode.commit %], [% mode.test_date %] GMT">FAIL</a>
         [%- END -%]
+        [% IF mode.is_new %]
+        <img title="New!" src="images/new_icon.gif">
+        [% END %]
     </td>
     [%- ELSE -%]
     <td>-</td>

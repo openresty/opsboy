@@ -63,6 +63,7 @@ my %white_list = (
 
     ngx_srcache => [
         ['w', 'postgres-main.t'],
+        ['w', 'bugs.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? writev\(\) failed/],
         ['w', '000_init.t', '- pg -'],
         ['w', 'conditional-get.t', 'TEST 7: cache hit (I-U-S conditional GET, 412) - '],
         ['v', 'store-max-size.t', 'TEST 8: just more than store_max_size - pattern "store status: BYPASS" matches a line in error.log'],

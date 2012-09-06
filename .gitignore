@@ -3,6 +3,7 @@
 *.swo
 *.pl
 out*
+misc/logs/LAST_TIME*
 misc/logs/ast.json
 misc/logs/html/archive/
 misc/logs/ortest/

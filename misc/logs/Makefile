@@ -11,11 +11,12 @@ pull:
 	./sync
 
 gen: parse gen-report
-	-mkdir -p html
+	-mkdir -p html/images
 	-rm html/*.*
 	./gen-report ortest
 	mkdir -p $(dirname)
-	cp main.css html/
+	cp -u main.css html/
+	cp -u new_icon.gif html/images
 	cp html/*.* $(dirname)/
 
 %.json: %.log parse-logs
