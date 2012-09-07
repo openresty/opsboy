@@ -536,6 +536,12 @@ redis {
 run-postgres {
     running 'postgres: writer process';
     sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
+    dep run-postgres2;
+}
+
+run-postgres2 {
+    running 'postgres: writer process';
+    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
     dep postgres;
 }
 
