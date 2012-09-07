@@ -8,8 +8,8 @@ use Getopt::Std;
 my %ami_config = (
     'linux i386' => 'ami-d366d3ba', # ortest-linux-i386-5
     #'linux i386' => 'ami-6d8d2504', # ortest-linux-i386-4
-    #'linux x86_64' => 'ami-518c2438', # ortest-linux-x86_64-4
-    'linux x86_64' => 'ami-799a2f10', # ortest-linux-x86_64-5
+    #'linux x86_64' => 'ami-799a2f10', # ortest-linux-x86_64-5
+    'linux x86_64' => 'ami-45e9582c', # ortest-linux-x86_64-6
 );
 
 my %opts;
@@ -24,7 +24,7 @@ my $ami = $ami_config{$arch}
 
 my $keypair = $opts{k} || 'agentzh';
 
-my $instance_type = $opts{t} || 'c1.medium';
+my $instance_type = $opts{t} || 'm2.xlarge';
 
 my $user_data = join (" ", @ARGV)
     or die "No user data specified.\n";
