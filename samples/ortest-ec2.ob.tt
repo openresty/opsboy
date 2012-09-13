@@ -12,6 +12,7 @@ force = 0;
 ragel_version = 6.7;
 valgrind_version = 3.8.0;
 libev_version = 4.11;
+systemtap_version = 1.8;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -915,7 +916,7 @@ build-ngx_lua {
 }
 
 systemtap {
-    dep stap dtrace kernel-debuginfo staprun stapusr-grp stapdev-grp;
+    dep stap kernel-debuginfo stapusr-grp stapdev-grp;
 }
 
 stapusr-grp {
@@ -928,25 +929,19 @@ stapdev-grp {
     sh 'sudo usermod -a -G stapdev `whoami`';
 }
 
-staprun {
-    prog /usr/bin/staprun;
-    yum systemtap-runtime;
-    sh 'sudo chmod a+x /usr/bin/staprun';
-}
-
 kernel-debuginfo {
     test 'ls /usr/lib/debug/lib/modules/`uname -r`/kernel/* > /dev/null 2>&1';
     debuginfo 'kernel-`uname -r`';
 }
 
 stap {
-    prog stap;
-    yum systemtap;
-}
-
-dtrace {
-    prog dtrace;
-    yum systemtap-sdt-devel;
+    env PATH /opt/systemtap/bin:$PATH;
+    file /opt/systemtap/bin/stap;
+    test '/opt/systemtap/bin/stap --version 2>&1 | grep "version $systemtap_version"';
+    cwd /tmp;
+    fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
+    tarball systemtap-$systemtap_version.tar.gz;
+    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo make install';
 }
 
 yum-utils {
