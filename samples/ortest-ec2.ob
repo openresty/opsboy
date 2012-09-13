@@ -11467,6 +11467,13 @@ stap {
     fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
     tarball systemtap-$systemtap_version.tar.gz;
     sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo make install';
+    dep cc elfutils-devel;
+}
+
+elfutils-devel {
+    file /usr/include/dwarf.h;
+    file /usr/lib/libdw.so;
+    yum elfutils-devel;
 }
 
 yum-utils {
