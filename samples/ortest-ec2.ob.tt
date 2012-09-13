@@ -3,14 +3,14 @@
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.3;
-openresty_version = 1.0.15.11;
-ngx_upstream_keepalive_version = 0.7;
+openresty_version = 1.2.3.1;
+#ngx_upstream_keepalive_version = 0.7;
 redis_version = 2.4.14;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.30;
 force = 0;
 ragel_version = 6.7;
-valgrind_version = 3.7.0;
+valgrind_version = 3.8.0;
 libev_version = 4.11;
 
 [%- BLOCK nginx_test_config %]
@@ -304,7 +304,7 @@ ngx_srcache {
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
     dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
-    dep ngx_memc ngx_upstream_keepalive;
+    dep ngx_memc;
 }
 
 ngx_memc {
@@ -327,12 +327,12 @@ cxx {
     dep make;
 }
 
-ngx_upstream_keepalive {
-    file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
-    cwd ~/work/nginx;
-    fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
-    tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
-}
+#ngx_upstream_keepalive {
+    #file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
+    #cwd ~/work/nginx;
+    #fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+    #tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
+#}
 
 ngx_postgres {
     git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
@@ -768,7 +768,7 @@ t[% type %]-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
+    dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
@@ -776,14 +776,14 @@ t[% type %]-ngx_memc {
     [%- PROCESS build_nginx_module name="memc" -%]
 
     dep run-memcached;
-    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+    dep ndk ngx_eval ngx_echo ngx_lua;
 }
 
 t[% type %]-ngx_redis2 {
     [%- PROCESS build_nginx_module name="redis2" -%]
 
     dep run-redis;
-    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
 t[% type %]-ngx_xss {
@@ -909,7 +909,7 @@ build-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
 }
 
