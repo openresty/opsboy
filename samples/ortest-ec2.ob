@@ -1060,7 +1060,7 @@ t-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 t-ngx_memc {
@@ -2078,7 +2078,7 @@ tv-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 tv-ngx_memc {
@@ -3162,7 +3162,7 @@ tr-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 tr-ngx_memc {
@@ -4330,7 +4330,7 @@ trv-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 trv-ngx_memc {
@@ -5524,7 +5524,7 @@ tw-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 tw-ngx_memc {
@@ -6717,7 +6717,7 @@ twv-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 twv-ngx_memc {
@@ -7864,7 +7864,7 @@ th-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 th-ngx_memc {
@@ -8857,7 +8857,7 @@ thv-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 thv-ngx_memc {
@@ -9884,7 +9884,7 @@ tl-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 tl-ngx_memc {
@@ -10903,7 +10903,7 @@ to-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 to-ngx_memc {

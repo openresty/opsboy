@@ -769,7 +769,7 @@ t[% type %]-ngx_lua {
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
-    dep ngx_rds_json ngx_coolkit;
+    dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
 t[% type %]-ngx_memc {
