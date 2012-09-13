@@ -880,6 +880,7 @@ ngx-coolkit-build-script {
 valgrind {
     env PATH /opt/valgrind/bin:$PATH;
     file /opt/valgrind/bin/valgrind;
+    test '/opt/valgrind/bin/valgrind --version|grep $valgrind_version';
     cwd /tmp;
     fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
     tarball valgrind-$valgrind_version.tar.bz2;
