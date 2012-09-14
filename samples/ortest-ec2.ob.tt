@@ -24,6 +24,7 @@ systemtap_version = 1.8;
     env TEST_NGINX_USE_STAP '';
     [%- END %]
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';

@@ -744,6 +744,7 @@ t-ngx_srcache {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -785,6 +786,7 @@ t-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -825,6 +827,7 @@ t-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -865,6 +868,7 @@ t-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -906,6 +910,7 @@ t-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -948,6 +953,7 @@ t-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -990,6 +996,7 @@ t-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1031,6 +1038,7 @@ t-ngx_lua {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1074,6 +1082,7 @@ t-ngx_memc {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1115,6 +1124,7 @@ t-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1156,6 +1166,7 @@ t-ngx_xss {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1196,6 +1207,7 @@ t-ngx_echo {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1237,6 +1249,7 @@ t-ngx_eval {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1277,6 +1290,7 @@ t-ngx_form_input {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1317,6 +1331,7 @@ t-ngx_array_var {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1357,6 +1372,7 @@ t-ngx_postgres {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1400,6 +1416,7 @@ t-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1440,6 +1457,7 @@ t-ngx_iconv {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1480,6 +1498,7 @@ t-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1521,6 +1540,7 @@ t-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1558,6 +1578,7 @@ t-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1595,6 +1616,7 @@ t-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1633,6 +1655,7 @@ t-lua-resty-string {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1670,6 +1693,7 @@ t-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1707,6 +1731,7 @@ t-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1746,6 +1771,7 @@ tv-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1789,6 +1815,7 @@ tv-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1831,6 +1858,7 @@ tv-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1873,6 +1901,7 @@ tv-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1916,6 +1945,7 @@ tv-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -1960,6 +1990,7 @@ tv-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2004,6 +2035,7 @@ tv-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2047,6 +2079,7 @@ tv-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2092,6 +2125,7 @@ tv-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2135,6 +2169,7 @@ tv-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2178,6 +2213,7 @@ tv-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2220,6 +2256,7 @@ tv-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2263,6 +2300,7 @@ tv-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2305,6 +2343,7 @@ tv-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2347,6 +2386,7 @@ tv-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2389,6 +2429,7 @@ tv-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2434,6 +2475,7 @@ tv-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2476,6 +2518,7 @@ tv-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2518,6 +2561,7 @@ tv-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2561,6 +2605,7 @@ tv-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2600,6 +2645,7 @@ tv-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2639,6 +2685,7 @@ tv-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2679,6 +2726,7 @@ tv-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2718,6 +2766,7 @@ tv-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2757,6 +2806,7 @@ tv-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2798,6 +2848,7 @@ tr-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2845,6 +2896,7 @@ tr-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2891,6 +2943,7 @@ tr-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2937,6 +2990,7 @@ tr-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -2984,6 +3038,7 @@ tr-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3032,6 +3087,7 @@ tr-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3080,6 +3136,7 @@ tr-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3127,6 +3184,7 @@ tr-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3176,6 +3234,7 @@ tr-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3223,6 +3282,7 @@ tr-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3270,6 +3330,7 @@ tr-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3316,6 +3377,7 @@ tr-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3363,6 +3425,7 @@ tr-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3409,6 +3472,7 @@ tr-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3455,6 +3519,7 @@ tr-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3501,6 +3566,7 @@ tr-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3550,6 +3616,7 @@ tr-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3596,6 +3663,7 @@ tr-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3642,6 +3710,7 @@ tr-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3689,6 +3758,7 @@ tr-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3732,6 +3802,7 @@ tr-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3775,6 +3846,7 @@ tr-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3819,6 +3891,7 @@ tr-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3862,6 +3935,7 @@ tr-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3905,6 +3979,7 @@ tr-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3950,6 +4025,7 @@ trv-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -3999,6 +4075,7 @@ trv-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4047,6 +4124,7 @@ trv-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4095,6 +4173,7 @@ trv-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4144,6 +4223,7 @@ trv-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4194,6 +4274,7 @@ trv-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4244,6 +4325,7 @@ trv-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4293,6 +4375,7 @@ trv-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4344,6 +4427,7 @@ trv-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4393,6 +4477,7 @@ trv-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4442,6 +4527,7 @@ trv-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4490,6 +4576,7 @@ trv-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4539,6 +4626,7 @@ trv-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4587,6 +4675,7 @@ trv-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4635,6 +4724,7 @@ trv-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4683,6 +4773,7 @@ trv-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4734,6 +4825,7 @@ trv-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4782,6 +4874,7 @@ trv-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4830,6 +4923,7 @@ trv-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4879,6 +4973,7 @@ trv-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4924,6 +5019,7 @@ trv-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -4969,6 +5065,7 @@ trv-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5015,6 +5112,7 @@ trv-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5060,6 +5158,7 @@ trv-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5105,6 +5204,7 @@ trv-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5152,6 +5252,7 @@ tw-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5200,6 +5301,7 @@ tw-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5247,6 +5349,7 @@ tw-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5294,6 +5397,7 @@ tw-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5342,6 +5446,7 @@ tw-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5391,6 +5496,7 @@ tw-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5440,6 +5546,7 @@ tw-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5488,6 +5595,7 @@ tw-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5538,6 +5646,7 @@ tw-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5586,6 +5695,7 @@ tw-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5634,6 +5744,7 @@ tw-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5681,6 +5792,7 @@ tw-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5729,6 +5841,7 @@ tw-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5776,6 +5889,7 @@ tw-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5823,6 +5937,7 @@ tw-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5870,6 +5985,7 @@ tw-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5920,6 +6036,7 @@ tw-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -5967,6 +6084,7 @@ tw-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6014,6 +6132,7 @@ tw-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6062,6 +6181,7 @@ tw-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6106,6 +6226,7 @@ tw-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6150,6 +6271,7 @@ tw-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6195,6 +6317,7 @@ tw-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6239,6 +6362,7 @@ tw-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6283,6 +6407,7 @@ tw-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6329,6 +6454,7 @@ twv-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6379,6 +6505,7 @@ twv-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6428,6 +6555,7 @@ twv-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6477,6 +6605,7 @@ twv-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6527,6 +6656,7 @@ twv-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6578,6 +6708,7 @@ twv-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6629,6 +6760,7 @@ twv-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6679,6 +6811,7 @@ twv-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6731,6 +6864,7 @@ twv-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6781,6 +6915,7 @@ twv-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6831,6 +6966,7 @@ twv-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6880,6 +7016,7 @@ twv-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6930,6 +7067,7 @@ twv-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -6979,6 +7117,7 @@ twv-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7028,6 +7167,7 @@ twv-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7077,6 +7217,7 @@ twv-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7129,6 +7270,7 @@ twv-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7178,6 +7320,7 @@ twv-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7227,6 +7370,7 @@ twv-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7277,6 +7421,7 @@ twv-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7323,6 +7468,7 @@ twv-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7369,6 +7515,7 @@ twv-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7416,6 +7563,7 @@ twv-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7462,6 +7610,7 @@ twv-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7508,6 +7657,7 @@ twv-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7556,6 +7706,7 @@ th-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7596,6 +7747,7 @@ th-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7635,6 +7787,7 @@ th-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7674,6 +7827,7 @@ th-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7714,6 +7868,7 @@ th-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7755,6 +7910,7 @@ th-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7796,6 +7952,7 @@ th-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7836,6 +7993,7 @@ th-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7878,6 +8036,7 @@ th-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7918,6 +8077,7 @@ th-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7958,6 +8118,7 @@ th-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -7997,6 +8158,7 @@ th-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8037,6 +8199,7 @@ th-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8076,6 +8239,7 @@ th-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8115,6 +8279,7 @@ th-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8154,6 +8319,7 @@ th-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8196,6 +8362,7 @@ th-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8235,6 +8402,7 @@ th-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8274,6 +8442,7 @@ th-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8314,6 +8483,7 @@ th-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8350,6 +8520,7 @@ th-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8386,6 +8557,7 @@ th-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8423,6 +8595,7 @@ th-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8459,6 +8632,7 @@ th-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8495,6 +8669,7 @@ th-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8533,6 +8708,7 @@ thv-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8575,6 +8751,7 @@ thv-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8616,6 +8793,7 @@ thv-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8657,6 +8835,7 @@ thv-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8699,6 +8878,7 @@ thv-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8742,6 +8922,7 @@ thv-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8785,6 +8966,7 @@ thv-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8827,6 +9009,7 @@ thv-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8871,6 +9054,7 @@ thv-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8913,6 +9097,7 @@ thv-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8955,6 +9140,7 @@ thv-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -8996,6 +9182,7 @@ thv-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9038,6 +9225,7 @@ thv-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9079,6 +9267,7 @@ thv-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9120,6 +9309,7 @@ thv-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9161,6 +9351,7 @@ thv-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9205,6 +9396,7 @@ thv-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9246,6 +9438,7 @@ thv-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9287,6 +9480,7 @@ thv-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9329,6 +9523,7 @@ thv-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9367,6 +9562,7 @@ thv-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9405,6 +9601,7 @@ thv-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9444,6 +9641,7 @@ thv-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9482,6 +9680,7 @@ thv-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9520,6 +9719,7 @@ thv-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9560,6 +9760,7 @@ tl-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9602,6 +9803,7 @@ tl-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9643,6 +9845,7 @@ tl-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9684,6 +9887,7 @@ tl-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9726,6 +9930,7 @@ tl-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9769,6 +9974,7 @@ tl-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9812,6 +10018,7 @@ tl-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9854,6 +10061,7 @@ tl-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9898,6 +10106,7 @@ tl-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9940,6 +10149,7 @@ tl-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -9982,6 +10192,7 @@ tl-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10023,6 +10234,7 @@ tl-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10065,6 +10277,7 @@ tl-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10106,6 +10319,7 @@ tl-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10147,6 +10361,7 @@ tl-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10188,6 +10403,7 @@ tl-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10232,6 +10448,7 @@ tl-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10273,6 +10490,7 @@ tl-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10314,6 +10532,7 @@ tl-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10356,6 +10575,7 @@ tl-lua-resty-memcached {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10394,6 +10614,7 @@ tl-lua-resty-redis {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10432,6 +10653,7 @@ tl-lua-resty-mysql {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10471,6 +10693,7 @@ tl-lua-resty-string {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10509,6 +10732,7 @@ tl-lua-resty-upload {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10547,6 +10771,7 @@ tl-lua-resty-dns {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
@@ -10587,6 +10812,7 @@ to-ngx_srcache {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10628,6 +10854,7 @@ to-ngx_set_misc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10668,6 +10895,7 @@ to-ngx_headers_more {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10708,6 +10936,7 @@ to-ngx_rds_json {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10749,6 +10978,7 @@ to-ngx_rds_csv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10791,6 +11021,7 @@ to-ngx_drizzle {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10833,6 +11064,7 @@ to-ngx_example_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10874,6 +11106,7 @@ to-ngx_lua {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10917,6 +11150,7 @@ to-ngx_memc {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10958,6 +11192,7 @@ to-ngx_redis2 {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -10999,6 +11234,7 @@ to-ngx_xss {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11039,6 +11275,7 @@ to-ngx_echo {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11080,6 +11317,7 @@ to-ngx_eval {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11120,6 +11358,7 @@ to-ngx_form_input {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11160,6 +11399,7 @@ to-ngx_array_var {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11200,6 +11440,7 @@ to-ngx_postgres {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11243,6 +11484,7 @@ to-ngx_encrypted_session {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11283,6 +11525,7 @@ to-ngx_iconv {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11323,6 +11566,7 @@ to-ngx_coolkit {
 
     env TEST_NGINX_USE_STAP '';
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_JOBS $jobs;
@@ -11408,6 +11652,7 @@ build-ngx_lua {
 
     env TEST_NGINX_USE_STAP 1;
 
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC gcc46;
     env NGX_BUILD_OPT -O1;
     env NGX_BUILD_JOBS $jobs;
