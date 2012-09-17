@@ -94,6 +94,7 @@ my %white_list = (
         ['h', '043-shdict.t', '- response_body'],
         ['h', '009-log.t', 'TEST 16: ngx.log() big data - pattern "(?-xism:ah{1970}b)" matches a line in error.log'],
         ['h', '023-rewrite/socket-keepalive.t', 'TEST 11: sanity (uds) - pattern "lua tcp socket keepalive: free connection pool for " should not match any line in error.log'],
+        ['h', '023-rewrite/tcp-socket.t', qr{pattern "\[error\]" should not match any line in error\.log but matches line .*? wrong ident \d+ response for}],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should not match any line in error\.log/],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" matches a line in error\.log/],
         ['h', '068-socket-keepalive.t', 'TEST 17: custom pools (same pool for the same path) - unix - response_body - response is expected'],
