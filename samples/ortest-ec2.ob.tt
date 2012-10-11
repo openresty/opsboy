@@ -2,17 +2,17 @@
 
 jobs = 2;
 ngx_redis_version = 0.3.6;
-nginx_version = 1.2.3;
-openresty_version = 1.2.3.1;
+nginx_version = 1.2.4;
+openresty_version = 1.2.4.1rc1;
 #ngx_upstream_keepalive_version = 0.7;
-redis_version = 2.4.14;
+redis_version = 2.4.17;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.30;
+pcre_version = 8.31;
 force = 0;
 ragel_version = 6.7;
-valgrind_version = 3.8.0;
+valgrind_version = 3.8.1;
 libev_version = 4.11;
-systemtap_version = 1.8;
+systemtap_version = 2.0;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
