@@ -433,6 +433,8 @@ pcrejit {
     file /opt/pcrejit/lib/libpcre.so;
     file /opt/pcrejit/include/pcre.h;
 
+    test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
+
     fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
     tarball pcre-$pcre_version.tar.gz;
     cwd /tmp;
