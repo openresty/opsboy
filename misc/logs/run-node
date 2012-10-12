@@ -6,10 +6,10 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-65bd0d0c', # ortest-linux-i386-7
-    #'linux i386' => 'ami-45ca7b2c', # ortest-linux-i386-6
-    #'linux x86_64' => 'ami-45e9582c', # ortest-linux-x86_64-6
-    'linux x86_64' => 'ami-33a4145a', # ortest-linux-x86_64-7
+    'linux i386' => 'ami-8c73cce5', # ortest-linux-i386-8
+    #'linux i386' => 'ami-65bd0d0c', # ortest-linux-i386-7
+    #'linux x86_64' => 'ami-33a4145a', # ortest-linux-x86_64-7
+    'linux x86_64' => 'ami-b8813ed1', # ortest-linux-x86_64-8
 );
 
 my %opts;
@@ -27,12 +27,12 @@ my $keypair = $opts{k} || 'agentzh';
 my $instance_type = $opts{t};
 
 if (!defined $instance_type) {
-    #if ($arch eq 'linux x86_64') {
-    #$instance_type = 'm2.xlarge';
+    if ($arch eq 'linux x86_64') {
+        $instance_type = 'm2.xlarge';
 
-    #} else {
-    $instance_type = 'c1.medium';
-    #}
+    } else {
+        $instance_type = 'c1.medium';
+    }
 }
 
 my $user_data = join (" ", @ARGV)
