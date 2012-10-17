@@ -28,6 +28,7 @@ my $instance_type = $opts{t};
 
 if (!defined $instance_type) {
     if ($arch eq 'linux x86_64') {
+        #$instance_type = 'c1.medium';
         $instance_type = 'm2.xlarge';
 
     } else {
