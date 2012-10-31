@@ -6,10 +6,10 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-d45ee0bd', # ortest-linux-i386-9
-    #'linux i386' => 'ami-8c73cce5', # ortest-linux-i386-8
-    #'linux x86_64' => 'ami-b8813ed1', # ortest-linux-x86_64-8
-    'linux x86_64' => 'ami-8c853be5', # ortest-linux-x86_64-9
+    'linux i386' => 'ami-cf290f8a', # ortest-linux-i386-10 (us-west-1)
+    #'linux i386' => 'ami-3298235b', # ortest-linux-i386-10 (us-east-1)
+    #'linux x86_64' => 'ami-b2c873db', # ortest-linux-x86_64-10 (us-east-1)
+    'linux x86_64' => 'ami-853610c0', # ortest-linux-x86_64-10 (us-west-1)
 );
 
 my %opts;
@@ -40,7 +40,8 @@ my $user_data = join (" ", @ARGV)
     or die "No user data specified.\n";
 
 my @cmd = ("ec2-run-instances", $ami, "-k", $keypair, "-d", $user_data,
-        "--debug", "-t", $instance_type, '--availability-zone', 'us-east-1b',
+        "--debug", "-t", $instance_type, '--availability-zone', 'us-west-1b',
+        '--region', 'us-west-1',
         '--instance-initiated-shutdown-behavior', 'terminate',
         '-g', 'quick-start-1');
 
