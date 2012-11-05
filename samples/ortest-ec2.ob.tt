@@ -3,8 +3,7 @@
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.4;
-openresty_version = 1.2.4.5rc1;
-#ngx_upstream_keepalive_version = 0.7;
+openresty_version = 1.2.4.5;
 redis_version = 2.4.17;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.31;
@@ -328,13 +327,6 @@ cxx {
     yum gcc-c++;
     dep make;
 }
-
-#ngx_upstream_keepalive {
-    #file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
-    #cwd ~/work/nginx;
-    #fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
-    #tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
-#}
 
 ngx_postgres {
     git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
@@ -663,11 +655,6 @@ libev {
     dep cxx cc;
 }
 
-parallel-forkmanager {
-    test 'perl -MParallel::ForkManager -e1';
-    cpan Parallel::ForkManager;
-}
-
 list-moreutils {
     test 'perl -MList::MoreUtils -e1';
     yum perl-List-MoreUtils;
@@ -686,6 +673,12 @@ time-hires {
 test-base {
     test 'perl -e "require(q{Test/Base.pm});"';
     yum perl-Test-Base;
+    dep text-diff;
+}
+
+text-diff {
+    test 'perl -MText::Diff -e1';
+    yum perl-Text-Diff;
 }
 
 patch {
