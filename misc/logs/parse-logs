@@ -114,6 +114,7 @@ my %white_list = (
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" matches a line in error\.log/],
         ['h', '068-socket-keepalive.t', 'TEST 17: custom pools (same pool for the same path) - unix - response_body - response is expected'],
         ['h', '058-tcp-socket.t', 'unexpected response for blah-blah-not-found.agentzh.org'],
+        ['h', '023-rewrite/tcp-socket.t', 'unexpected response for blah-blah-not-found.agentzh.org'],
     ],
 
     ngx_drizzle => [
