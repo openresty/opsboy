@@ -103,6 +103,7 @@ my %white_list = (
         ['v', '024-access/on-abort.t', 'matches a line in error.log'],
         ['v', '100-client-abort.t', 'matches a line in error.log'],
         ['v', '101-on-abort.t', 'matches a line in error.log'],
+        ['', '023-rewrite/on-abort.t', 'TEST 10: ignore the client abort event in the user callback (uthread) - stap output expected'],
         ['wv', '023-rewrite/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
         ['wv', '024-access/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
         ['wv', '101-on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
