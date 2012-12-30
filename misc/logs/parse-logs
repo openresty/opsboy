@@ -116,6 +116,7 @@ my %white_list = (
         ['h', '068-socket-keepalive.t', 'TEST 17: custom pools (same pool for the same path) - unix - response_body - response is expected'],
         ['h', '058-tcp-socket.t', 'unexpected response for blah-blah-not-found.agentzh.org'],
         ['h', '023-rewrite/tcp-socket.t', 'unexpected response for blah-blah-not-found.agentzh.org'],
+        ['hv', '024-access/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "main handler done" should not match any line in error.log but matches line'],
     ],
 
     ngx_drizzle => [
