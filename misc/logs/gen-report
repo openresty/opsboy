@@ -89,7 +89,7 @@ for my $jsonfile (@jsonfiles) {
     for my $rec (@$recs) {
         my $nginx_version = $rec->{nginx_version};
         if ($nginx_version =~ /\b1\.0\.15\b/
-            || $nginx_version =~ /\b1\.2\.[13]\b/
+            || $nginx_version =~ /\b1\.2\.[134]\b/
             || $nginx_version =~ /\b1\.3\.[46]\b/)
         {
             next;
