@@ -351,12 +351,16 @@ sregex {
 }
 
 t-sregex {
-    sh 'cd ~/git/sregex && make test -j$jobs jobs=$jobs';
+    always;
+    cwd ~/git/sregex;
+    sh 'make test -j$jobs jobs=$jobs';
     dep sregex;
 }
 
 tv-sregex {
-    sh 'cd ~/git/sregex && make valtest -j$jobs jobs=$jobs';
+    always;
+    cwd ~/git/sregex;
+    sh 'make valtest -j$jobs jobs=$jobs';
     dep sregex;
 }
 
