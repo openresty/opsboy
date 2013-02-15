@@ -135,6 +135,7 @@ systemtap_version = 2.0;
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
+    'replace_filter',
    ]
 -%]
 
@@ -162,6 +163,7 @@ t {
 [% FOREACH name IN lualibs -%]
     dep t-lua-[% name %];
 [% END -%]
+    dep t-sregex;
 }
 
 to {
@@ -172,6 +174,7 @@ to {
 
 tv {
     dep tv1 tv2;
+    dep tv-sregex;
 }
 
 tv1 {
@@ -333,6 +336,37 @@ ngx_postgres {
     env LIBPQ_INC /usr/include;
     env LIBPQ_LIB /usr/lib64;
     dep libpq;
+}
+
+ngx_replace_filter {
+    git git://github.com/agentzh/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
+}
+
+sregex {
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
+    sh 'cd ~/git/sregex && make -j$jobs';
+    dep sregex-git;
+    dep cc bison luajit;
+}
+
+t-sregex {
+    sh 'cd ~/git/sregex && make test -j$jobs jobs=$jobs';
+    dep sregex;
+}
+
+tv-sregex {
+    sh 'cd ~/git/sregex && make valtest -j$jobs jobs=$jobs';
+    dep sregex;
+}
+
+bison {
+    file /usr/bin/bison;
+    yum bison;
+}
+
+sregex-git {
+    git git://github.com/agentzh/sregex.git ~/git/sregex;
 }
 
 libpq {
@@ -840,6 +874,12 @@ t[% type %]-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+t[% type %]-ngx_replace_filter {
+    [%- PROCESS build_nginx_module name="replace-filter" -%]
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 [%- IF type == "o"; NEXT; END -%]

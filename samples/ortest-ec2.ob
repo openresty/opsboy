@@ -37,12 +37,14 @@ t {
     dep t-ngx_coolkit;
     dep t-ngx_iconv;
     dep t-ngx_example_lua;
+    dep t-ngx_replace_filter;
     dep t-lua-resty-memcached;
     dep t-lua-resty-redis;
     dep t-lua-resty-mysql;
     dep t-lua-resty-string;
     dep t-lua-resty-upload;
     dep t-lua-resty-dns;
+    dep t-sregex;
 }
 
 to {
@@ -65,10 +67,12 @@ to {
     dep to-ngx_coolkit;
     dep to-ngx_iconv;
     dep to-ngx_example_lua;
+    dep to-ngx_replace_filter;
 }
 
 tv {
     dep tv1 tv2;
+    dep tv-sregex;
 }
 
 tv1 {
@@ -96,6 +100,7 @@ tv2 {
     dep tv-ngx_coolkit;
     dep tv-ngx_iconv;
     dep tv-ngx_example_lua;
+    dep tv-ngx_replace_filter;
 }
 
 tr {
@@ -112,6 +117,7 @@ tr {
     dep tr-ngx_rds_csv;
     dep tr-ngx_form_input;
     dep tr-ngx_iconv;
+    dep tr-ngx_replace_filter;
     dep tr-lua-resty-memcached;
     dep tr-lua-resty-redis;
     dep tr-lua-resty-mysql;
@@ -149,6 +155,7 @@ trv2 {
     dep trv-ngx_rds_csv;
     dep trv-ngx_form_input;
     dep trv-ngx_iconv;
+    dep trv-ngx_replace_filter;
 }
 
 tw {
@@ -165,6 +172,7 @@ tw {
     dep tw-ngx_rds_csv;
     dep tw-ngx_form_input;
     dep tw-ngx_iconv;
+    dep tw-ngx_replace_filter;
     dep tw-lua-resty-memcached;
     dep tw-lua-resty-redis;
     dep tw-lua-resty-mysql;
@@ -202,6 +210,7 @@ twv2 {
     dep twv-ngx_rds_csv;
     dep twv-ngx_form_input;
     dep twv-ngx_iconv;
+    dep twv-ngx_replace_filter;
 }
 
 th {
@@ -224,6 +233,7 @@ th {
     dep th-ngx_coolkit;
     dep th-ngx_iconv;
     dep th-ngx_example_lua;
+    dep th-ngx_replace_filter;
     dep th-lua-resty-memcached;
     dep th-lua-resty-redis;
     dep th-lua-resty-mysql;
@@ -252,6 +262,7 @@ thv {
     dep thv-ngx_coolkit;
     dep thv-ngx_iconv;
     dep thv-ngx_example_lua;
+    dep thv-ngx_replace_filter;
     dep thv-lua-resty-memcached;
     dep thv-lua-resty-redis;
     dep thv-lua-resty-mysql;
@@ -280,6 +291,7 @@ tl {
     dep tl-ngx_coolkit;
     dep tl-ngx_iconv;
     dep tl-ngx_example_lua;
+    dep tl-ngx_replace_filter;
     dep tl-lua-resty-memcached;
     dep tl-lua-resty-redis;
     dep tl-lua-resty-mysql;
@@ -331,6 +343,37 @@ ngx_postgres {
     env LIBPQ_INC /usr/include;
     env LIBPQ_LIB /usr/lib64;
     dep libpq;
+}
+
+ngx_replace_filter {
+    git git://github.com/agentzh/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
+}
+
+sregex {
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
+    sh 'cd ~/git/sregex && make -j$jobs';
+    dep sregex-git;
+    dep cc bison luajit;
+}
+
+t-sregex {
+    sh 'cd ~/git/sregex && make test -j$jobs jobs=$jobs';
+    dep sregex;
+}
+
+tv-sregex {
+    sh 'cd ~/git/sregex && make valtest -j$jobs jobs=$jobs';
+    dep sregex;
+}
+
+bison {
+    file /usr/bin/bison;
+    yum bison;
+}
+
+sregex-git {
+    git git://github.com/agentzh/sregex.git ~/git/sregex;
 }
 
 libpq {
@@ -1525,6 +1568,47 @@ t-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+t-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
+}
+
 t-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
@@ -2588,6 +2672,49 @@ tv-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+tv-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 tv-lua-resty-memcached {
@@ -3741,6 +3868,53 @@ tr-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+tr-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 tr-lua-resty-memcached {
@@ -4958,6 +5132,55 @@ trv-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+trv-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
+}
+
 trv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
@@ -6164,6 +6387,54 @@ tw-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+tw-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 tw-lua-resty-memcached {
@@ -7406,6 +7677,56 @@ twv-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+twv-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
+}
+
 twv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
@@ -8468,6 +8789,46 @@ th-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+th-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
+}
+
 th-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
@@ -9506,6 +9867,48 @@ thv-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+thv-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 thv-lua-resty-memcached {
@@ -10560,6 +10963,48 @@ tl-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
+tl-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
+}
+
 tl-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
@@ -11591,6 +12036,47 @@ to-ngx_coolkit {
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+}
+
+to-ngx_replace_filter {
+    always;
+    cwd ~/git/replace-filter-nginx-module;
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_PRELOAD '';
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V';
+    sh 'killall nginx || exit 0';
+    sh 'prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_replace_filter;
+
+    dep sregex ngx_echo ngx_lua;
 }
 
 
