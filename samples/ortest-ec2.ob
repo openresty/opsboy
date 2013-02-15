@@ -1606,6 +1606,9 @@ t-ngx_replace_filter {
 
     dep nginx-module-test ngx_replace_filter;
 
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     dep sregex ngx_echo ngx_lua;
 }
 
@@ -2713,6 +2716,9 @@ tv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -3913,6 +3919,9 @@ tr-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -5178,6 +5187,9 @@ trv-ngx_replace_filter {
 
     dep nginx-module-test ngx_replace_filter;
 
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     dep sregex ngx_echo ngx_lua;
 }
 
@@ -6433,6 +6445,9 @@ tw-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -7724,6 +7739,9 @@ twv-ngx_replace_filter {
 
     dep nginx-module-test ngx_replace_filter;
 
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     dep sregex ngx_echo ngx_lua;
 }
 
@@ -8826,6 +8844,9 @@ th-ngx_replace_filter {
 
     dep nginx-module-test ngx_replace_filter;
 
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     dep sregex ngx_echo ngx_lua;
 }
 
@@ -9907,6 +9928,9 @@ thv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -11002,6 +11026,9 @@ tl-ngx_replace_filter {
 
     dep nginx-module-test ngx_replace_filter;
 
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     dep sregex ngx_echo ngx_lua;
 }
 
@@ -12075,6 +12102,9 @@ to-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
 
     dep sregex ngx_echo ngx_lua;
 }
