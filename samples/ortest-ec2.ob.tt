@@ -347,7 +347,12 @@ sregex {
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/sregex && make -j$jobs';
     dep sregex-git;
-    dep cc bison luajit;
+    dep cc bison luajit perl-IPC-Run3 test-longstring test-base;
+}
+
+perl-IPC-Run3 {
+    test 'perl -MIPC::Run3 -e1';
+    yum perl-IPC-Run3;
 }
 
 t-sregex {

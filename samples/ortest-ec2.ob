@@ -354,16 +354,25 @@ sregex {
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/sregex && make -j$jobs';
     dep sregex-git;
-    dep cc bison luajit;
+    dep cc bison luajit perl-IPC-Run3 test-longstring test-base;
+}
+
+perl-IPC-Run3 {
+    test 'perl -MIPC::Run3 -e1';
+    yum perl-IPC-Run3;
 }
 
 t-sregex {
-    sh 'cd ~/git/sregex && make test -j$jobs jobs=$jobs';
+    always;
+    cwd ~/git/sregex;
+    sh 'make test -j$jobs jobs=$jobs';
     dep sregex;
 }
 
 tv-sregex {
-    sh 'cd ~/git/sregex && make valtest -j$jobs jobs=$jobs';
+    always;
+    cwd ~/git/sregex;
+    sh 'make valtest -j$jobs jobs=$jobs';
     dep sregex;
 }
 
