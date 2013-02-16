@@ -3,15 +3,15 @@
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.6;
-openresty_version = 1.2.4.14;
-redis_version = 2.6.7;
+openresty_version = 1.2.6.5;
+redis_version = 2.6.10;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.32;
 force = 0;
-ragel_version = 6.7;
+ragel_version = 6.8;
 valgrind_version = 3.8.1;
 libev_version = 4.11;
-systemtap_version = 2.0;
+systemtap_version = 2.1;
 perl516_version = 5.16.2;
 bison_version = 2.7;
 
