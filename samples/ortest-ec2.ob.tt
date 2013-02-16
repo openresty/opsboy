@@ -378,7 +378,7 @@ perl516-Test-Differences {
 }
 
 perl516-Test-Base {
-    test '/opt/perl516/bin/perl -MTest::Base -e1';
+    test '/opt/perl516/bin/perl -e "require(q{Test/Base.pm});"';
     sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::Base';
     dep perl516;
 }
