@@ -355,7 +355,7 @@ sregex {
     always;
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/sregex && make -j$jobs';
-    env PATH /usr/local/openresty-debug/luajit/bin:$PATH;
+    env PATH /usr/local/openresty-debug/luajit/bin:/opt/bison/bin:$PATH;
     dep sregex-git;
     dep cc bison luajit;
     dep perl516-IPC-Run3 perl516-Test-LongString perl516-Test-Base perl516;
