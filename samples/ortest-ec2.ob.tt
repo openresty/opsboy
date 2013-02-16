@@ -365,25 +365,25 @@ perl516 {
 
 perl516-Test-LongString {
     test '/opt/perl516/bin/perl -MTest::LongString -e1';
-    sh 'sudo /opt/perl516/bin/cpan -i Test::LongString';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::LongString';
     dep perl516;
 }
 
 perl516-Test-Differences {
     test '/opt/perl516/bin/perl -MTest::Differences -e1';
-    sh 'sudo /opt/perl516/bin/cpan -i Test::Differences';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::Differences';
     dep perl516;
 }
 
 perl516-Test-Base {
     test '/opt/perl516/bin/perl -MTest::Base -e1';
-    sh 'sudo /opt/perl516/bin/cpan -i Test::Base';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::Base';
     dep perl516;
 }
 
 perl516-IPC-Run3 {
     test '/opt/perl516/bin/perl -MIPC::Run3 -e1';
-    sh 'sudo /opt/perl516/bin/cpan -i IPC::Run3';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i IPC::Run3';
     dep perl516;
 }
 
