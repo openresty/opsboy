@@ -12,6 +12,7 @@ ragel_version = 6.7;
 valgrind_version = 3.8.1;
 libev_version = 4.11;
 systemtap_version = 2.0;
+perl516_version = 5.16.2;
 
 
 
@@ -354,7 +355,43 @@ sregex {
     #file ~/git/mockeagain/mockeagain.so;
     sh 'cd ~/git/sregex && make -j$jobs';
     dep sregex-git;
-    dep cc bison luajit perl-IPC-Run3 test-longstring test-base;
+    dep cc bison luajit;
+    dep perl516-IPC-Run3 perl516-Test-LongString perl516-Test-Base perl516;
+    dep perl516-Test-Differences;
+}
+
+perl516 {
+    file '/opt/perl516/bin/perl';
+    test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
+    cwd /tmp;
+    fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
+    tarball perl-$perl516_version.tar.gz;
+    sh 'cd perl-$perl516_version && sh Configure -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    dep cc;
+}
+
+perl516-Test-LongString {
+    test '/opt/perl516/bin/perl -MTest::LongString -e1';
+    sh 'sudo /opt/perl516/bin/cpan -i Test::LongString';
+    dep perl516;
+}
+
+perl516-Test-Differences {
+    test '/opt/perl516/bin/perl -MTest::Differences -e1';
+    sh 'sudo /opt/perl516/bin/cpan -i Test::Differences';
+    dep perl516;
+}
+
+perl516-Test-Base {
+    test '/opt/perl516/bin/perl -MTest::Base -e1';
+    sh 'sudo /opt/perl516/bin/cpan -i Test::Base';
+    dep perl516;
+}
+
+perl516-IPC-Run3 {
+    test '/opt/perl516/bin/perl -MIPC::Run3 -e1';
+    sh 'sudo /opt/perl516/bin/cpan -i IPC::Run3';
+    dep perl516;
 }
 
 perl-IPC-Run3 {
@@ -365,14 +402,14 @@ perl-IPC-Run3 {
 t-sregex {
     always;
     cwd ~/git/sregex;
-    sh 'make test -j$jobs jobs=$jobs';
+    sh 'PATH=/opt/perl516/bin:$PATH make test -j$jobs jobs=$jobs';
     dep sregex;
 }
 
 tv-sregex {
     always;
     cwd ~/git/sregex;
-    sh 'make valtest -j$jobs jobs=$jobs';
+    sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs jobs=$jobs';
     dep sregex;
 }
 
