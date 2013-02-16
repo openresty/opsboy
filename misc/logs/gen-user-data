@@ -38,6 +38,7 @@ my @mods = (
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
+    'replace_filter',
 );
 
 my @lualibs = (
