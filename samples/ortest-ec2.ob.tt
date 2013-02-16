@@ -424,7 +424,7 @@ sregex-git {
 }
 
 libpq {
-    file /usr/lib64/libpq.so;
+    #file /usr/lib64/libpq.so;
     file /usr/include/libpq-fe.h;
     yum postgresql9-devel;
 }
