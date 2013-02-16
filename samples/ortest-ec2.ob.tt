@@ -320,6 +320,7 @@ ngx_memc {
 
 ragel {
     prog ragel;
+    test 'ragel -v|grep "$ragel_version"';
     cwd /tmp;
     fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
     tarball ragel-$ragel_version.tar.gz;
