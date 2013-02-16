@@ -13,6 +13,7 @@ valgrind_version = 3.8.1;
 libev_version = 4.11;
 systemtap_version = 2.0;
 perl516_version = 5.16.2;
+bison_version = 2.7;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -408,8 +409,13 @@ tv-sregex {
 }
 
 bison {
-    file /usr/bin/bison;
-    yum bison;
+    file /opt/bison/bin/bison;
+    test '/opt/bison/bin/bison --version|grep "$bison_version"';
+    cwd /tmp;
+    fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
+    tarball bison-$bison_version.tar.gz;
+    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    dep cc;
 }
 
 sregex-git {
