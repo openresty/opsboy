@@ -12292,7 +12292,7 @@ stap {
 
 elfutils-devel {
     file /usr/include/dwarf.h;
-    file /usr/lib/libdw.so;
+    #file /usr/lib/libdw.so;
     yum elfutils-devel;
 }
 
