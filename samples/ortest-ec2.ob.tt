@@ -395,14 +395,14 @@ perl-IPC-Run3 {
 t-sregex {
     always;
     cwd ~/git/sregex;
-    sh 'PATH=/opt/perl516/bin:$PATH make test -j$jobs jobs=$jobs';
+    sh 'PATH=/opt/perl516/bin:$PATH make test -j$jobs';
     dep sregex;
 }
 
 tv-sregex {
     always;
     cwd ~/git/sregex;
-    sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs jobs=$jobs';
+    sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs';
     dep sregex;
 }
 
