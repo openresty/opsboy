@@ -359,7 +359,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
