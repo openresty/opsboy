@@ -398,6 +398,7 @@ perl-IPC-Run3 {
 t-sregex {
     always;
     cwd ~/git/sregex;
+    sh 'PAGER= git log HEAD^..HEAD';
     sh 'PATH=/opt/perl516/bin:$PATH make test -j$jobs';
     dep sregex;
 }
@@ -405,6 +406,7 @@ t-sregex {
 tv-sregex {
     always;
     cwd ~/git/sregex;
+    sh 'PAGER= git log HEAD^..HEAD';
     sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs';
     dep sregex;
 }
