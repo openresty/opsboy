@@ -37,10 +37,12 @@ my %github_links = (
     ngx_rds_csv => ['agentzh', 'rds-csv-nginx-module'],
     ngx_rds_json => ['agentzh', 'rds-json-nginx-module'],
     ngx_redis2 => ['agentzh', 'redis2-nginx-module'],
+    ngx_replace_filter => ['agentzh', 'replace-filter-nginx-module'],
     ngx_set_misc => ['agentzh', 'set-misc-nginx-module'],
     ngx_srcache => ['agentzh', 'srcache-nginx-module'],
     ngx_xss => ['agentzh', 'xss-nginx-module'],
     ngx_example_lua => ['agentzh', 'nginx-example-lua-module'],
+    sregex => ['agentzh', 'sregex'],
 );
 
 my $last_test_date;
@@ -88,6 +90,10 @@ for my $jsonfile (@jsonfiles) {
     my $recs = $ast->{records};
     for my $rec (@$recs) {
         my $nginx_version = $rec->{nginx_version};
+        if (!defined $nginx_version) {
+            $nginx_version = "miscellaneous";
+        }
+
         if ($nginx_version =~ /\b1\.0\.15\b/
             || $nginx_version =~ /\b1\.2\.[134]\b/
             || $nginx_version =~ /\b1\.3\.[46]\b/)

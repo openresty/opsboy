@@ -23,9 +23,11 @@
         ngx_rds_csv => 'github.com/agentzh/rds-csv-nginx-module',
         ngx_rds_json => 'github.com/agentzh/rds-json-nginx-module',
         ngx_redis2 => 'wiki.nginx.org/HttpRedis2Module',
+        ngx_replace_filter => 'github.com/agentzh/replace-filter-nginx-module',
         ngx_set_misc => 'wiki.nginx.org/HttpSetMiscModule',
         ngx_srcache = 'wiki.nginx.org/HttpSRCacheModule',
         ngx_xss = 'github.com/agentzh/xss-nginx-module',
+        sregex = 'github.com/agentzh/sregex',
     }
 -%]
 
@@ -140,8 +142,10 @@
             <th>Component</th>
             <th>plain</th>
             <th>[% PROCESS memcheck %]</th>
+        [%- IF nginx_ver != "miscellaneous" %]
             <th>[% PROCESS mockeagain %](R)</th>
             <th>[% PROCESS mockeagain %](R)<br/>[% PROCESS memcheck %]</th>
+        [%- END %]
         </tr>
         [%- FOREACH mod_name IN nginx.keys.sort %]
         <tr>
@@ -151,11 +155,17 @@
             [%- PROCESS gen_module_cell %]
             [%- PROCESS gen_result_cell key="" %]
             [%- PROCESS gen_result_cell key="v" %]
-            [%- PROCESS gen_result_cell key="r" %]
-            [%- PROCESS gen_result_cell key="rv" %]
+            [%- IF nginx_ver != "miscellaneous" %]
+                [%- PROCESS gen_result_cell key="r" %]
+                [%- PROCESS gen_result_cell key="rv" %]
+            [%- END %]
         </tr>
         [%- END -%]
     </table>
+    [%- IF nginx_ver == "miscellaneous" %]
+    </div>
+        [%- NEXT %]
+    [%- END %]
     <br/>
     <table class="result">
         <tr>
@@ -213,7 +223,7 @@
 <p>&nbsp; <a href="archive/">http://qa.openresty.org/archive/</a></p>
 
 <h2><a name="maintainer">Maintainer</a></h2>
-<p>Yichun "agentzh" Zhang (章亦春) &lt;agentzh@gmail.com&gt; (<a href="http://agentzh.org/">http://agentzh.org</a></p>), CloudFlare.
+<p>Yichun "agentzh" Zhang (章亦春) &lt;agentzh@gmail.com&gt; (<a href="http://agentzh.org/">http://agentzh.org</a>), CloudFlare.</p>
 <p>This Amazon EC2 test cluster has been sponsored by CloudFlare, Inc (http://www.cloudflare.com).</p>
 <p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
 
