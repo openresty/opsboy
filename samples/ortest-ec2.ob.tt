@@ -933,11 +933,10 @@ t[% type %]-ngx_coolkit {
 }
 
 t[% type %]-ngx_replace_filter {
-    [%- PROCESS build_nginx_module name="replace-filter" -%]
-
     env SREGEX_INC ~/git/sregex/src;
     env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
+
+    [%- PROCESS build_nginx_module name="replace-filter" -%]
 
     dep sregex ngx_echo ngx_lua;
 }

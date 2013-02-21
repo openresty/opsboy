@@ -1625,6 +1625,9 @@ t-ngx_coolkit {
 }
 
 t-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -1661,10 +1664,6 @@ t-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -2735,6 +2734,9 @@ tv-ngx_coolkit {
 }
 
 tv-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -2773,10 +2775,6 @@ tv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -3935,6 +3933,9 @@ tr-ngx_coolkit {
 }
 
 tr-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -3977,10 +3978,6 @@ tr-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -5201,6 +5198,9 @@ trv-ngx_coolkit {
 }
 
 trv-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -5245,10 +5245,6 @@ trv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -6462,6 +6458,9 @@ tw-ngx_coolkit {
 }
 
 tw-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -6505,10 +6504,6 @@ tw-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -7754,6 +7749,9 @@ twv-ngx_coolkit {
 }
 
 twv-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -7799,10 +7797,6 @@ twv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -8870,6 +8864,9 @@ th-ngx_coolkit {
 }
 
 th-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -8905,10 +8902,6 @@ th-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -9954,6 +9947,9 @@ thv-ngx_coolkit {
 }
 
 thv-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -9991,10 +9987,6 @@ thv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -11052,6 +11044,9 @@ tl-ngx_coolkit {
 }
 
 tl-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -11089,10 +11084,6 @@ tl-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -12131,6 +12122,9 @@ to-ngx_coolkit {
 }
 
 to-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
@@ -12167,10 +12161,6 @@ to-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
-
-    env SREGEX_INC ~/git/sregex/src;
-    env SREGEX_LIB ~/git/sregex;
-    env LD_LIBRARY_PATH $SREGEX_LIB:$LD_LIBRARY_PATH;
 
     dep sregex ngx_echo ngx_lua;
 }
