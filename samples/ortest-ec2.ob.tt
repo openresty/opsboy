@@ -348,7 +348,7 @@ ngx_replace_filter {
 sregex {
     always;
     #file ~/git/mockeagain/mockeagain.so;
-    sh 'cd ~/git/sregex && make -j$jobs';
+    sh 'cd ~/git/sregex && make -j$jobs || make clean all';
     env PATH /usr/local/openresty-debug/luajit/bin:/opt/bison/bin:$PATH;
     dep sregex-git;
     dep cc bison luajit;
