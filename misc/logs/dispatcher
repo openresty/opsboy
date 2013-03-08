@@ -65,8 +65,10 @@ while (my ($ngx, $ngx_tree) = each %$arch_tree) {
         #warn "$comp";
         while (my ($mode, $rec) = each %$comp_tree) {
             my $elapsed = $rec->{elapsed};
-            my $name = "t$mode-$comp";
-            $elapsed{$name} = $elapsed;
+            if (defined $elapsed) {
+                my $name = "t$mode-$comp";
+                $elapsed{$name} = $elapsed;
+            }
         }
     }
 }
