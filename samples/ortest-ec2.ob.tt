@@ -14,6 +14,7 @@ libev_version = 4.11;
 systemtap_version = 2.1;
 perl516_version = 5.16.2;
 bison_version = 2.7;
+ccache_version = 3.1.9;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -26,7 +27,10 @@ bison_version = 2.7;
     [%- END %]
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC gcc47;
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     [%- ELSE %]
@@ -1061,3 +1065,11 @@ tar {
     yum install tar;
 }
 
+ccache {
+    prog ccache;
+    test 'ccache -V|grep -q "version $ccache_version"';
+    cwd /tmp;
+    fetch http://samba.org/ftp/ccache/ccache-$ccache_version.tar.bz2;
+    tarball ccache-$ccache_version.tar.bz2;
+    sh 'cd ccache-$ccache_version && ./configure && make -j$jobs && sudo make install';
+}
