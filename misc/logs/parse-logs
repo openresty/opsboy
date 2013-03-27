@@ -128,6 +128,8 @@ my %white_list = (
         ['rv', '104-req-raw-header.t', 'TEST 7: large header, with leading CRLF'],
         ['rv', '104-req-raw-header.t', 'TEST 2: large header'],
         ['rv', '104-req-raw-header.t', 'TEST 13: large header, multi-line header'],
+        ['rv', '104-req-raw-header.t', 'TEST 17: large header (POST body) - in subrequests'],
+        ['rv', '104-req-raw-header.t', 'TEST 16: large header (POST body)'],
     ],
 
     ngx_drizzle => [
@@ -147,6 +149,8 @@ my %white_list = (
         ['rv', 'request-info.t', 'TEST 14: large header, with leading CRLF'],
         ['rv', 'request-info.t', 'TEST 16: large header, pipelined'],
         ['rv', 'request-info.t', 'TEST 18: large header, multi-line header'],
+        ['rv', 'request-info.t', 'TEST 21: large header (POST body)'],
+        ['rv', 'request-info.t', 'TEST 22: large header (POST body) - in subrequests'],
         ['v', 'echo-timer.t', 'TEST 1: timer without explicit reset - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 2: timer without explicit reset and sleep - response_body_like - response is expected'],
         ['v', 'echo-timer.t', 'TEST 3: timing accumulated sleeps - response_body_like - response is expected'],
