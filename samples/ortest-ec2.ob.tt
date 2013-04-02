@@ -20,7 +20,7 @@ ccache_version = 3.1.9;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    [%- IF type == "" %]
+    [%- IF type == "" OR type == "r" OR type == "w" %]
     env TEST_NGINX_USE_STAP 1;
     [%- ELSE %]
     env TEST_NGINX_USE_STAP '';

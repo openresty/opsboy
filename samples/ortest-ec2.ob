@@ -3187,7 +3187,7 @@ tr-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3238,7 +3238,7 @@ tr-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3288,7 +3288,7 @@ tr-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3338,7 +3338,7 @@ tr-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3389,7 +3389,7 @@ tr-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3441,7 +3441,7 @@ tr-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3493,7 +3493,7 @@ tr-ngx_example_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3544,7 +3544,7 @@ tr-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3597,7 +3597,7 @@ tr-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3648,7 +3648,7 @@ tr-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3699,7 +3699,7 @@ tr-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3749,7 +3749,7 @@ tr-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3800,7 +3800,7 @@ tr-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3850,7 +3850,7 @@ tr-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3900,7 +3900,7 @@ tr-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -3950,7 +3950,7 @@ tr-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4003,7 +4003,7 @@ tr-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4053,7 +4053,7 @@ tr-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4103,7 +4103,7 @@ tr-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4157,7 +4157,7 @@ tr-ngx_replace_filter {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4207,7 +4207,7 @@ tr-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4254,7 +4254,7 @@ tr-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4301,7 +4301,7 @@ tr-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4349,7 +4349,7 @@ tr-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4396,7 +4396,7 @@ tr-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -4443,7 +4443,7 @@ tr-lua-resty-dns {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -5849,7 +5849,7 @@ tw-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -5901,7 +5901,7 @@ tw-ngx_set_misc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -5952,7 +5952,7 @@ tw-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6003,7 +6003,7 @@ tw-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6055,7 +6055,7 @@ tw-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6108,7 +6108,7 @@ tw-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6161,7 +6161,7 @@ tw-ngx_example_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6213,7 +6213,7 @@ tw-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6267,7 +6267,7 @@ tw-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6319,7 +6319,7 @@ tw-ngx_redis2 {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6371,7 +6371,7 @@ tw-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6422,7 +6422,7 @@ tw-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6474,7 +6474,7 @@ tw-ngx_eval {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6525,7 +6525,7 @@ tw-ngx_form_input {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6576,7 +6576,7 @@ tw-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6627,7 +6627,7 @@ tw-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6681,7 +6681,7 @@ tw-ngx_encrypted_session {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6732,7 +6732,7 @@ tw-ngx_iconv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6783,7 +6783,7 @@ tw-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6838,7 +6838,7 @@ tw-ngx_replace_filter {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6889,7 +6889,7 @@ tw-lua-resty-memcached {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6937,7 +6937,7 @@ tw-lua-resty-redis {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -6985,7 +6985,7 @@ tw-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -7034,7 +7034,7 @@ tw-lua-resty-string {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -7082,7 +7082,7 @@ tw-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
@@ -7130,7 +7130,7 @@ tw-lua-resty-dns {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
 
-    env TEST_NGINX_USE_STAP '';
+    env TEST_NGINX_USE_STAP 1;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC 'ccache gcc47';
