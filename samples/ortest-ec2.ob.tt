@@ -524,7 +524,7 @@ pcrejit {
     fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
     tarball pcre-$pcre_version.tar.gz;
     cwd /tmp;
-    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+    sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
 ngx_auth_request {
