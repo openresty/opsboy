@@ -95,7 +95,7 @@ for my $jsonfile (@jsonfiles) {
         }
 
         if ($nginx_version =~ /\b1\.0\.15\b/
-            || $nginx_version =~ /\b1\.2\.[1346]\b/
+            || $nginx_version =~ /\b1\.2\.[13467]\b/
             || $nginx_version =~ /\b1\.3\.[467]\b/)
         {
             next;
