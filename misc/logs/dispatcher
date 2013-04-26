@@ -183,7 +183,7 @@ if ($run) {
         my $pid = $pm->start and next;
 
         my @cmd = ('./run-node', '-a', $arch, @$bucket);
-        print "command: @cmd\n";
+        #print "command: @cmd\n";
         system(@cmd) == 0
             or warn "failed to start the node. abort. cmd: @cmd\n";
 
