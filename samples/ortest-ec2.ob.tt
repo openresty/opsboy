@@ -743,7 +743,7 @@ libev {
     file /usr/local/lib/libev.so;
     file /usr/local/include/ev.h;
     cwd /tmp;
-    fetch http://dist.schmorp.de/libev/libev-$libev_version.tar.gz;
+    fetch http://dist.schmorp.de/libev/Attic/libev-$libev_version.tar.gz;
     tarball libev-$libev_version.tar.gz;
     sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
     dep cxx cc;
