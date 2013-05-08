@@ -1,16 +1,15 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
-jobs = 2;
+jobs = 4;
 ngx_redis_version = 0.3.6;
-nginx_version = 1.2.3;
-openresty_version = 1.2.3.1;
+nginx_version = 1.2.8;
+openresty_version = 1.2.8.1;
 #ngx_upstream_keepalive_version = 0.7;
-redis_version = 2.4.14;
+redis_version = 2.6.10;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.30;
+pcre_version = 8.32;
 force = 0;
-ragel_version = 6.7;
-valgrind_version = 3.8.0;
+ragel_version = 6.8;
 libev_version = 4.11;
 
 [%- BLOCK nginx_test_config %]
@@ -24,7 +23,7 @@ libev_version = 4.11;
     [%- END %]
 
     #env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC gcc46;
+    env NGX_BUILD_CC gcc;
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     [%- ELSE %]
@@ -101,7 +100,6 @@ libev_version = 4.11;
     [%- END -%]
 
     [%- IF type.match("v") -%]
-    dep valgrind;
     [%- END %]
 
 [% END -%]
@@ -129,7 +127,7 @@ libev_version = 4.11;
 [%- mods = [
     'array_var', 'redis2', 'lua',
     'srcache', 'memc', 'set_misc', 'xss',
-    'drizzle', 'rds_json',  'echo',
+    'rds_json',  'echo',
     'postgres', 'eval',
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
@@ -303,7 +301,7 @@ ngx_srcache {
     git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
-    dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
+    dep ngx_lua ngx_rds_json ngx_postgres;
     dep ngx_memc;
 }
 
@@ -317,7 +315,7 @@ ragel {
     cwd /tmp;
     fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
     tarball ragel-$ragel_version.tar.gz;
-    sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
+    sh 'cd ragel-$ragel_version && ./configure && gmake -j$jobs && sudo gmake install';
     dep cxx;
 }
 
@@ -338,31 +336,13 @@ ngx_postgres {
     git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
     env LIBPQ_INC /usr/include;
     env LIBPQ_LIB /usr/lib64;
-    dep libpq;
+    #dep libpq;
 }
 
 libpq {
     file /usr/lib64/libpq.so;
     file /usr/include/libpq-fe.h;
     yum postgresql9-devel;
-}
-
-ngx_drizzle {
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-
-    git git://github.com/chaoslawful/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
-    dep libdrizzle;
-}
-
-libdrizzle {
-    file /opt/drizzle/lib/libdrizzle.so;
-    file /opt/drizzle/include/libdrizzle-1.0/libdrizzle/drizzle.h;
-    cwd /tmp;
-    fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
-    tarball drizzle7-2011.07.21.tar.gz;
-    sh 'cd drizzle7-2011.07.21/ && ./configure --without-server --prefix=/opt/drizzle && make libdrizzle-1.0 && sudo make install-libdrizzle-1.0';
-    dep cc;
 }
 
 ngx_rds_json {
@@ -409,19 +389,19 @@ ngx_echo {
 ngx_example_lua {
     git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
 
-    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
-    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    env LD_LIBRARY_PATH /usr/local/openresty-debug/lua/lib:$LD_LIBRARY_PATH;
+    env LUA_LIB /usr/local/openresty-debug/lua/lib;
+    env LUA_INC /usr/local/openresty-debug/lua/include;
     dep ngx_lua;
 }
 
 ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
 
-    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
-    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
-    dep luajit ndk;
+    env LD_LIBRARY_PATH /usr/local/openresty-debug/lua/lib:$LD_LIBRARY_PATH;
+    env LUAJIT_LIB /usr/local/openresty-debug/lua/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/lua/include;
+    dep lua ndk;
 }
 
 pcrejit {
@@ -434,7 +414,7 @@ pcrejit {
     fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
     tarball pcre-$pcre_version.tar.gz;
     cwd /tmp;
-    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && gmake -j$jobs && sudo gmake install';
 }
 
 ngx_auth_request {
@@ -448,20 +428,20 @@ ngx_coolkit {
     git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
-luajit {
+lua {
     dep ngx_openresty-debug;
 }
 
 ngx_openresty-debug {
     test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
-    file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
-    file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
+    file /usr/local/openresty-debug/lua/include/lua.h;
+    file /usr/local/openresty-debug/lua/lib/liblua.a;
     file /usr/local/openresty-debug/nginx/sbin/nginx;
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc46 --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
-    dep libdrizzle openssl pcre valgrind;
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc --prefix=/usr/local/openresty-debug --with-http_iconv_module -j$jobs --with-debug && gmake -j$jobs && sudo gmake install';
+    dep openssl pcre;
 }
 
 [% FOREACH name IN lualibs %]
@@ -508,7 +488,7 @@ git {
 mockeagain {
     always;
     #file ~/git/mockeagain/mockeagain.so;
-    sh 'cd ~/git/mockeagain && LD_PRELOAD= make';
+    sh 'cd ~/git/mockeagain && LD_PRELOAD= gmake';
     dep mockeagain-git;
     dep cc;
 }
@@ -529,7 +509,7 @@ redis {
     cwd /tmp;
     fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
     tarball redis-$redis_version.tar.gz;
-    sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
+    sh 'cd redis-$redis_version/ && ARCH= gmake -j$jobs && ARCH= sudo gmake install';
     dep cc;
 }
 
@@ -611,7 +591,7 @@ axel {
 
 cc {
     prog gcc;
-    yum gcc46;
+    yum gcc;
     dep make;
 }
 
@@ -653,9 +633,9 @@ libev {
     file /usr/local/lib/libev.so;
     file /usr/local/include/ev.h;
     cwd /tmp;
-    fetch http://dist.schmorp.de/libev/libev-$libev_version.tar.gz;
+    fetch http://dist.schmorp.de/libev/Attic/libev-$libev_version.tar.gz;
     tarball libev-$libev_version.tar.gz;
-    sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
+    sh 'cd libev-$libev_version && ./configure && gmake -j$jobs && sudo gmake install';
     dep cxx cc;
 }
 
@@ -731,7 +711,7 @@ t[% type %]-ngx_rds_json {
     [%- PROCESS build_nginx_module name="rds-json" -%]
 
     dep run-mysql run-postgres;
-    dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
+    dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
 }
 
 t[% type %]-ngx_rds_csv {
@@ -739,15 +719,7 @@ t[% type %]-ngx_rds_csv {
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
-    dep ngx_drizzle ngx_form_input ngx_postgres;
-}
-
-t[% type %]-ngx_drizzle {
-    [%- PROCESS build_nginx_module name="drizzle" -%]
-
-    dep run-mysql;
-    dep ngx_lua ngx_echo ngx_rds_json;
-    dep ngx_headers_more ndk ngx_set_misc;
+    dep ngx_form_input ngx_postgres;
 }
 
 t[% type %]-ngx_example_lua {
@@ -767,7 +739,7 @@ t[% type %]-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_srcache;
+    dep ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
 }
 
@@ -876,17 +848,6 @@ ngx-coolkit-build-script {
     sh 'mv ngx-coolkit-build.sh build.sh && chmod +x build.sh';
 }
 
-valgrind {
-    env PATH /opt/valgrind/bin:$PATH;
-    file /opt/valgrind/bin/valgrind;
-    test '/opt/valgrind/bin/valgrind --version|grep $valgrind_version';
-    cwd /tmp;
-    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
-    tarball valgrind-$valgrind_version.tar.bz2;
-    sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
-    dep cc;
-}
-
 opsboy {
     git git://github.com/agentzh/opsboy.git ~/git/opsboy;
     dep cc parse-recdescent tt2;
@@ -909,7 +870,6 @@ build-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
 }
 
