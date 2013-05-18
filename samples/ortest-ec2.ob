@@ -1590,7 +1590,7 @@ t-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 t-ngx_iconv {
@@ -2773,7 +2773,7 @@ tv-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tv-ngx_iconv {
@@ -4042,7 +4042,7 @@ tr-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tr-ngx_iconv {
@@ -5381,7 +5381,7 @@ trv-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 trv-ngx_iconv {
@@ -6721,7 +6721,7 @@ tw-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tw-ngx_iconv {
@@ -8086,7 +8086,7 @@ twv-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 twv-ngx_iconv {
@@ -9299,7 +9299,7 @@ th-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 th-ngx_iconv {
@@ -10456,7 +10456,7 @@ thv-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 thv-ngx_iconv {
@@ -11631,7 +11631,7 @@ tl-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tl-ngx_iconv {
@@ -12789,7 +12789,7 @@ to-ngx_encrypted_session {
 
     dep nginx-module-test ngx_encrypted_session;
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 to-ngx_iconv {

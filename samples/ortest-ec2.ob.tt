@@ -920,7 +920,7 @@ t[% type %]-ngx_postgres {
 t[% type %]-ngx_encrypted_session {
     [%- PROCESS build_nginx_module name="encrypted-session" -%]
 
-    dep ngx_echo ndk ngx_set_misc;
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 t[% type %]-ngx_iconv {
