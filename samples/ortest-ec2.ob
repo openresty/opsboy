@@ -3,7 +3,7 @@
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.2.8;
-openresty_version = 1.2.7.6;
+openresty_version = 1.2.8.6rc2;
 redis_version = 2.6.10;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.32;
