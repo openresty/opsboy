@@ -127,6 +127,12 @@ ccache_version = 3.1.9;
     always;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     [%- PROCESS nginx_test_config no_build=0 %]
 

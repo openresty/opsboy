@@ -833,6 +833,12 @@ t-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -878,6 +884,12 @@ t-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -922,6 +934,12 @@ t-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -966,6 +984,12 @@ t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1011,6 +1035,12 @@ t-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1057,6 +1087,12 @@ t-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1103,6 +1139,12 @@ t-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1148,6 +1190,12 @@ t-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1195,6 +1243,12 @@ t-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1240,6 +1294,12 @@ t-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1285,6 +1345,12 @@ t-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1329,6 +1395,12 @@ t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1374,6 +1446,12 @@ t-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1418,6 +1496,12 @@ t-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1462,6 +1546,12 @@ t-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1506,6 +1596,12 @@ t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1553,6 +1649,12 @@ t-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1597,6 +1699,12 @@ t-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1641,6 +1749,12 @@ t-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1689,6 +1803,12 @@ t-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1982,6 +2102,12 @@ tv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2029,6 +2155,12 @@ tv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2075,6 +2207,12 @@ tv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2121,6 +2259,12 @@ tv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2168,6 +2312,12 @@ tv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2216,6 +2366,12 @@ tv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2264,6 +2420,12 @@ tv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2311,6 +2473,12 @@ tv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2360,6 +2528,12 @@ tv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2407,6 +2581,12 @@ tv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2454,6 +2634,12 @@ tv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2500,6 +2686,12 @@ tv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2547,6 +2739,12 @@ tv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2593,6 +2791,12 @@ tv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2639,6 +2843,12 @@ tv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2685,6 +2895,12 @@ tv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2734,6 +2950,12 @@ tv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2780,6 +3002,12 @@ tv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2826,6 +3054,12 @@ tv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2876,6 +3110,12 @@ tv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3183,6 +3423,12 @@ tr-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3234,6 +3480,12 @@ tr-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3284,6 +3536,12 @@ tr-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3334,6 +3592,12 @@ tr-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3385,6 +3649,12 @@ tr-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3437,6 +3707,12 @@ tr-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3489,6 +3765,12 @@ tr-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3540,6 +3822,12 @@ tr-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3593,6 +3881,12 @@ tr-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3644,6 +3938,12 @@ tr-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3695,6 +3995,12 @@ tr-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3745,6 +4051,12 @@ tr-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3796,6 +4108,12 @@ tr-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3846,6 +4164,12 @@ tr-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3896,6 +4220,12 @@ tr-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3946,6 +4276,12 @@ tr-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3999,6 +4335,12 @@ tr-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4049,6 +4391,12 @@ tr-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4099,6 +4447,12 @@ tr-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4153,6 +4507,12 @@ tr-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4488,6 +4848,12 @@ trv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4541,6 +4907,12 @@ trv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4593,6 +4965,12 @@ trv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4645,6 +5023,12 @@ trv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4698,6 +5082,12 @@ trv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4752,6 +5142,12 @@ trv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4806,6 +5202,12 @@ trv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4859,6 +5261,12 @@ trv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4914,6 +5322,12 @@ trv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4967,6 +5381,12 @@ trv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5020,6 +5440,12 @@ trv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5072,6 +5498,12 @@ trv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5125,6 +5557,12 @@ trv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5177,6 +5615,12 @@ trv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5229,6 +5673,12 @@ trv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5281,6 +5731,12 @@ trv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5336,6 +5792,12 @@ trv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5388,6 +5850,12 @@ trv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5440,6 +5908,12 @@ trv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5496,6 +5970,12 @@ trv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5845,6 +6325,12 @@ tw-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5897,6 +6383,12 @@ tw-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5948,6 +6440,12 @@ tw-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5999,6 +6497,12 @@ tw-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6051,6 +6555,12 @@ tw-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6104,6 +6614,12 @@ tw-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6157,6 +6673,12 @@ tw-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6209,6 +6731,12 @@ tw-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6263,6 +6791,12 @@ tw-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6315,6 +6849,12 @@ tw-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6367,6 +6907,12 @@ tw-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6418,6 +6964,12 @@ tw-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6470,6 +7022,12 @@ tw-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6521,6 +7079,12 @@ tw-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6572,6 +7136,12 @@ tw-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6623,6 +7193,12 @@ tw-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6677,6 +7253,12 @@ tw-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6728,6 +7310,12 @@ tw-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6779,6 +7367,12 @@ tw-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6834,6 +7428,12 @@ tw-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7176,6 +7776,12 @@ twv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7230,6 +7836,12 @@ twv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7283,6 +7895,12 @@ twv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7336,6 +7954,12 @@ twv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7390,6 +8014,12 @@ twv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7445,6 +8075,12 @@ twv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7500,6 +8136,12 @@ twv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7554,6 +8196,12 @@ twv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7610,6 +8258,12 @@ twv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7664,6 +8318,12 @@ twv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7718,6 +8378,12 @@ twv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7771,6 +8437,12 @@ twv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7825,6 +8497,12 @@ twv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7878,6 +8556,12 @@ twv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7931,6 +8615,12 @@ twv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7984,6 +8674,12 @@ twv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8040,6 +8736,12 @@ twv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8093,6 +8795,12 @@ twv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8146,6 +8854,12 @@ twv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8203,6 +8917,12 @@ twv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8559,6 +9279,12 @@ th-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8603,6 +9329,12 @@ th-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8646,6 +9378,12 @@ th-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8689,6 +9427,12 @@ th-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8733,6 +9477,12 @@ th-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8778,6 +9528,12 @@ th-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8823,6 +9579,12 @@ th-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8867,6 +9629,12 @@ th-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8913,6 +9681,12 @@ th-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8957,6 +9731,12 @@ th-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9001,6 +9781,12 @@ th-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9044,6 +9830,12 @@ th-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9088,6 +9880,12 @@ th-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9131,6 +9929,12 @@ th-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9174,6 +9978,12 @@ th-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9217,6 +10027,12 @@ th-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9263,6 +10079,12 @@ th-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9306,6 +10128,12 @@ th-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9349,6 +10177,12 @@ th-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9396,6 +10230,12 @@ th-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9682,6 +10522,12 @@ thv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9728,6 +10574,12 @@ thv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9773,6 +10625,12 @@ thv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9818,6 +10676,12 @@ thv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9864,6 +10728,12 @@ thv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9911,6 +10781,12 @@ thv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9958,6 +10834,12 @@ thv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10004,6 +10886,12 @@ thv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10052,6 +10940,12 @@ thv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10098,6 +10992,12 @@ thv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10144,6 +11044,12 @@ thv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10189,6 +11095,12 @@ thv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10235,6 +11147,12 @@ thv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10280,6 +11198,12 @@ thv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10325,6 +11249,12 @@ thv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10370,6 +11300,12 @@ thv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10418,6 +11354,12 @@ thv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10463,6 +11405,12 @@ thv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10508,6 +11456,12 @@ thv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10557,6 +11511,12 @@ thv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10857,6 +11817,12 @@ tl-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10903,6 +11869,12 @@ tl-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10948,6 +11920,12 @@ tl-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10993,6 +11971,12 @@ tl-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11039,6 +12023,12 @@ tl-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11086,6 +12076,12 @@ tl-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11133,6 +12129,12 @@ tl-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11179,6 +12181,12 @@ tl-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11227,6 +12235,12 @@ tl-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11273,6 +12287,12 @@ tl-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11319,6 +12339,12 @@ tl-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11364,6 +12390,12 @@ tl-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11410,6 +12442,12 @@ tl-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11455,6 +12493,12 @@ tl-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11500,6 +12544,12 @@ tl-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11545,6 +12595,12 @@ tl-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11593,6 +12649,12 @@ tl-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11638,6 +12700,12 @@ tl-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11683,6 +12751,12 @@ tl-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11732,6 +12806,12 @@ tl-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12032,6 +13112,12 @@ to-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12077,6 +13163,12 @@ to-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12121,6 +13213,12 @@ to-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12165,6 +13263,12 @@ to-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12210,6 +13314,12 @@ to-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12256,6 +13366,12 @@ to-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12302,6 +13418,12 @@ to-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12347,6 +13469,12 @@ to-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12394,6 +13522,12 @@ to-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12439,6 +13573,12 @@ to-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12484,6 +13624,12 @@ to-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12528,6 +13674,12 @@ to-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12573,6 +13725,12 @@ to-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12617,6 +13775,12 @@ to-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12661,6 +13825,12 @@ to-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12705,6 +13875,12 @@ to-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12752,6 +13928,12 @@ to-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12796,6 +13978,12 @@ to-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12840,6 +14028,12 @@ to-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12888,6 +14082,12 @@ to-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12976,6 +14176,12 @@ build-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
+    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
