@@ -851,6 +851,7 @@ t-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -902,6 +903,7 @@ t-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -952,6 +954,7 @@ t-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1002,6 +1005,7 @@ t-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1053,6 +1057,7 @@ t-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1105,6 +1110,7 @@ t-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1157,6 +1163,7 @@ t-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1208,6 +1215,7 @@ t-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1261,6 +1269,7 @@ t-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1312,6 +1321,7 @@ t-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1363,6 +1373,7 @@ t-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1413,6 +1424,7 @@ t-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1464,6 +1476,7 @@ t-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1514,6 +1527,7 @@ t-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1564,6 +1578,7 @@ t-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1614,6 +1629,7 @@ t-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1667,6 +1683,7 @@ t-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1717,6 +1734,7 @@ t-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1767,6 +1785,7 @@ t-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1821,6 +1840,7 @@ t-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1865,6 +1885,7 @@ t-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1906,6 +1927,7 @@ t-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1947,6 +1969,7 @@ t-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -1989,6 +2012,7 @@ t-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2030,6 +2054,7 @@ t-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2071,6 +2096,7 @@ t-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2120,6 +2146,7 @@ tv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2173,6 +2200,7 @@ tv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2225,6 +2253,7 @@ tv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2277,6 +2306,7 @@ tv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2330,6 +2360,7 @@ tv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2384,6 +2415,7 @@ tv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2438,6 +2470,7 @@ tv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2491,6 +2524,7 @@ tv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2546,6 +2580,7 @@ tv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2599,6 +2634,7 @@ tv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2652,6 +2688,7 @@ tv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2704,6 +2741,7 @@ tv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2757,6 +2795,7 @@ tv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2809,6 +2848,7 @@ tv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2861,6 +2901,7 @@ tv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2913,6 +2954,7 @@ tv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -2968,6 +3010,7 @@ tv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3020,6 +3063,7 @@ tv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3072,6 +3116,7 @@ tv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3128,6 +3173,7 @@ tv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3174,6 +3220,7 @@ tv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3217,6 +3264,7 @@ tv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3260,6 +3308,7 @@ tv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3304,6 +3353,7 @@ tv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3347,6 +3397,7 @@ tv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3390,6 +3441,7 @@ tv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3441,6 +3493,7 @@ tr-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3498,6 +3551,7 @@ tr-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3554,6 +3608,7 @@ tr-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3610,6 +3665,7 @@ tr-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3667,6 +3723,7 @@ tr-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3725,6 +3782,7 @@ tr-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3783,6 +3841,7 @@ tr-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3840,6 +3899,7 @@ tr-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3899,6 +3959,7 @@ tr-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -3956,6 +4017,7 @@ tr-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4013,6 +4075,7 @@ tr-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4069,6 +4132,7 @@ tr-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4126,6 +4190,7 @@ tr-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4182,6 +4247,7 @@ tr-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4238,6 +4304,7 @@ tr-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4294,6 +4361,7 @@ tr-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4353,6 +4421,7 @@ tr-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4409,6 +4478,7 @@ tr-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4465,6 +4535,7 @@ tr-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4525,6 +4596,7 @@ tr-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4575,6 +4647,7 @@ tr-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4622,6 +4695,7 @@ tr-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4669,6 +4743,7 @@ tr-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4717,6 +4792,7 @@ tr-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4764,6 +4840,7 @@ tr-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4811,6 +4888,7 @@ tr-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4866,6 +4944,7 @@ trv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4925,6 +5004,7 @@ trv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -4983,6 +5063,7 @@ trv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5041,6 +5122,7 @@ trv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5100,6 +5182,7 @@ trv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5160,6 +5243,7 @@ trv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5220,6 +5304,7 @@ trv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5279,6 +5364,7 @@ trv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5340,6 +5426,7 @@ trv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5399,6 +5486,7 @@ trv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5458,6 +5546,7 @@ trv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5516,6 +5605,7 @@ trv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5575,6 +5665,7 @@ trv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5633,6 +5724,7 @@ trv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5691,6 +5783,7 @@ trv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5749,6 +5842,7 @@ trv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5810,6 +5904,7 @@ trv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5868,6 +5963,7 @@ trv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5926,6 +6022,7 @@ trv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -5988,6 +6085,7 @@ trv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6040,6 +6138,7 @@ trv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6089,6 +6188,7 @@ trv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6138,6 +6238,7 @@ trv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6188,6 +6289,7 @@ trv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6237,6 +6339,7 @@ trv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6286,6 +6389,7 @@ trv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6343,6 +6447,7 @@ tw-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6401,6 +6506,7 @@ tw-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6458,6 +6564,7 @@ tw-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6515,6 +6622,7 @@ tw-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6573,6 +6681,7 @@ tw-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6632,6 +6741,7 @@ tw-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6691,6 +6801,7 @@ tw-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6749,6 +6860,7 @@ tw-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6809,6 +6921,7 @@ tw-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6867,6 +6980,7 @@ tw-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6925,6 +7039,7 @@ tw-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -6982,6 +7097,7 @@ tw-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7040,6 +7156,7 @@ tw-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7097,6 +7214,7 @@ tw-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7154,6 +7272,7 @@ tw-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7211,6 +7330,7 @@ tw-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7271,6 +7391,7 @@ tw-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7328,6 +7449,7 @@ tw-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7385,6 +7507,7 @@ tw-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7446,6 +7569,7 @@ tw-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7497,6 +7621,7 @@ tw-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7545,6 +7670,7 @@ tw-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7593,6 +7719,7 @@ tw-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7642,6 +7769,7 @@ tw-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7690,6 +7818,7 @@ tw-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7738,6 +7867,7 @@ tw-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7794,6 +7924,7 @@ twv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7854,6 +7985,7 @@ twv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7913,6 +8045,7 @@ twv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -7972,6 +8105,7 @@ twv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8032,6 +8166,7 @@ twv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8093,6 +8228,7 @@ twv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8154,6 +8290,7 @@ twv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8214,6 +8351,7 @@ twv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8276,6 +8414,7 @@ twv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8336,6 +8475,7 @@ twv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8396,6 +8536,7 @@ twv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8455,6 +8596,7 @@ twv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8515,6 +8657,7 @@ twv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8574,6 +8717,7 @@ twv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8633,6 +8777,7 @@ twv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8692,6 +8837,7 @@ twv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8754,6 +8900,7 @@ twv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8813,6 +8960,7 @@ twv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8872,6 +9020,7 @@ twv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8935,6 +9084,7 @@ twv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -8988,6 +9138,7 @@ twv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9038,6 +9189,7 @@ twv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9088,6 +9240,7 @@ twv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9139,6 +9292,7 @@ twv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9189,6 +9343,7 @@ twv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9239,6 +9394,7 @@ twv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9297,6 +9453,7 @@ th-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9347,6 +9504,7 @@ th-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9396,6 +9554,7 @@ th-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9445,6 +9604,7 @@ th-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9495,6 +9655,7 @@ th-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9546,6 +9707,7 @@ th-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9597,6 +9759,7 @@ th-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9647,6 +9810,7 @@ th-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9699,6 +9863,7 @@ th-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9749,6 +9914,7 @@ th-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9799,6 +9965,7 @@ th-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9848,6 +10015,7 @@ th-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9898,6 +10066,7 @@ th-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9947,6 +10116,7 @@ th-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -9996,6 +10166,7 @@ th-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10045,6 +10216,7 @@ th-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10097,6 +10269,7 @@ th-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10146,6 +10319,7 @@ th-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10195,6 +10369,7 @@ th-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10248,6 +10423,7 @@ th-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10291,6 +10467,7 @@ th-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10331,6 +10508,7 @@ th-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10371,6 +10549,7 @@ th-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10412,6 +10591,7 @@ th-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10452,6 +10632,7 @@ th-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10492,6 +10673,7 @@ th-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10540,6 +10722,7 @@ thv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10592,6 +10775,7 @@ thv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10643,6 +10827,7 @@ thv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10694,6 +10879,7 @@ thv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10746,6 +10932,7 @@ thv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10799,6 +10986,7 @@ thv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10852,6 +11040,7 @@ thv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10904,6 +11093,7 @@ thv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -10958,6 +11148,7 @@ thv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11010,6 +11201,7 @@ thv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11062,6 +11254,7 @@ thv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11113,6 +11306,7 @@ thv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11165,6 +11359,7 @@ thv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11216,6 +11411,7 @@ thv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11267,6 +11463,7 @@ thv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11318,6 +11515,7 @@ thv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11372,6 +11570,7 @@ thv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11423,6 +11622,7 @@ thv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11474,6 +11674,7 @@ thv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11529,6 +11730,7 @@ thv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11574,6 +11776,7 @@ thv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11616,6 +11819,7 @@ thv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11658,6 +11862,7 @@ thv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11701,6 +11906,7 @@ thv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11743,6 +11949,7 @@ thv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11785,6 +11992,7 @@ thv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11835,6 +12043,7 @@ tl-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11887,6 +12096,7 @@ tl-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11938,6 +12148,7 @@ tl-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -11989,6 +12200,7 @@ tl-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12041,6 +12253,7 @@ tl-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12094,6 +12307,7 @@ tl-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12147,6 +12361,7 @@ tl-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12199,6 +12414,7 @@ tl-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12253,6 +12469,7 @@ tl-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12305,6 +12522,7 @@ tl-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12357,6 +12575,7 @@ tl-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12408,6 +12627,7 @@ tl-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12460,6 +12680,7 @@ tl-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12511,6 +12732,7 @@ tl-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12562,6 +12784,7 @@ tl-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12613,6 +12836,7 @@ tl-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12667,6 +12891,7 @@ tl-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12718,6 +12943,7 @@ tl-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12769,6 +12995,7 @@ tl-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12824,6 +13051,7 @@ tl-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12869,6 +13097,7 @@ tl-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12911,6 +13140,7 @@ tl-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12953,6 +13183,7 @@ tl-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -12996,6 +13227,7 @@ tl-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13038,6 +13270,7 @@ tl-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13080,6 +13313,7 @@ tl-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13130,6 +13364,7 @@ to-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13181,6 +13416,7 @@ to-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13231,6 +13467,7 @@ to-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13281,6 +13518,7 @@ to-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13332,6 +13570,7 @@ to-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13384,6 +13623,7 @@ to-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13436,6 +13676,7 @@ to-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13487,6 +13728,7 @@ to-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13540,6 +13782,7 @@ to-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13591,6 +13834,7 @@ to-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13642,6 +13886,7 @@ to-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13692,6 +13937,7 @@ to-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13743,6 +13989,7 @@ to-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13793,6 +14040,7 @@ to-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13843,6 +14091,7 @@ to-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13893,6 +14142,7 @@ to-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13946,6 +14196,7 @@ to-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -13996,6 +14247,7 @@ to-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -14046,6 +14298,7 @@ to-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -14100,6 +14353,7 @@ to-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -14194,6 +14448,7 @@ build-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 

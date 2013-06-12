@@ -33,8 +33,10 @@ ccache_version = 3.1.9;
 
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     [%- ELSE %]
     env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
