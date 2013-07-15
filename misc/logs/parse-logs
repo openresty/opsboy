@@ -70,6 +70,7 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        ['o', undef, 'matches a line in error.log'],
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
@@ -78,6 +79,10 @@ my %white_list = (
         ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
         ['w', '067-req-socket.t', 'TEST 7: Expect & 100 Continue'],
+        ['w', '100-client-abort.t', 'TEST 27: ngx.say - pattern "say failed: nginx output filter error" matches a line in error.log'],
+        ['w', '100-client-abort.t', 'TEST 28: ngx.print - pattern "print failed: nginx output filter error" matches a line in error.log'],
+        ['w', '100-client-abort.t', 'TEST 31: ngx.eof - pattern "eof failed: nginx output filter error" matches a line in error.log'],
+        ['w', '100-client-abort.t', 'TEST 31: ngx.eof - pattern "eof succeeded" should not match any line in error.log but matches line'],
         ['v', '062-count.t', 'matches a line in error.log'],
         ['v', '075-logby.t', 'matches a line in error.log'],
         ['v', '023-rewrite/sleep.t', qr/TEST 3: sleep 0\.5 in subrequestg? - response_body_like - response is expected/],
@@ -492,8 +497,20 @@ for my $rec (@records) {
 
                         } else {
                             #warn "Matched mode $spec->[0]";
-                            $expected = 1;
-                            last;
+                            my $test = $spec->[2];
+                            if (defined $test) {
+                                if ($f->{name} =~ /(?:$test)|\Q$test\E/) {
+                                    #warn "Matched \"$f->{name}\" with \"$test\"";
+                                    $expected = 1;
+                                    last;
+
+                                }
+
+                            } else {
+                                #warn "Matched mode $spec->[0] and file $spec->[1]";
+                                $expected = 1;
+                                last;
+                            }
                         }
                     }
                 }
