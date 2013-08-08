@@ -1048,7 +1048,7 @@ stap {
     cwd /tmp;
     fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
     tarball systemtap-$systemtap_version.tar.gz;
-    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo make install';
+    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo rm -rf /opt/systemtap && sudo make install';
     dep cc elfutils-devel;
 }
 

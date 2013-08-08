@@ -2,16 +2,16 @@
 
 jobs = 2;
 ngx_redis_version = 0.3.6;
-nginx_version = 1.4.1;
-openresty_version = 1.2.8.6;
+nginx_version = 1.4.2;
+openresty_version = 1.4.1.3;
 redis_version = 2.6.10;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.32;
+pcre_version = 8.33;
 force = 0;
 ragel_version = 6.8;
 valgrind_version = 3.8.1;
 libev_version = 4.11;
-systemtap_version = 2.2.1;
+systemtap_version = 2.3;
 perl516_version = 5.16.2;
 bison_version = 2.7;
 ccache_version = 3.1.9;
@@ -14505,7 +14505,7 @@ stap {
     cwd /tmp;
     fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
     tarball systemtap-$systemtap_version.tar.gz;
-    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo make install';
+    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo rm -rf /opt/systemtap && sudo make install';
     dep cc elfutils-devel;
 }
 
