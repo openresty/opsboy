@@ -173,6 +173,7 @@ my %white_list = (
     ],
 
     ngx_echo => [
+        ['o', undef, 'matches a line in error.log'],
         ['r', 'echo-timer.t'],
         ['rv', 'request-body.t', 'TEST 1: big client body buffered into temp files'],
         ['rv', 'request-body.t', 'Looks like you planned 4 tests but ran 6.'],
