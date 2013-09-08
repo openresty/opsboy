@@ -1219,6 +1219,7 @@ t-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2528,6 +2529,7 @@ tv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3903,6 +3905,7 @@ tr-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5368,6 +5371,7 @@ trv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6864,6 +6868,7 @@ tw-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8355,6 +8360,7 @@ twv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9814,6 +9820,7 @@ th-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11097,6 +11104,7 @@ thv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12418,6 +12426,7 @@ tl-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13732,6 +13741,7 @@ to-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14452,6 +14462,7 @@ build-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
