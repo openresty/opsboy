@@ -717,8 +717,13 @@ memcached {
 nginx-module-test {
     always;
     env PATH $PWD/work/nginx/sbin:$HOME/git/nginx-devel-utils:$PATH;
-    dep prove test-nginx no-pool-nginx nginx-devel-utils axel;
+    dep prove test-nginx no-pool-nginx nginx-devel-utils axel perl-protocol-websocket;
     dep cc openssl pcre;
+}
+
+perl-protocol-websocket {
+    test 'perl -MProtocol::WebSocket -e1';
+    cpan Protocol::WebSocket;
 }
 
 openssl {
