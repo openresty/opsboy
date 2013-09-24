@@ -17,6 +17,26 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'lua-resty-websocket' => [
+        ['v', 'cs.t', 'matches a line in error.log'],
+        ['v', 'sanity.t', 'ERROR: client socket timed out - TEST 9: simple text data frame (1 Mbytes)'],
+        ['v', 'sanity.t', 'matches a line in error.log'],
+        ['v', 'sanity.t', qr/TEST 9: simple text data frame \(1 Mbytes\) - (?:header \S+|status code) ok/],
+        ['r', 'sanity.t', 'TEST 16: text frame (send unmasked frames on the client side) - response_body - response is expected'],
+        ['r', 'sanity.t', 'ERROR: client socket timed out - TEST 8: simple text data frame (65536 bytes)'],
+        ['r', 'sanity.t', 'TEST 8: simple text data frame (65536 bytes) - pattern "text msg received is expected," matches a line in error.log'],
+        ['r', 'sanity.t', 'ERROR: client socket timed out - TEST 7: simple text data frame (65535 bytes)'],
+        ['r', 'sanity.t', 'TEST 7: simple text data frame (65535 bytes) - pattern "text msg received is expected," matches a line in error.log'],
+        ['r', 'sanity.t', 'ERROR: client socket timed out - TEST 9: simple text data frame (1 Mbytes)'],
+        ['r', 'sanity.t', 'TEST 9: simple text data frame (1 Mbytes) - pattern "text msg received is expected," matches a line in error.log'],
+        ['r', 'cs.t', 'TEST 16: text frame (send unmasked frames on the client side) - response_body - response is expected'],
+        ['rv', 'cs.t', 'TEST 10: client recv timeout (timeout option) - response_body - response is expected'],
+        ['wv', 'cs.t', 'TEST 10: client recv timeout (timeout option) - response_body - response is expected'],
+        ['wv', 'cs.t', 'TEST 16: text frame (send unmasked frames on the client side) - response_body - response is expected'],
+        ['hv', 'sanity.t', 'TEST 13: close frame (no payload at all) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 18: simple text data frame (3 bytes, fragmented, first frame) - pattern "[error]" should not match any line in error.log but matches line'],
+    ],
+
     'lua-resty-dns' => [
         ['v', 'mock.t', qr/pattern "\[error\]" should not match any line in error.log but matches line ".*?lua udp socket read timed out/],
         ['v', 'mock.t', 'TEST 10: timeout - response_body - response is expected'],
@@ -133,12 +153,14 @@ my %white_list = (
         ['wv', '024-access/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
         ['wv', '101-on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
         ['wv', '020-subrequest.t', 'TEST 54: forwarding in-file request bodies to multiple subrequests (exceeding client_body_buffer_size)'],
+        ['rv', '116-raw-req-socket.t', qr/TEST 9: receive timeout - pattern "server: .*?" matches a line in error\.log/],
         ['rv', '020-subrequest.t', 'TEST 54: forwarding in-file request bodies to multiple subrequests (exceeding client_body_buffer_size)'],
         ['rv', '058-tcp-socket.t', 'TEST 40: successful reread after a read time out happen (receiveuntil -> receive) - response_body - response is expected'],
         ['rv', '058-tcp-socket.t', 'TEST 37: successful reread after a read time out happen (receive -> receive) - response_body - response is expected'],
         ['rv', '058-tcp-socket.t', 'TEST 39: successful reread after a read time out happen (receiveuntil -> receiveuntil) - response_body - response is expected'],
         ['rv', '058-tcp-socket.t', 'TEST 38: successful reread after a read time out happen (receive -> receiveuntil) - response_body - response is expected'],
         ['v', '065-tcp-socket-timeout.t', 'TEST 17: re-connect after timed out - response_body - response is expected'],
+        ['h', '117-raw-req-socket-timeout.t', qr/TEST 2: send timeout - pattern ".*?" matches a line in error\.log/],
         ['h', '065-tcp-socket-timeout.t', 'TEST 18: re-send on the same object after a send timeout happens - response_body - response is expected'],
         ['h', '065-tcp-socket-timeout.t', 'TEST 18: re-send on the same object after a send timeout happens - pattern "lua tcp socket write timed out" matches a line in error.log'],
         ['h', '043-shdict.t', '- response_body'],
