@@ -35,6 +35,7 @@ my %white_list = (
         ['wv', 'cs.t', 'TEST 16: text frame (send unmasked frames on the client side) - response_body - response is expected'],
         ['hv', 'sanity.t', 'TEST 13: close frame (no payload at all) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 18: simple text data frame (3 bytes, fragmented, first frame) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 4: simple text data frame (125 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
     ],
 
     'lua-resty-dns' => [
