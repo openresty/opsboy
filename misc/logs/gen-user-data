@@ -45,7 +45,7 @@ my @lualibs = (
     'resty-memcached', 'resty-redis',
     'resty-mysql', 'resty-string',
     'resty-upload', 'resty-dns',
-    'resty-websocket',
+    'resty-websocket', 'resty-lock',
 );
 
 if (!@ARGV) {
