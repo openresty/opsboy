@@ -47,6 +47,9 @@ my %white_list = (
         ['hv', 'sanity.t', 'TEST 4: simple text data frame (125 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 19: simple text data frame (3 bytes, fragmented, last frame) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 16: pong frame (with payload) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 8: simple text data frame (65536 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 10: simple binary data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 11: close frame (status code + non-empty msg) - pattern "[error]" should not match any line in error.log but matches line'],
     ],
 
     'lua-resty-dns' => [
