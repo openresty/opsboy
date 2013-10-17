@@ -2,9 +2,9 @@
 
 jobs = 2;
 ngx_redis_version = 0.3.6;
-nginx_version = 1.4.2;
-openresty_version = 1.4.1.3;
-redis_version = 2.6.10;
+nginx_version = 1.4.3;
+openresty_version = 1.4.2.9;
+redis_version = 2.6.16;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
 force = 0;
