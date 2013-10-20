@@ -628,7 +628,7 @@ redis {
     prog redis-server;
     test 'redis-server -v|grep $redis_version';
     cwd /tmp;
-    fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
+    fetch 'http://download.redis.io/releases/redis-$redis_version.tar.gz';
     tarball redis-$redis_version.tar.gz;
     sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
     dep cc;
