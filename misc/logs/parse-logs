@@ -50,6 +50,7 @@ my %white_list = (
         ['hv', 'sanity.t', 'TEST 8: simple text data frame (65536 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 10: simple binary data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 11: close frame (status code + non-empty msg) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 2: simple text data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
     ],
 
     'lua-resty-dns' => [
@@ -64,11 +65,18 @@ my %white_list = (
         ['w', '000_init.t', 'TEST 13: cats - insert value'],
         ['w', '000_init.t', 'TEST 14: cats - insert value'],
         ['w', 'pg.t'],
+        ['w', 'unused.t', 'TEST 1: used - stap output expected'],
+        ['w', 'unused.t', 'TEST 3: used (multi http {} blocks) - stap output expected'],
         ['r', 'sanity-stream.t', 'TEST 1: sanity'],
         ['r', 'sanity-stream.t', 'TEST 2: keep-alive'],
         ['r', 'sanity-stream.t', 'TEST 7: single row, single col'],
         ['r', 'sanity-stream.t', 'TEST 9: text blob field'],
         ['r', 'sanity-stream.t', 'TEST 12: date type'],
+    ],
+
+    ngx_replace_filter => [
+        ['w', '09-unused.t', 'TEST 1: used - stap output expected'],
+        ['w', '09-unused.t', 'TEST 3: used (multi http {} blocks) - stap output expected'],
     ],
 
     #ngx_postgres => [['w']],
@@ -126,6 +134,7 @@ my %white_list = (
         ['w', '100-client-abort.t', 'TEST 28: ngx.print - pattern "print failed: nginx output filter error" matches a line in error.log'],
         ['w', '100-client-abort.t', 'TEST 31: ngx.eof - pattern "eof failed: nginx output filter error" matches a line in error.log'],
         ['w', '100-client-abort.t', 'TEST 31: ngx.eof - pattern "eof succeeded" should not match any line in error.log but matches line'],
+        ['w', '020-subrequest.t', 'TEST 65: DELETE - stap output expected'],
         ['v', '062-count.t', 'matches a line in error.log'],
         ['v', '075-logby.t', 'matches a line in error.log'],
         ['v', '023-rewrite/sleep.t', qr/TEST 3: sleep 0\.5 in subrequestg? - response_body_like - response is expected/],
@@ -219,6 +228,9 @@ my %white_list = (
     ngx_headers_more => [
         ['rv', 'input.t', 'TEST 4: try to rewrite content length using the rewrite module'],
         ['rv', 'input.t', qr/Looks like you planned \d+ tests but ran \d+\./],
+        ['o', 'unused.t', 'matches a line in error.log'],
+        ['hv', 'unused.t', 'TEST 3: unused output filter (with more_set_input_headers only) - pattern "headers more header filter" should not match any line in error.log but matches line'],
+        ['hv', 'unused.t', 'TEST 2: unused output filter (none) - pattern "headers more header filter" should not match any line in error.log but matches line'],
     ],
 
     ngx_echo => [
