@@ -51,6 +51,7 @@ my %white_list = (
         ['hv', 'sanity.t', 'TEST 10: simple binary data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 11: close frame (status code + non-empty msg) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 2: simple text data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', 'sanity.t', 'TEST 6: simple text data frame (127 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
     ],
 
     'lua-resty-dns' => [
@@ -219,6 +220,8 @@ my %white_list = (
         ['rv', '104-req-raw-header.t', 'TEST 13: large header, multi-line header'],
         ['rv', '104-req-raw-header.t', 'TEST 17: large header (POST body) - in subrequests'],
         ['rv', '104-req-raw-header.t', 'TEST 16: large header (POST body)'],
+        ['l', '023-rewrite/tcp-socket.t', 'TEST 22: cannot survive across request boundary (connect) - the nginx process'],
+        ['l', '058-tcp-socket.t', 'TEST 22: cannot survive across request boundary (connect) - the nginx process'],
     ],
 
     ngx_drizzle => [
@@ -470,7 +473,7 @@ while (<>) {
 
         $rec->{valgrind_pass} = 0;
 
-    } elsif ($rec && $rec->{mode} !~ /l/ && /^\#\s+Failed test '(.*?)'?$/) {
+    } elsif ($rec && ($rec->{mode} !~ /l/ || /the nginx process \d+ is gone/) && /^\#\s+Failed test '(.*?)'?$/) {
         my $name = $1;
         #warn "$rec->{module}: $rec->{mode}: $name\n";
         $failure = {
