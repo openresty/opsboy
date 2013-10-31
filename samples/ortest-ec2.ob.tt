@@ -160,7 +160,13 @@ ccache_version = 3.1.9;
         'resty-mysql', 'resty-string',
         'resty-upload', 'resty-dns',
         'resty-websocket', 'resty-lock',
+        'resty-logger-socket',
     ]
+%]
+
+[%- lualib_authors = {
+        'resty-logger-socket' => 'cloudflare',
+    }
 %]
 
 [%- cpu_mods = {
@@ -567,7 +573,9 @@ ngx_openresty-debug {
 
 [% FOREACH name IN lualibs %]
 lua-[% name %] {
-    git git://github.com/agentzh/lua-[% name %].git ~/git/lua-[% name %];
+    [%- author = lualib_authors.$name %]
+    [%- IF NOT author; author = "agentzh"; END %]
+    git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
     dep ngx_lua;
 }
 [% END %]

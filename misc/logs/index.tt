@@ -1,6 +1,7 @@
 [% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Components' -%]
 
 [%- module_info = {
+        'lua-resty-logger-socket' => 'github.com/cloudflare/lua-resty-logger-socket',
         'lua-resty-lock' => 'github.com/agentzh/lua-resty-lock',
         'lua-resty-websocket' => 'github.com/agentzh/lua-resty-websocket',
         'lua-resty-dns' => 'github.com/agentzh/lua-resty-dns',
