@@ -121,6 +121,7 @@ ccache_version = 3.1.9;
     always;
     cwd ~/git/lua-[% name %];
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     [%- PROCESS nginx_test_config no_build=1 -%]
 
