@@ -900,7 +900,9 @@ t-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -952,7 +954,9 @@ t-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1003,7 +1007,9 @@ t-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1054,7 +1060,9 @@ t-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1106,7 +1114,9 @@ t-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1159,7 +1169,9 @@ t-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1212,7 +1224,9 @@ t-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1264,7 +1278,9 @@ t-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1319,7 +1335,9 @@ t-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1371,7 +1389,9 @@ t-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1423,7 +1443,9 @@ t-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1474,7 +1496,9 @@ t-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1526,7 +1550,9 @@ t-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1577,7 +1603,9 @@ t-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1628,7 +1656,9 @@ t-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1679,7 +1709,9 @@ t-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1733,7 +1765,9 @@ t-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1784,7 +1818,9 @@ t-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1835,7 +1871,9 @@ t-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1890,7 +1928,9 @@ t-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1919,7 +1959,6 @@ t-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1936,7 +1975,9 @@ t-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -1962,7 +2003,6 @@ t-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1979,7 +2019,9 @@ t-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2005,7 +2047,6 @@ t-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2022,7 +2063,9 @@ t-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2049,7 +2092,6 @@ t-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2066,7 +2108,9 @@ t-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2092,7 +2136,6 @@ t-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2109,7 +2152,9 @@ t-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2135,7 +2180,6 @@ t-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2152,7 +2196,9 @@ t-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2178,7 +2224,6 @@ t-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2195,7 +2240,9 @@ t-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2221,7 +2268,6 @@ t-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2238,7 +2284,9 @@ t-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2264,7 +2312,6 @@ t-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2281,7 +2328,9 @@ t-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2331,7 +2380,9 @@ tv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2385,7 +2436,9 @@ tv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2438,7 +2491,9 @@ tv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2491,7 +2546,9 @@ tv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2545,7 +2602,9 @@ tv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2600,7 +2659,9 @@ tv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2655,7 +2716,9 @@ tv-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2709,7 +2772,9 @@ tv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2766,7 +2831,9 @@ tv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2820,7 +2887,9 @@ tv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2874,7 +2943,9 @@ tv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2927,7 +2998,9 @@ tv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -2981,7 +3054,9 @@ tv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3034,7 +3109,9 @@ tv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3087,7 +3164,9 @@ tv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3140,7 +3219,9 @@ tv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3196,7 +3277,9 @@ tv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3249,7 +3332,9 @@ tv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3302,7 +3387,9 @@ tv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3359,7 +3446,9 @@ tv-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3390,7 +3479,6 @@ tv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3407,7 +3495,9 @@ tv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3435,7 +3525,6 @@ tv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3452,7 +3541,9 @@ tv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3480,7 +3571,6 @@ tv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3497,7 +3587,9 @@ tv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3526,7 +3618,6 @@ tv-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3543,7 +3634,9 @@ tv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3571,7 +3664,6 @@ tv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3588,7 +3680,9 @@ tv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3616,7 +3710,6 @@ tv-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3633,7 +3726,9 @@ tv-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3661,7 +3756,6 @@ tv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3678,7 +3772,9 @@ tv-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3706,7 +3802,6 @@ tv-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3723,7 +3818,9 @@ tv-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3751,7 +3848,6 @@ tv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3768,7 +3864,9 @@ tv-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3820,7 +3918,9 @@ tr-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3878,7 +3978,9 @@ tr-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3935,7 +4037,9 @@ tr-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -3992,7 +4096,9 @@ tr-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4050,7 +4156,9 @@ tr-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4109,7 +4217,9 @@ tr-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4168,7 +4278,9 @@ tr-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4226,7 +4338,9 @@ tr-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4287,7 +4401,9 @@ tr-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4345,7 +4461,9 @@ tr-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4403,7 +4521,9 @@ tr-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4460,7 +4580,9 @@ tr-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4518,7 +4640,9 @@ tr-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4575,7 +4699,9 @@ tr-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4632,7 +4758,9 @@ tr-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4689,7 +4817,9 @@ tr-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4749,7 +4879,9 @@ tr-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4806,7 +4938,9 @@ tr-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4863,7 +4997,9 @@ tr-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4924,7 +5060,9 @@ tr-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -4959,7 +5097,6 @@ tr-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4976,7 +5113,9 @@ tr-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5008,7 +5147,6 @@ tr-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5025,7 +5163,9 @@ tr-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5057,7 +5197,6 @@ tr-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5074,7 +5213,9 @@ tr-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5107,7 +5248,6 @@ tr-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5124,7 +5264,9 @@ tr-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5156,7 +5298,6 @@ tr-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5173,7 +5314,9 @@ tr-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5205,7 +5348,6 @@ tr-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5222,7 +5364,9 @@ tr-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5254,7 +5398,6 @@ tr-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5271,7 +5414,9 @@ tr-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5303,7 +5448,6 @@ tr-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5320,7 +5464,9 @@ tr-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5352,7 +5498,6 @@ tr-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5369,7 +5514,9 @@ tr-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5425,7 +5572,9 @@ trv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5485,7 +5634,9 @@ trv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5544,7 +5695,9 @@ trv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5603,7 +5756,9 @@ trv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5663,7 +5818,9 @@ trv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5724,7 +5881,9 @@ trv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5785,7 +5944,9 @@ trv-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5845,7 +6006,9 @@ trv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5908,7 +6071,9 @@ trv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -5968,7 +6133,9 @@ trv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6028,7 +6195,9 @@ trv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6087,7 +6256,9 @@ trv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6147,7 +6318,9 @@ trv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6206,7 +6379,9 @@ trv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6265,7 +6440,9 @@ trv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6324,7 +6501,9 @@ trv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6386,7 +6565,9 @@ trv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6445,7 +6626,9 @@ trv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6504,7 +6687,9 @@ trv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6567,7 +6752,9 @@ trv-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6604,7 +6791,6 @@ trv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6621,7 +6807,9 @@ trv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6655,7 +6843,6 @@ trv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6672,7 +6859,9 @@ trv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6706,7 +6895,6 @@ trv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6723,7 +6911,9 @@ trv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6758,7 +6948,6 @@ trv-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6775,7 +6964,9 @@ trv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6809,7 +7000,6 @@ trv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6826,7 +7016,9 @@ trv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6860,7 +7052,6 @@ trv-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6877,7 +7068,9 @@ trv-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6911,7 +7104,6 @@ trv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6928,7 +7120,9 @@ trv-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -6962,7 +7156,6 @@ trv-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6979,7 +7172,9 @@ trv-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7013,7 +7208,6 @@ trv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7030,7 +7224,9 @@ trv-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7088,7 +7284,9 @@ tw-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7147,7 +7345,9 @@ tw-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7205,7 +7405,9 @@ tw-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7263,7 +7465,9 @@ tw-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7322,7 +7526,9 @@ tw-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7382,7 +7588,9 @@ tw-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7442,7 +7650,9 @@ tw-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7501,7 +7711,9 @@ tw-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7563,7 +7775,9 @@ tw-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7622,7 +7836,9 @@ tw-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7681,7 +7897,9 @@ tw-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7739,7 +7957,9 @@ tw-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7798,7 +8018,9 @@ tw-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7856,7 +8078,9 @@ tw-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7914,7 +8138,9 @@ tw-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -7972,7 +8198,9 @@ tw-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8033,7 +8261,9 @@ tw-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8091,7 +8321,9 @@ tw-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8149,7 +8381,9 @@ tw-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8211,7 +8445,9 @@ tw-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8247,7 +8483,6 @@ tw-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8264,7 +8499,9 @@ tw-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8297,7 +8534,6 @@ tw-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8314,7 +8550,9 @@ tw-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8347,7 +8585,6 @@ tw-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8364,7 +8601,9 @@ tw-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8398,7 +8637,6 @@ tw-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8415,7 +8653,9 @@ tw-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8448,7 +8688,6 @@ tw-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8465,7 +8704,9 @@ tw-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8498,7 +8739,6 @@ tw-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8515,7 +8755,9 @@ tw-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8548,7 +8790,6 @@ tw-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8565,7 +8806,9 @@ tw-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8598,7 +8841,6 @@ tw-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8615,7 +8857,9 @@ tw-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8648,7 +8892,6 @@ tw-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8665,7 +8908,9 @@ tw-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8722,7 +8967,9 @@ twv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8783,7 +9030,9 @@ twv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8843,7 +9092,9 @@ twv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8903,7 +9154,9 @@ twv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -8964,7 +9217,9 @@ twv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9026,7 +9281,9 @@ twv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9088,7 +9345,9 @@ twv-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9149,7 +9408,9 @@ twv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9213,7 +9474,9 @@ twv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9274,7 +9537,9 @@ twv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9335,7 +9600,9 @@ twv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9395,7 +9662,9 @@ twv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9456,7 +9725,9 @@ twv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9516,7 +9787,9 @@ twv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9576,7 +9849,9 @@ twv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9636,7 +9911,9 @@ twv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9699,7 +9976,9 @@ twv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9759,7 +10038,9 @@ twv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9819,7 +10100,9 @@ twv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9883,7 +10166,9 @@ twv-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9921,7 +10206,6 @@ twv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9938,7 +10222,9 @@ twv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -9973,7 +10259,6 @@ twv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9990,7 +10275,9 @@ twv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10025,7 +10312,6 @@ twv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10042,7 +10328,9 @@ twv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10078,7 +10366,6 @@ twv-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10095,7 +10382,9 @@ twv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10130,7 +10419,6 @@ twv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10147,7 +10435,9 @@ twv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10182,7 +10472,6 @@ twv-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10199,7 +10488,9 @@ twv-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10234,7 +10525,6 @@ twv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10251,7 +10541,9 @@ twv-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10286,7 +10578,6 @@ twv-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10303,7 +10594,9 @@ twv-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10338,7 +10631,6 @@ twv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10355,7 +10647,9 @@ twv-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -10414,7 +10708,9 @@ th-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10465,7 +10761,9 @@ th-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10515,7 +10813,9 @@ th-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10565,7 +10865,9 @@ th-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10616,7 +10918,9 @@ th-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10668,7 +10972,9 @@ th-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10720,7 +11026,9 @@ th-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10771,7 +11079,9 @@ th-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10825,7 +11135,9 @@ th-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10876,7 +11188,9 @@ th-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10927,7 +11241,9 @@ th-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -10977,7 +11293,9 @@ th-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11028,7 +11346,9 @@ th-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11078,7 +11398,9 @@ th-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11128,7 +11450,9 @@ th-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11178,7 +11502,9 @@ th-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11231,7 +11557,9 @@ th-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11281,7 +11609,9 @@ th-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11331,7 +11661,9 @@ th-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11385,7 +11717,9 @@ th-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11413,7 +11747,6 @@ th-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11430,7 +11763,9 @@ th-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11455,7 +11790,6 @@ th-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11472,7 +11806,9 @@ th-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11497,7 +11833,6 @@ th-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11514,7 +11849,9 @@ th-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11540,7 +11877,6 @@ th-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11557,7 +11893,9 @@ th-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11582,7 +11920,6 @@ th-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11599,7 +11936,9 @@ th-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11624,7 +11963,6 @@ th-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11641,7 +11979,9 @@ th-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11666,7 +12006,6 @@ th-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11683,7 +12022,9 @@ th-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11708,7 +12049,6 @@ th-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11725,7 +12065,9 @@ th-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11750,7 +12092,6 @@ th-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11767,7 +12108,9 @@ th-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11816,7 +12159,9 @@ thv-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11869,7 +12214,9 @@ thv-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11921,7 +12268,9 @@ thv-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -11973,7 +12322,9 @@ thv-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12026,7 +12377,9 @@ thv-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12080,7 +12433,9 @@ thv-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12134,7 +12489,9 @@ thv-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12187,7 +12544,9 @@ thv-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12243,7 +12602,9 @@ thv-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12296,7 +12657,9 @@ thv-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12349,7 +12712,9 @@ thv-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12401,7 +12766,9 @@ thv-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12454,7 +12821,9 @@ thv-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12506,7 +12875,9 @@ thv-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12558,7 +12929,9 @@ thv-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12610,7 +12983,9 @@ thv-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12665,7 +13040,9 @@ thv-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12717,7 +13094,9 @@ thv-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12769,7 +13148,9 @@ thv-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12825,7 +13206,9 @@ thv-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12855,7 +13238,6 @@ thv-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12872,7 +13254,9 @@ thv-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12899,7 +13283,6 @@ thv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12916,7 +13299,9 @@ thv-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12943,7 +13328,6 @@ thv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12960,7 +13344,9 @@ thv-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -12988,7 +13374,6 @@ thv-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13005,7 +13390,9 @@ thv-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13032,7 +13419,6 @@ thv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13049,7 +13435,9 @@ thv-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13076,7 +13464,6 @@ thv-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13093,7 +13480,9 @@ thv-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13120,7 +13509,6 @@ thv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13137,7 +13525,9 @@ thv-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13164,7 +13554,6 @@ thv-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13181,7 +13570,9 @@ thv-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13208,7 +13599,6 @@ thv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13225,7 +13615,9 @@ thv-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
     env TEST_NGINX_USE_HUP 1;
 
@@ -13276,7 +13668,9 @@ tl-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13329,7 +13723,9 @@ tl-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13381,7 +13777,9 @@ tl-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13433,7 +13831,9 @@ tl-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13486,7 +13886,9 @@ tl-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13540,7 +13942,9 @@ tl-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13594,7 +13998,9 @@ tl-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13647,7 +14053,9 @@ tl-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13703,7 +14111,9 @@ tl-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13756,7 +14166,9 @@ tl-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13809,7 +14221,9 @@ tl-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13861,7 +14275,9 @@ tl-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13914,7 +14330,9 @@ tl-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -13966,7 +14384,9 @@ tl-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14018,7 +14438,9 @@ tl-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14070,7 +14492,9 @@ tl-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14125,7 +14549,9 @@ tl-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14177,7 +14603,9 @@ tl-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14229,7 +14657,9 @@ tl-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14285,7 +14715,9 @@ tl-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14315,7 +14747,6 @@ tl-lua-resty-memcached {
     always;
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14332,7 +14763,9 @@ tl-lua-resty-memcached {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14359,7 +14792,6 @@ tl-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14376,7 +14808,9 @@ tl-lua-resty-redis {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14403,7 +14837,6 @@ tl-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14420,7 +14853,9 @@ tl-lua-resty-mysql {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14448,7 +14883,6 @@ tl-lua-resty-string {
     always;
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14465,7 +14899,9 @@ tl-lua-resty-string {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14492,7 +14928,6 @@ tl-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14509,7 +14944,9 @@ tl-lua-resty-upload {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14536,7 +14973,6 @@ tl-lua-resty-dns {
     always;
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14553,7 +14989,9 @@ tl-lua-resty-dns {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14580,7 +15018,6 @@ tl-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14597,7 +15034,9 @@ tl-lua-resty-websocket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14624,7 +15063,6 @@ tl-lua-resty-lock {
     always;
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14641,7 +15079,9 @@ tl-lua-resty-lock {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14668,7 +15108,6 @@ tl-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14685,7 +15124,9 @@ tl-lua-resty-logger-socket {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK 1;
     env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
 
@@ -14736,7 +15177,9 @@ to-ngx_srcache {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14788,7 +15231,9 @@ to-ngx_set_misc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14839,7 +15284,9 @@ to-ngx_headers_more {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14890,7 +15337,9 @@ to-ngx_rds_json {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14942,7 +15391,9 @@ to-ngx_rds_csv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -14995,7 +15446,9 @@ to-ngx_drizzle {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15048,7 +15501,9 @@ to-ngx_example_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15100,7 +15555,9 @@ to-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15155,7 +15612,9 @@ to-ngx_memc {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15207,7 +15666,9 @@ to-ngx_redis2 {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15259,7 +15720,9 @@ to-ngx_xss {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15310,7 +15773,9 @@ to-ngx_echo {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15362,7 +15827,9 @@ to-ngx_eval {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15413,7 +15880,9 @@ to-ngx_form_input {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15464,7 +15933,9 @@ to-ngx_array_var {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15515,7 +15986,9 @@ to-ngx_postgres {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15569,7 +16042,9 @@ to-ngx_encrypted_session {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15620,7 +16095,9 @@ to-ngx_iconv {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15671,7 +16148,9 @@ to-ngx_coolkit {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15726,7 +16205,9 @@ to-ngx_replace_filter {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';
@@ -15821,7 +16302,9 @@ build-ngx_lua {
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
     env TEST_NGINX_CHECK_LEAK '';
 
     env TEST_NGINX_USE_HUP '';

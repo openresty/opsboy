@@ -41,11 +41,8 @@ ccache_version = 3.1.9;
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    [%- IF name == "lua" %]
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    [%- ELSE %]
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
-    [%- END -%]
 
     [%- IF type.match("l") %]
     env TEST_NGINX_CHECK_LEAK 1;
@@ -121,7 +118,6 @@ ccache_version = 3.1.9;
     always;
     cwd ~/git/lua-[% name %];
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
 
     [%- PROCESS nginx_test_config no_build=1 -%]
 
