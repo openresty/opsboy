@@ -17,6 +17,26 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'lua-resty-logger-socket' => [
+        ['v', 'sanity.t', 'matches a line in error.log'],
+        ['v', 'timeout.t', 'matches a line in error.log'],
+        ['h', 'timeout.t', 'should not match any line in error.log but matches line'],
+        ['h', 'timeout.t', 'matches a line in error.log'],
+        ['rv', 'sanity.t', qr/TEST 7: log subrequest, flush twice - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua tcp socket connect timed out, context: ngx\.timer/],
+        ['rv', 'sanity.t', 'TEST 9: partial flush - tcp_query ok'],
+        ['rv', 'sanity.t', qr/TEST 9: partial flush - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua tcp socket connect timed out, context: ngx\.timer/],
+        ['v', 'sanity.t', 'TEST 12: drop log test - tcp_query ok'],
+        ['v', 'sanity.t', 'TEST 12: drop log test - TCP query length ok'],
+        ['v', 'sanity.t', 'TEST 2: small flush_limit, instant flush, unix domain socket - tcp_query ok'],
+        ['v', 'sanity.t', 'TEST 2: small flush_limit, instant flush, unix domain socket - TCP query length ok'],
+        ['v', 'sanity.t', 'TEST 1: small flush_limit, instant flush - tcp_query ok'],
+        ['v', 'sanity.t', 'TEST 1: small flush_limit, instant flush - TCP query length ok'],
+        ['v', 'sanity.t', 'TEST 3: small flush_limit, instant flush, write a number to remote - tcp_query ok'],
+        ['v', 'sanity.t', 'TEST 3: small flush_limit, instant flush, write a number to remote - TCP query length ok'],
+        ['v', 'timeout.t', 'TEST 3: risk condition - tcp_query ok'],
+        ['v', 'timeout.t', 'TEST 3: risk condition - TCP query length ok'],
+    ],
+
     'lua-resty-lock' => [
         ['v', 'sanity.t', 'TEST 4: waited locks - response_body_like - response is expected'],
         ['v', 'sanity.t', 'TEST 5: waited locks (custom step) - response_body_like - response is expected'],
