@@ -3,13 +3,13 @@
 jobs = 2;
 ngx_redis_version = 0.3.6;
 nginx_version = 1.4.3;
-openresty_version = 1.4.2.9;
+openresty_version = 1.4.3.1;
 redis_version = 2.6.16;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
 force = 0;
 ragel_version = 6.8;
-valgrind_version = 3.8.1;
+valgrind_version = 3.9.0;
 libev_version = 4.11;
 systemtap_version = 2.3;
 perl516_version = 5.16.2;
