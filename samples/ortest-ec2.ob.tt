@@ -61,9 +61,11 @@ ccache_version = 3.1.9;
 
     [%- IF type.match("v") -%]
 
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND 1;
 
     [%- ELSE -%]
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND '';
     [%- END %]
 
@@ -100,7 +102,7 @@ ccache_version = 3.1.9;
     [%- END %]
     [%- END -%]
 
-    sh 'nginx -V';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
@@ -108,11 +110,30 @@ ccache_version = 3.1.9;
     [%- END -%]
 
     [%- IF type.match("v") -%]
+    dep luajit_sysmalloc;
     dep valgrind;
     [%- END %]
 
     dep systemtap;
 [% END -%]
+
+luajit_sysmalloc {
+    always;
+    cwd ~/git/luajit2;
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit-sysm';
+    dep luajit-git valgrind;
+}
+
+luajit {
+    always;
+    cwd ~/git/luajit2;
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit';
+    dep luajit-git;
+}
+
+luajit-git {
+    git git://github.com/agentzh/luajit2.git ~/git/luajit2;
+}
 
 [% BLOCK build_lua_lib %]
     always;
@@ -132,8 +153,8 @@ ccache_version = 3.1.9;
     env PCRE_INC /opt/pcrejit/include;
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
 
     [%- PROCESS nginx_test_config no_build=0 %]
 
@@ -369,7 +390,7 @@ sregex {
     sh 'cd ~/git/sregex && make -j$jobs || make clean all';
     env PATH /usr/local/openresty-debug/luajit/bin:/opt/bison/bin:$PATH;
     dep sregex-git;
-    dep cc bison luajit;
+    dep cc bison ngx_openresty-debug;
     dep perl516-IPC-Run3 perl516-Test-LongString perl516-Test-Base perl516;
     dep perl516-Test-Differences;
 }
@@ -511,18 +532,16 @@ ngx_echo {
 ngx_example_lua {
     git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
 
-    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
-    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
     dep ngx_lua;
 }
 
 ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
 
-    env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
-    env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
-    env LUAJIT_INC /usr/local/openresty-debug/luajit/include/luajit-2.0;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
     dep luajit ndk;
 }
 
@@ -552,13 +571,9 @@ ngx_coolkit {
     git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
-luajit {
-    dep ngx_openresty-debug;
-}
-
 ngx_openresty-debug {
     test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
-    file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
+    #file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
     file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
     file /usr/local/openresty-debug/nginx/sbin/nginx;
     cwd /tmp;
