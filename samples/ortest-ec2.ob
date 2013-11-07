@@ -19,14 +19,14 @@ ccache_version = 3.1.9;
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
