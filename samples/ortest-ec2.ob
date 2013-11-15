@@ -26,7 +26,7 @@ luajit_sysmalloc {
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout agentzh && git merge origin/agentzh && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
