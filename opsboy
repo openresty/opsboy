@@ -284,6 +284,7 @@ sub make ($) {
             $value =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/ge;
             $value =~ s/^~/$ENV{HOME}/;
             #warn "Setting $name to $value\n";
+            $value =~ s/`(.*?)`/`$1`/ge;
             $ENV{$name} = $value;
         }
     }

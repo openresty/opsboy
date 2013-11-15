@@ -546,7 +546,7 @@ ngx_example_lua {
     git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
     dep ngx_lua;
 }
 
@@ -554,7 +554,7 @@ ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
     dep luajit ndk;
 }
 
@@ -896,7 +896,7 @@ t-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -951,7 +951,7 @@ t-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1005,7 +1005,7 @@ t-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1059,7 +1059,7 @@ t-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1114,7 +1114,7 @@ t-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1170,7 +1170,7 @@ t-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1226,7 +1226,7 @@ t-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1281,7 +1281,7 @@ t-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1339,7 +1339,7 @@ t-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1394,7 +1394,7 @@ t-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1449,7 +1449,7 @@ t-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1503,7 +1503,7 @@ t-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1558,7 +1558,7 @@ t-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1612,7 +1612,7 @@ t-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1666,7 +1666,7 @@ t-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1720,7 +1720,7 @@ t-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1777,7 +1777,7 @@ t-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1831,7 +1831,7 @@ t-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1885,7 +1885,7 @@ t-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -1943,7 +1943,7 @@ t-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2405,7 +2405,7 @@ tv-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2463,7 +2463,7 @@ tv-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2520,7 +2520,7 @@ tv-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2577,7 +2577,7 @@ tv-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2635,7 +2635,7 @@ tv-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2694,7 +2694,7 @@ tv-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2753,7 +2753,7 @@ tv-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2811,7 +2811,7 @@ tv-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2872,7 +2872,7 @@ tv-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2930,7 +2930,7 @@ tv-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -2988,7 +2988,7 @@ tv-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3045,7 +3045,7 @@ tv-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3103,7 +3103,7 @@ tv-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3160,7 +3160,7 @@ tv-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3217,7 +3217,7 @@ tv-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3274,7 +3274,7 @@ tv-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3334,7 +3334,7 @@ tv-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3391,7 +3391,7 @@ tv-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3448,7 +3448,7 @@ tv-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3509,7 +3509,7 @@ tv-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4001,7 +4001,7 @@ tr-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4062,7 +4062,7 @@ tr-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4122,7 +4122,7 @@ tr-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4182,7 +4182,7 @@ tr-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4243,7 +4243,7 @@ tr-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4305,7 +4305,7 @@ tr-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4367,7 +4367,7 @@ tr-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4428,7 +4428,7 @@ tr-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4492,7 +4492,7 @@ tr-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4553,7 +4553,7 @@ tr-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4614,7 +4614,7 @@ tr-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4674,7 +4674,7 @@ tr-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4735,7 +4735,7 @@ tr-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4795,7 +4795,7 @@ tr-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4855,7 +4855,7 @@ tr-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4915,7 +4915,7 @@ tr-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -4978,7 +4978,7 @@ tr-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5038,7 +5038,7 @@ tr-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5098,7 +5098,7 @@ tr-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5162,7 +5162,7 @@ tr-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5684,7 +5684,7 @@ trv-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5748,7 +5748,7 @@ trv-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5811,7 +5811,7 @@ trv-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5874,7 +5874,7 @@ trv-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5938,7 +5938,7 @@ trv-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6003,7 +6003,7 @@ trv-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6068,7 +6068,7 @@ trv-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6132,7 +6132,7 @@ trv-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6199,7 +6199,7 @@ trv-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6263,7 +6263,7 @@ trv-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6327,7 +6327,7 @@ trv-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6390,7 +6390,7 @@ trv-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6454,7 +6454,7 @@ trv-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6517,7 +6517,7 @@ trv-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6580,7 +6580,7 @@ trv-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6643,7 +6643,7 @@ trv-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6709,7 +6709,7 @@ trv-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6772,7 +6772,7 @@ trv-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6835,7 +6835,7 @@ trv-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6902,7 +6902,7 @@ trv-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7454,7 +7454,7 @@ tw-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7516,7 +7516,7 @@ tw-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7577,7 +7577,7 @@ tw-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7638,7 +7638,7 @@ tw-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7700,7 +7700,7 @@ tw-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7763,7 +7763,7 @@ tw-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7826,7 +7826,7 @@ tw-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7888,7 +7888,7 @@ tw-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7953,7 +7953,7 @@ tw-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8015,7 +8015,7 @@ tw-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8077,7 +8077,7 @@ tw-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8138,7 +8138,7 @@ tw-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8200,7 +8200,7 @@ tw-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8261,7 +8261,7 @@ tw-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8322,7 +8322,7 @@ tw-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8383,7 +8383,7 @@ tw-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8447,7 +8447,7 @@ tw-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8508,7 +8508,7 @@ tw-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8569,7 +8569,7 @@ tw-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8634,7 +8634,7 @@ tw-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9166,7 +9166,7 @@ twv-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9231,7 +9231,7 @@ twv-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9295,7 +9295,7 @@ twv-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9359,7 +9359,7 @@ twv-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9424,7 +9424,7 @@ twv-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9490,7 +9490,7 @@ twv-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9556,7 +9556,7 @@ twv-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9621,7 +9621,7 @@ twv-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9689,7 +9689,7 @@ twv-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9754,7 +9754,7 @@ twv-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9819,7 +9819,7 @@ twv-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9883,7 +9883,7 @@ twv-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9948,7 +9948,7 @@ twv-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10012,7 +10012,7 @@ twv-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10076,7 +10076,7 @@ twv-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10140,7 +10140,7 @@ twv-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10207,7 +10207,7 @@ twv-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10271,7 +10271,7 @@ twv-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10335,7 +10335,7 @@ twv-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10403,7 +10403,7 @@ twv-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10965,7 +10965,7 @@ th-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11019,7 +11019,7 @@ th-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11072,7 +11072,7 @@ th-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11125,7 +11125,7 @@ th-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11179,7 +11179,7 @@ th-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11234,7 +11234,7 @@ th-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11289,7 +11289,7 @@ th-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11343,7 +11343,7 @@ th-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11400,7 +11400,7 @@ th-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11454,7 +11454,7 @@ th-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11508,7 +11508,7 @@ th-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11561,7 +11561,7 @@ th-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11615,7 +11615,7 @@ th-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11668,7 +11668,7 @@ th-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11721,7 +11721,7 @@ th-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11774,7 +11774,7 @@ th-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11830,7 +11830,7 @@ th-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11883,7 +11883,7 @@ th-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11936,7 +11936,7 @@ th-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -11993,7 +11993,7 @@ th-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12445,7 +12445,7 @@ thv-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12502,7 +12502,7 @@ thv-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12558,7 +12558,7 @@ thv-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12614,7 +12614,7 @@ thv-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12671,7 +12671,7 @@ thv-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12729,7 +12729,7 @@ thv-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12787,7 +12787,7 @@ thv-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12844,7 +12844,7 @@ thv-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12904,7 +12904,7 @@ thv-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12961,7 +12961,7 @@ thv-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13018,7 +13018,7 @@ thv-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13074,7 +13074,7 @@ thv-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13131,7 +13131,7 @@ thv-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13187,7 +13187,7 @@ thv-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13243,7 +13243,7 @@ thv-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13299,7 +13299,7 @@ thv-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13358,7 +13358,7 @@ thv-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13414,7 +13414,7 @@ thv-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13470,7 +13470,7 @@ thv-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13530,7 +13530,7 @@ thv-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14012,7 +14012,7 @@ tl-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14068,7 +14068,7 @@ tl-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14123,7 +14123,7 @@ tl-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14178,7 +14178,7 @@ tl-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14234,7 +14234,7 @@ tl-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14291,7 +14291,7 @@ tl-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14348,7 +14348,7 @@ tl-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14404,7 +14404,7 @@ tl-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14463,7 +14463,7 @@ tl-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14519,7 +14519,7 @@ tl-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14575,7 +14575,7 @@ tl-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14630,7 +14630,7 @@ tl-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14686,7 +14686,7 @@ tl-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14741,7 +14741,7 @@ tl-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14796,7 +14796,7 @@ tl-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14851,7 +14851,7 @@ tl-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14909,7 +14909,7 @@ tl-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14964,7 +14964,7 @@ tl-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15019,7 +15019,7 @@ tl-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15078,7 +15078,7 @@ tl-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15550,7 +15550,7 @@ to-ngx_srcache {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15605,7 +15605,7 @@ to-ngx_set_misc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15659,7 +15659,7 @@ to-ngx_headers_more {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15713,7 +15713,7 @@ to-ngx_rds_json {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15768,7 +15768,7 @@ to-ngx_rds_csv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15824,7 +15824,7 @@ to-ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15880,7 +15880,7 @@ to-ngx_example_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15935,7 +15935,7 @@ to-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15993,7 +15993,7 @@ to-ngx_memc {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16048,7 +16048,7 @@ to-ngx_redis2 {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16103,7 +16103,7 @@ to-ngx_xss {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16157,7 +16157,7 @@ to-ngx_echo {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16212,7 +16212,7 @@ to-ngx_eval {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16266,7 +16266,7 @@ to-ngx_form_input {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16320,7 +16320,7 @@ to-ngx_array_var {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16374,7 +16374,7 @@ to-ngx_postgres {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16431,7 +16431,7 @@ to-ngx_encrypted_session {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16485,7 +16485,7 @@ to-ngx_iconv {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16539,7 +16539,7 @@ to-ngx_coolkit {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16597,7 +16597,7 @@ to-ngx_replace_filter {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16695,7 +16695,7 @@ build-ngx_lua {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC /opt/luajit/include/luajit-2.0;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
