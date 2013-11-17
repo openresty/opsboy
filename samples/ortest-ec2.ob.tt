@@ -121,7 +121,7 @@ luajit_branch = v2.1-agentzh;
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
