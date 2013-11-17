@@ -156,6 +156,8 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{config_error} = $rec->{config_error};
         $mode_group->{comp_errors} = $rec->{comp_errors};
         $mode_group->{is_new} = $is_new;
+        $mode_group->{luajit_ver} = $rec->{luajit_ver};
+        $mode_group->{luajit_rev} = $rec->{luajit_rev};
     }
 }
 

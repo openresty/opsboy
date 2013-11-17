@@ -294,6 +294,9 @@ my $arch;
 my @records;
 my $test_name;
 my $leak_test_samples;
+my $luajit_rev;
+my $luajit_ver;
+my $making_luajit;
 
 while (<>) {
     if ($in_valgrind_warning) {
@@ -313,6 +316,14 @@ while (<>) {
 
     if ($in_failure && !/^\# /) {
         undef $in_failure;
+    }
+
+    if (!defined $luajit_rev && $making_luajit && /HEAD is now at ([a-f0-9]+)/) {
+        $luajit_rev = $1;
+    }
+
+    if (!defined $luajit_ver && m/=== Installing LuaJIT (\d+\S+)/) {
+        $luajit_ver = $1;
     }
 
     if (!defined $date && /^(?:DATE )?(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})$/) {
@@ -335,6 +346,13 @@ while (<>) {
 
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
+
+        if ($subj eq 'luajit') {
+            $making_luajit = 1;
+
+        } else {
+            undef $making_luajit;
+        }
 
         if ($subj =~ /^t([rvwhlo]*)-(sregex|(?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
@@ -374,6 +392,8 @@ while (<>) {
                 valgrind_warnings => [],
                 warns => [],
                 comp_errors => [],
+                luajit_ver => $luajit_ver,
+                luajit_rev => $luajit_rev,
             };
 
             push @records, $rec;
