@@ -142,6 +142,7 @@ my %white_list = (
     ngx_lua => [
         ['', '025-codecache.t', 'nginx: [alert]'],
         ['o', undef, 'matches a line in error.log'],
+        ['o', undef, ' - grep_error_log_out'],
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['r', '106-timer.t', 'matches a line in error.log'],
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
@@ -417,9 +418,15 @@ while (<>) {
 
     } elsif ($rec && m{^(nginx: \[(?:emerg|alert|error)\]) (.*)}) {
 
+        my ($name, $details) = ($1, $2);
+
+        if ($name eq 'nginx: [alert]' && $details =~ /lua_code_cache is off/) {
+            next;
+        }
+
         $failure = {
-            name => $1,
-            details => $2,
+            name => $name,
+            details => $details,
         };
 
         push @{ $rec->{failures} }, $failure;
