@@ -16,6 +16,7 @@ if (!@jsonfiles) {
 }
 
 my %github_links = (
+    'lua-resty-core' => ['agentzh', 'lua-resty-core'],
     'lua-resty-logger-socket' => ['cloudflare', 'lua-resty-logger-socket'],
     'lua-resty-lock' => ['agentzh', 'lua-resty-lock'],
     'lua-resty-websocket' => ['agentzh', 'lua-resty-websocket'],

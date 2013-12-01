@@ -179,7 +179,7 @@ luajit-git {
         'resty-mysql', 'resty-string',
         'resty-upload', 'resty-dns',
         'resty-websocket', 'resty-lock',
-        'resty-logger-socket',
+        'resty-logger-socket', 'resty-core',
     ]
 %]
 
