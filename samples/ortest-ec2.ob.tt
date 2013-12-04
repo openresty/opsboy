@@ -16,6 +16,7 @@ perl516_version = 5.16.2;
 bison_version = 2.7;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
+use_lua_resty_core = 0;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -107,7 +108,7 @@ luajit_branch = v2.1-agentzh;
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
