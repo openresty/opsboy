@@ -46,6 +46,7 @@ my %white_list = (
     ],
 
     'lua-resty-websocket' => [
+        ['h', 'cs.t', 'TEST 14: pool option - pattern "lua tcp socket keepalive create connection pool for key "my_conn_pool"" matches a line in error.log (req 1)'],
         ['v', 'cs.t', 'matches a line in error.log'],
         ['v', 'cs.t', 'TEST 10: client recv timeout (timeout option) - response_body - response is expected'],
         ['v', 'sanity.t', 'ERROR: client socket timed out - TEST 9: simple text data frame (1 Mbytes)'],
@@ -139,8 +140,19 @@ my %white_list = (
         ['v', 'store-max-size.t', 'TEST 8: just more than store_max_size - pattern "store status: BYPASS" matches a line in error.log'],
     ],
 
+    'lua-resty-core' => [
+        [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" matches a line in error\.log/], # FIXME
+        ['v', 're-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
+        ['v', 're-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - status code ok'],
+        ['v', 're-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
+        ['h', 'shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
+    ],
+
     ngx_lua => [
         ['', '025-codecache.t', 'nginx: [alert]'],
+        ['v', '025-codecache.t', 'matches a line in error.log'],
+        ['w', '025-codecache.t', 'TEST 29: cosocket connection pool timeout (after Lua VM destroys) - pattern "lua tcp socket keepalive max idle timeout" should not match any line in error.log but matches line'],
+        ['w', '025-codecache.t', 'TEST 24: lua_max_pending_timers - chained timers (non-zero delay) - not exceeding - pattern "decrementing the reference count for Lua VM: 3" should not match any line in error.log but matches line'],
         ['o', undef, 'matches a line in error.log'],
         ['o', undef, ' - grep_error_log_out'],
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
@@ -593,7 +605,7 @@ for my $rec (@records) {
             for my $f (@{ $rec->{failures} }) {
                 my $expected;
                 for my $spec (@$specs) {
-                    if ($mode =~ /$spec->[0]/) {
+                    if (!defined $spec->[0] || $mode =~ /$spec->[0]/) {
                         #warn "mode $mode matched $spec->[0]";
                         my $file = $spec->[1];
 
