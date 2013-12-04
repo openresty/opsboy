@@ -10,8 +10,8 @@ use List::Util qw( sum );
 use Parallel::ForkManager;
 
 my %opts;
-getopts("a:t:e:v:rf", \%opts) or
-    die "Usage: $0 [-e exclude-pattern] [-v <nginx-version>] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+getopts("a:t:e:v:crf", \%opts) or
+    die "Usage: $0 [-e exclude-pattern] [-v <nginx-version>] [-c] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
@@ -22,6 +22,8 @@ my $Mins = $opts{t}
 my $run = $opts{r};
 
 my $force = $opts{f};
+
+my $use_lua_resty_core = $opts{c};
 
 my $exclude = $opts{e};
 my $exclude_opt = '';
@@ -170,6 +172,10 @@ for my $bucket (@buckets) {
 
     if (defined $nginx_ver) {
         push @$bucket, "nginx_version=$nginx_ver";
+    }
+
+    if ($use_lua_resty_core) {
+        push @$bucket, "use_lua_resty_core=1";
     }
 
     warn "bucket $i: @$bucket ($mins min)\n";
