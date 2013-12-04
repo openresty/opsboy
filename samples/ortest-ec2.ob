@@ -1342,6 +1342,7 @@ t-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 t-ngx_memc {
@@ -2920,6 +2921,7 @@ tv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 tv-ngx_memc {
@@ -4588,6 +4590,7 @@ tr-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 tr-ngx_memc {
@@ -6346,6 +6349,7 @@ trv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 trv-ngx_memc {
@@ -8154,6 +8158,7 @@ tw-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 tw-ngx_memc {
@@ -9942,6 +9947,7 @@ twv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 twv-ngx_memc {
@@ -11708,6 +11714,7 @@ th-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 th-ngx_memc {
@@ -13256,6 +13263,7 @@ thv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 thv-ngx_memc {
@@ -14862,6 +14870,7 @@ tl-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 tl-ngx_memc {
@@ -16438,6 +16447,7 @@ to-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 to-ngx_memc {

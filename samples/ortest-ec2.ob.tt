@@ -899,6 +899,7 @@ t[% type %]-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2;
+    dep lua-resty-core;
 }
 
 t[% type %]-ngx_memc {
