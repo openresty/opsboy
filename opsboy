@@ -319,7 +319,7 @@ sub make ($) {
 
             } else {
                 if ($git_pull) {
-                    sh("cd $dir && git reset --hard && git pull");
+                    sh("cd $dir && git reset --hard && git checkout master && git pull");
                 }
             }
         }

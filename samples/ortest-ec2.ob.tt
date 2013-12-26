@@ -692,6 +692,9 @@ mysql {
     # mysql> create database ngx_test;
     # mysql> create user 'ngx_test'@'localhost' identified by 'ngx_test';
     # mysql> grant all privileges on ngx_test.* to 'ngx_test'@'localhost' with grant option;
+    # mysql> create database world;
+    # mysql> use world;
+    # mysql> source world.sql;
 }
 
 run-memcached {
