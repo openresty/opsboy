@@ -21,11 +21,21 @@ my %white_list = (
         ['v', 'world.t', 'ERROR: client socket timed out - TEST 1: test an old bug in table.new() on i386 in luajit v2.1'],
         ['v', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - status code ok'],
         ['v', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - response_body - response is expected'],
+        ['v', 'sanity.t', 'TEST 10: multiple select queries - response_body - response is expected'],
+        ['v', 'sanity.t', qr/TEST 10: multiple select queries - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua tcp socket read timed out/],
+        ['r', 'world.t', 'ERROR: client socket timed out - TEST 1: test an old bug in table.new() on i386 in luajit v2.1'],
+        ['r', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - status code ok'],
+        ['r', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - response_body - response is expected'],
+    ],
+
+    'lua-resty-redis' => [
+        ['w', 'mock.t', 'TEST 1: continue using the obj when read timeout happens - tcp_query ok'],
     ],
 
     'lua-resty-logger-socket' => [
         ['v', 'sanity.t', 'matches a line in error.log'],
         ['v', 'timeout.t', 'matches a line in error.log'],
+        ['v', 'timeout.t', 'TEST 5: flush race condition - pattern "tcp socket connect timed out" should not match any line in error.log but matches line'],
         ['v', 'bug.t', 'TEST 1: small flush_limit, instant flush - grep_error_log_out'],
         ['h', 'timeout.t', 'should not match any line in error.log but matches line'],
         ['h', 'timeout.t', 'matches a line in error.log'],
@@ -88,7 +98,8 @@ my %white_list = (
         ['v', 'mock.t', 'TEST 10: timeout - response_body - response is expected'],
         ['v', 'mock.t', 'pattern "lua udp socket read timed out" matches a line in error.log'],
         ['v', 'sanity.t', qr/TEST 8: TXT query \(no ans\) - pattern "\[error\]" should not match any line in error.log but matches line .*? lua udp socket read timed out/],
-        ['rv', 'sanity.t', qr/TEST 7: NS records - pattern "\[error\]" should not match any line in error.log but matches line .*? lua udp socket read timed out/],
+        ['rv', 'sanity.t', qr/TEST 7: NS records - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua udp socket read timed out/],
+        ['hv', 'sanity.t', qr/TEST 7: NS records - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua udp socket read timed out/],
     ],
 
     ngx_rds_csv => [
@@ -301,6 +312,9 @@ my %white_list = (
         ['o', undef, 'matches a line in error.log'],
         ['r', 'echo-timer.t'],
         ['rv', 'request-body.t', 'TEST 1: big client body buffered into temp files'],
+        ['rv', 'request-body.t', 'ERROR: client socket timed out - TEST 3: big client body buffered into temp files (trailing echo)'],
+        ['rv', 'request-body.t', 'TEST 3: big client body buffered into temp files (trailing echo) - status code ok'],
+        ['rv', 'request-body.t', 'TEST 3: big client body buffered into temp files (trailing echo) - response_body - response is expected'],
         ['rv', 'request-body.t', 'Looks like you planned 4 tests but ran 6.'],
         ['rv', 'request-info.t', 'TEST 12: large header'],
         ['rv', 'request-info.t', 'TEST 14: large header, with leading CRLF'],
