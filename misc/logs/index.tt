@@ -20,6 +20,7 @@
         ngx_echo => 'wiki.nginx.org/HttpEchoModule',
         ngx_eval => 'github.com/agentzh/nginx-eval-module',
         ngx_example_lua => 'github.com/agentzh/nginx-example-lua-module',
+        ngx_lua_upstream => 'github.com/agentzh/lua-upstream-nginx-module',
         ngx_headers_more => 'wiki.nginx.org/HttpHeadersMoreModule',
         ngx_lua => 'wiki.nginx.org/HttpLuaModule',
         ngx_memc => 'wiki.nginx.org/HttpMemcModule',

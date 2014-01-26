@@ -28,6 +28,8 @@ my %cpu_mods = (
     coolkit => 1,
     encrypted_session => 1,
     example_lua => 1,
+    lua_upstream => 1,
+    headers_more => 1,
 );
 
 my @mods = (
@@ -38,7 +40,7 @@ my @mods = (
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
-    'replace_filter',
+    'lua_upstream', 'replace_filter',
 );
 
 my @lualibs = (

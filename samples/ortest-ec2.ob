@@ -62,6 +62,7 @@ t {
     dep t-ngx_coolkit;
     dep t-ngx_iconv;
     dep t-ngx_example_lua;
+    dep t-ngx_lua_upstream;
     dep t-ngx_replace_filter;
     dep t-lua-resty-memcached;
     dep t-lua-resty-redis;
@@ -96,6 +97,7 @@ to {
     dep to-ngx_coolkit;
     dep to-ngx_iconv;
     dep to-ngx_example_lua;
+    dep to-ngx_lua_upstream;
     dep to-ngx_replace_filter;
 }
 
@@ -129,6 +131,7 @@ tv2 {
     dep tv-ngx_coolkit;
     dep tv-ngx_iconv;
     dep tv-ngx_example_lua;
+    dep tv-ngx_lua_upstream;
     dep tv-ngx_replace_filter;
 }
 
@@ -142,7 +145,6 @@ tr {
     dep tr-ngx_echo;
     dep tr-ngx_postgres;
     dep tr-ngx_eval;
-    dep tr-ngx_headers_more;
     dep tr-ngx_rds_csv;
     dep tr-ngx_form_input;
     dep tr-ngx_iconv;
@@ -188,7 +190,6 @@ trv2 {
     dep trv-ngx_echo;
     dep trv-ngx_postgres;
     dep trv-ngx_eval;
-    dep trv-ngx_headers_more;
     dep trv-ngx_rds_csv;
     dep trv-ngx_form_input;
     dep trv-ngx_iconv;
@@ -205,7 +206,6 @@ tw {
     dep tw-ngx_echo;
     dep tw-ngx_postgres;
     dep tw-ngx_eval;
-    dep tw-ngx_headers_more;
     dep tw-ngx_rds_csv;
     dep tw-ngx_form_input;
     dep tw-ngx_iconv;
@@ -251,7 +251,6 @@ twv2 {
     dep twv-ngx_echo;
     dep twv-ngx_postgres;
     dep twv-ngx_eval;
-    dep twv-ngx_headers_more;
     dep twv-ngx_rds_csv;
     dep twv-ngx_form_input;
     dep twv-ngx_iconv;
@@ -278,6 +277,7 @@ th {
     dep th-ngx_coolkit;
     dep th-ngx_iconv;
     dep th-ngx_example_lua;
+    dep th-ngx_lua_upstream;
     dep th-ngx_replace_filter;
     dep th-lua-resty-memcached;
     dep th-lua-resty-redis;
@@ -311,6 +311,7 @@ thv {
     dep thv-ngx_coolkit;
     dep thv-ngx_iconv;
     dep thv-ngx_example_lua;
+    dep thv-ngx_lua_upstream;
     dep thv-ngx_replace_filter;
     dep thv-lua-resty-memcached;
     dep thv-lua-resty-redis;
@@ -344,6 +345,7 @@ tl {
     dep tl-ngx_coolkit;
     dep tl-ngx_iconv;
     dep tl-ngx_example_lua;
+    dep tl-ngx_lua_upstream;
     dep tl-ngx_replace_filter;
     dep tl-lua-resty-memcached;
     dep tl-lua-resty-redis;
@@ -554,6 +556,14 @@ ngx_echo {
 
 ngx_example_lua {
     git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    dep ngx_lua;
+}
+
+ngx_lua_upstream {
+    git git://github.com/agentzh/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -959,115 +969,6 @@ t-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-t-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-t-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -1234,6 +1135,221 @@ t-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+t-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+t-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+t-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+t-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 t-ngx_example_lua {
     always;
@@ -1287,6 +1403,114 @@ t-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+t-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+t-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 t-ngx_lua {
@@ -1459,60 +1683,6 @@ t-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-t-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -1676,60 +1846,6 @@ t-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-t-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -1785,60 +1901,6 @@ t-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-t-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 t-ngx_iconv {
@@ -2517,121 +2579,6 @@ tv-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-tv-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-tv-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 tv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -2807,6 +2754,233 @@ tv-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+tv-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+tv-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+tv-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+tv-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 tv-ngx_example_lua {
     always;
@@ -2863,6 +3037,120 @@ tv-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+tv-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+tv-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 tv-ngx_lua {
@@ -3044,63 +3332,6 @@ tv-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-tv-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 tv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -3273,63 +3504,6 @@ tv-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-tv-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 tv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -3388,63 +3562,6 @@ tv-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-tv-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tv-ngx_iconv {
@@ -4165,127 +4282,6 @@ tr-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-tr-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-tr-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 tr-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -4471,65 +4467,6 @@ tr-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-tr-ngx_example_lua {
-    always;
-    cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_example_lua;
-
-    dep ngx_echo ngx_lua;
-}
 
 tr-ngx_lua {
 
@@ -4719,66 +4656,6 @@ tr-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-tr-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 tr-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -4960,66 +4837,6 @@ tr-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-tr-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 tr-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -5081,66 +4898,6 @@ tr-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-tr-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tr-ngx_iconv {
@@ -5903,133 +5660,6 @@ trv-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-trv-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-trv-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 trv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -6224,68 +5854,6 @@ trv-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-trv-ngx_example_lua {
-    always;
-    cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_example_lua;
-
-    dep ngx_echo ngx_lua;
-}
 
 trv-ngx_lua {
 
@@ -6484,69 +6052,6 @@ trv-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-trv-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 trv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -6737,69 +6242,6 @@ trv-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-trv-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 trv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -6864,69 +6306,6 @@ trv-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-trv-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    env MOCKEAGAIN r;
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 trv-ngx_iconv {
@@ -7726,129 +7105,6 @@ tw-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-tw-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-tw-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 tw-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -8037,66 +7293,6 @@ tw-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-tw-ngx_example_lua {
-    always;
-    cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_example_lua;
-
-    dep ngx_echo ngx_lua;
-}
 
 tw-ngx_lua {
 
@@ -8289,67 +7485,6 @@ tw-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-tw-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 tw-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -8534,67 +7669,6 @@ tw-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-tw-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 tw-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -8657,67 +7731,6 @@ tw-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-tw-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP 1;
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tw-ngx_iconv {
@@ -9494,135 +8507,6 @@ twv-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-twv-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-twv-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 twv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -9820,69 +8704,6 @@ twv-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
-twv-ngx_example_lua {
-    always;
-    cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_example_lua;
-
-    dep ngx_echo ngx_lua;
-}
 
 twv-ngx_lua {
 
@@ -10084,70 +8905,6 @@ twv-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-twv-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 twv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -10341,70 +9098,6 @@ twv-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-twv-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 twv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -10470,70 +9163,6 @@ twv-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-twv-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    env TEST_NGINX_POSTPONE_OUTPUT 1;
-    env TEST_NGINX_EVENT_TYPE poll;
-    #env MOCKEAGAIN_VERBOSE 1;
-    env MOCKEAGAIN w;
-    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
-    dep mockeagain;
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 twv-ngx_iconv {
@@ -11338,113 +9967,6 @@ th-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-th-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-th-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 th-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -11608,6 +10130,217 @@ th-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+th-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+th-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+th-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+th-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 th-ngx_example_lua {
     always;
@@ -11660,6 +10393,112 @@ th-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+th-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+th-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 th-ngx_lua {
@@ -11829,59 +10668,6 @@ th-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-th-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 th-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -12042,59 +10828,6 @@ th-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-th-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 th-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -12149,59 +10882,6 @@ th-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-th-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 th-ngx_iconv {
@@ -12866,119 +11546,6 @@ thv-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-thv-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-thv-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 thv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -13151,6 +11718,229 @@ thv-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+thv-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+thv-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+thv-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+thv-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 thv-ngx_example_lua {
     always;
@@ -13206,6 +11996,118 @@ thv-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+thv-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+thv-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 thv-ngx_lua {
@@ -13384,62 +12286,6 @@ thv-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-thv-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 thv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -13609,62 +12455,6 @@ thv-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-thv-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 thv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -13722,62 +12512,6 @@ thv-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-thv-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-    env TEST_NGINX_USE_HUP 1;
-
-    env TEST_NGINX_SLEEP 0.015;
-
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND 1;
-
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
-    dep valgrind;
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 thv-ngx_iconv {
@@ -14480,117 +13214,6 @@ tl-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-tl-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-tl-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 tl-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -14760,6 +13383,225 @@ tl-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+tl-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+tl-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+tl-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+tl-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 tl-ngx_example_lua {
     always;
@@ -14814,6 +13656,116 @@ tl-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+tl-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+tl-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 tl-ngx_lua {
@@ -14989,61 +13941,6 @@ tl-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-tl-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 tl-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -15210,61 +14107,6 @@ tl-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-tl-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 tl-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -15321,61 +14163,6 @@ tl-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-tl-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT -O1;
-    env NGX_BUILD_NO_DEBUG '';
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 tl-ngx_iconv {
@@ -16064,115 +14851,6 @@ to-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-to-ngx_set_misc {
-    always;
-    cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT '-O3 -funsigned-char';
-    env NGX_BUILD_NO_DEBUG 1;
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_set_misc;
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-to-ngx_headers_more {
-    always;
-    cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT '-O3 -funsigned-char';
-    env NGX_BUILD_NO_DEBUG 1;
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_headers_more;
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 to-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
@@ -16339,6 +15017,221 @@ to-ngx_drizzle {
     dep ngx_lua ngx_echo ngx_rds_json;
     dep ngx_headers_more ndk ngx_set_misc;
 }
+to-ngx_encrypted_session {
+    always;
+    cwd ~/git/encrypted-session-nginx-module;
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_encrypted_session;
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+to-ngx_array_var {
+    always;
+    cwd ~/git/array-var-nginx-module;
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_array_var;
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+to-ngx_set_misc {
+    always;
+    cwd ~/git/set-misc-nginx-module;
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_set_misc;
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+to-ngx_headers_more {
+    always;
+    cwd ~/git/headers-more-nginx-module;
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_headers_more;
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
 
 to-ngx_example_lua {
     always;
@@ -16392,6 +15285,114 @@ to-ngx_example_lua {
     dep nginx-module-test ngx_example_lua;
 
     dep ngx_echo ngx_lua;
+}
+
+to-ngx_lua_upstream {
+    always;
+    cwd ~/git/lua-upstream-nginx-module;
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_lua_upstream;
+
+    dep ngx_echo ngx_lua;
+}
+
+to-ngx_xss {
+    always;
+    cwd ~/git/xss-nginx-module;
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+
+    dep nginx-module-test ngx_xss;
+
+    dep ngx_echo ndk ngx_lua;
 }
 
 to-ngx_lua {
@@ -16564,60 +15565,6 @@ to-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-to-ngx_xss {
-    always;
-    cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT '-O3 -funsigned-char';
-    env NGX_BUILD_NO_DEBUG 1;
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_xss;
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 to-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
@@ -16781,60 +15728,6 @@ to-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-to-ngx_array_var {
-    always;
-    cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT '-O3 -funsigned-char';
-    env NGX_BUILD_NO_DEBUG 1;
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_array_var;
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 to-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
@@ -16890,60 +15783,6 @@ to-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-to-ngx_encrypted_session {
-    always;
-    cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
-    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
-    env LIBDRIZZLE_LIB /opt/drizzle/lib;
-    env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-
-    env TEST_NGINX_EVENT_TYPE '';
-    env MOCKEAGAIN '';
-
-    env TEST_NGINX_USE_STAP '';
-
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
-    env CCACHE_BASEDIR '$PWD';
-    dep ccache;
-
-    env NGX_BUILD_OPT '-O3 -funsigned-char';
-    env NGX_BUILD_NO_DEBUG 1;
-    env NGX_BUILD_JOBS $jobs;
-    env NGX_BUILD_DTRACE 1;
-
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
-    env LD_PRELOAD '';
-
-    env TEST_NGINX_CHECK_LEAK '';
-
-    env TEST_NGINX_USE_HUP '';
-
-    env TEST_NGINX_SLEEP 0.015;
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
-    env TEST_NGINX_USE_VALGRIND '';
-
-    sh 'PAGER= git log HEAD^..HEAD';
-
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
-    sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
-
-    dep systemtap;
-
-
-    dep nginx-module-test ngx_encrypted_session;
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 to-ngx_iconv {

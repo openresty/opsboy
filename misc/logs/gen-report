@@ -46,6 +46,7 @@ my %github_links = (
     ngx_srcache => ['agentzh', 'srcache-nginx-module'],
     ngx_xss => ['agentzh', 'xss-nginx-module'],
     ngx_example_lua => ['agentzh', 'nginx-example-lua-module'],
+    ngx_lua_upstream => ['agentzh', 'lua-upstream-nginx-module'],
     sregex => ['agentzh', 'sregex'],
 );
 

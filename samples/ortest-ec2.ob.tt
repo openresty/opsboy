@@ -172,7 +172,7 @@ luajit-git {
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
-    'replace_filter',
+    'lua_upstream', 'replace_filter',
    ]
 -%]
 
@@ -197,6 +197,8 @@ luajit-git {
         coolkit => 1,
         encrypted_session => 1,
         example_lua => 1,
+        lua_upstream => 1,
+        headers_more => 1,
     }
 -%]
 
@@ -540,6 +542,14 @@ ngx_example_lua {
     dep ngx_lua;
 }
 
+ngx_lua_upstream {
+    git git://github.com/agentzh/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    dep ngx_lua;
+}
+
 ngx_lua {
     git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
 
@@ -848,19 +858,6 @@ t[% type %]-ngx_srcache {
     dep run-memcached run-redis run-mysql run-postgres;
 }
 
-
-t[% type %]-ngx_set_misc {
-    [%- PROCESS build_nginx_module name="set-misc" -%]
-
-    dep ndk ngx_echo ngx_iconv;
-}
-
-t[% type %]-ngx_headers_more {
-    [%- PROCESS build_nginx_module name="headers-more" -%]
-
-    dep ngx_eval ngx_echo ngx_lua;
-}
-
 t[% type %]-ngx_rds_json {
     [%- PROCESS build_nginx_module name="rds-json" -%]
 
@@ -884,11 +881,49 @@ t[% type %]-ngx_drizzle {
     dep ngx_headers_more ndk ngx_set_misc;
 }
 
+[%- IF NOT type.match("[wr]") -%]
+t[% type %]-ngx_encrypted_session {
+    [%- PROCESS build_nginx_module name="encrypted-session" -%]
+
+    dep ngx_echo ndk ngx_set_misc ngx_lua;
+}
+
+t[% type %]-ngx_array_var {
+    [%- PROCESS build_nginx_module name="array-var" -%]
+
+    dep ngx_echo ndk ngx_set_misc;
+}
+
+t[% type %]-ngx_set_misc {
+    [%- PROCESS build_nginx_module name="set-misc" -%]
+
+    dep ndk ngx_echo ngx_iconv;
+}
+
+t[% type %]-ngx_headers_more {
+    [%- PROCESS build_nginx_module name="headers-more" -%]
+
+    dep ngx_eval ngx_echo ngx_lua;
+}
+
 t[% type %]-ngx_example_lua {
     [%- PROCESS build_nginx_module name="example-lua" -%]
 
     dep ngx_echo ngx_lua;
 }
+
+t[% type %]-ngx_lua_upstream {
+    [%- PROCESS build_nginx_module name="lua-upstream" -%]
+
+    dep ngx_echo ngx_lua;
+}
+
+t[% type %]-ngx_xss {
+    [%- PROCESS build_nginx_module name="xss" -%]
+
+    dep ngx_echo ndk ngx_lua;
+}
+[%- END %]
 
 t[% type %]-ngx_lua {
 
@@ -920,12 +955,6 @@ t[% type %]-ngx_redis2 {
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
-t[% type %]-ngx_xss {
-    [%- PROCESS build_nginx_module name="xss" -%]
-
-    dep ngx_echo ndk ngx_lua;
-}
-
 t[% type %]-ngx_echo {
     [%- PROCESS build_nginx_module name="echo" -%]
 
@@ -945,12 +974,6 @@ t[% type %]-ngx_form_input {
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
 
-t[% type %]-ngx_array_var {
-    [%- PROCESS build_nginx_module name="array-var" -%]
-
-    dep ngx_echo ndk ngx_set_misc;
-}
-
 t[% type %]-ngx_postgres {
     [%- PROCESS build_nginx_module name="postgres" -%]
 
@@ -958,12 +981,6 @@ t[% type %]-ngx_postgres {
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
-}
-
-t[% type %]-ngx_encrypted_session {
-    [%- PROCESS build_nginx_module name="encrypted-session" -%]
-
-    dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
 
 t[% type %]-ngx_iconv {
