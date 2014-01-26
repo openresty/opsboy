@@ -187,6 +187,7 @@ my %white_list = (
         ['', '004-require.t', qr{TEST 3: expand default path \(after\) - response_body_like - response is expected \(/\S+/lua-resty-core/lib/\?\.lua},],
         ['', '025-codecache.t', 'nginx: [alert]'],
         ['v', '025-codecache.t', 'matches a line in error.log'],
+        ['v', '109-timer-hup.t', 'TEST 6: HUP reload should abort pending timers (coroutine + cosocket) - grep_error_log_out'],
         ['w', '025-codecache.t', 'TEST 29: cosocket connection pool timeout (after Lua VM destroys) - pattern "lua tcp socket keepalive max idle timeout" should not match any line in error.log but matches line'],
         ['w', '025-codecache.t', 'TEST 24: lua_max_pending_timers - chained timers (non-zero delay) - not exceeding - pattern "decrementing the reference count for Lua VM: 3" should not match any line in error.log but matches line'],
         ['o', undef, 'matches a line in error.log'],
