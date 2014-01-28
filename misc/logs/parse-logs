@@ -281,6 +281,7 @@ my %white_list = (
         ['h', '065-tcp-socket-timeout.t', 'TEST 14: sock:settimeout(0) does not override lua_socket_send_timeout'],
         ['h', '065-tcp-socket-timeout.t', 'TEST 15: sock:settimeout(-1) does not override lua_socket_send_timeout'],
         ['h', '065-tcp-socket-timeout.t', 'TEST 16: exit in user thread (entry thread is still pending on tcpsock:send)'],
+        ['h', '106-timer.t', qr/TEST 9: simple at \(sleep in the timer callback\) - log_by_lua - pattern .*? matches a line in error\.log/],
         ['hv', '024-access/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "main handler done" should not match any line in error.log but matches line'],
         ['rv', '104-req-raw-header.t', 'TEST 3: large header (no request line)'],
         ['rv', '104-req-raw-header.t', 'TEST 11: large header, pipelined'],
