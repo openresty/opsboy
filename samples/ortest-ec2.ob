@@ -74,6 +74,7 @@ t {
     dep t-lua-resty-lock;
     dep t-lua-resty-logger-socket;
     dep t-lua-resty-core;
+    dep t-lua-resty-upstream-healthcheck;
     dep t-sregex;
 }
 
@@ -159,6 +160,7 @@ tr {
     dep tr-lua-resty-lock;
     dep tr-lua-resty-logger-socket;
     dep tr-lua-resty-core;
+    dep tr-lua-resty-upstream-healthcheck;
 }
 
 trv {
@@ -179,6 +181,7 @@ trv1 {
     dep trv-lua-resty-lock;
     dep trv-lua-resty-logger-socket;
     dep trv-lua-resty-core;
+    dep trv-lua-resty-upstream-healthcheck;
 }
 
 trv2 {
@@ -220,6 +223,7 @@ tw {
     dep tw-lua-resty-lock;
     dep tw-lua-resty-logger-socket;
     dep tw-lua-resty-core;
+    dep tw-lua-resty-upstream-healthcheck;
 }
 
 twv {
@@ -240,6 +244,7 @@ twv1 {
     dep trv-lua-resty-lock;
     dep trv-lua-resty-logger-socket;
     dep trv-lua-resty-core;
+    dep trv-lua-resty-upstream-healthcheck;
 }
 
 twv2 {
@@ -289,6 +294,7 @@ th {
     dep th-lua-resty-lock;
     dep th-lua-resty-logger-socket;
     dep th-lua-resty-core;
+    dep th-lua-resty-upstream-healthcheck;
 }
 
 thv {
@@ -323,6 +329,7 @@ thv {
     dep thv-lua-resty-lock;
     dep thv-lua-resty-logger-socket;
     dep thv-lua-resty-core;
+    dep thv-lua-resty-upstream-healthcheck;
 }
 
 tl {
@@ -357,6 +364,7 @@ tl {
     dep tl-lua-resty-lock;
     dep tl-lua-resty-logger-socket;
     dep tl-lua-resty-core;
+    dep tl-lua-resty-upstream-healthcheck;
 }
 
 etcproxy {
@@ -664,6 +672,11 @@ lua-resty-logger-socket {
 
 lua-resty-core {
     git git://github.com/agentzh/lua-resty-core.git ~/git/lua-resty-core;
+    dep ngx_lua;
+}
+
+lua-resty-upstream-healthcheck {
+    git git://github.com/agentzh/lua-resty-upstream-healthcheck.git ~/git/lua-resty-upstream-healthcheck;
     dep ngx_lua;
 }
 
@@ -2520,6 +2533,51 @@ t-lua-resty-core {
 
     dep build-ngx_lua;
 }
+t-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep build-ngx_lua;
+}
 
 
 tv-ngx_srcache {
@@ -4220,6 +4278,54 @@ tv-lua-resty-core {
 
     dep build-ngx_lua;
 }
+tv-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep build-ngx_lua;
+}
 
 
 tr-ngx_srcache {
@@ -5592,6 +5698,57 @@ tr-lua-resty-core {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-core;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
 
     dep build-ngx_lua;
 }
@@ -7042,6 +7199,60 @@ trv-lua-resty-core {
 
     dep build-ngx_lua;
 }
+trv-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep build-ngx_lua;
+}
 
 
 tw-ngx_srcache {
@@ -8438,6 +8649,58 @@ tw-lua-resty-core {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-core;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
 
     dep build-ngx_lua;
 }
@@ -9909,6 +10172,61 @@ twv-lua-resty-core {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-core;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
 
     dep build-ngx_lua;
 }
@@ -11485,6 +11803,50 @@ th-lua-resty-core {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-core;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
 
     dep build-ngx_lua;
 }
@@ -13157,6 +13519,53 @@ thv-lua-resty-core {
 
     dep build-ngx_lua;
 }
+thv-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep build-ngx_lua;
+}
 
 
 tl-ngx_srcache {
@@ -14792,6 +15201,52 @@ tl-lua-resty-core {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-core;
+
+    dep build-ngx_lua;
+}
+tl-lua-resty-upstream-healthcheck {
+    always;
+    cwd ~/git/lua-resty-upstream-healthcheck;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
 
     dep build-ngx_lua;
 }

@@ -182,6 +182,7 @@ luajit-git {
         'resty-upload', 'resty-dns',
         'resty-websocket', 'resty-lock',
         'resty-logger-socket', 'resty-core',
+        'resty-upstream-healthcheck',
     ]
 %]
 
