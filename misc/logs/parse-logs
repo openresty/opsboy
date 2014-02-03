@@ -31,6 +31,7 @@ my %white_list = (
         ['rv', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - grep_error_log_out'],
         ['rv', 'sanity.t', 'TEST 2: health check (bad case), no listening port in the backup peer - grep_error_log_out'],
         ['rv', 'sanity.t', 'TEST 3: health check (bad case), no listening port in a primary peer - grep_error_log_out'],
+        ['w', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 4: health check (bad case), bad status - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 9: concurrency == 2 (odd number of peers) - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 3: health check (bad case), no listening port in a primary peer - grep_error_log_out'],
@@ -51,6 +52,8 @@ my %white_list = (
         ['h', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - pattern "was checked to be not ok" should not match any line in error.log but matches line'],
         ['h', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - pattern "[warn]" should not match any line in error.log but matches line'],
         ['h', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - pattern "was checked to be not ok" should not match any line in error.log but matches line'],
+        ['h', 'sanity.t', qr/TEST 9: concurrency == 2 \(odd number of peers\) - pattern ".*?" matches a line in error\.log/],
+        ['h', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12359 is turned down after 2 failure(s)" matches a line in error.log'],
     ],
 
