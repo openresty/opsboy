@@ -18,6 +18,8 @@ my $verbose = $opts{v};
 
 my %white_list = (
     'lua-resty-upstream-healthcheck' => [
+        ['v', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - grep_error_log_out'],
+        ['v', 'sanity.t', 'TEST 2: health check (bad case), no listening port in the backup peer - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 9: concurrency == 2 (odd number of peers) - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - grep_error_log_out'],
@@ -47,6 +49,8 @@ my %white_list = (
         ['wv', 'sanity.t', 'TEST 8: peers version upgrade (make down peers up) - response_body - response is expected'],
         ['wv', 'sanity.t', 'TEST 8: peers version upgrade (make down peers up) - grep_error_log_out'],
         ['wv', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
+        ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12359 is turned down after 2 failure(s)" matches a line in error.log'],
+        ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12356 is turned down after 2 failure(s)" matches a line in error.log'],
         ['h', 'sanity.t', ' - grep_error_log_out'],
         ['h', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
         ['h', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - pattern "was checked to be not ok" should not match any line in error.log but matches line'],
