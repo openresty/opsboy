@@ -2125,6 +2125,8 @@ t-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 t-lua-resty-redis {
@@ -2169,6 +2171,8 @@ t-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -2216,6 +2220,8 @@ t-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 t-lua-resty-string {
@@ -2260,6 +2266,8 @@ t-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -2306,6 +2314,8 @@ t-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 t-lua-resty-dns {
@@ -2350,6 +2360,8 @@ t-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -2396,6 +2408,8 @@ t-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 t-lua-resty-lock {
@@ -2440,6 +2454,8 @@ t-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -2486,6 +2502,8 @@ t-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 t-lua-resty-core {
@@ -2531,6 +2549,7 @@ t-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 t-lua-resty-upstream-healthcheck {
@@ -2575,6 +2594,8 @@ t-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -3843,6 +3864,8 @@ tv-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tv-lua-resty-redis {
@@ -3890,6 +3913,8 @@ tv-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -3940,6 +3965,8 @@ tv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tv-lua-resty-string {
@@ -3987,6 +4014,8 @@ tv-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -4036,6 +4065,8 @@ tv-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tv-lua-resty-dns {
@@ -4083,6 +4114,8 @@ tv-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -4132,6 +4165,8 @@ tv-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tv-lua-resty-lock {
@@ -4179,6 +4214,8 @@ tv-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -4228,6 +4265,8 @@ tv-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tv-lua-resty-core {
@@ -4276,6 +4315,7 @@ tv-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 tv-lua-resty-upstream-healthcheck {
@@ -4323,6 +4363,8 @@ tv-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -5239,6 +5281,8 @@ tr-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tr-lua-resty-redis {
@@ -5289,6 +5333,8 @@ tr-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -5342,6 +5388,8 @@ tr-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tr-lua-resty-string {
@@ -5392,6 +5440,8 @@ tr-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -5444,6 +5494,8 @@ tr-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tr-lua-resty-dns {
@@ -5494,6 +5546,8 @@ tr-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -5546,6 +5600,8 @@ tr-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tr-lua-resty-lock {
@@ -5596,6 +5652,8 @@ tr-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -5648,6 +5706,8 @@ tr-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tr-lua-resty-core {
@@ -5699,6 +5759,7 @@ tr-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 tr-lua-resty-upstream-healthcheck {
@@ -5749,6 +5810,8 @@ tr-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -6710,6 +6773,8 @@ trv-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 trv-lua-resty-redis {
@@ -6763,6 +6828,8 @@ trv-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -6819,6 +6886,8 @@ trv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 trv-lua-resty-string {
@@ -6872,6 +6941,8 @@ trv-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -6927,6 +6998,8 @@ trv-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 trv-lua-resty-dns {
@@ -6980,6 +7053,8 @@ trv-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -7035,6 +7110,8 @@ trv-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 trv-lua-resty-lock {
@@ -7088,6 +7165,8 @@ trv-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -7143,6 +7222,8 @@ trv-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 trv-lua-resty-core {
@@ -7197,6 +7278,7 @@ trv-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 trv-lua-resty-upstream-healthcheck {
@@ -7250,6 +7332,8 @@ trv-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -8181,6 +8265,8 @@ tw-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tw-lua-resty-redis {
@@ -8232,6 +8318,8 @@ tw-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -8286,6 +8374,8 @@ tw-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tw-lua-resty-string {
@@ -8337,6 +8427,8 @@ tw-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -8390,6 +8482,8 @@ tw-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tw-lua-resty-dns {
@@ -8441,6 +8535,8 @@ tw-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -8494,6 +8590,8 @@ tw-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tw-lua-resty-lock {
@@ -8545,6 +8643,8 @@ tw-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -8598,6 +8698,8 @@ tw-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tw-lua-resty-core {
@@ -8650,6 +8752,7 @@ tw-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 tw-lua-resty-upstream-healthcheck {
@@ -8701,6 +8804,8 @@ tw-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -9677,6 +9782,8 @@ twv-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 twv-lua-resty-redis {
@@ -9731,6 +9838,8 @@ twv-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -9788,6 +9897,8 @@ twv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 twv-lua-resty-string {
@@ -9842,6 +9953,8 @@ twv-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -9898,6 +10011,8 @@ twv-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 twv-lua-resty-dns {
@@ -9952,6 +10067,8 @@ twv-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -10008,6 +10125,8 @@ twv-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 twv-lua-resty-lock {
@@ -10062,6 +10181,8 @@ twv-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -10118,6 +10239,8 @@ twv-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 twv-lua-resty-core {
@@ -10173,6 +10296,7 @@ twv-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 twv-lua-resty-upstream-healthcheck {
@@ -10227,6 +10351,8 @@ twv-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -11407,6 +11533,8 @@ th-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 th-lua-resty-redis {
@@ -11450,6 +11578,8 @@ th-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -11496,6 +11626,8 @@ th-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 th-lua-resty-string {
@@ -11539,6 +11671,8 @@ th-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -11584,6 +11718,8 @@ th-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 th-lua-resty-dns {
@@ -11627,6 +11763,8 @@ th-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -11672,6 +11810,8 @@ th-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 th-lua-resty-lock {
@@ -11715,6 +11855,8 @@ th-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -11760,6 +11902,8 @@ th-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 th-lua-resty-core {
@@ -11804,6 +11948,7 @@ th-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 th-lua-resty-upstream-healthcheck {
@@ -11847,6 +11992,8 @@ th-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -13093,6 +13240,8 @@ thv-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 thv-lua-resty-redis {
@@ -13139,6 +13288,8 @@ thv-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -13188,6 +13339,8 @@ thv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 thv-lua-resty-string {
@@ -13234,6 +13387,8 @@ thv-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -13282,6 +13437,8 @@ thv-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 thv-lua-resty-dns {
@@ -13328,6 +13485,8 @@ thv-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -13376,6 +13535,8 @@ thv-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 thv-lua-resty-lock {
@@ -13422,6 +13583,8 @@ thv-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -13470,6 +13633,8 @@ thv-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 thv-lua-resty-core {
@@ -13517,6 +13682,7 @@ thv-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 thv-lua-resty-upstream-healthcheck {
@@ -13563,6 +13729,8 @@ thv-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -14787,6 +14955,8 @@ tl-lua-resty-memcached {
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tl-lua-resty-redis {
@@ -14832,6 +15002,8 @@ tl-lua-resty-redis {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -14880,6 +15052,8 @@ tl-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tl-lua-resty-string {
@@ -14925,6 +15099,8 @@ tl-lua-resty-string {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-string;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -14972,6 +15148,8 @@ tl-lua-resty-upload {
 
     dep ngx_lua nginx-module-test lua-resty-upload;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tl-lua-resty-dns {
@@ -15017,6 +15195,8 @@ tl-lua-resty-dns {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -15064,6 +15244,8 @@ tl-lua-resty-websocket {
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tl-lua-resty-lock {
@@ -15109,6 +15291,8 @@ tl-lua-resty-lock {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }
@@ -15156,6 +15340,8 @@ tl-lua-resty-logger-socket {
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
 
+    dep lua-resty-core;
+
     dep build-ngx_lua;
 }
 tl-lua-resty-core {
@@ -15202,6 +15388,7 @@ tl-lua-resty-core {
 
     dep ngx_lua nginx-module-test lua-resty-core;
 
+
     dep build-ngx_lua;
 }
 tl-lua-resty-upstream-healthcheck {
@@ -15247,6 +15434,8 @@ tl-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
 
     dep build-ngx_lua;
 }

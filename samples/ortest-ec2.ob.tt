@@ -1016,6 +1016,10 @@ t[% type %]-lua-[% name %] {
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     [%- END -%]
 
+    [%- IF name != "resty-core" %]
+    dep lua-resty-core;
+    [%- END %]
+
     dep build-ngx_lua;
 }
 [% END -%]
