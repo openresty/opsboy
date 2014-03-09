@@ -1583,7 +1583,7 @@ t-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 t-ngx_memc {
@@ -3292,7 +3292,7 @@ tv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 tv-ngx_memc {
@@ -4679,7 +4679,7 @@ tr-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 tr-ngx_memc {
@@ -6141,7 +6141,7 @@ trv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 trv-ngx_memc {
@@ -7653,7 +7653,7 @@ tw-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 tw-ngx_memc {
@@ -9140,7 +9140,7 @@ twv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 twv-ngx_memc {
@@ -11001,7 +11001,7 @@ th-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 th-ngx_memc {
@@ -12678,7 +12678,7 @@ thv-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 thv-ngx_memc {
@@ -14403,7 +14403,7 @@ tl-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 tl-ngx_memc {
@@ -16096,7 +16096,7 @@ to-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core;
+    dep lua-resty-core ngx_openresty-debug;
 }
 
 to-ngx_memc {
