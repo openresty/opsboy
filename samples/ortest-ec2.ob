@@ -16694,6 +16694,7 @@ build-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
+    dep ngx_openresty-debug;
 }
 
 systemtap {
