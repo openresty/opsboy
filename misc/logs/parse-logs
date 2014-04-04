@@ -18,21 +18,15 @@ my $verbose = $opts{v};
 
 my %white_list = (
     'lua-resty-upstream-healthcheck' => [
-        ['v', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - grep_error_log_out'],
-        ['v', 'sanity.t', 'TEST 2: health check (bad case), no listening port in the backup peer - grep_error_log_out'],
-        ['v', 'sanity.t', 'TEST 9: concurrency == 2 (odd number of peers) - grep_error_log_out'],
-        ['v', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - grep_error_log_out'],
-        ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - grep_error_log_out'],
+        ['v', 'sanity.t', ' - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
+        ['v', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
+        ['v', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
         ['rv', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
-        ['rv', 'sanity.t', 'TEST 4: health check (bad case), bad status - grep_error_log_out'],
+        ['rv', 'sanity.t', ' - grep_error_log_out'],
         ['rv', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
-        ['rv', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
-        ['rv', 'sanity.t', 'TEST 8: peers version upgrade (make down peers up) - grep_error_log_out'],
         ['rv', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - response_body - response is expected'],
-        ['rv', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - grep_error_log_out'],
-        ['rv', 'sanity.t', 'TEST 2: health check (bad case), no listening port in the backup peer - grep_error_log_out'],
-        ['rv', 'sanity.t', 'TEST 3: health check (bad case), no listening port in a primary peer - grep_error_log_out'],
+        ['w', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['w', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 4: health check (bad case), bad status - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 9: concurrency == 2 (odd number of peers) - grep_error_log_out'],
@@ -51,6 +45,7 @@ my %white_list = (
         ['wv', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
         ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12359 is turned down after 2 failure(s)" matches a line in error.log'],
         ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12356 is turned down after 2 failure(s)" matches a line in error.log'],
+        ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12355 is turned down after 2 failure(s)" matches a line in error.log'],
         ['h', 'sanity.t', ' - grep_error_log_out'],
         ['h', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
         ['h', 'sanity.t', 'TEST 1: health check (good case), status ignored by default - pattern "was checked to be not ok" should not match any line in error.log but matches line'],
@@ -58,6 +53,8 @@ my %white_list = (
         ['h', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - pattern "was checked to be not ok" should not match any line in error.log but matches line'],
         ['h', 'sanity.t', qr/TEST 9: concurrency == 2 \(odd number of peers\) - pattern ".*?" matches a line in error\.log/],
         ['h', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['h', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12354 is turned down after 2 failure(s)" matches a line in error.log'],
+        ['h', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['hv', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - pattern "healthcheck: peer 127.0.0.1:12359 is turned down after 2 failure(s)" matches a line in error.log'],
     ],
 
@@ -336,8 +333,6 @@ my %white_list = (
         ['rv', '104-req-raw-header.t', 'TEST 13: large header, multi-line header'],
         ['rv', '104-req-raw-header.t', 'TEST 17: large header (POST body) - in subrequests'],
         ['rv', '104-req-raw-header.t', 'TEST 16: large header (POST body)'],
-        ['l', '023-rewrite/tcp-socket.t', 'TEST 22: cannot survive across request boundary (connect) - the nginx process'],
-        ['l', '058-tcp-socket.t', 'TEST 22: cannot survive across request boundary (connect) - the nginx process'],
     ],
 
     ngx_drizzle => [
@@ -419,7 +414,7 @@ while (<>) {
         undef $in_failure;
     }
 
-    if (!defined $luajit_rev && $making_luajit && /HEAD is now at ([a-f0-9]+)/) {
+    if ($making_luajit && /Updating [a-f0-9]+\.\.([a-f0-9]+)/) {
         $luajit_rev = $1;
     }
 
@@ -448,7 +443,7 @@ while (<>) {
     if (/^making (\S+) \.\.\.$/) {
         my $subj = $1;
 
-        if ($subj eq 'luajit') {
+        if ($subj =~ /^luajit/) {
             $making_luajit = 1;
 
         } else {
