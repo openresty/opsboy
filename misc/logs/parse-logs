@@ -36,6 +36,7 @@ my %white_list = (
         ['w', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down)'],
         ['w', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - grep_error_log_out'],
+        ['wv', 'sanity.t', 'TEST 3: health check (bad case), no listening port in a primary peer - response_body - response is expected'],
         ['wv', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
         ['wv', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['wv', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
