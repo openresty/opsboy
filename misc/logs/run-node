@@ -6,10 +6,10 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-a6f4cbe3', # ortest-linux-i386-26 (us-west-1)
-    #'linux i386' => 'ami-b65568f3', # ortest-linux-i386-25 (us-west-1)
-    #'linux x86_64' => 'ami-a45b66e1', # ortest-linux-x86_64-25 (us-west-1)
-    'linux x86_64' => 'ami-48f5ca0d', # ortest-linux-x86_64-26 (us-west-1)
+    'linux i386' => 'ami-54182111', # ortest-linux-i386-27 (us-west-1)
+    #'linux i386' => 'ami-a6f4cbe3', # ortest-linux-i386-26 (us-west-1)
+    #'linux x86_64' => 'ami-48f5ca0d', # ortest-linux-x86_64-26 (us-west-1)
+    'linux x86_64' => 'ami-56182113', # ortest-linux-x86_64-27 (us-west-1)
 );
 
 my %opts;
