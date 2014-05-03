@@ -34,7 +34,7 @@ luajit {
 }
 
 luajit-git {
-    git git://github.com/agentzh/luajit2.git ~/git/luajit2;
+    git git://github.com/openresty/luajit2.git ~/git/luajit2;
 }
 
 
@@ -75,6 +75,7 @@ t {
     dep t-lua-resty-logger-socket;
     dep t-lua-resty-core;
     dep t-lua-resty-upstream-healthcheck;
+    dep t-lua-resty-lrucache;
     dep t-sregex;
 }
 
@@ -161,6 +162,7 @@ tr {
     dep tr-lua-resty-logger-socket;
     dep tr-lua-resty-core;
     dep tr-lua-resty-upstream-healthcheck;
+    dep tr-lua-resty-lrucache;
 }
 
 trv {
@@ -182,6 +184,7 @@ trv1 {
     dep trv-lua-resty-logger-socket;
     dep trv-lua-resty-core;
     dep trv-lua-resty-upstream-healthcheck;
+    dep trv-lua-resty-lrucache;
 }
 
 trv2 {
@@ -224,6 +227,7 @@ tw {
     dep tw-lua-resty-logger-socket;
     dep tw-lua-resty-core;
     dep tw-lua-resty-upstream-healthcheck;
+    dep tw-lua-resty-lrucache;
 }
 
 twv {
@@ -245,6 +249,7 @@ twv1 {
     dep trv-lua-resty-logger-socket;
     dep trv-lua-resty-core;
     dep trv-lua-resty-upstream-healthcheck;
+    dep trv-lua-resty-lrucache;
 }
 
 twv2 {
@@ -295,6 +300,7 @@ th {
     dep th-lua-resty-logger-socket;
     dep th-lua-resty-core;
     dep th-lua-resty-upstream-healthcheck;
+    dep th-lua-resty-lrucache;
 }
 
 thv {
@@ -330,6 +336,7 @@ thv {
     dep thv-lua-resty-logger-socket;
     dep thv-lua-resty-core;
     dep thv-lua-resty-upstream-healthcheck;
+    dep thv-lua-resty-lrucache;
 }
 
 tl {
@@ -365,6 +372,7 @@ tl {
     dep tl-lua-resty-logger-socket;
     dep tl-lua-resty-core;
     dep tl-lua-resty-upstream-healthcheck;
+    dep tl-lua-resty-lrucache;
 }
 
 etcproxy {
@@ -378,7 +386,7 @@ erlang {
 }
 
 ngx_srcache {
-    git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
+    git git://github.com/openresty/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
     dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
@@ -386,7 +394,7 @@ ngx_srcache {
 }
 
 ngx_memc {
-    git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+    git git://github.com/openresty/memc-nginx-module.git ~/git/memc-nginx-module;
     dep ragel;
 }
 
@@ -414,7 +422,7 @@ ngx_postgres {
 }
 
 ngx_replace_filter {
-    git git://github.com/agentzh/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
+    git git://github.com/openresty/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
 }
 
 sregex {
@@ -494,7 +502,7 @@ bison {
 }
 
 sregex-git {
-    git git://github.com/agentzh/sregex.git ~/git/sregex;
+    git git://github.com/openresty/sregex.git ~/git/sregex;
 }
 
 libpq {
@@ -522,20 +530,20 @@ libdrizzle {
 }
 
 ngx_rds_json {
-    git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+    git git://github.com/openresty/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
 }
 
 ngx_rds_csv {
-    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
+    git git://github.com/openresty/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
 }
 
 ngx_array_var {
-    git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    git git://github.com/openresty/array-var-nginx-module.git ~/git/array-var-nginx-module;
     dep ndk;
 }
 
 ngx_encrypted_session {
-    git git://github.com/agentzh/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
+    git git://github.com/openresty/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
     dep ndk;
 }
 
@@ -545,21 +553,21 @@ ngx_form_input {
 }
 
 ngx_xss {
-    git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+    git git://github.com/openresty/xss-nginx-module.git ~/git/xss-nginx-module;
     dep ragel;
 }
 
 ngx_redis2 {
-    git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+    git git://github.com/openresty/redis2-nginx-module.git ~/git/redis2-nginx-module;
     dep ragel;
 }
 
 ngx_eval {
-    git git://github.com/agentzh/nginx-eval-module.git ~/git/eval-nginx-module;
+    git git://github.com/openresty/nginx-eval-module.git ~/git/eval-nginx-module;
 }
 
 ngx_echo {
-    git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+    git git://github.com/openresty/echo-nginx-module.git ~/git/echo-nginx-module;
 }
 
 ngx_example_lua {
@@ -571,7 +579,7 @@ ngx_example_lua {
 }
 
 ngx_lua_upstream {
-    git git://github.com/agentzh/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
+    git git://github.com/openresty/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -626,42 +634,42 @@ ngx_openresty-debug {
 
 
 lua-resty-memcached {
-    git git://github.com/agentzh/lua-resty-memcached.git ~/git/lua-resty-memcached;
+    git git://github.com/openresty/lua-resty-memcached.git ~/git/lua-resty-memcached;
     dep ngx_lua;
 }
 
 lua-resty-redis {
-    git git://github.com/agentzh/lua-resty-redis.git ~/git/lua-resty-redis;
+    git git://github.com/openresty/lua-resty-redis.git ~/git/lua-resty-redis;
     dep ngx_lua;
 }
 
 lua-resty-mysql {
-    git git://github.com/agentzh/lua-resty-mysql.git ~/git/lua-resty-mysql;
+    git git://github.com/openresty/lua-resty-mysql.git ~/git/lua-resty-mysql;
     dep ngx_lua;
 }
 
 lua-resty-string {
-    git git://github.com/agentzh/lua-resty-string.git ~/git/lua-resty-string;
+    git git://github.com/openresty/lua-resty-string.git ~/git/lua-resty-string;
     dep ngx_lua;
 }
 
 lua-resty-upload {
-    git git://github.com/agentzh/lua-resty-upload.git ~/git/lua-resty-upload;
+    git git://github.com/openresty/lua-resty-upload.git ~/git/lua-resty-upload;
     dep ngx_lua;
 }
 
 lua-resty-dns {
-    git git://github.com/agentzh/lua-resty-dns.git ~/git/lua-resty-dns;
+    git git://github.com/openresty/lua-resty-dns.git ~/git/lua-resty-dns;
     dep ngx_lua;
 }
 
 lua-resty-websocket {
-    git git://github.com/agentzh/lua-resty-websocket.git ~/git/lua-resty-websocket;
+    git git://github.com/openresty/lua-resty-websocket.git ~/git/lua-resty-websocket;
     dep ngx_lua;
 }
 
 lua-resty-lock {
-    git git://github.com/agentzh/lua-resty-lock.git ~/git/lua-resty-lock;
+    git git://github.com/openresty/lua-resty-lock.git ~/git/lua-resty-lock;
     dep ngx_lua;
 }
 
@@ -671,29 +679,34 @@ lua-resty-logger-socket {
 }
 
 lua-resty-core {
-    git git://github.com/agentzh/lua-resty-core.git ~/git/lua-resty-core;
+    git git://github.com/openresty/lua-resty-core.git ~/git/lua-resty-core;
     dep ngx_lua;
 }
 
 lua-resty-upstream-healthcheck {
-    git git://github.com/agentzh/lua-resty-upstream-healthcheck.git ~/git/lua-resty-upstream-healthcheck;
+    git git://github.com/openresty/lua-resty-upstream-healthcheck.git ~/git/lua-resty-upstream-healthcheck;
+    dep ngx_lua;
+}
+
+lua-resty-lrucache {
+    git git://github.com/agentzh/lua-resty-lrucache.git ~/git/lua-resty-lrucache;
     dep ngx_lua;
 }
 
 
 ngx_headers_more {
-    git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
+    git git://github.com/openresty/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
 }
 
 nginx-devel-utils {
-    git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
+    git git://github.com/openresty/nginx-devel-utils.git ~/git/nginx-devel-utils;
     dep no-pool-nginx;
     dep ngx_openresty;
     dep patch;
 }
 
 ngx_set_misc {
-    git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+    git git://github.com/openresty/set-misc-nginx-module ~/git/set-misc-nginx-module;
 }
 
 ngx_iconv {
@@ -707,7 +720,7 @@ no-pool-nginx {
 }
 
 ngx_openresty {
-    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+    git git://github.com/openresty/ngx_openresty.git ~/git/ngx_openresty;
 }
 
 git {
@@ -724,7 +737,7 @@ mockeagain {
 }
 
 mockeagain-git {
-    git git://github.com/agentzh/mockeagain.git ~/git/mockeagain;
+    git git://github.com/openresty/mockeagain.git ~/git/mockeagain;
 }
 
 run-redis {
@@ -844,7 +857,7 @@ prove {
 }
 
 test-nginx {
-    git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
+    git git://github.com/openresty/test-nginx.git ~/git/test-nginx;
     dep test-base time-hires test-longstring list-moreutils;
     dep ab weighttp;
 }
@@ -2594,6 +2607,53 @@ t-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
+t-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
 
     dep lua-resty-core;
 
@@ -4368,6 +4428,56 @@ tv-lua-resty-upstream-healthcheck {
 
     dep build-ngx_lua;
 }
+tv-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
 
 
 tr-ngx_srcache {
@@ -5810,6 +5920,59 @@ tr-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
+tr-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
 
     dep lua-resty-core;
 
@@ -7337,6 +7500,62 @@ trv-lua-resty-upstream-healthcheck {
 
     dep build-ngx_lua;
 }
+trv-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
 
 
 tw-ngx_srcache {
@@ -8804,6 +9023,60 @@ tw-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
+tw-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP 1;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
 
     dep lua-resty-core;
 
@@ -10351,6 +10624,63 @@ twv-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
+twv-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
 
     dep lua-resty-core;
 
@@ -11992,6 +12322,52 @@ th-lua-resty-upstream-healthcheck {
     dep systemtap;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
+th-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
 
     dep lua-resty-core;
 
@@ -13734,6 +14110,55 @@ thv-lua-resty-upstream-healthcheck {
 
     dep build-ngx_lua;
 }
+thv-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
 
 
 tl-ngx_srcache {
@@ -15439,6 +15864,54 @@ tl-lua-resty-upstream-healthcheck {
 
     dep build-ngx_lua;
 }
+tl-lua-resty-lrucache {
+    always;
+    cwd ~/git/lua-resty-lrucache;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'hotloop=1\', \'hotexit=1\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+
+    dep ngx_lua nginx-module-test lua-resty-lrucache;
+
+    dep lua-resty-core;
+
+    dep build-ngx_lua;
+}
 
 
 to-ngx_srcache {
@@ -16624,7 +17097,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/agentzh/opsboy.git ~/git/opsboy;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy;
     dep cc parse-recdescent tt2;
 }
 

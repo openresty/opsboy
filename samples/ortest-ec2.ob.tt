@@ -135,7 +135,7 @@ luajit {
 }
 
 luajit-git {
-    git git://github.com/agentzh/luajit2.git ~/git/luajit2;
+    git git://github.com/openresty/luajit2.git ~/git/luajit2;
 }
 
 [% BLOCK build_lua_lib %]
@@ -183,11 +183,13 @@ luajit-git {
         'resty-websocket', 'resty-lock',
         'resty-logger-socket', 'resty-core',
         'resty-upstream-healthcheck',
+        'resty-lrucache',
     ]
 %]
 
 [%- lualib_authors = {
         'resty-logger-socket' => 'cloudflare',
+        'resty-lrucache' => 'agentzh',
     }
 %]
 
@@ -351,7 +353,7 @@ erlang {
 }
 
 ngx_srcache {
-    git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
+    git git://github.com/openresty/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
     dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
@@ -359,7 +361,7 @@ ngx_srcache {
 }
 
 ngx_memc {
-    git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+    git git://github.com/openresty/memc-nginx-module.git ~/git/memc-nginx-module;
     dep ragel;
 }
 
@@ -387,7 +389,7 @@ ngx_postgres {
 }
 
 ngx_replace_filter {
-    git git://github.com/agentzh/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
+    git git://github.com/openresty/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
 }
 
 sregex {
@@ -467,7 +469,7 @@ bison {
 }
 
 sregex-git {
-    git git://github.com/agentzh/sregex.git ~/git/sregex;
+    git git://github.com/openresty/sregex.git ~/git/sregex;
 }
 
 libpq {
@@ -495,20 +497,20 @@ libdrizzle {
 }
 
 ngx_rds_json {
-    git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+    git git://github.com/openresty/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
 }
 
 ngx_rds_csv {
-    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
+    git git://github.com/openresty/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
 }
 
 ngx_array_var {
-    git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    git git://github.com/openresty/array-var-nginx-module.git ~/git/array-var-nginx-module;
     dep ndk;
 }
 
 ngx_encrypted_session {
-    git git://github.com/agentzh/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
+    git git://github.com/openresty/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
     dep ndk;
 }
 
@@ -518,21 +520,21 @@ ngx_form_input {
 }
 
 ngx_xss {
-    git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+    git git://github.com/openresty/xss-nginx-module.git ~/git/xss-nginx-module;
     dep ragel;
 }
 
 ngx_redis2 {
-    git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+    git git://github.com/openresty/redis2-nginx-module.git ~/git/redis2-nginx-module;
     dep ragel;
 }
 
 ngx_eval {
-    git git://github.com/agentzh/nginx-eval-module.git ~/git/eval-nginx-module;
+    git git://github.com/openresty/nginx-eval-module.git ~/git/eval-nginx-module;
 }
 
 ngx_echo {
-    git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+    git git://github.com/openresty/echo-nginx-module.git ~/git/echo-nginx-module;
 }
 
 ngx_example_lua {
@@ -544,7 +546,7 @@ ngx_example_lua {
 }
 
 ngx_lua_upstream {
-    git git://github.com/agentzh/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
+    git git://github.com/openresty/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -600,25 +602,25 @@ ngx_openresty-debug {
 [% FOREACH name IN lualibs %]
 lua-[% name %] {
     [%- author = lualib_authors.$name %]
-    [%- IF NOT author; author = "agentzh"; END %]
+    [%- IF NOT author; author = "openresty"; END %]
     git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
     dep ngx_lua;
 }
 [% END %]
 
 ngx_headers_more {
-    git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
+    git git://github.com/openresty/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
 }
 
 nginx-devel-utils {
-    git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
+    git git://github.com/openresty/nginx-devel-utils.git ~/git/nginx-devel-utils;
     dep no-pool-nginx;
     dep ngx_openresty;
     dep patch;
 }
 
 ngx_set_misc {
-    git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+    git git://github.com/openresty/set-misc-nginx-module ~/git/set-misc-nginx-module;
 }
 
 ngx_iconv {
@@ -632,7 +634,7 @@ no-pool-nginx {
 }
 
 ngx_openresty {
-    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+    git git://github.com/openresty/ngx_openresty.git ~/git/ngx_openresty;
 }
 
 git {
@@ -649,7 +651,7 @@ mockeagain {
 }
 
 mockeagain-git {
-    git git://github.com/agentzh/mockeagain.git ~/git/mockeagain;
+    git git://github.com/openresty/mockeagain.git ~/git/mockeagain;
 }
 
 run-redis {
@@ -769,7 +771,7 @@ prove {
 }
 
 test-nginx {
-    git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
+    git git://github.com/openresty/test-nginx.git ~/git/test-nginx;
     dep test-base time-hires test-longstring list-moreutils;
     dep ab weighttp;
 }
@@ -1054,7 +1056,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/agentzh/opsboy.git ~/git/opsboy;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy;
     dep cc parse-recdescent tt2;
 }
 
