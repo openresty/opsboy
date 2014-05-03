@@ -17,6 +17,10 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'lua-resty-lrucache' => [
+        ['v', 'sanity.t', 'TEST 4: ttl - response_body - response is expected'],
+    ],
+
     'lua-resty-upstream-healthcheck' => [
         ['v', 'sanity.t', ' - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
