@@ -86,7 +86,7 @@
 </table>
 [% IF rec.luajit_ver %]
 <h2><a name="luajit">LuaJIT</a></h2>
-LuaJIT [% rec.luajit_ver %][% IF rec.luajit_rev %], commit <a href="https://github.com/agentzh/luajit2/commit/[% rec.luajit_rev %]">[% rec.luajit_rev %]</a>[% END %]
+LuaJIT [% rec.luajit_ver %][% IF rec.luajit_rev %], commit <a href="https://github.com/openresty/luajit2/commit/[% rec.luajit_rev %]">[% rec.luajit_rev %]</a>[% END %]
 [% END %]
 [% IF rec.config_error %]
 <h2><a name="config_err">Configure Error</a></h2>

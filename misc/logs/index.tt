@@ -1,39 +1,39 @@
 [% DEFAULT title = 'Amazon EC2 Test Cluster Reports for Nginx and its Components' -%]
 
 [%- module_info = {
-        'lua-resty-upstream-healthcheck' => 'github.com/agentzh/lua-resty-upstream-healthcheck',
-        'lua-resty-core' => 'github.com/agentzh/lua-resty-core',
+        'lua-resty-upstream-healthcheck' => 'github.com/openresty/lua-resty-upstream-healthcheck',
+        'lua-resty-core' => 'github.com/openresty/lua-resty-core',
         'lua-resty-logger-socket' => 'github.com/cloudflare/lua-resty-logger-socket',
-        'lua-resty-lock' => 'github.com/agentzh/lua-resty-lock',
-        'lua-resty-websocket' => 'github.com/agentzh/lua-resty-websocket',
-        'lua-resty-dns' => 'github.com/agentzh/lua-resty-dns',
-        'lua-resty-upload' => 'github.com/agentzh/lua-resty-upload',
-        'lua-resty-string' => 'github.com/agentzh/lua-resty-string',
-        'lua-resty-mysql' => 'github.com/agentzh/lua-resty-mysql',
-        'lua-resty-redis' => 'github.com/agentzh/lua-resty-redis',
-        'lua-resty-memcached' => 'github.com/agentzh/lua-resty-memcached',
+        'lua-resty-lock' => 'github.com/openresty/lua-resty-lock',
+        'lua-resty-websocket' => 'github.com/openresty/lua-resty-websocket',
+        'lua-resty-dns' => 'github.com/openresty/lua-resty-dns',
+        'lua-resty-upload' => 'github.com/openresty/lua-resty-upload',
+        'lua-resty-string' => 'github.com/openresty/lua-resty-string',
+        'lua-resty-mysql' => 'github.com/openresty/lua-resty-mysql',
+        'lua-resty-redis' => 'github.com/openresty/lua-resty-redis',
+        'lua-resty-memcached' => 'github.com/openresty/lua-resty-memcached',
         ngx_iconv => 'github.com/calio/iconv-nginx-module',
         ngx_form_input => 'github.com/calio/form-input-nginx-module',
         ngx_coolkit => 'github.com/FRiCKLE/ngx_coolkit',
-        ngx_encrypted_session => 'github.com/agentzh/encrypted-session-nginx-module',
-        ngx_array_var => 'wiki.nginx.org/HttpArrayVarModule',
-        ngx_drizzle => 'wiki.nginx.org/HttpDrizzleModule',
-        ngx_echo => 'wiki.nginx.org/HttpEchoModule',
-        ngx_eval => 'github.com/agentzh/nginx-eval-module',
+        ngx_encrypted_session => 'github.com/openresty/encrypted-session-nginx-module',
+        ngx_array_var => 'github.com/openresty/array-var-nginx-module',
+        ngx_drizzle => 'github.com/openresty/drizzle-nginx-module',
+        ngx_echo => 'github.com/openresty/echo-nginx-module',
+        ngx_eval => 'github.com/openresty/nginx-eval-module',
         ngx_example_lua => 'github.com/agentzh/nginx-example-lua-module',
-        ngx_lua_upstream => 'github.com/agentzh/lua-upstream-nginx-module',
-        ngx_headers_more => 'wiki.nginx.org/HttpHeadersMoreModule',
-        ngx_lua => 'wiki.nginx.org/HttpLuaModule',
-        ngx_memc => 'wiki.nginx.org/HttpMemcModule',
+        ngx_lua_upstream => 'github.com/openresty/lua-upstream-nginx-module',
+        ngx_headers_more => 'github.com/openresty/headers-more-nginx-module',
+        ngx_lua => 'github.com/openresty/lua-nginx-module',
+        ngx_memc => 'github.com/openresty/memc-nginx-module',
         ngx_postgres => 'github.com/FRiCKLE/ngx_postgres',
-        ngx_rds_csv => 'github.com/agentzh/rds-csv-nginx-module',
-        ngx_rds_json => 'github.com/agentzh/rds-json-nginx-module',
-        ngx_redis2 => 'wiki.nginx.org/HttpRedis2Module',
-        ngx_replace_filter => 'github.com/agentzh/replace-filter-nginx-module',
-        ngx_set_misc => 'wiki.nginx.org/HttpSetMiscModule',
-        ngx_srcache = 'wiki.nginx.org/HttpSRCacheModule',
-        ngx_xss = 'github.com/agentzh/xss-nginx-module',
-        sregex = 'github.com/agentzh/sregex',
+        ngx_rds_csv => 'github.com/openresty/rds-csv-nginx-module',
+        ngx_rds_json => 'github.com/openresty/rds-json-nginx-module',
+        ngx_redis2 => 'github.com/openresty/redis2-nginx-module',
+        ngx_replace_filter => 'github.com/openresty/replace-filter-nginx-module',
+        ngx_set_misc => 'github.com/openresty/misc-nginx-module',
+        ngx_srcache = 'github.com/openresty/srcache-nginx-module',
+        ngx_xss = 'github.com/openresty/xss-nginx-module',
+        sregex = 'github.com/openresty/sregex',
     }
 -%]
 
@@ -42,13 +42,16 @@
 [%- END -%]
 
 [%- BLOCK mockeagain -%]
-<a target="_blank" href="https://github.com/agentzh/mockeagain">mockeagain</a>
+<a target="_blank" href="https://github.com/openresty/mockeagain">mockeagain</a>
 [%- END -%]
 
 [%- BLOCK gen_module_cell -%]
     [%- link = module_info.$mod_name %]
     <td>
         [%- IF link %]
+            [%- IF link.match('github\.com');
+                    link = link _ "#readme";
+                END; %]
         <a target="_blank" href="[% link.match('github\.com') ? 'https' : 'http' %]://[% link %]">[%- mod_name %]</a>
         [%- ELSE %]
         [%- mod_name %]
