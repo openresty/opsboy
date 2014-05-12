@@ -243,6 +243,9 @@ my %white_list = (
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
         ['', '058-tcp-socket.t', qr/wrong ident \d+ response for blah-blah-not-found\.agentzh\.org/],
+        ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected', undef, 'linux i386'],
+        ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - stap output expected', undef, 'linux i386'],
+        ['', '126-shdict-frag.t', 'TEST 7: merge big slabs (less than max slab size) backward - stap output expected', undef, 'linux i386'],
         ['v', '023-rewrite/tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like'],
         ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
@@ -302,6 +305,7 @@ my %white_list = (
         ['rv', '058-tcp-socket.t', 'TEST 39: successful reread after a read time out happen (receiveuntil -> receiveuntil) - response_body - response is expected'],
         ['rv', '058-tcp-socket.t', 'TEST 38: successful reread after a read time out happen (receive -> receiveuntil) - response_body - response is expected'],
         ['v', '065-tcp-socket-timeout.t', 'TEST 17: re-connect after timed out - response_body - response is expected'],
+        ['v', '109-timer-hup.t', 'TEST 6: HUP reload should abort pending timers (fuzz test) - grep_error_log_out'],
         ['h', '117-raw-req-socket-timeout.t', qr/TEST 2: send timeout - pattern ".*?" matches a line in error\.log/],
         ['h', '065-tcp-socket-timeout.t', 'TEST 18: re-send on the same object after a send timeout happens - response_body - response is expected'],
         ['h', '065-tcp-socket-timeout.t', 'TEST 18: re-send on the same object after a send timeout happens - pattern "lua tcp socket write timed out" matches a line in error.log'],
@@ -328,6 +332,12 @@ my %white_list = (
         ['h', '065-tcp-socket-timeout.t', 'TEST 15: sock:settimeout(-1) does not override lua_socket_send_timeout'],
         ['h', '065-tcp-socket-timeout.t', 'TEST 16: exit in user thread (entry thread is still pending on tcpsock:send)'],
         ['h', '106-timer.t', qr/TEST 9: simple at \(sleep in the timer callback\) - log_by_lua - pattern .*? matches a line in error\.log/],
+        ['h', '126-shdict-frag.t', 'TEST 4: merge one single-page block backward, but no more - response_body - response is expected'],
+        ['h', '126-shdict-frag.t', 'TEST 3: merge 3 single-page free slabs (actively deleted, merge backward AND forward) - response_body - response is expected'],
+        ['h', '126-shdict-frag.t', 'TEST 7: merge big slabs (less than max slab size) backward - response_body - response is expected'],
+        ['h', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected'],
+        ['h', '126-shdict-frag.t', 'TEST 1: merge 2 single-page free blocks (forcibly evicted, merge forward) - response_body - response is expected'],
+        ['h', '126-shdict-frag.t', 'TEST 2: merge 2 single-page free slabs (forcibly evicted, merge backward) - response_body - response is expected'],
         ['hv', '024-access/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "main handler done" should not match any line in error.log but matches line'],
         ['rv', '104-req-raw-header.t', 'TEST 3: large header (no request line)'],
         ['rv', '104-req-raw-header.t', 'TEST 11: large header, pipelined'],
@@ -704,15 +714,45 @@ for my $rec (@records) {
                                 if (defined $test) {
                                     if ($f->{name} =~ /(?:$test)|\Q$test\E/) {
                                         #warn "Matched \"$f->{name}\" with \"$test\"";
-                                        $expected = 1;
-                                        last;
+                                        my $details = $spec->[3];
+                                        if (defined $details) {
+                                            if ($f->{details} =~ m/\Q$details\E/ || $f->{details} =~ m/$details/) {
+                                                if (defined $spec->[4]) {
+                                                    if ($arch eq $spec->[4]) {
+                                                        $expected = 1;
+                                                        last;
+                                                    }
+                                                } else {
+                                                    $expected = 1;
+                                                    last;
+                                                }
+                                            }
 
+                                        } else {
+                                            if (defined $spec->[4]) {
+                                                if ($arch eq $spec->[4]) {
+                                                    $expected = 1;
+                                                    last;
+                                                }
+                                            } else {
+                                                $expected = 1;
+                                                last;
+                                            }
+                                        }
                                     }
 
                                 } else {
                                     #warn "Matched mode $spec->[0] and file $spec->[1]";
-                                    $expected = 1;
-                                    last;
+                                    if (defined $spec->[4]) { # filter by arch
+                                        if ($arch eq $spec->[4]) {
+                                            $expected = 1;
+                                            last;
+                                        }
+
+                                    } else {
+                                        $expected = 1;
+                                        last;
+                                    }
                                 }
                             }
 
@@ -722,15 +762,30 @@ for my $rec (@records) {
                             if (defined $test) {
                                 if ($f->{name} =~ /(?:$test)|\Q$test\E/) {
                                     #warn "Matched \"$f->{name}\" with \"$test\"";
-                                    $expected = 1;
-                                    last;
+                                    if (defined $spec->[4]) { # filter by arch
+                                        if ($arch eq $spec->[4]) {
+                                            $expected = 1;
+                                            last;
+                                        }
 
+                                    } else {
+                                        $expected = 1;
+                                        last;
+                                    }
                                 }
 
                             } else {
                                 #warn "Matched mode $spec->[0] and file $spec->[1]";
-                                $expected = 1;
-                                last;
+                                if (defined $spec->[4]) { # filter by arch
+                                    if ($arch eq $spec->[4]) {
+                                        $expected = 1;
+                                        last;
+                                    }
+
+                                } else {
+                                    $expected = 1;
+                                    last;
+                                }
                             }
                         }
                     }
