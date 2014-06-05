@@ -721,7 +721,7 @@ for my $rec (@records) {
                                         #warn "Matched \"$f->{name}\" with \"$test\"";
                                         my $details = $spec->[3];
                                         if (defined $details) {
-                                            if ($f->{details} =~ m/\Q$details\E/ || $f->{details} =~ m/$details/) {
+                                            if ($f->{details} && ($f->{details} =~ m/\Q$details\E/ || $f->{details} =~ m/$details/)) {
                                                 if (defined $spec->[4]) {
                                                     if ($arch eq $spec->[4]) {
                                                         $expected = 1;
