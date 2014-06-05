@@ -604,6 +604,9 @@ lua-[% name %] {
     [%- author = lualib_authors.$name %]
     [%- IF NOT author; author = "openresty"; END %]
     git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
+    [%- IF name == "resty-core" %]
+    dep lua-resty-lrucache;
+    [%- END %]
     dep ngx_lua;
 }
 [% END %]

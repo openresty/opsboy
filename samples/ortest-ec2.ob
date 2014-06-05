@@ -680,6 +680,7 @@ lua-resty-logger-socket {
 
 lua-resty-core {
     git git://github.com/openresty/lua-resty-core.git ~/git/lua-resty-core;
+    dep lua-resty-lrucache;
     dep ngx_lua;
 }
 
