@@ -438,6 +438,10 @@ while (<>) {
         $luajit_rev = $1;
     }
 
+    if ($making_luajit && !defined $luajit_rev && /HEAD is now at ([a-f0-9]+)/) {
+        $luajit_rev = $1;
+    }
+
     if (!defined $luajit_ver && m/=== Installing LuaJIT (\d+\S+)/) {
         $luajit_ver = $1;
     }
