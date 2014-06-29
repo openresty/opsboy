@@ -19,6 +19,7 @@ my $verbose = $opts{v};
 my %white_list = (
     'lua-resty-lrucache' => [
         ['v', 'sanity.t', 'TEST 4: ttl - response_body - response is expected'],
+        ['v', 'pureffi/sanity.t', 'TEST 4: ttl - response_body - response is expected'],
     ],
 
     'lua-resty-upstream-healthcheck' => [
