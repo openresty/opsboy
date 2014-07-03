@@ -19,7 +19,7 @@ luajit_branch = v2.1-agentzh;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 1;
-nginx_cc_opt = '';
+nginx_cc_opt = '-O1';
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -40,7 +40,7 @@ nginx_cc_opt = '';
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
     [%- ELSE %]
-    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_OPT $nginx_cc_opt;
     env NGX_BUILD_NO_DEBUG '';
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
