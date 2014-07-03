@@ -32,6 +32,9 @@ nginx_cc_opt = '-O1';
     [%- END %]
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    [%- UNLESS type.match("o") %]
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    [%- END %]
     env NGX_BUILD_CC 'ccache gcc47';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
