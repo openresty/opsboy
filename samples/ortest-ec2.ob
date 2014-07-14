@@ -2,8 +2,8 @@
 
 jobs = 2;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.7.2;
-openresty_version = 1.7.0.1;
+nginx_version = 1.7.3;
+openresty_version = 1.7.2.1;
 redis_version = 2.8.8;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
@@ -11,7 +11,7 @@ force = 0;
 ragel_version = 6.8;
 valgrind_version = 3.8.1;
 libev_version = 4.11;
-systemtap_version = 2.4;
+systemtap_version = 2.5;
 perl516_version = 5.16.2;
 bison_version = 2.7;
 ccache_version = 3.1.9;
