@@ -1016,8 +1016,6 @@ t[% type %]-ngx_replace_filter {
     dep sregex ngx_echo ngx_lua;
 }
 
-[%- IF type == "o"; NEXT; END -%]
-
 [% FOREACH name IN lualibs -%]
 t[% type %]-lua-[% name %] {
     [%- PROCESS build_lua_lib name=name -%]

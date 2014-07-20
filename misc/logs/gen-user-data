@@ -93,7 +93,7 @@ for my $lib (@ARGV) {
             }
         }
 
-        push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib";
+        push @goals, "tv-$lib", "th-$lib", "thv-$lib", "tl-$lib", "to-$lib";
 
     } elsif (any { $lib eq $_ } @clibs) {
         push @goals, "t-$lib", "tv-$lib";
@@ -121,16 +121,14 @@ for my $lib (@ARGV) {
             }
         }
 
-        if ($mode ne 'o') {
-            for my $name (@lualibs) {
-                my $lib = "lua-$name";
+        for my $name (@lualibs) {
+            my $lib = "lua-$name";
 
-                if ($cpu_lualibs{$name} && $mode =~ /[wr]/) {
-                    next;
-                }
-
-                push @goals, "t$mode-$lib";
+            if ($cpu_lualibs{$name} && $mode =~ /[wr]/) {
+                next;
             }
+
+            push @goals, "t$mode-$lib";
         }
 
     } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
@@ -148,10 +146,6 @@ for my $lib (@ARGV) {
 
         if ($mode !~ /^v?$/ && any { $_ eq $name } @clibs) {
             die "The \"$mode\" testing mode could not work for \"$name\".\n";
-        }
-
-        if ($mode eq 'o' && any { "lua-$_" eq $name } @lualibs) {
-            die "The \"o\" testing mode could not work for \"$name\".\n";
         }
 
         push @goals, $lib;
