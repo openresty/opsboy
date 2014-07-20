@@ -27,9 +27,9 @@ my %white_list = (
         ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['v', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
         ['v', 'sanity.t', 'TEST 5: health check (bad case), timed out - response_body - response is expected'],
-        ['rv', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
-        ['rv', 'sanity.t', ' - grep_error_log_out'],
-        ['rv', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
+        ['r', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
+        ['r', 'sanity.t', ' - grep_error_log_out'],
+        ['r', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['rv', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down) - response_body - response is expected'],
         ['w', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['w', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
@@ -41,6 +41,7 @@ my %white_list = (
         ['w', 'sanity.t', 'TEST 7: peers version upgrade (make up peers down)'],
         ['w', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - grep_error_log_out'],
         ['w', 'sanity.t', 'TEST 10: concurrency == 3 (odd number of peers) - grep_error_log_out'],
+        ['wv', 'sanity.t', 'TEST 11: health check (good case), status ignored by default - response_body - response is expected'],
         ['wv', 'sanity.t', 'TEST 3: health check (bad case), no listening port in a primary peer - response_body - response is expected'],
         ['wv', 'sanity.t', 'TEST 5: health check (bad case), timed out - grep_error_log_out'],
         ['wv', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
@@ -90,6 +91,10 @@ my %white_list = (
         ['rv', 'sanity.t', qr/TEST 7: log subrequest, flush twice - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua tcp socket connect timed out, context: ngx\.timer/],
         ['rv', 'sanity.t', 'TEST 9: partial flush - tcp_query ok'],
         ['rv', 'sanity.t', qr/TEST 9: partial flush - pattern "\[error\]" should not match any line in error\.log but matches line .*? lua tcp socket connect timed out, context: ngx\.timer/],
+        ['rv', 'sanity.t', 'TEST 15: max reuse - tcp_query ok'],
+        ['rv', 'sanity.t', 'TEST 15: max reuse - TCP query length ok'],
+        ['wv', 'sanity.t', 'TEST 15: max reuse - tcp_query ok'],
+        ['wv', 'sanity.t', 'TEST 15: max reuse - TCP query length ok'],
         ['v', 'sanity.t', 'TEST 12: drop log test - tcp_query ok'],
         ['v', 'sanity.t', 'TEST 12: drop log test - TCP query length ok'],
         ['v', 'sanity.t', 'TEST 2: small flush_limit, instant flush, unix domain socket - tcp_query ok'],
@@ -170,7 +175,15 @@ my %white_list = (
         ['w', '09-unused.t', 'TEST 3: used (multi http {} blocks) - stap output expected'],
     ],
 
-    #ngx_postgres => [['w']],
+    ngx_postgres => [
+        ['w', undef, qr/ - status code ok/, qr/got: '50[20]'/],
+        ['w', undef, qr/ - response is expected/, qr/500 Internal Server Error|502 Bad Gateway/],
+        ['w', undef, qr/ - header Content-Type ok/, qr/got: 'text\/html'/],
+        ['w', undef, qr/header Content-Type not present in the raw headers/, qr/HTTP\/1\.1 (?:502 Bad Gateway|500 Internal Server Error)/],
+        ['w', undef, qr/header X-(?:Affected|Test|Columns|Rows|Query) ok/, qr/got: ''/],
+        ['w', undef, qr/postgres: connection failed: could not send startup packet: Success/],
+        ['w', 'eval.t', 'TEST 2: sanity (simple case) - response_body - response is expected', qr/got: ""/],
+    ],
 
     ngx_form_input => [
         ['r', 'upload.t', 'TEST 1: big upload'],
@@ -206,6 +219,7 @@ my %white_list = (
     ],
 
     ngx_srcache => [
+        [undef, 'bugs.t', 'TEST 16: exit(500) in srcache_store - stap output expected', qr/-post subreq: rc=500, status=0/],
         ['o', undef, 'matches a line in error.log'],
         ['w', 'postgres-main.t'],
         ['w', 'bugs.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? writev\(\) failed/],
@@ -772,15 +786,31 @@ for my $rec (@records) {
                             if (defined $test) {
                                 if ($f->{name} =~ /(?:$test)|\Q$test\E/) {
                                     #warn "Matched \"$f->{name}\" with \"$test\"";
-                                    if (defined $spec->[4]) { # filter by arch
-                                        if ($arch eq $spec->[4]) {
-                                            $expected = 1;
-                                            last;
+                                    my $details = $spec->[3];
+                                    if (defined $details) {
+                                        if ($f->{details} && ($f->{details} =~ m/\Q$details\E/ || $f->{details} =~ m/$details/)) {
+                                            if (defined $spec->[4]) {
+                                                if ($arch eq $spec->[4]) {
+                                                    $expected = 1;
+                                                    last;
+                                                }
+                                            } else {
+                                                $expected = 1;
+                                                last;
+                                            }
                                         }
 
                                     } else {
-                                        $expected = 1;
-                                        last;
+                                        if (defined $spec->[4]) { # filter by arch
+                                            if ($arch eq $spec->[4]) {
+                                                $expected = 1;
+                                                last;
+                                            }
+
+                                        } else {
+                                            $expected = 1;
+                                            last;
+                                        }
                                     }
                                 }
 
