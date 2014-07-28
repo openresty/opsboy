@@ -23,6 +23,8 @@ my %white_list = (
     ],
 
     'lua-resty-upstream-healthcheck' => [
+        ['hv', 'sanity.t', 'should not match any line in error.log but matches line'],
+        ['wv', 'sanity.t', 'matches a line in error.log'],
         ['v', 'sanity.t', ' - grep_error_log_out'],
         ['v', 'sanity.t', 'TEST 6: health check (bad case), bad status, and then rise again - response_body - response is expected'],
         ['v', 'sanity.t', 'TEST 4: health check (bad case), bad status - response_body - response is expected'],
@@ -241,6 +243,12 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        ['r', '014-bugs.t', 'TEST 41: https proxy has no timeout protection for ssl handshake - status code ok', qr/got: '502'/],
+        ['r', '014-bugs.t', 'TEST 41: https proxy has no timeout protection for ssl handshake - stap output expected', qr/\+write timer set: 0/],
+        ['r', '014-bugs.t', qr/TEST 41: https proxy has no timeout protection for ssl handshake .*?peer closed connection in SSL handshake while SSL handshaking to upstream/],
+        ['w', '014-bugs.t', qr/TEST 41: https proxy has no timeout protection for ssl handshake/],
+        ['r', '129-ssl-socket.t', undef, qr/failed to do SSL handshake: handshake failed/],
+        ['r', '129-ssl-socket.t', qr/www.google.com (SSL verify passes) - grep_error_log_out/, qr/''/],
         ['w', '005-exit.t', 'TEST 24: exit 444 in header filter - status code ok'],
         ['w', '005-exit.t', 'TEST 22: exit 201 in header filter - status code ok'],
         ['w', '005-exit.t', 'TEST 23: exit both in header filter and content handler - status code ok'],
@@ -311,6 +319,9 @@ my %white_list = (
         ['v', '067-req-socket.t', 'TEST 14: successful reread after reading timeout happens (receive -> receive) - response_body - response is expected'],
         ['v', '067-req-socket.t', 'TEST 15: successful reread after reading timeout happens (receive -> receiveuntil) - response_body - response is expected'],
         ['v', '067-req-socket.t', 'TEST 16: successful reread after reading timeout happens (receiveuntil -> receive) - response_body - response is expected'],
+        ['hv', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? response is expected/, qr/failed to connect: no such file or directory/],
+        ['hv', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? - grep_error_log_out/, qr/''/],
+        ['hv', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? matches a line in error\.log/],
         ['hv', '024-access/on-abort.t', 'should not match any line in error.log but matches line'],
         #['', '023-rewrite/on-abort.t', 'TEST 10: ignore the client abort event in the user callback (uthread) - stap output expected'],
         ['wv', '023-rewrite/on-abort.t', 'TEST 8: ignore the client abort event in the user callback (no check) - pattern "client prematurely closed connection" should not match any line in error.log but matches line'],
