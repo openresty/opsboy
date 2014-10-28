@@ -191,6 +191,10 @@ my %white_list = (
         ['w', 'eval.t', 'TEST 2: sanity (simple case) - response_body - response is expected', qr/got: ""/],
     ],
 
+    ngx_eval => [
+        ['l', 'crash.t', 'nginx: [emerg]', qr/"eval" directive is not allowed here/],
+    ],
+
     ngx_form_input => [
         ['r', 'upload.t', 'TEST 1: big upload'],
         ['r', 'upload.t', 'Looks like you planned 2 tests but ran 3'],
@@ -267,6 +271,7 @@ my %white_list = (
         ['v', '025-codecache.t', 'matches a line in error.log'],
         ['v', '109-timer-hup.t', 'TEST 6: HUP reload should abort pending timers (coroutine + cosocket) - grep_error_log_out'],
         ['v', '109-timer-hup.t', 'TEST 7: HUP reload should abort pending timers (fuzz test) - grep_error_log_out'],
+        ['v', '056-flush.t', qr/TEST 17: limit_rate - pattern .*? matches a line in error\.log/],
         ['w', '025-codecache.t', 'TEST 29: cosocket connection pool timeout (after Lua VM destroys) - pattern "lua tcp socket keepalive max idle timeout" should not match any line in error.log but matches line'],
         ['w', '025-codecache.t', 'TEST 24: lua_max_pending_timers - chained timers (non-zero delay) - not exceeding - pattern "decrementing the reference count for Lua VM: 3" should not match any line in error.log but matches line'],
         ['o', undef, 'matches a line in error.log'],
@@ -325,6 +330,8 @@ my %white_list = (
         ['v', '067-req-socket.t', 'TEST 14: successful reread after reading timeout happens (receive -> receive) - response_body - response is expected'],
         ['v', '067-req-socket.t', 'TEST 15: successful reread after reading timeout happens (receive -> receiveuntil) - response_body - response is expected'],
         ['v', '067-req-socket.t', 'TEST 16: successful reread after reading timeout happens (receiveuntil -> receive) - response_body - response is expected'],
+        ['v', '124-init-worker.t', 'TEST 18: syslog error log - udp_query ok'],
+        ['h', '124-init-worker.t', 'TEST 18: syslog error log - udp_query ok'],
         ['h', '129-ssl-socket.t', 'matches a line in error.log'],
         ['h', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? response is expected/, qr/failed to connect: no such file or directory/],
         ['h', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? - grep_error_log_out/, qr/''/],
