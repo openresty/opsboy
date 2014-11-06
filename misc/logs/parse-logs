@@ -248,6 +248,7 @@ my %white_list = (
         ['v', 're-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
         ['h', 'shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
         ['h', 'request.t', qr/TEST 3: ngx.req.get_headers \(count is 2\) - pattern .*?TRACE.*? matches a line in error\.log/],
+        [undef, 'response.t', qr/TEST 4: .*? - pattern " -- NYI:" should not match any line in error\.log but matches line "\[TRACE --- response.lua:112 -- NYI: return to lower frame/],
     ],
 
     ngx_lua => [
