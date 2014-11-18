@@ -24,6 +24,7 @@ nginx_cc_opt = '-O1';
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
 
     [%- IF type == "" OR type == "r" OR type == "w" %]
     env TEST_NGINX_USE_STAP $use_stap;
@@ -123,7 +124,25 @@ nginx_cc_opt = '-O1';
     [%- END %]
 
     dep systemtap;
+    dep run-caching-nameserver;
 [% END -%]
+
+run-caching-nameserver {
+    running '/named -u ';
+    sh 'sudo service named start';
+    dep named caching-nameserver-config;
+}
+
+named {
+    prog named;
+    yum caching-nameserver;
+}
+
+caching-nameserver-config {
+    test 'grep 8.8.8.8 /etc/named.conf';
+    sh 'sudo wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /etc/named.conf';
+    sh 'sudo chmod a+r /etc/named.conf';
+}
 
 luajit_sysmalloc {
     always;
