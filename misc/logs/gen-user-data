@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use List::MoreUtils qw(uniq);
 use Getopt::Std;
 use List::MoreUtils qw( any );
 
@@ -164,7 +165,7 @@ if (defined $exclude) {
     @goals = grep { my $e = $_; !any { $_ eq $e } @skipped  } @goals;
 }
 
-print "@goals\n";
+print join(' ', uniq @goals), "\n";
 #print scalar @goals;
 
 sub usage () {
