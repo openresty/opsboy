@@ -115,7 +115,7 @@ nginx_cc_opt = '-O1';
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'; fi; prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
