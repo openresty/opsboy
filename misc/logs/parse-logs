@@ -20,6 +20,7 @@ my %white_list = (
     'lua-resty-lrucache' => [
         ['v', 'sanity.t', 'TEST 4: ttl - response_body - response is expected'],
         ['v', 'pureffi/sanity.t', 'TEST 4: ttl - response_body - response is expected'],
+        ['v', 'pureffi/sanity.t', qr/TEST 11: replace value 3 \(the old value has longer expire time\) - response_body - response is expected/, undef, 'linux i386'],
     ],
 
     'lua-resty-upstream-healthcheck' => [
@@ -150,6 +151,11 @@ my %white_list = (
         ['hv', 'sanity.t', 'TEST 11: close frame (status code + non-empty msg) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 2: simple text data frame (3 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
         ['hv', 'sanity.t', 'TEST 6: simple text data frame (127 bytes) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['r', 'cs.t', qr/TEST 26: SSL without ssl_verify/],
+        ['r', 'cs.t', qr/TEST 23: SSL without keepalive/],
+        ['r', 'cs.t', qr/TEST 22: SSL with keepalive/],
+        ['r', 'cs.t', qr/TEST 24: SSL with ssl_verify/],
+        ['r', 'cs.t', qr/TEST 25: SSL with ssl_verify \(handshake failed\)/],
     ],
 
     'lua-resty-dns' => [
@@ -255,9 +261,11 @@ my %white_list = (
         ['r', '014-bugs.t', 'TEST 41: https proxy has no timeout protection for ssl handshake - status code ok', qr/got: '502'/],
         ['r', '014-bugs.t', 'TEST 41: https proxy has no timeout protection for ssl handshake - stap output expected', qr/\+write timer set: 0/],
         ['r', '014-bugs.t', qr/TEST 41: https proxy has no timeout protection for ssl handshake .*?peer closed connection in SSL handshake while SSL handshaking to upstream/],
+        ['w', '067-req-socket.t', qr/TEST 14: successful reread after reading timeout happens \(receive -> receive\) - response_body - response is expected/, undef, 'linux i386'],
+        ['w', '067-req-socket.t', qr/TEST 15: successful reread after reading timeout happens \(receive -> receiveuntil\) - response_body - response is expected/, undef, 'linux i386'],
+        ['w', '067-req-socket.t', qr/TEST 16: successful reread after reading timeout happens \(receiveuntil -> receive\) - response_body - response is expected/, undef, 'linux i386'],
         ['w', '014-bugs.t', qr/TEST 41: https proxy has no timeout protection for ssl handshake/],
         ['r', '129-ssl-socket.t', undef, qr/failed to do SSL handshake: handshake failed/],
-        ['r', '129-ssl-socket.t', qr/www.google.com (SSL verify passes) - grep_error_log_out/, qr/''/],
         ['w', '005-exit.t', 'TEST 24: exit 444 in header filter - status code ok'],
         ['w', '005-exit.t', 'TEST 22: exit 201 in header filter - status code ok'],
         ['w', '005-exit.t', 'TEST 23: exit both in header filter and content handler - status code ok'],
