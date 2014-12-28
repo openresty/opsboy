@@ -651,18 +651,6 @@ ngx_openresty-debug {
     dep libdrizzle openssl pcre valgrind;
 }
 
-ngx_openresty-valgrind {
-    test '/usr/local/openresty-valgrind/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
-    #file /usr/local/openresty-valgrind/luajit/include/luajit-2.0/lua.h;
-    file /usr/local/openresty-valgrind/luajit/lib/libluajit-5.1.so;
-    file /usr/local/openresty-valgrind/nginx/sbin/nginx;
-    cwd /tmp;
-    fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
-    tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-valgrind --with-no-pool-patch --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC" && make -j$jobs && sudo make install';
-    dep libdrizzle openssl pcre valgrind;
-}
-
 
 lua-resty-memcached {
     git git://github.com/openresty/lua-resty-memcached.git ~/git/lua-resty-memcached;
