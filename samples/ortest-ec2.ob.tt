@@ -432,8 +432,7 @@ sregex {
 resty-cli {
     git git://github.com/openresty/resty-cli.git ~/git/resty-cli;
     dep ngx_lua;
-    dep perl516-IPC-Run perl516-Test-LongString perl516-Test-Base perl516;
-    dep perl516-Test-Differences;
+    dep perl-IPC-Run test-longstring test-base text-diff;
 }
 
 perl516 {
@@ -470,10 +469,9 @@ perl516-IPC-Run3 {
     dep perl516;
 }
 
-perl516-IPC-Run {
-    test '/opt/perl516/bin/perl -MIPC::Run -e1';
-    sh 'echo y|sudo /opt/perl516/bin/cpan -i IPC::Run';
-    dep perl516;
+perl-IPC-Run {
+    test 'perl -MIPC::Run -e1';
+    yum perl-IPC-Run;
 }
 
 perl-IPC-Run3 {
