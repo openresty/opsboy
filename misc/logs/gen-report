@@ -50,6 +50,7 @@ my %github_links = (
     ngx_example_lua => ['agentzh', 'nginx-example-lua-module'],
     ngx_lua_upstream => ['openresty', 'lua-upstream-nginx-module'],
     sregex => ['openresty', 'sregex'],
+    'resty-cli' => ['openresty', 'resty-cli'],
 );
 
 my $last_test_date;

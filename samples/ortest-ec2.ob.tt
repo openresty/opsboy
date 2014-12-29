@@ -164,12 +164,12 @@ luajit-git {
 
 [% BLOCK build_lua_lib %]
     always;
-    cwd ~/git/lua-[% name %];
+    cwd ~/git/[% name %];
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     [%- PROCESS nginx_test_config no_build=1 -%]
 
-    dep ngx_lua nginx-module-test lua-[% name %];
+    dep ngx_lua nginx-module-test [% name %];
 [% END %]
 
 [% BLOCK build_nginx_module %]
@@ -237,6 +237,7 @@ t {
     dep t-lua-[% name %];
 [% END -%]
     dep t-sregex;
+    dep t-resty-cli;
 }
 
 to {
@@ -248,6 +249,7 @@ to {
 tv {
     dep tv1 tv2;
     dep tv-sregex;
+    dep tv-resty-cli;
 }
 
 tv1 {
@@ -427,6 +429,13 @@ sregex {
     dep perl516-Test-Differences;
 }
 
+resty-cli {
+    git git://github.com/openresty/resty-cli.git ~/git/resty-cli;
+    dep ngx_lua;
+    dep perl516-IPC-Run perl516-Test-LongString perl516-Test-Base perl516;
+    dep perl516-Test-Differences;
+}
+
 perl516 {
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
@@ -461,6 +470,12 @@ perl516-IPC-Run3 {
     dep perl516;
 }
 
+perl516-IPC-Run {
+    test '/opt/perl516/bin/perl -MIPC::Run -e1';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i IPC::Run';
+    dep perl516;
+}
+
 perl-IPC-Run3 {
     test 'perl -MIPC::Run3 -e1';
     yum perl-IPC-Run3;
@@ -481,6 +496,13 @@ tv-sregex {
     sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs';
     dep sregex;
 }
+
+[% FOREACH type = ['', 'v'] -%]
+t[% type %]-resty-cli  {
+    [%- PROCESS build_lua_lib name="resty-cli" -%]
+    dep build-ngx_lua;
+}
+[% END -%]
 
 bison {
     file /opt/bison/bin/bison;
@@ -1037,13 +1059,13 @@ t[% type %]-ngx_replace_filter {
 
 [% FOREACH name IN lualibs -%]
 t[% type %]-lua-[% name %] {
-    [%- PROCESS build_lua_lib name=name -%]
+    [%- PROCESS build_lua_lib name="lua-" _ name -%]
 
-    [%- IF name == "resty-mysql" %]
+    [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     [%- END -%]
 
-    [%- IF name != "resty-core" %]
+    [%- IF name != "lua-resty-core" %]
     dep lua-resty-core;
     [%- END %]
 

@@ -32,9 +32,10 @@
         ngx_redis2 => 'github.com/openresty/redis2-nginx-module',
         ngx_replace_filter => 'github.com/openresty/replace-filter-nginx-module',
         ngx_set_misc => 'github.com/openresty/misc-nginx-module',
-        ngx_srcache = 'github.com/openresty/srcache-nginx-module',
-        ngx_xss = 'github.com/openresty/xss-nginx-module',
-        sregex = 'github.com/openresty/sregex',
+        ngx_srcache => 'github.com/openresty/srcache-nginx-module',
+        ngx_xss => 'github.com/openresty/xss-nginx-module',
+        sregex => 'github.com/openresty/sregex',
+        'resty-cli' => 'github.com/openresty/resty-cli',
     }
 -%]
 

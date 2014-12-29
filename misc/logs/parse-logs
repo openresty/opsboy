@@ -209,6 +209,7 @@ my %white_list = (
     ngx_set_misc => [
         ['v', 'formatted-time.t', 'TEST 1: local time format - response_body_like - response is expected'],
         ['v', 'formatted-time.t', 'TEST 2: GMT time format - response_body_like - response is expected'],
+        ['', 'base32.t', 'nginx: [emerg]', qr/"set_base32_alphabet" directive takes an alphabet of \d+ bytes but 32 expected in/],
     ],
 
     ngx_memc => [
@@ -535,7 +536,7 @@ while (<>) {
             undef $making_luajit;
         }
 
-        if ($subj =~ /^t([rvwhlo]*)-(sregex|(?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
+        if ($subj =~ /^t([rvwhlo]*)-(resty-cli|sregex|(?:ngx_|lua-)[-_A-Za-z0-9]+)$/) {
             my ($mode, $module) = ($1, $2);
 
             print "t$mode-$module\t";

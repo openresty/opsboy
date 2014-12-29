@@ -96,6 +96,7 @@ t {
     dep t-lua-resty-upstream-healthcheck;
     dep t-lua-resty-lrucache;
     dep t-sregex;
+    dep t-resty-cli;
 }
 
 to {
@@ -125,6 +126,7 @@ to {
 tv {
     dep tv1 tv2;
     dep tv-sregex;
+    dep tv-resty-cli;
 }
 
 tv1 {
@@ -455,6 +457,13 @@ sregex {
     dep perl516-Test-Differences;
 }
 
+resty-cli {
+    git git://github.com/openresty/resty-cli.git ~/git/resty-cli;
+    dep ngx_lua;
+    dep perl516-IPC-Run perl516-Test-LongString perl516-Test-Base perl516;
+    dep perl516-Test-Differences;
+}
+
 perl516 {
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
@@ -489,6 +498,12 @@ perl516-IPC-Run3 {
     dep perl516;
 }
 
+perl516-IPC-Run {
+    test '/opt/perl516/bin/perl -MIPC::Run -e1';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i IPC::Run';
+    dep perl516;
+}
+
 perl-IPC-Run3 {
     test 'perl -MIPC::Run3 -e1';
     yum perl-IPC-Run3;
@@ -508,6 +523,104 @@ tv-sregex {
     sh 'PAGER= git log HEAD^..HEAD';
     sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs';
     dep sregex;
+}
+
+t-resty-cli  {
+    always;
+    cwd ~/git/resty-cli;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP $use_stap;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+    dep ngx_lua nginx-module-test resty-cli;
+    dep build-ngx_lua;
+}
+tv-resty-cli  {
+    always;
+    cwd ~/git/resty-cli;
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+    dep ngx_lua nginx-module-test resty-cli;
+    dep build-ngx_lua;
 }
 
 bison {

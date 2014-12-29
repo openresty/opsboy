@@ -21,7 +21,7 @@ my %cpu_lualibs = (
 );
 
 my @clibs = qw(
-    sregex
+    sregex resty-cli
 );
 
 my %cpu_mods = (
@@ -116,12 +116,6 @@ for my $lib (@ARGV) {
             push @goals, "t$mode-$lib";
         }
 
-        if ($mode =~ /^v?$/) {
-            for my $lib (@clibs) {
-                push @goals, "t$mode-$lib";
-            }
-        }
-
         for my $name (@lualibs) {
             my $lib = "lua-$name";
 
@@ -130,6 +124,12 @@ for my $lib (@ARGV) {
             }
 
             push @goals, "t$mode-$lib";
+        }
+
+        if ($mode =~ /^v?$/) {
+            for my $lib (@clibs) {
+                push @goals, "t$mode-$lib";
+            }
         }
 
     } elsif ($lib =~ /^t([a-z]*)-(\S+)$/) {
