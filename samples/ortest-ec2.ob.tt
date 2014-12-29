@@ -1,6 +1,6 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
-jobs = 2;
+jobs = 3;
 ngx_redis_version = 0.3.7;
 nginx_version = 1.7.7;
 openresty_version = 1.7.7.1;
