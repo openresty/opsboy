@@ -500,6 +500,8 @@ t[% type %]-resty-cli  {
     [%- PROCESS build_lua_lib name="resty-cli" -%]
     [%- IF type == "v" -%]
     env TEST_RESTY_USE_VALGRIND 1;
+    [%- ELSE %]
+    env TEST_RESTY_USE_VALGRIND '';
     [%- END %]
     dep build-ngx_lua;
 }

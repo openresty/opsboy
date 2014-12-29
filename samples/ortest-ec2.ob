@@ -569,6 +569,7 @@ t-resty-cli  {
 
     dep ngx_lua nginx-module-test resty-cli;
 
+    env TEST_RESTY_USE_VALGRIND '';
     dep build-ngx_lua;
 }
 tv-resty-cli  {
