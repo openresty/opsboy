@@ -568,6 +568,7 @@ t-resty-cli  {
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test resty-cli;
+
     dep build-ngx_lua;
 }
 tv-resty-cli  {
@@ -618,6 +619,7 @@ tv-resty-cli  {
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test resty-cli;
+    env TEST_RESTY_USE_VALGRIND 1;
     dep build-ngx_lua;
 }
 
