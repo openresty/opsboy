@@ -17,6 +17,11 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'resty-cli' => [
+        ['v', 'resty/user-args.t', 'TEST 2: minus indexes - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
+        ['v', 'resty/user-args.t', 'TEST 3: with quote and options - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
+    ],
+
     'lua-resty-lrucache' => [
         ['v', 'sanity.t', 'TEST 4: ttl - response_body - response is expected'],
         ['v', 'pureffi/sanity.t', 'TEST 4: ttl - response_body - response is expected'],
