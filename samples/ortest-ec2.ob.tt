@@ -186,6 +186,7 @@ luajit-git {
     [%- PROCESS nginx_test_config no_build=0 %]
 
     dep nginx-module-test [% "ngx_" _ name.replace("-", "_", "g") %];
+    dep gd-devel;
 [% END -%]
 
 [%- mods = [
@@ -1130,6 +1131,11 @@ build-ngx_lua {
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
     dep ngx_openresty-debug;
+}
+
+gd-devel {
+    file /usr/include/gd.h;
+    yum gd-devel;
 }
 
 systemtap {

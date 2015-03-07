@@ -1128,6 +1128,7 @@ t-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -1185,6 +1186,7 @@ t-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -1243,6 +1245,7 @@ t-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -1302,6 +1305,7 @@ t-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -1360,6 +1364,7 @@ t-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -1417,6 +1422,7 @@ t-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -1474,6 +1480,7 @@ t-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -1531,6 +1538,7 @@ t-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -1588,6 +1596,7 @@ t-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -1645,6 +1654,7 @@ t-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -1702,6 +1712,7 @@ t-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -1760,6 +1771,7 @@ t-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -1822,6 +1834,7 @@ t-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -1880,6 +1893,7 @@ t-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -1938,6 +1952,7 @@ t-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -1996,6 +2011,7 @@ t-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -2053,6 +2069,7 @@ t-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -2110,6 +2127,7 @@ t-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -2170,6 +2188,7 @@ t-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -2227,6 +2246,7 @@ t-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -2288,6 +2308,7 @@ t-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -2950,6 +2971,7 @@ tv-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -3010,6 +3032,7 @@ tv-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -3071,6 +3094,7 @@ tv-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -3133,6 +3157,7 @@ tv-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -3194,6 +3219,7 @@ tv-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -3254,6 +3280,7 @@ tv-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -3314,6 +3341,7 @@ tv-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -3374,6 +3402,7 @@ tv-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -3434,6 +3463,7 @@ tv-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -3494,6 +3524,7 @@ tv-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -3554,6 +3585,7 @@ tv-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -3615,6 +3647,7 @@ tv-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -3680,6 +3713,7 @@ tv-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -3741,6 +3775,7 @@ tv-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -3802,6 +3837,7 @@ tv-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -3863,6 +3899,7 @@ tv-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -3923,6 +3960,7 @@ tv-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -3983,6 +4021,7 @@ tv-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -4046,6 +4085,7 @@ tv-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -4106,6 +4146,7 @@ tv-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -4170,6 +4211,7 @@ tv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -4871,6 +4913,7 @@ tr-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -4934,6 +4977,7 @@ tr-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -4998,6 +5042,7 @@ tr-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -5063,6 +5108,7 @@ tr-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -5130,6 +5176,7 @@ tr-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -5198,6 +5245,7 @@ tr-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -5262,6 +5310,7 @@ tr-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -5326,6 +5375,7 @@ tr-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -5390,6 +5440,7 @@ tr-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -5453,6 +5504,7 @@ tr-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -5516,6 +5568,7 @@ tr-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -5582,6 +5635,7 @@ tr-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -5645,6 +5699,7 @@ tr-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -5712,6 +5767,7 @@ tr-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -6452,6 +6508,7 @@ trv-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -6518,6 +6575,7 @@ trv-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -6585,6 +6643,7 @@ trv-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -6653,6 +6712,7 @@ trv-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -6723,6 +6783,7 @@ trv-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -6794,6 +6855,7 @@ trv-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -6861,6 +6923,7 @@ trv-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -6928,6 +6991,7 @@ trv-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -6995,6 +7059,7 @@ trv-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -7061,6 +7126,7 @@ trv-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -7127,6 +7193,7 @@ trv-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -7196,6 +7263,7 @@ trv-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -7262,6 +7330,7 @@ trv-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -7332,6 +7401,7 @@ trv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -8106,6 +8176,7 @@ tw-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -8170,6 +8241,7 @@ tw-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -8235,6 +8307,7 @@ tw-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -8301,6 +8374,7 @@ tw-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -8369,6 +8443,7 @@ tw-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -8438,6 +8513,7 @@ tw-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -8503,6 +8579,7 @@ tw-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -8568,6 +8645,7 @@ tw-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -8633,6 +8711,7 @@ tw-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -8697,6 +8776,7 @@ tw-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -8761,6 +8841,7 @@ tw-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -8828,6 +8909,7 @@ tw-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -8892,6 +8974,7 @@ tw-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -8960,6 +9043,7 @@ tw-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -9713,6 +9797,7 @@ twv-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -9780,6 +9865,7 @@ twv-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -9848,6 +9934,7 @@ twv-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -9917,6 +10004,7 @@ twv-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -9988,6 +10076,7 @@ twv-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -10060,6 +10149,7 @@ twv-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -10128,6 +10218,7 @@ twv-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -10196,6 +10287,7 @@ twv-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -10264,6 +10356,7 @@ twv-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -10331,6 +10424,7 @@ twv-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -10398,6 +10492,7 @@ twv-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -10468,6 +10563,7 @@ twv-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -10535,6 +10631,7 @@ twv-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -10606,6 +10703,7 @@ twv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -11384,6 +11482,7 @@ th-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -11440,6 +11539,7 @@ th-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -11497,6 +11597,7 @@ th-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -11555,6 +11656,7 @@ th-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -11612,6 +11714,7 @@ th-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -11668,6 +11771,7 @@ th-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -11724,6 +11828,7 @@ th-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -11780,6 +11885,7 @@ th-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -11836,6 +11942,7 @@ th-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -11892,6 +11999,7 @@ th-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -11948,6 +12056,7 @@ th-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -12005,6 +12114,7 @@ th-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -12066,6 +12176,7 @@ th-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -12123,6 +12234,7 @@ th-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -12180,6 +12292,7 @@ th-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -12237,6 +12350,7 @@ th-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -12293,6 +12407,7 @@ th-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -12349,6 +12464,7 @@ th-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -12408,6 +12524,7 @@ th-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -12464,6 +12581,7 @@ th-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -12524,6 +12642,7 @@ th-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -13173,6 +13292,7 @@ thv-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -13232,6 +13352,7 @@ thv-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -13292,6 +13413,7 @@ thv-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -13353,6 +13475,7 @@ thv-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -13413,6 +13536,7 @@ thv-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -13472,6 +13596,7 @@ thv-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -13531,6 +13656,7 @@ thv-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -13590,6 +13716,7 @@ thv-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -13649,6 +13776,7 @@ thv-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -13708,6 +13836,7 @@ thv-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -13767,6 +13896,7 @@ thv-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -13827,6 +13957,7 @@ thv-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -13891,6 +14022,7 @@ thv-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -13951,6 +14083,7 @@ thv-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -14011,6 +14144,7 @@ thv-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -14071,6 +14205,7 @@ thv-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -14130,6 +14265,7 @@ thv-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -14189,6 +14325,7 @@ thv-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -14251,6 +14388,7 @@ thv-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -14310,6 +14448,7 @@ thv-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -14373,6 +14512,7 @@ thv-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -15057,6 +15197,7 @@ tl-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -15115,6 +15256,7 @@ tl-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -15174,6 +15316,7 @@ tl-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -15234,6 +15377,7 @@ tl-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -15293,6 +15437,7 @@ tl-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -15351,6 +15496,7 @@ tl-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -15409,6 +15555,7 @@ tl-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -15467,6 +15614,7 @@ tl-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -15525,6 +15673,7 @@ tl-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -15583,6 +15732,7 @@ tl-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -15641,6 +15791,7 @@ tl-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -15700,6 +15851,7 @@ tl-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -15763,6 +15915,7 @@ tl-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -15822,6 +15975,7 @@ tl-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -15881,6 +16035,7 @@ tl-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -15940,6 +16095,7 @@ tl-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -15998,6 +16154,7 @@ tl-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -16056,6 +16213,7 @@ tl-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -16117,6 +16275,7 @@ tl-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -16175,6 +16334,7 @@ tl-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -16237,6 +16397,7 @@ tl-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -16907,6 +17068,7 @@ to-ngx_srcache {
 
 
     dep nginx-module-test ngx_srcache;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql run-postgres;
 }
@@ -16963,6 +17125,7 @@ to-ngx_rds_json {
 
 
     dep nginx-module-test ngx_rds_json;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_drizzle ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var ngx_form_input ngx_postgres;
@@ -17020,6 +17183,7 @@ to-ngx_rds_csv {
 
 
     dep nginx-module-test ngx_rds_csv;
+    dep gd-devel;
 
     dep run-mysql run-postgres;
     dep ngx_eval ngx_echo ngx_xss ndk ngx_set_misc ngx_array_var;
@@ -17078,6 +17242,7 @@ to-ngx_drizzle {
 
 
     dep nginx-module-test ngx_drizzle;
+    dep gd-devel;
 
     dep run-mysql;
     dep ngx_lua ngx_echo ngx_rds_json;
@@ -17135,6 +17300,7 @@ to-ngx_encrypted_session {
 
 
     dep nginx-module-test ngx_encrypted_session;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua;
 }
@@ -17191,6 +17357,7 @@ to-ngx_array_var {
 
 
     dep nginx-module-test ngx_array_var;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc;
 }
@@ -17247,6 +17414,7 @@ to-ngx_set_misc {
 
 
     dep nginx-module-test ngx_set_misc;
+    dep gd-devel;
 
     dep ndk ngx_echo ngx_iconv;
 }
@@ -17303,6 +17471,7 @@ to-ngx_headers_more {
 
 
     dep nginx-module-test ngx_headers_more;
+    dep gd-devel;
 
     dep ngx_eval ngx_echo ngx_lua;
 }
@@ -17359,6 +17528,7 @@ to-ngx_example_lua {
 
 
     dep nginx-module-test ngx_example_lua;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -17415,6 +17585,7 @@ to-ngx_lua_upstream {
 
 
     dep nginx-module-test ngx_lua_upstream;
+    dep gd-devel;
 
     dep ngx_echo ngx_lua;
 }
@@ -17471,6 +17642,7 @@ to-ngx_xss {
 
 
     dep nginx-module-test ngx_xss;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_lua;
 }
@@ -17528,6 +17700,7 @@ to-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -17589,6 +17762,7 @@ to-ngx_memc {
 
 
     dep nginx-module-test ngx_memc;
+    dep gd-devel;
 
     dep run-memcached;
     dep ndk ngx_eval ngx_echo ngx_lua;
@@ -17646,6 +17820,7 @@ to-ngx_redis2 {
 
 
     dep nginx-module-test ngx_redis2;
+    dep gd-devel;
 
     dep run-redis;
     dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
@@ -17703,6 +17878,7 @@ to-ngx_echo {
 
 
     dep nginx-module-test ngx_echo;
+    dep gd-devel;
 
     dep ndk ngx_set_misc ngx_eval ngx_xss;
     dep ngx_rds_json ngx_headers_more ngx_lua;
@@ -17760,6 +17936,7 @@ to-ngx_eval {
 
 
     dep nginx-module-test ngx_eval;
+    dep gd-devel;
 
     dep run-memcached ngx_echo ngx_memc;
 }
@@ -17816,6 +17993,7 @@ to-ngx_form_input {
 
 
     dep nginx-module-test ngx_form_input;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_array_var;
 }
@@ -17872,6 +18050,7 @@ to-ngx_postgres {
 
 
     dep nginx-module-test ngx_postgres;
+    dep gd-devel;
 
     dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
@@ -17931,6 +18110,7 @@ to-ngx_iconv {
 
 
     dep nginx-module-test ngx_iconv;
+    dep gd-devel;
 
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
@@ -17987,6 +18167,7 @@ to-ngx_coolkit {
 
 
     dep nginx-module-test ngx_coolkit;
+    dep gd-devel;
 
     dep ngx-coolkit-build-script;
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
@@ -18047,6 +18228,7 @@ to-ngx_replace_filter {
 
 
     dep nginx-module-test ngx_replace_filter;
+    dep gd-devel;
 
     dep sregex ngx_echo ngx_lua;
 }
@@ -18736,6 +18918,7 @@ build-ngx_lua {
 
 
     dep nginx-module-test ngx_lua;
+    dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
@@ -18743,6 +18926,11 @@ build-ngx_lua {
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
     dep ngx_openresty-debug;
+}
+
+gd-devel {
+    file /usr/include/gd.h;
+    yum gd-devel;
 }
 
 systemtap {
