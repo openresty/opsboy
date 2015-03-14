@@ -3,9 +3,9 @@ specification:
 
 statement:
   | assignment
-  | target_definition
+  | target-definition
 
-target_definition:
+target-definition:
   identifier
   block
 
