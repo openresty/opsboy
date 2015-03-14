@@ -6,7 +6,9 @@ use constant file => 'share/opsboy.pgx';
 
 sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
   {
+    '+grammar' => 'opsboy',
     '+toprule' => 'specification',
+    '+version' => '0.0.1',
     'argument' => {
       '.any' => [
         {
