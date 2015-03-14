@@ -34,23 +34,24 @@ block: '{' rule(s?) '}' { $item[2] }
 rule: command argument(s?) ';' { [$item[1], $item[2]] }
     | <error>
 
-command: 'git'
-       | 'file'
-       | 'running'
-       | 'dir'
-       | 'dep'
-       | 'cwd'
-       | 'test'
-       | 'env'
-       | 'always'
-       | 'sh'
-       | 'yum'
-       | 'debuginfo'
-       | 'prog'
-       | 'fetch'
-       | 'tarball'
-       | 'cpan'
-       | <error>
+command: /(?x) \b (?:
+           git
+         | file
+         | running
+         | dir
+         | dep
+         | cwd
+         | test
+         | env
+         | always
+         | sh
+         | yum
+         | debuginfo
+         | prog
+         | fetch
+         | tarball
+         | cpan
+         ) \b /
 
 argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
         | /(?:`[^`]+`|[^;"\s])+/
@@ -165,6 +166,7 @@ while (<$data>) {
 print $out "\$default_goal = '$default_goal';\n\n";
 
 $Data::Dumper::Indent = 1;
+$Data::Dumper::Sortkeys = 1;
 
 print $out Data::Dumper->Dump([\%vars], ['vars']);
 
