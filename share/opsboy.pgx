@@ -76,7 +76,7 @@ identifier: /-
   ( ALPHA [ DASH WORD ]* )
 -/
 
-line: / ANY* EOL /
+line: / ANY* EOL? /
 
 comment: / '#' line /
 
