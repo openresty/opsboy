@@ -3,8 +3,11 @@
 use strict;
 use warnings;
 
+use Pegex::Parser;
+use lib 'lib';
+use OpsBoy::Grammar;
+
 use Getopt::Std;
-use Pegex;
 use Data::Dumper;
 use File::Copy;
 
@@ -15,71 +18,8 @@ getopts("co:", \%opts) or
 my $compile_only = $opts{c};
 my $outfile = $opts{o} || "a.pl";
 
-my $grammar = <<'_EOC_';
-specification: statement*
-
-statement: assignment
-         | target_definition
-
-target_definition: identifier block
-
-assignment: identifier '=' argument .terminator
-
-block: /- '{' / rule* / '}' -/
-
-rule: command argument* .terminator
-
-terminator: / ';' -/
-
-command: /- \b (
-                  'git'
-                | 'file'
-                | 'running'
-                | 'dir'
-                | 'dep'
-                | 'cwd'
-                | 'test'
-                | 'env'
-                | 'always'
-                | 'sh'
-                | 'yum'
-                | 'debuginfo'
-                | 'prog'
-                | 'fetch'
-                | 'tarball'
-                | 'cpan'
-                ) \b -/
-
-argument: single-quoted-string
-        | back-quoted-string
-        | unquoted-string
-
-single-quoted-string:
-                    /- (
-                        SINGLE
-                            (:
-                              BACK ANY
-                            | [^ BACK BREAK SINGLE ]
-                            )*
-                        SINGLE
-                       ) -/
-
-back-quoted-string: /- ( GRAVE [^ GRAVE ]* GRAVE) -/
-
-unquoted-string: /- ( [^ DOUBLE GRAVE SEMI WS ]+ ) -/
-
-identifier: /- ( ALPHA [ DASH WORD ]* ) -/
-
-line: / ANY* EOL /
-
-comment: / '#' line /
-
-ws: /(: BLANK | EOL | comment )/
-
-_EOC_
-
 {
-    package OpsBoy;
+    package OpsBoy::AST;
     use base 'Pegex::Tree';
     #use Data::Dumper;
 
@@ -107,7 +47,11 @@ open my $in, $infile or
 
 my $src = do { local $/; <$in> };
 
-my $ast = pegex($grammar, 'OpsBoy')->parse($src);
+my $ast =
+    Pegex::Parser->new(
+        grammar => OpsBoy::Grammar->new,
+        receiver => OpsBoy::AST->new,
+    )->parse($src);
 
 #print "AST: ", Dumper($ast);
 

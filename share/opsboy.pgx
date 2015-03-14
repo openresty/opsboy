@@ -1,0 +1,59 @@
+specification: statement*
+
+statement: assignment
+         | target_definition
+
+target_definition: identifier block
+
+assignment: identifier '=' argument .terminator
+
+block: /- '{' / rule* / '}' -/
+
+rule: command argument* .terminator
+
+terminator: / ';' -/
+
+command: /- \b (
+                  'git'
+                | 'file'
+                | 'running'
+                | 'dir'
+                | 'dep'
+                | 'cwd'
+                | 'test'
+                | 'env'
+                | 'always'
+                | 'sh'
+                | 'yum'
+                | 'debuginfo'
+                | 'prog'
+                | 'fetch'
+                | 'tarball'
+                | 'cpan'
+                ) \b -/
+
+argument: single-quoted-string
+        | back-quoted-string
+        | unquoted-string
+
+single-quoted-string:
+                    /- (
+                        SINGLE
+                            (:
+                              BACK ANY
+                            | [^ BACK BREAK SINGLE ]
+                            )*
+                        SINGLE
+                       ) -/
+
+back-quoted-string: /- ( GRAVE [^ GRAVE ]* GRAVE) -/
+
+unquoted-string: /- ( [^ DOUBLE GRAVE SEMI WS ]+ ) -/
+
+identifier: /- ( ALPHA [ DASH WORD ]* ) -/
+
+line: / ANY* EOL /
+
+comment: / '#' line /
+
+ws: /(: BLANK | EOL | comment )/

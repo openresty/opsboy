@@ -24,3 +24,5 @@ test: all
 clean:
 	rm -f openresty-tester.pl ortest-*.pl samples/*.ob
 
+grammar-compile:
+	perl -Ilib -MOpsBoy::Grammar=compile
