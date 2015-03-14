@@ -1108,7 +1108,7 @@ valgrind {
 
 opsboy {
     git git://github.com/openresty/opsboy.git ~/git/opsboy;
-    dep cc parse-recdescent tt2;
+    dep cc pegex tt2;
 }
 
 tt2 {
@@ -1119,6 +1119,11 @@ tt2 {
 parse-recdescent {
     test 'perl -MParse::RecDescent -e1';
     yum perl-Parse-RecDescent;
+}
+
+pegex {
+    test 'perl -MPegex -e1';
+    sh 'echo y|sudo cpan -i Pegex';
 }
 
 [% type="" %]
