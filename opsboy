@@ -54,7 +54,7 @@ command: /(?x) \b (?:
          ) \b /
 
 argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
-        | /(?:`[^`]+`|[^;"\s])+/
+        | /(?:`[^`]*`|[^;"`\s])+/
         | <error>
 
 identifier: /[A-Za-z][-\w]*/
@@ -151,6 +151,10 @@ for my $name (keys %entities) {
             }
         }
     }
+}
+
+if (!defined $default_goal) {
+    die "No targets defined.\n";
 }
 
 #warn "default goal: $default_goal\n";
