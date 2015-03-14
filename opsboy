@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Getopt::Std;
-use Parse::RecDescent;
+use Pegex;
 use Data::Dumper;
 use File::Copy;
 
@@ -15,52 +15,89 @@ getopts("co:", \%opts) or
 my $compile_only = $opts{c};
 my $outfile = $opts{o} || "a.pl";
 
-$Parse::RecDescent::skip = '(?:\s*\#[^\n]*\s*)+|\s*';
+my $grammar = <<'_EOC_';
+specification: statement*
 
-my $parser = Parse::RecDescent->new(<<'END_GRAMMAR');
-spec: target(s?) eof { $item[1] }
-    | <error>
+statement: assignment
+         | target_definition
 
-eof: /^\Z/
+target_definition: identifier block
 
-target: identifier '=' <commit> argument ';'
-            { $return = { $item[1] => $item[4] } }
-      | identifier block { [$item[1], $item[2]] }
-      | <error?>
+assignment: identifier '=' argument .terminator
 
-block: '{' rule(s?) '}' { $item[2] }
-     | <error>
+block: /- '{' / rule* / '}' -/
 
-rule: command argument(s?) ';' { [$item[1], $item[2]] }
-    | <error>
+rule: command argument* .terminator
 
-command: /(?x) \b (?:
-           git
-         | file
-         | running
-         | dir
-         | dep
-         | cwd
-         | test
-         | env
-         | always
-         | sh
-         | yum
-         | debuginfo
-         | prog
-         | fetch
-         | tarball
-         | cpan
-         ) \b /
+terminator: / ';' -/
 
-argument: /'(?:\\.|[^\\'])*'/ { eval $item[1] }
-        | /(?:`[^`]*`|[^;"`\s])+/
-        | <error>
+command: /- \b (
+                  'git'
+                | 'file'
+                | 'running'
+                | 'dir'
+                | 'dep'
+                | 'cwd'
+                | 'test'
+                | 'env'
+                | 'always'
+                | 'sh'
+                | 'yum'
+                | 'debuginfo'
+                | 'prog'
+                | 'fetch'
+                | 'tarball'
+                | 'cpan'
+                ) \b -/
 
-identifier: /[A-Za-z][-\w]*/
-          | <error>
+argument: single-quoted-string
+        | back-quoted-string
+        | unquoted-string
 
-END_GRAMMAR
+single-quoted-string:
+                    /- (
+                        SINGLE
+                            (:
+                              BACK ANY
+                            | [^ BACK BREAK SINGLE ]
+                            )*
+                        SINGLE
+                       ) -/
+
+back-quoted-string: /- ( GRAVE [^ GRAVE ]* GRAVE) -/
+
+unquoted-string: /- ( [^ DOUBLE GRAVE SEMI WS ]+ ) -/
+
+identifier: /- ( ALPHA [ DASH WORD ]* ) -/
+
+line: / ANY* EOL /
+
+comment: / '#' line /
+
+ws: /(: BLANK | EOL | comment )/
+
+_EOC_
+
+{
+    package OpsBoy;
+    use base 'Pegex::Tree';
+    #use Data::Dumper;
+
+    sub got_assignment {
+        my ($self, $list) = @_;
+        +{ $list->[0] => $list->[1] }
+    }
+
+    sub got_block {
+        my ($self, $list) = @_;
+        $list->[0];  # rule*
+    }
+
+    sub got_single_quoted_string {
+        my ($self, $list) = @_;
+        eval $list;
+    }
+}
 
 my $infile = shift or
     die "No input file specified.\n";
@@ -70,10 +107,9 @@ open my $in, $infile or
 
 my $src = do { local $/; <$in> };
 
-my $ast = $parser->spec($src) or
-    die "Failed to parse $infile: Bad grammar.\n";
+my $ast = pegex($grammar, 'OpsBoy')->parse($src);
 
-#print Dumper($ast);
+#print "AST: ", Dumper($ast);
 
 my $default_goal;
 my %entities;
