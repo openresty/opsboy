@@ -38,27 +38,27 @@ sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
       ]
     },
     'back_quoted_string' => {
-      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*(`[^`]*`)(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*(`[^`]*`)(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     },
     'block' => {
       '.all' => [
         {
-          '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*\{/
+          '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*\{/
         },
         {
           '+min' => 0,
           '.ref' => 'rule'
         },
         {
-          '.rgx' => qr/\G\}(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+          '.rgx' => qr/\G\}(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
         }
       ]
     },
     'command' => {
-      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*\b(git|file|running|dir|dep|cwd|test|env|always|sh|yum|debuginfo|prog|fetch|tarball|cpan)\b(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*\b(git|file|running|dir|dep|cwd|test|env|always|sh|yum|debuginfo|prog|fetch|tarball|cpan)\b(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     },
     'identifier' => {
-      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*([a-zA-Z][\-\w]*)(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*([a-zA-Z][\-\w]*)(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     },
     'rule' => {
       '.all' => [
@@ -76,7 +76,7 @@ sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
       ]
     },
     'single_quoted_string' => {
-      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*('(?:\\.|[^\\\n'])*')(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*('(?:\\.|[^\\\n'])*')(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     },
     'specification' => {
       '+min' => 0,
@@ -103,10 +103,10 @@ sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
       ]
     },
     'terminator' => {
-      '.rgx' => qr/\G;(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G;(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     },
     'unquoted_string' => {
-      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n)*([^"`;\s]+)(?:[\ \t]|\r?\n|\#.*\r?\n)*/
+      '.rgx' => qr/\G(?:[\ \t]|\r?\n|\#.*\r?\n?)*([^"`;\s]+)(?:[\ \t]|\r?\n|\#.*\r?\n?)*/
     }
   }
 }
