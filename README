@@ -1,4 +1,4 @@
-This is a rule-based sysadmin script generator.
+This is a rule-based script generator for system environment incremental deployment.
 
     # on the developer host machine
     ./opsboy samples/openresty-tester.ob -o openresty-tester.pl
@@ -8,7 +8,7 @@ This is a rule-based sysadmin script generator.
 
 Installation on the Developer Host Machine
 
-    $ sudo cpan Parse::RecDescent File::Copy
+    $ sudo cpan Pegex File::Copy
 
     This is not required on the target machine though. The target
     machine only needs to have perl 5 installed.
