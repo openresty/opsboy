@@ -2,7 +2,7 @@ package OpsBoy::Grammar;
 use Pegex::Base;
 extends 'Pegex::Grammar';
 
-use constant file => 'share/opsboy.pgx';
+use constant file => 'grammar/opsboy.pgx';
 
 sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
   {
