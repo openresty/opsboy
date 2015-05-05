@@ -11,7 +11,7 @@ sol: ortest-sol.pl
 openresty-tester.pl: ortest-ec2.pl
 	cp -p $< $@
 
-%.pl: samples/%.ob opsboy
+%.pl: samples/%.ob opsboy lib/OpsBoy/Grammar.pm
 	./opsboy -o $@ $<
 
 %.ob: %.ob.tt
@@ -24,5 +24,5 @@ test: all
 clean:
 	rm -f openresty-tester.pl ortest-*.pl samples/*.ob
 
-grammar-compile:
+lib/OpsBoy/Grammar.pm: grammar/opsboy.pgx
 	perl -Ilib -MOpsBoy::Grammar=compile
