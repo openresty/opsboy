@@ -4,13 +4,13 @@ jobs = 3;
 ngx_redis_version = 0.3.7;
 nginx_version = 1.7.10;
 openresty_version = 1.7.7.2;
-redis_version = 2.8.8;
+redis_version = 3.0.2;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
 force = 0;
-ragel_version = 6.8;
+ragel_version = 6.9;
 valgrind_version = 3.8.1;
-libev_version = 4.11;
+libev_version = 4.15;
 systemtap_version = 2.5;
 perl516_version = 5.16.2;
 bison_version = 2.7;
@@ -396,16 +396,6 @@ tl {
     dep tl-lua-resty-lrucache;
 }
 
-etcproxy {
-    git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
-    dep erlang;
-}
-
-erlang {
-    prog erl erlc;
-    yum erlang;
-}
-
 ngx_srcache {
     git git://github.com/openresty/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
@@ -423,7 +413,7 @@ ragel {
     prog ragel;
     test 'ragel -v|grep "$ragel_version"';
     cwd /tmp;
-    fetch http://www.complang.org/ragel/ragel-$ragel_version.tar.gz;
+    fetch http://www.colm.net/files/ragel/ragel-$ragel_version.tar.gz;
     tarball ragel-$ragel_version.tar.gz;
     sh 'cd ragel-$ragel_version && ./configure && make -j$jobs && sudo make install';
     dep cxx;
@@ -648,7 +638,7 @@ ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
 
-    git git://github.com/chaoslawful/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
+    git git://github.com/openresty/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
     dep libdrizzle;
 }
 
@@ -720,7 +710,7 @@ ngx_lua_upstream {
 }
 
 ngx_lua {
-    git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
+    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -736,9 +726,9 @@ pcrejit {
 
     test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
 
-    fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
-    tarball pcre-$pcre_version.tar.gz;
     cwd /tmp;
+    fetch http://linux.stanford.edu/pub/exim/pcre/pcre-$pcre_version.tar.bz2;
+    tarball pcre-$pcre_version.tar.gz;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
@@ -823,7 +813,7 @@ lua-resty-upstream-healthcheck {
 }
 
 lua-resty-lrucache {
-    git git://github.com/agentzh/lua-resty-lrucache.git ~/git/lua-resty-lrucache;
+    git git://github.com/openresty/lua-resty-lrucache.git ~/git/lua-resty-lrucache;
     dep ngx_lua;
 }
 
@@ -849,7 +839,7 @@ ngx_iconv {
 }
 
 no-pool-nginx {
-    git git://github.com/shrimp/no-pool-nginx.git ~/git/no-pool-nginx;
+    git git://github.com/openresty/no-pool-nginx.git ~/git/no-pool-nginx;
     dep patch;
 }
 
@@ -992,8 +982,13 @@ prove {
 
 test-nginx {
     git git://github.com/openresty/test-nginx.git ~/git/test-nginx;
-    dep test-base time-hires test-longstring list-moreutils;
+    dep test-base time-hires test-longstring list-moreutils perl-http-response;
     dep ab weighttp;
+}
+
+perl-http-response {
+    test 'perl -MHTTP::Response -e1';
+    cpan HTTP::Response;
 }
 
 ab {

@@ -1,6 +1,6 @@
-# OpenResty Tester Deployment Script for Amazon Linux AMI
+# OpenResty Tester Deployment Script for Mac OS X
 
-jobs = 3;
+jobs = 8;
 ngx_redis_version = 0.3.7;
 nginx_version = 1.7.10;
 openresty_version = 1.7.7.2;
@@ -9,9 +9,7 @@ ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
 force = 0;
 ragel_version = 6.9;
-valgrind_version = 3.8.1;
 libev_version = 4.15;
-systemtap_version = 2.5;
 perl516_version = 5.16.2;
 bison_version = 2.7;
 ccache_version = 3.1.9;
@@ -32,13 +30,13 @@ nginx_cc_opt = '-O1';
     env TEST_NGINX_USE_STAP '';
     [%- END %]
 
-    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     [%- UNLESS type.match("o") %]
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
     [%- END %]
-    env NGX_BUILD_CC 'ccache gcc47';
+    #env NGX_BUILD_CC 'ccache';
+    env NGX_BUILD_LD_OPTS '-L/usr/local/lib';
     env CCACHE_BASEDIR '$PWD';
-    dep ccache;
+    #dep ccache;
 
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
@@ -111,7 +109,7 @@ nginx_cc_opt = '-O1';
     [%- END %]
     [%- END -%]
 
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'nginx -V && otool -L `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
@@ -123,38 +121,19 @@ nginx_cc_opt = '-O1';
     dep valgrind;
     [%- END %]
 
-    dep systemtap;
-    dep run-caching-nameserver;
 [% END -%]
-
-run-caching-nameserver {
-    running '/named -u ';
-    sh 'sudo service named start';
-    dep named caching-nameserver-config;
-}
-
-named {
-    prog named;
-    yum caching-nameserver;
-}
-
-caching-nameserver-config {
-    test 'grep 8.8.8.8 /etc/named.conf';
-    sh 'sudo wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /etc/named.conf';
-    sh 'sudo chmod a+r /etc/named.conf';
-}
 
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -181,7 +160,7 @@ luajit-git {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    env LUAJIT_INC `ls -d /opt/luajit/include/luajit-*`;
 
     [%- PROCESS nginx_test_config no_build=0 %]
 
@@ -431,7 +410,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -461,12 +440,12 @@ perl516-IPC-Run3 {
 
 perl-IPC-Run {
     test 'perl -MIPC::Run -e1';
-    yum perl-IPC-Run;
+    cpan IPC::Run;
 }
 
 perl-IPC-Run3 {
     test 'perl -MIPC::Run3 -e1';
-    yum perl-IPC-Run3;
+    cpan IPC::Run3;
 }
 
 t-sregex {
@@ -503,7 +482,7 @@ bison {
     cwd /tmp;
     fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
     tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    sh 'cd bison-$bison_version/ && ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -513,8 +492,8 @@ sregex-git {
 
 libpq {
     #file /usr/lib64/libpq.so;
-    file /usr/include/libpq-fe.h;
-    yum postgresql9-devel;
+    file /usr/local/include/libpq-fe.h;
+    yum postgresql;
 }
 
 ngx_drizzle {
@@ -526,7 +505,7 @@ ngx_drizzle {
 }
 
 libdrizzle {
-    file /opt/drizzle/lib/libdrizzle.so;
+    file /opt/drizzle/lib/libdrizzle.dylib;
     file /opt/drizzle/include/libdrizzle-1.0/libdrizzle/drizzle.h;
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/drizzle7-2011.07.21.tar.gz;
@@ -577,10 +556,10 @@ ngx_echo {
 }
 
 ngx_example_lua {
-    git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
+    git git://github.com/bakins/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    env LUAJIT_INC `ls -d /opt/luajit/include/luajit-*`;
     dep ngx_lua;
 }
 
@@ -588,7 +567,7 @@ ngx_lua_upstream {
     git git://github.com/openresty/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    env LUAJIT_INC `ls -d /opt/luajit/include/luajit-*`;
     dep ngx_lua;
 }
 
@@ -596,7 +575,7 @@ ngx_lua {
     git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module;
 
     env LUAJIT_LIB /opt/luajit/lib;
-    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    env LUAJIT_INC `ls -d /opt/luajit/include/luajit-*`;
     dep luajit ndk;
 }
 
@@ -604,14 +583,14 @@ pcrejit {
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
 
-    file /opt/pcrejit/lib/libpcre.so;
+    file /opt/pcrejit/lib/libpcre.dylib;
     file /opt/pcrejit/include/pcre.h;
 
     test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
 
     cwd /tmp;
     fetch http://linux.stanford.edu/pub/exim/pcre/pcre-$pcre_version.tar.bz2;
-    tarball pcre-$pcre_version.tar.gz;
+    tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
@@ -629,12 +608,12 @@ ngx_coolkit {
 ngx_openresty-debug {
     test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
     #file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
-    file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
+    file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.dylib;
     file /usr/local/openresty-debug/nginx/sbin/nginx;
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-ld-opt="-L/usr/local/lib" --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -736,13 +715,13 @@ postgres {
 
 run-mysql {
     running 'mysqld --';
-    sh 'sudo service mysqld start || (sleep 10 && sudo service mysqld start)';
+    sh 'sudo mysql.server start || (sleep 10 && sudo mysql.server start)';
     dep mysql;
 }
 
 mysql {
     prog mysqld_safe;
-    yum mysql mysql-server;
+    yum mysql;
 
     # mysql -u root
     # mysql> create database ngx_test;
@@ -784,21 +763,17 @@ openssl {
 
 pcre {
     prog pcre-config;
-    yum pcre-devel;
+    yum pcre;
 }
 
 axel {
     prog axel;
-    cwd /tmp;
-    fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
-    tarball axel-2.4.tar.bz2;
-    sh 'cd axel-2.4 && ./configure && make && sudo make install';
-    dep cc;
+    yum axel;
 }
 
 cc {
-    prog gcc47;
-    yum gcc47;
+    prog gcc;
+    yum gcc;
     dep make;
 }
 
@@ -809,7 +784,7 @@ make {
 
 prove {
     prog prove;
-    yum perl-Test-Harness;
+    cpan Test::Harness;
 }
 
 test-nginx {
@@ -830,7 +805,7 @@ ab {
 
 weighttp {
     prog weighttp;
-    git https://github.com/lighttpd/weighttp ~/git/weighttp;
+    git https://github.com/agentzh/weighttp ~/git/weighttp;
     cwd ~/git/weighttp;
     sh './waf configure && ./waf build && sudo ./waf install';
     dep libev python;
@@ -842,18 +817,14 @@ python {
 }
 
 libev {
-    file /usr/local/lib/libev.so;
+    file /usr/local/lib/libev.dylib;
     file /usr/local/include/ev.h;
-    cwd /tmp;
-    fetch http://dist.schmorp.de/libev/Attic/libev-$libev_version.tar.gz;
-    tarball libev-$libev_version.tar.gz;
-    sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
-    dep cxx cc;
+    yum libev;
 }
 
 list-moreutils {
     test 'perl -MList::MoreUtils -e1';
-    yum perl-List-MoreUtils;
+    cpan List::MoreUtils;
 }
 
 test-longstring {
@@ -863,18 +834,18 @@ test-longstring {
 
 time-hires {
     test 'perl -MTime::HiRes -e1';
-    yum perl-Time-HiRes;
+    cpan Time::HiRes;
 }
 
 test-base {
     test 'perl -e "require(q{Test/Base.pm});"';
-    yum perl-Test-Base;
+    cpan Test::Base;
     dep text-diff;
 }
 
 text-diff {
     test 'perl -MText::Diff -e1';
-    yum perl-Text-Diff;
+    cpan Text::Diff;
 }
 
 patch {
@@ -895,7 +866,7 @@ ngx_redis {
 
 cpan {
     prog cpan;
-    yum perl-CPAN;
+    sh 'echo "No CPAN found" > /dev/stderr; exit 1';
     dep cc;
 }
 
@@ -1090,14 +1061,8 @@ ngx-coolkit-build-script {
 }
 
 valgrind {
-    env PATH /opt/valgrind/bin:$PATH;
-    file /opt/valgrind/bin/valgrind;
-    test '/opt/valgrind/bin/valgrind --version|grep $valgrind_version';
-    cwd /tmp;
-    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
-    tarball valgrind-$valgrind_version.tar.bz2;
-    sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
-    dep cc;
+    prog valgrind;
+    sh 'brew install --HEAD valgrind';
 }
 
 opsboy {
@@ -1107,12 +1072,12 @@ opsboy {
 
 tt2 {
     test 'perl -MTemplate -e1';
-    yum perl-Template-Toolkit;
+    cpan Template;
 }
 
 parse-recdescent {
     test 'perl -MParse::RecDescent -e1';
-    yum perl-Parse-RecDescent;
+    cpan Parse::RecDescent;
 }
 
 pegex {
@@ -1133,44 +1098,8 @@ build-ngx_lua {
 }
 
 gd-devel {
-    file /usr/include/gd.h;
-    yum gd-devel;
-}
-
-systemtap {
-    dep stap kernel-debuginfo stapusr-grp stapdev-grp;
-}
-
-stapusr-grp {
-    test 'groups `whoami`|grep stapusr > /dev/null';
-    sh 'sudo usermod -a -G stapusr `whoami`';
-}
-
-stapdev-grp {
-    test 'groups `whoami`|grep stapdev > /dev/null';
-    sh 'sudo usermod -a -G stapdev `whoami`';
-}
-
-kernel-debuginfo {
-    test 'ls /usr/lib/debug/lib/modules/`uname -r`/kernel/* > /dev/null 2>&1';
-    debuginfo 'kernel-`uname -r`';
-}
-
-stap {
-    env PATH /opt/systemtap/bin:$PATH;
-    file /opt/systemtap/bin/stap;
-    test '/opt/systemtap/bin/stap --version 2>&1 | grep "version $systemtap_version"';
-    cwd /tmp;
-    fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
-    tarball systemtap-$systemtap_version.tar.gz;
-    sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo rm -rf /opt/systemtap && sudo make install';
-    dep cc elfutils-devel;
-}
-
-elfutils-devel {
-    file /usr/include/dwarf.h;
-    #file /usr/lib/libdw.so;
-    yum elfutils-devel;
+    file /usr/local/include/gd.h;
+    yum gd;
 }
 
 yum-utils {

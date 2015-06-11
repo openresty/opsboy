@@ -189,6 +189,11 @@ if ($^O eq'freebsd') {
     $freebsd = 1;
 }
 
+my $osx;
+if ($^O eq 'darwin') {
+    $osx = 1;
+}
+
 sub make ($) {
     my $target = shift;
 
@@ -270,7 +275,7 @@ sub make ($) {
             $value =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/ge;
             $value =~ s/^~/$ENV{HOME}/;
             #warn "Setting $name to $value\n";
-            $value =~ s/`(.*?)`/`$1`/ge;
+            $value =~ s/`(.*?)`/my $s = `$1`; chomp $s; $s/ge;
             $ENV{$name} = $value;
         }
     }
@@ -370,6 +375,10 @@ sub make ($) {
             for my $pkg (@$pkgs) {
                 if ($freebsd) {
                     sh("sudo pkg_add -r $pkg");
+
+                } elsif ($osx) {
+                    sh("brew install $pkg");
+
                 } else {
                     sh("sudo yum install $pkg -y");
                 }
@@ -397,6 +406,7 @@ sub make ($) {
                 if (!-d $cwd) {
                     system("mkdir -p $cwd") == 0 or die "Cannot mkdir $cwd\n";
                 }
+                print "cd $cwd\n";
                 chdir $cwd or die "Cannot cd to $cwd\n";
             }
         }
@@ -413,7 +423,12 @@ sub make ($) {
         if (defined $tarballs) {
             for my $tarball (@$tarballs) {
                 $tarball =~ s/\$(\w+)/$ENV{$1}/g;
-                sh('tar', '-xvf', $tarball);
+                if ($osx) {
+                    sh('tar', '-jxvf', $tarball);
+
+                } else {
+                    sh('tar', '-xvf', $tarball);
+                }
             }
         }
 
