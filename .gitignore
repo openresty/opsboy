@@ -1,7 +1,6 @@
 *~
 *.swp
 *.swo
-*.pl
 out*
 misc/logs/LAST_TIME*
 misc/logs/ast.json
@@ -13,3 +12,10 @@ misc/logs/html/
 samples/ortest-fc.ob
 samples/ortest-fb.ob
 samples/ortest-sol.ob
+samples/ortest-mac.ob
+ortest-fb.pl
+ortest-mac.pl
+ortest-sol.pl
+ortest-fc.pl
+openresty-tester.pl
+go
