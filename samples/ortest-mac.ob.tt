@@ -11,7 +11,6 @@ force = 0;
 ragel_version = 6.9;
 libev_version = 4.15;
 perl516_version = 5.16.2;
-bison_version = 2.7;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
 #luajit_branch = v2.1-agentzh-no-stitch;
@@ -48,12 +47,12 @@ nginx_cc_opt = '-O1';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env DYLD_LIBRARY_PATH ~/git/mockeagain:$DYLD_LIBRARY_PATH;
     env LD_PRELOAD '';
 
     [%- IF type.match("l") %]
     env TEST_NGINX_CHECK_LEAK 1;
-    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+    env DYLD_LIBRARY_PATH /usr/local/lib:$DYLD_LIBRARY_PATH;
     [%- ELSE %]
     env TEST_NGINX_CHECK_LEAK '';
     [%- END %]
@@ -68,11 +67,11 @@ nginx_cc_opt = '-O1';
 
     [%- IF type.match("v") -%]
 
-    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env DYLD_LIBRARY_PATH '/opt/luajit-sysm/lib:$DYLD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND 1;
 
     [%- ELSE -%]
-    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env DYLD_LIBRARY_PATH '/opt/luajit/lib:$DYLD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND '';
     [%- END %]
 
@@ -390,7 +389,7 @@ ngx_replace_filter {
 sregex {
     always;
     #file ~/git/mockeagain/mockeagain.so;
-    sh 'cd ~/git/sregex && make -j$jobs || make clean all';
+    sh 'cd ~/git/sregex && make TARGET_DYLIBPATH=`pwd`/libsregex.0.dylib -j$jobs || make clean all';
     env PATH /usr/local/openresty-debug/luajit/bin:/opt/bison/bin:$PATH;
     dep sregex-git;
     dep cc bison ngx_openresty-debug;
@@ -477,13 +476,8 @@ t[% type %]-resty-cli  {
 [% END -%]
 
 bison {
-    file /opt/bison/bin/bison;
-    test '/opt/bison/bin/bison --version|grep "$bison_version"';
-    cwd /tmp;
-    fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
-    tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
-    dep cc;
+    prog bison;
+    yum bison;
 }
 
 sregex-git {
@@ -693,14 +687,7 @@ redis {
 
 run-postgres {
     running 'postgres: writer process';
-    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
-    dep run-postgres2;
-}
-
-run-postgres2 {
-    running 'postgres: writer process';
-    sh 'sudo service postgresql start || (sleep 10 && sudo service postgresql start) || sudo service postgresql initdb';
-    dep postgres;
+    sh 'pg_ctl start -l /tmp/pg.log -D /usr/local/var/postgres || (sleep 10 && pg_ctl start -l /tmp/pg.log -D /usr/local/var/postgres)';
 }
 
 postgres {
