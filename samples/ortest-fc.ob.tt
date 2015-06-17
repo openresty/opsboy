@@ -1,38 +1,45 @@
-# OpenResty Tester Deployment Script for Fedora 17
+# OpenResty Tester Deployment Script for Fedora 22
 
-jobs = 2;
-ngx_redis_version = 0.3.6;
-nginx_version = 1.2.1;
-openresty_version = 1.2.1.9rc1;
-ngx_upstream_keepalive_version = 0.7;
-redis_version = 2.4.14;
+jobs = 8;
+ngx_redis_version = 0.3.7;
+nginx_version = 1.7.10;
+openresty_version = 1.7.10.1;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.30;
+pcre_version = 8.33;
 force = 0;
-libev_version = 4.11;
+libev_version = 4.15;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
 
-    [%- IF type == "" %]
-    env TEST_NGINX_USE_STAP 1;
+    [%- IF type == "" OR type == "r" OR type == "w" %]
+    env TEST_NGINX_USE_STAP $use_stap;
     [%- ELSE %]
     env TEST_NGINX_USE_STAP '';
     [%- END %]
 
-    env NGX_BUILD_CC gcc;
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    [%- UNLESS type.match("o") %]
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    [%- END %]
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
     [%- ELSE %]
-    env NGX_BUILD_OPT -O1;
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_NO_DEBUG '';
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
-    [%- UNLESS name == "lua" %]
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
-    [%- END -%]
 
     [%- IF type.match("l") %]
     env TEST_NGINX_CHECK_LEAK 1;
@@ -42,22 +49,20 @@ libev_version = 4.11;
     [%- END %]
 
     [%- IF type.match("h") -%]
-        [%- IF type.match("v") -%]
-    env TEST_NGINX_SLEEP 0.2;
-        [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.4;
-        [%- END %]
     env TEST_NGINX_USE_HUP 1;
     [%- ELSE %]
-    env TEST_NGINX_SLEEP 0.015;
     env TEST_NGINX_USE_HUP '';
     [%- END %]
 
+    env TEST_NGINX_SLEEP 0.015;
+
     [%- IF type.match("v") -%]
 
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND 1;
 
     [%- ELSE -%]
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND '';
     [%- END %]
 
@@ -84,7 +89,7 @@ libev_version = 4.11;
 
     sh 'PAGER= git log HEAD^..HEAD';
 
-    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; touch config; fi';
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
 
     [%- UNLESS no_build -%]
     [%- IF name == "lua" %]
@@ -94,38 +99,82 @@ libev_version = 4.11;
     [%- END %]
     [%- END -%]
 
-    sh 'nginx -V';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
+    dep luajit_sysmalloc;
     dep valgrind;
     [%- END %]
 
     dep systemtap;
+    dep run-caching-nameserver;
 [% END -%]
+
+run-caching-nameserver {
+    running '/named -u ';
+    sh 'sudo service named start';
+    dep named caching-nameserver-config;
+}
+
+named {
+    prog named;
+    yum caching-nameserver;
+}
+
+caching-nameserver-config {
+    test 'grep 8.8.8.8 /etc/named.conf';
+    sh 'sudo wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /etc/named.conf';
+    sh 'sudo chmod a+r /etc/named.conf';
+}
+
+luajit_sysmalloc {
+    always;
+    cwd ~/git/luajit2;
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    dep luajit-git valgrind;
+}
+
+luajit {
+    always;
+    cwd ~/git/luajit2;
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    dep luajit-git;
+}
+
+luajit-git {
+    git git://github.com/openresty/luajit2.git ~/git/luajit2;
+}
 
 [% BLOCK build_lua_lib %]
     always;
-    cwd ~/git/lua-[% name %];
+    cwd ~/git/[% name %];
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     [%- PROCESS nginx_test_config no_build=1 -%]
 
-    dep ngx_lua nginx-module-test lua-[% name %];
+    dep ngx_lua nginx-module-test [% name %];
 [% END %]
 
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
     [%- PROCESS nginx_test_config no_build=0 %]
 
     dep nginx-module-test [% "ngx_" _ name.replace("-", "_", "g") %];
+    dep gd-devel;
 [% END -%]
 
 [%- mods = [
@@ -136,14 +185,24 @@ libev_version = 4.11;
     'headers_more', 'rds_csv',
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
+    'lua_upstream', 'replace_filter',
    ]
 -%]
 
 [%- lualibs = [
         'resty-memcached', 'resty-redis',
         'resty-mysql', 'resty-string',
-        'resty-upload',
+        'resty-upload', 'resty-dns',
+        'resty-websocket', 'resty-lock',
+        'resty-logger-socket', 'resty-core',
+        'resty-upstream-healthcheck',
+        'resty-lrucache',
     ]
+%]
+
+[%- lualib_authors = {
+        'resty-logger-socket' => 'cloudflare',
+    }
 %]
 
 [%- cpu_mods = {
@@ -152,6 +211,9 @@ libev_version = 4.11;
         set_misc => 1,
         coolkit => 1,
         encrypted_session => 1,
+        example_lua => 1,
+        lua_upstream => 1,
+        headers_more => 1,
     }
 -%]
 
@@ -290,18 +352,8 @@ tl {
 [% END -%]
 }
 
-etcproxy {
-    git git://github.com/chaoslawful/etcproxy.git ~/git/etcproxy;
-    dep erlang;
-}
-
-erlang {
-    prog erl erlc;
-    yum erlang;
-}
-
 ngx_srcache {
-    git git://github.com/agentzh/srcache-nginx-module.git ~/git/srcache-nginx-module;
+    git git://github.com/openresty/srcache-nginx-module.git ~/git/srcache-nginx-module;
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
     dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
@@ -309,7 +361,7 @@ ngx_srcache {
 }
 
 ngx_memc {
-    git git://github.com/agentzh/memc-nginx-module.git ~/git/memc-nginx-module;
+    git git://github.com/openresty/memc-nginx-module.git ~/git/memc-nginx-module;
     dep ragel;
 }
 
@@ -338,6 +390,113 @@ ngx_postgres {
     dep libpq;
 }
 
+ngx_replace_filter {
+    git git://github.com/openresty/replace-filter-nginx-module.git ~/git/replace-filter-nginx-module;
+}
+
+sregex {
+    always;
+    #file ~/git/mockeagain/mockeagain.so;
+    sh 'cd ~/git/sregex && make -j$jobs || make clean all';
+    env PATH /usr/local/openresty-debug/luajit/bin:/opt/bison/bin:$PATH;
+    dep sregex-git;
+    dep cc bison ngx_openresty-debug;
+    dep perl516-IPC-Run3 perl516-Test-LongString perl516-Test-Base perl516;
+    dep perl516-Test-Differences;
+}
+
+resty-cli {
+    git git://github.com/openresty/resty-cli.git ~/git/resty-cli;
+    dep ngx_lua;
+    dep perl-IPC-Run test-longstring test-base text-diff;
+}
+
+perl516 {
+    file '/opt/perl516/bin/perl';
+    test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
+    cwd /tmp;
+    fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
+    tarball perl-$perl516_version.tar.gz;
+    sh 'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    dep cc;
+}
+
+perl516-Test-LongString {
+    test '/opt/perl516/bin/perl -MTest::LongString -e1';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::LongString';
+    dep perl516;
+}
+
+perl516-Test-Differences {
+    test '/opt/perl516/bin/perl -MTest::Differences -e1';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::Differences';
+    dep perl516;
+}
+
+perl516-Test-Base {
+    test '/opt/perl516/bin/perl -e "require(q{Test/Base.pm});"';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i Test::Base';
+    dep perl516;
+}
+
+perl516-IPC-Run3 {
+    test '/opt/perl516/bin/perl -MIPC::Run3 -e1';
+    sh 'echo y|sudo /opt/perl516/bin/cpan -i IPC::Run3';
+    dep perl516;
+}
+
+perl-IPC-Run {
+    test 'perl -MIPC::Run -e1';
+    yum perl-IPC-Run;
+}
+
+perl-IPC-Run3 {
+    test 'perl -MIPC::Run3 -e1';
+    yum perl-IPC-Run3;
+}
+
+t-sregex {
+    always;
+    cwd ~/git/sregex;
+    sh 'PAGER= git log HEAD^..HEAD';
+    sh 'PATH=/opt/perl516/bin:$PATH make test -j$jobs';
+    dep sregex;
+}
+
+tv-sregex {
+    always;
+    cwd ~/git/sregex;
+    sh 'PAGER= git log HEAD^..HEAD';
+    sh 'PATH=/opt/perl516/bin:$PATH make valtest -j$jobs';
+    dep sregex;
+}
+
+[% FOREACH type = ['', 'v'] -%]
+t[% type %]-resty-cli  {
+    [%- PROCESS build_lua_lib name="resty-cli" -%]
+    [%- IF type == "v" -%]
+    env TEST_RESTY_USE_VALGRIND 1;
+    [%- ELSE %]
+    env TEST_RESTY_USE_VALGRIND '';
+    [%- END %]
+    dep build-ngx_lua;
+}
+[% END -%]
+
+bison {
+    file /opt/bison/bin/bison;
+    test '/opt/bison/bin/bison --version|grep "$bison_version"';
+    cwd /tmp;
+    fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
+    tarball bison-$bison_version.tar.gz;
+    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    dep cc;
+}
+
+sregex-git {
+    git git://github.com/openresty/sregex.git ~/git/sregex;
+}
+
 libpq {
     file /usr/lib64/libpq.so;
     file /usr/include/libpq-fe.h;
@@ -348,7 +507,7 @@ ngx_drizzle {
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
 
-    git git://github.com/chaoslawful/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
+    git git://github.com/openresty/drizzle-nginx-module.git ~/git/drizzle-nginx-module;
     dep libdrizzle;
 }
 
@@ -363,20 +522,20 @@ libdrizzle {
 }
 
 ngx_rds_json {
-    git git://github.com/agentzh/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
+    git git://github.com/openresty/rds-json-nginx-module.git ~/git/rds-json-nginx-module;
 }
 
 ngx_rds_csv {
-    git git://github.com/agentzh/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
+    git git://github.com/openresty/rds-csv-nginx-module.git ~/git/rds-csv-nginx-module;
 }
 
 ngx_array_var {
-    git git://github.com/agentzh/array-var-nginx-module.git ~/git/array-var-nginx-module;
+    git git://github.com/openresty/array-var-nginx-module.git ~/git/array-var-nginx-module;
     dep ndk;
 }
 
 ngx_encrypted_session {
-    git git://github.com/agentzh/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
+    git git://github.com/openresty/encrypted-session-nginx-module.git ~/git/encrypted-session-nginx-module;
     dep ndk;
 }
 
@@ -386,25 +545,25 @@ ngx_form_input {
 }
 
 ngx_xss {
-    git git://github.com/agentzh/xss-nginx-module.git ~/git/xss-nginx-module;
+    git git://github.com/openresty/xss-nginx-module.git ~/git/xss-nginx-module;
     dep ragel;
 }
 
 ngx_redis2 {
-    git git://github.com/agentzh/redis2-nginx-module.git ~/git/redis2-nginx-module;
+    git git://github.com/openresty/redis2-nginx-module.git ~/git/redis2-nginx-module;
     dep ragel;
 }
 
 ngx_eval {
-    git git://github.com/agentzh/nginx-eval-module.git ~/git/eval-nginx-module;
+    git git://github.com/openresty/nginx-eval-module.git ~/git/eval-nginx-module;
 }
 
 ngx_echo {
-    git git://github.com/agentzh/echo-nginx-module.git ~/git/echo-nginx-module;
+    git git://github.com/openresty/echo-nginx-module.git ~/git/echo-nginx-module;
 }
 
 ngx_example_lua {
-    git git://github.com/agentzh/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
+    git git://github.com/bakins/nginx-example-lua-module.git ~/git/example-lua-nginx-module;
 
     env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
     env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
@@ -412,8 +571,16 @@ ngx_example_lua {
     dep ngx_lua;
 }
 
+ngx_lua_upstream {
+    git git://github.com/openresty/lua-upstream-nginx-module.git ~/git/lua-upstream-nginx-module;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+    dep ngx_lua;
+}
+
 ngx_lua {
-    git git://github.com/chaoslawful/lua-nginx-module.git ~/git/lua-nginx-module;
+    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module;
 
     env LD_LIBRARY_PATH /usr/local/openresty-debug/luajit/lib:$LD_LIBRARY_PATH;
     env LUAJIT_LIB /usr/local/openresty-debug/luajit/lib;
@@ -445,10 +612,6 @@ ngx_coolkit {
     git git://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
 
-luajit {
-    dep ngx_openresty-debug;
-}
-
 ngx_openresty-debug {
     test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
     file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
@@ -463,24 +626,29 @@ ngx_openresty-debug {
 
 [% FOREACH name IN lualibs %]
 lua-[% name %] {
-    git git://github.com/agentzh/lua-[% name %].git ~/git/lua-[% name %];
+    [%- author = lualib_authors.$name %]
+    [%- IF NOT author; author = "openresty"; END %]
+    git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
+    [%- IF name == "resty-core" %]
+    dep lua-resty-lrucache;
+    [%- END %]
     dep ngx_lua;
 }
 [% END %]
 
 ngx_headers_more {
-    git git://github.com/agentzh/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
+    git git://github.com/openresty/headers-more-nginx-module.git ~/git/headers-more-nginx-module;
 }
 
 nginx-devel-utils {
-    git git://github.com/agentzh/nginx-devel-utils.git ~/git/nginx-devel-utils;
+    git git://github.com/openresty/nginx-devel-utils.git ~/git/nginx-devel-utils;
     dep no-pool-nginx;
     dep ngx_openresty;
     dep patch;
 }
 
 ngx_set_misc {
-    git git://github.com/agentzh/set-misc-nginx-module ~/git/set-misc-nginx-module;
+    git git://github.com/openresty/set-misc-nginx-module ~/git/set-misc-nginx-module;
 }
 
 ngx_iconv {
@@ -489,12 +657,12 @@ ngx_iconv {
 }
 
 no-pool-nginx {
-    git git://github.com/shrimp/no-pool-nginx.git ~/git/no-pool-nginx;
+    git git://github.com/openresty/no-pool-nginx.git ~/git/no-pool-nginx;
     dep patch;
 }
 
 ngx_openresty {
-    git git://github.com/agentzh/ngx_openresty.git ~/git/ngx_openresty;
+    git git://github.com/openresty/ngx_openresty.git ~/git/ngx_openresty;
 }
 
 git {
@@ -511,7 +679,7 @@ mockeagain {
 }
 
 mockeagain-git {
-    git git://github.com/agentzh/mockeagain.git ~/git/mockeagain;
+    git git://github.com/openresty/mockeagain.git ~/git/mockeagain;
 }
 
 run-redis {
@@ -522,12 +690,7 @@ run-redis {
 
 redis {
     prog redis-server;
-    test 'redis-server -v|grep $redis_version';
-    cwd /tmp;
-    fetch 'http://redis.googlecode.com/files/redis-$redis_version.tar.gz';
-    tarball redis-$redis_version.tar.gz;
-    sh 'cd redis-$redis_version/ && ARCH= make -j$jobs && ARCH= sudo make install';
-    dep cc;
+    yum redis;
 }
 
 run-postgres {
@@ -594,11 +757,7 @@ pcre {
 
 axel {
     prog axel;
-    cwd /tmp;
-    fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
-    tarball axel-2.4.tar.bz2;
-    sh 'cd axel-2.4 && ./configure && make && sudo make install';
-    dep cc;
+    yum axel;
 }
 
 cc {
@@ -618,7 +777,7 @@ prove {
 }
 
 test-nginx {
-    git git://github.com/agentzh/test-nginx.git ~/git/test-nginx;
+    git git://github.com/openresty/test-nginx.git ~/git/test-nginx;
     dep test-base time-hires test-longstring list-moreutils parallel-forkmanager;
     dep ab weighttp;
 }
@@ -642,13 +801,9 @@ python {
 }
 
 libev {
-    file /usr/local/lib/libev.so;
-    file /usr/local/include/ev.h;
-    cwd /tmp;
-    fetch http://dist.schmorp.de/libev/libev-$libev_version.tar.gz;
-    tarball libev-$libev_version.tar.gz;
-    sh 'cd libev-$libev_version && ./configure && make -j$jobs && sudo make install';
-    dep cxx cc;
+    file /usr/lib/libev.so;
+    file /usr/include/ev.h;
+    yum libev-devel;
 }
 
 parallel-forkmanager {
@@ -674,6 +829,11 @@ time-hires {
 test-base {
     test 'perl -e "require(q{Test/Base.pm});"';
     yum perl-Test-Base;
+}
+
+text-diff {
+    test 'perl -MText::Diff -e1';
+    yum perl-Text-Diff;
 }
 
 patch {
@@ -745,6 +905,12 @@ t[% type %]-ngx_drizzle {
 
 t[% type %]-ngx_example_lua {
     [%- PROCESS build_nginx_module name="example-lua" -%]
+
+    dep ngx_echo ngx_lua;
+}
+
+t[% type %]-ngx_lua_upstream {
+    [%- PROCESS build_nginx_module name="lua-upstream" -%]
 
     dep ngx_echo ngx_lua;
 }
@@ -837,15 +1003,26 @@ t[% type %]-ngx_coolkit {
     dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
 }
 
-[%- IF type == "o"; NEXT; END -%]
+t[% type %]-ngx_replace_filter {
+    env SREGEX_INC ~/git/sregex/src;
+    env SREGEX_LIB ~/git/sregex;
+
+    [%- PROCESS build_nginx_module name="replace-filter" -%]
+
+    dep sregex ngx_echo ngx_lua;
+}
 
 [% FOREACH name IN lualibs -%]
 t[% type %]-lua-[% name %] {
-    [%- PROCESS build_lua_lib name=name -%]
+    [%- PROCESS build_lua_lib name="lua-" _ name -%]
 
-    [%- IF name == "resty-mysql" %]
+    [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     [%- END -%]
+
+    [%- IF name != "lua-resty-core" %]
+    dep lua-resty-core;
+    [%- END %]
 
     dep build-ngx_lua;
 }
@@ -875,7 +1052,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/agentzh/opsboy.git ~/git/opsboy;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy;
     dep cc parse-recdescent tt2 perl-appconfig;
 }
 
@@ -903,6 +1080,11 @@ build-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_upstream_keepalive;
     dep ngx_rds_json ngx_coolkit;
+}
+
+gd-devel {
+    file /usr/include/gd.h;
+    yum gd-devel;
 }
 
 systemtap {
@@ -961,8 +1143,12 @@ tar {
     dep bzip2;
 }
 
+ccache {
+    prog ccache;
+    yum ccache;
+}
+
 bzip2 {
     prog bzip2;
     yum bzip2;
 }
-
