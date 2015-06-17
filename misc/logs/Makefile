@@ -15,8 +15,8 @@ gen: parse gen-report
 	-rm html/*.*
 	./gen-report ortest
 	mkdir -p $(dirname)
-	cp -u main.css html/
-	cp -u new_icon.gif html/images
+	cp main.css html/
+	cp new_icon.gif html/images
 	cp html/*.* $(dirname)/
 
 %.json: %.log parse-logs
