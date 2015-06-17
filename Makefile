@@ -20,8 +20,8 @@ openresty-tester.pl: ortest-ec2.pl
 	tpage $< > $@ || (rm $@; exit 1)
 
 test: all
-	./ortest-ec2.pl check -k --git-pull
-	./ortest-fc.pl check -k --git-pull
+	./ortest-ec2.pl check t tv tr to tl -k --git-pull
+	./ortest-fc.pl check t tv tr to tl -k --git-pull
 
 clean:
 	rm -f openresty-tester.pl ortest-*.pl samples/*.ob
