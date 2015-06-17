@@ -7,7 +7,7 @@ use Getopt::Std;
 use JSON::XS;
 use POSIX qw( ceil );
 use List::Util qw( sum );
-use Parallel::ForkManager;
+#use Parallel::ForkManager;
 
 my %opts;
 getopts("a:t:e:v:o:Scrf", \%opts) or
@@ -193,19 +193,18 @@ for my $bucket (@buckets) {
 }
 
 if ($run) {
-    my $pm = Parallel::ForkManager->new(10);
+    #my $pm = Parallel::ForkManager->new(10);
 
     for my $bucket (@buckets) {
-        my $pid = $pm->start and next;
+        #my $pid = $pm->start and next;
 
         my @cmd = ('./run-node', '-a', $arch, @$bucket);
         #print "command: @cmd\n";
         system(@cmd) == 0
             or warn "failed to start the node. abort. cmd: @cmd\n";
 
-        $pm->finish;
+        #$pm->finish;
     }
 
-    $pm->wait_all_children();
+    #$pm->wait_all_children();
 }
-
