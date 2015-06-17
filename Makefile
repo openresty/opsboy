@@ -1,9 +1,10 @@
 .PHONY: all ec2 fc test clean
 .PRECIOUS: samples/ortest-fc.ob samples/ortest-ec2.ob samples/ortest-fb.ob samples/ortest-sol.ob samples/ortest-mac.ob
 
-all: ec2
-
 ec2: openresty-tester.pl
+
+all: ec2 fc fb sol mac
+
 fc: ortest-fc.pl
 fb: ortest-fb.pl
 sol: ortest-sol.pl
