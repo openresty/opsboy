@@ -17,7 +17,7 @@ openresty-tester.pl: ortest-ec2.pl
 	./opsboy -o $@ $<
 
 %.ob: %.ob.tt
-	tpage $< > $@
+	tpage $< > $@ || (rm $@; exit 1)
 
 test: all
 	./ortest-ec2.pl check -k --git-pull
