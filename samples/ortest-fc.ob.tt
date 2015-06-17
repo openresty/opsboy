@@ -8,6 +8,8 @@ ngx_auth_request_version = 0.2;
 pcre_version = 8.33;
 force = 0;
 libev_version = 4.15;
+luajit_branch = v2.1-agentzh;
+perl516_version = 5.16.2;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -24,7 +26,7 @@ libev_version = 4.15;
     [%- UNLESS type.match("o") %]
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
     [%- END %]
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -128,21 +130,21 @@ named {
 
 caching-nameserver-config {
     test 'grep 8.8.8.8 /etc/named.conf';
-    sh 'sudo wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /etc/named.conf';
+    sh 'wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /tmp/named.conf && sudo cp /tmp/named.conf /etc/';
     sh 'sudo chmod a+r /etc/named.conf';
 }
 
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -357,7 +359,7 @@ ngx_srcache {
     dep ndk ngx_set_misc ngx_redis ngx_xss;
     dep ngx_redis2 ngx_eval ngx_echo ngx_headers_more;
     dep ngx_lua ngx_rds_json ngx_drizzle ngx_postgres;
-    dep ngx_memc ngx_upstream_keepalive;
+    dep ngx_memc;
 }
 
 ngx_memc {
@@ -374,13 +376,6 @@ cxx {
     prog g++;
     yum gcc-c++;
     dep make;
-}
-
-ngx_upstream_keepalive {
-    file ~/work/nginx/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version;
-    cwd ~/work/nginx;
-    fetch http://mdounin.ru/files/ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
-    tarball ngx_http_upstream_keepalive-$ngx_upstream_keepalive_version.tar.gz;
 }
 
 ngx_postgres {
@@ -417,7 +412,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -484,13 +479,8 @@ t[% type %]-resty-cli  {
 [% END -%]
 
 bison {
-    file /opt/bison/bin/bison;
-    test '/opt/bison/bin/bison --version|grep "$bison_version"';
-    cwd /tmp;
-    fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
-    tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
-    dep cc;
+    prog bison;
+    yum bison;
 }
 
 sregex-git {
@@ -595,10 +585,18 @@ pcrejit {
     file /opt/pcrejit/lib/libpcre.so;
     file /opt/pcrejit/include/pcre.h;
 
-    fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.gz;
-    tarball pcre-$pcre_version.tar.gz;
+    test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
+
     cwd /tmp;
-    sh 'cd pcre-$pcre_version && ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+    fetch http://linux.stanford.edu/pub/exim/pcre/pcre-$pcre_version.tar.bz2;
+    tarball pcre-$pcre_version.tar.bz2;
+    sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+    dep c-plusplus;
+}
+
+c-plusplus {
+    prog g++;
+    yum gcc-c++;
 }
 
 ngx_auth_request {
@@ -614,13 +612,13 @@ ngx_coolkit {
 
 ngx_openresty-debug {
     test '/usr/local/openresty-debug/nginx/sbin/nginx -V 2>&1 |grep "$openresty_version$"';
-    file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
+    #file /usr/local/openresty-debug/luajit/include/luajit-2.0/lua.h;
     file /usr/local/openresty-debug/luajit/lib/libluajit-5.1.so;
     file /usr/local/openresty-debug/nginx/sbin/nginx;
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -712,7 +710,7 @@ postgres {
 
 run-mysql {
     running 'mysqld --';
-    sh 'sudo service mysqld start || (sleep 10 && sudo service mysqld start)';
+    sh 'sudo systemctl start mariadb.service || (sleep 10 && sudo systemctl start mariadb.service)';
     dep mysql;
 }
 
@@ -926,7 +924,7 @@ t[% type %]-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive ngx_srcache;
+    dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit;
 }
 
@@ -934,14 +932,14 @@ t[% type %]-ngx_memc {
     [%- PROCESS build_nginx_module name="memc" -%]
 
     dep run-memcached;
-    dep ndk ngx_eval ngx_echo ngx_lua ngx_upstream_keepalive;
+    dep ndk ngx_eval ngx_echo ngx_lua;
 }
 
 t[% type %]-ngx_redis2 {
     [%- PROCESS build_nginx_module name="redis2" -%]
 
     dep run-redis;
-    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua ngx_upstream_keepalive;
+    dep ndk ngx_eval ngx_echo ngx_set_misc ngx_lua;
 }
 
 t[% type %]-ngx_xss {
@@ -1078,7 +1076,7 @@ build-ngx_lua {
     dep run-memcached run-redis run-mysql mockeagain;
     dep pcrejit ndk ngx_set_misc ngx_auth_request;
     dep ngx_echo ngx_memc ngx_headers_more;
-    dep ngx_drizzle ngx_upstream_keepalive;
+    dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
 }
 
