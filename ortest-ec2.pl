@@ -27,6 +27,16 @@ if ($^O eq 'darwin') {
     $osx = 1;
 }
 
+my $use_dnf;
+if (can_run("dnf")) {
+    $use_dnf = 1;
+}
+
+my $use_yum;
+if (can_run("yum")) {
+    $use_yum = 1;
+}
+
 sub make ($) {
     my $target = shift;
 
@@ -212,8 +222,14 @@ sub make ($) {
                 } elsif ($osx) {
                     sh("brew install $pkg");
 
-                } else {
+                } elsif ($use_dnf) {
+                    sh("sudo dnf install $pkg -y");
+
+                } elsif ($use_yum) {
                     sh("sudo yum install $pkg -y");
+
+                } else {
+                    sh("unsupported OS for package installation");
                 }
             }
         }
@@ -221,7 +237,15 @@ sub make ($) {
         $pkgs = $rules->{debuginfo};
         if ($pkgs) {
             for my $pkg (@$pkgs) {
-                sh("sudo debuginfo-install $pkg -y");
+                if ($use_dnf) {
+                    sh("sudo dnf debuginfo-install $pkg -y");
+
+                } elsif ($use_yum) {
+                    sh("sudo debuginfo-install $pkg -y");
+
+                } else {
+                    sh("unsupported OS for debuginfo package installation");
+                }
             }
         }
 
@@ -414,7 +438,7 @@ $vars = {
   'nginx_version' => '1.7.10',
   'ngx_auth_request_version' => '0.2',
   'ngx_redis_version' => '0.3.7',
-  'openresty_version' => '1.7.7.2',
+  'openresty_version' => '1.7.10.1',
   'pcre_version' => '8.33',
   'perl516_version' => '5.16.2',
   'ragel_version' => '6.9',
