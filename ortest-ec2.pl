@@ -428,7 +428,7 @@ sub can_run ($) {
 $default_goal = 'run-caching-nameserver';
 
 $vars = {
-  'bison_version' => '2.7',
+  'bison_version' => '3.0.4',
   'ccache_version' => '3.1.9',
   'force' => '0',
   'jobs' => '3',
