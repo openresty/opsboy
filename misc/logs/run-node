@@ -40,7 +40,7 @@ my $user_data = join (" ", @ARGV)
     or die "No user data specified.\n";
 
 my @cmd = ("ec2-run-instances", $ami, "-k", $keypair, "-d", $user_data,
-        "--debug", "-t", $instance_type, '--availability-zone', 'us-west-1b',
+        "--debug", "-t", $instance_type, #'--availability-zone', 'us-west-1b',
         '--region', 'us-west-1',
         '--instance-initiated-shutdown-behavior', 'terminate',
         '-g', 'ortest');
