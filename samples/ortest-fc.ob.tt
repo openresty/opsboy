@@ -11,6 +11,7 @@ libev_version = 4.15;
 luajit_branch = v2.1-agentzh;
 perl516_version = 5.16.2;
 bison_version = 3.0.4;
+ragel_version = 6.9;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -370,7 +371,13 @@ ngx_memc {
 
 ragel {
     prog ragel;
-    yum ragel;
+    test '/opt/ragel/bin/ragel -v|grep "$ragel_version"';
+    env PATH /opt/ragel/bin:$PATH;
+    cwd /tmp;
+    fetch http://www.colm.net/files/ragel/ragel-$ragel_version.tar.gz;
+    tarball ragel-$ragel_version.tar.gz;
+    sh 'cd ragel-$ragel_version && ./configure --prefix=/opt/ragel && make -j$jobs && sudo make install';
+    dep cxx;
 }
 
 cxx {
