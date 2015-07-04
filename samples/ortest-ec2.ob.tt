@@ -965,7 +965,7 @@ t[% type %]-ngx_example_lua {
 t[% type %]-ngx_lua_upstream {
     [%- PROCESS build_nginx_module name="lua-upstream" -%]
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 t[% type %]-ngx_xss {

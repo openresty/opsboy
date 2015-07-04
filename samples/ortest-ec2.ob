@@ -1651,7 +1651,7 @@ t-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 t-ngx_xss {
@@ -3521,7 +3521,7 @@ tv-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 tv-ngx_xss {
@@ -11996,7 +11996,7 @@ th-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 th-ngx_xss {
@@ -13833,7 +13833,7 @@ thv-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 thv-ngx_xss {
@@ -15729,7 +15729,7 @@ tl-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 tl-ngx_xss {
@@ -17582,7 +17582,7 @@ to-ngx_lua_upstream {
     dep nginx-module-test ngx_lua_upstream;
     dep gd-devel;
 
-    dep ngx_echo ngx_lua;
+    dep ngx_echo ngx_lua ngx_set_misc;
 }
 
 to-ngx_xss {
