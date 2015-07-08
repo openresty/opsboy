@@ -3493,7 +3493,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
@@ -6169,7 +6170,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
@@ -8759,7 +8761,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
@@ -11373,7 +11376,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
@@ -13923,7 +13927,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
@@ -20878,7 +20883,8 @@ $entities = {
       'ngx_lua_upstream',
       'gd-devel',
       'ngx_echo',
-      'ngx_lua'
+      'ngx_lua',
+      'ngx_set_misc'
     ],
     'env' => [
       'PATH',
