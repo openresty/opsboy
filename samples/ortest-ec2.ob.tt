@@ -43,6 +43,7 @@ nginx_cc_opt = '-O1';
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     [%- ELSE %]
     env NGX_BUILD_OPT $nginx_cc_opt;
     env NGX_BUILD_NO_DEBUG '';

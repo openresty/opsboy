@@ -17035,6 +17035,7 @@ to-ngx_srcache {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17092,6 +17093,7 @@ to-ngx_rds_json {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17150,6 +17152,7 @@ to-ngx_rds_csv {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17209,6 +17212,7 @@ to-ngx_drizzle {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17267,6 +17271,7 @@ to-ngx_encrypted_session {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17324,6 +17329,7 @@ to-ngx_array_var {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17381,6 +17387,7 @@ to-ngx_set_misc {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17438,6 +17445,7 @@ to-ngx_headers_more {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17495,6 +17503,7 @@ to-ngx_example_lua {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17552,6 +17561,7 @@ to-ngx_lua_upstream {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17609,6 +17619,7 @@ to-ngx_xss {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17667,6 +17678,7 @@ to-ngx_lua {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17729,6 +17741,7 @@ to-ngx_memc {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17787,6 +17800,7 @@ to-ngx_redis2 {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17845,6 +17859,7 @@ to-ngx_echo {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17903,6 +17918,7 @@ to-ngx_eval {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -17960,6 +17976,7 @@ to-ngx_form_input {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18017,6 +18034,7 @@ to-ngx_postgres {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18077,6 +18095,7 @@ to-ngx_iconv {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18134,6 +18153,7 @@ to-ngx_coolkit {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18195,6 +18215,7 @@ to-ngx_replace_filter {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18246,6 +18267,7 @@ to-lua-resty-memcached {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18295,6 +18317,7 @@ to-lua-resty-redis {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18344,6 +18367,7 @@ to-lua-resty-mysql {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18394,6 +18418,7 @@ to-lua-resty-string {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18443,6 +18468,7 @@ to-lua-resty-upload {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18492,6 +18518,7 @@ to-lua-resty-dns {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18541,6 +18568,7 @@ to-lua-resty-websocket {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18590,6 +18618,7 @@ to-lua-resty-lock {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18639,6 +18668,7 @@ to-lua-resty-logger-socket {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18688,6 +18718,7 @@ to-lua-resty-core {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18736,6 +18767,7 @@ to-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
@@ -18785,6 +18817,7 @@ to-lua-resty-lrucache {
 
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
 
