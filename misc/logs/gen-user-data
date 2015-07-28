@@ -156,13 +156,16 @@ for my $lib (@ARGV) {
     }
 }
 
+#warn "goals: @goals";
+
 if (defined $exclude) {
-    my @skipped = grep { $_ eq $exclude || /$exclude/ } @goals;
+    my @skipped = grep { ($_ eq $exclude) || ($_ =~ /$exclude/) } @goals;
     if (@skipped) {
         warn "WARNING: skipping goals @skipped\n";
     }
 
     @goals = grep { my $e = $_; !any { $_ eq $e } @skipped  } @goals;
+    #warn "goals 2: @goals";
 }
 
 print join(' ', uniq @goals), "\n";

@@ -1473,7 +1473,7 @@ $entities = {
       '/opt/perl516/bin/perl'
     ],
     'sh' => [
-      'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install'
+      'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install'
     ],
     'tarball' => [
       'perl-$perl516_version.tar.gz'
