@@ -415,6 +415,7 @@ resty-cli {
 }
 
 perl516 {
+    #always;
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
     cwd /tmp;

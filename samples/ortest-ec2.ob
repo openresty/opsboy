@@ -2185,7 +2185,7 @@ t-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 t-ngx_coolkit {
@@ -4082,7 +4082,7 @@ tv-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 tv-ngx_coolkit {
@@ -5632,7 +5632,7 @@ tr-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 tr-ngx_coolkit {
@@ -7260,7 +7260,7 @@ trv-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 trv-ngx_coolkit {
@@ -8906,7 +8906,7 @@ tw-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 tw-ngx_coolkit {
@@ -10560,7 +10560,7 @@ twv-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 twv-ngx_coolkit {
@@ -12521,7 +12521,7 @@ th-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 th-ngx_coolkit {
@@ -14385,7 +14385,7 @@ thv-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 thv-ngx_coolkit {
@@ -16272,7 +16272,7 @@ tl-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 tl-ngx_coolkit {
@@ -18107,7 +18107,7 @@ to-ngx_iconv {
     dep nginx-module-test ngx_iconv;
     dep gd-devel;
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 to-ngx_coolkit {
