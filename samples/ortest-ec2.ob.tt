@@ -2,7 +2,7 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.9.2;
+nginx_version = 1.9.3;
 openresty_version = 1.7.10.2;
 redis_version = 3.0.2;
 ngx_auth_request_version = 0.2;
@@ -43,6 +43,7 @@ nginx_cc_opt = '-O1';
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     [%- ELSE %]
     env NGX_BUILD_OPT $nginx_cc_opt;
     env NGX_BUILD_NO_DEBUG '';
@@ -431,7 +432,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
