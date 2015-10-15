@@ -10,8 +10,8 @@ use List::Util qw( sum );
 #use Parallel::ForkManager;
 
 my %opts;
-getopts("a:t:e:v:o:Scrf", \%opts) or
-    die "Usage: $0 [-S] [-e exclude-pattern] [-v <nginx-version>] [-o nginx-cc-opts] [-c] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+getopts("i:a:t:e:v:o:Scrf", \%opts) or
+    die "Usage: $0 [-S] [-i instance-type] [-e exclude-pattern] [-v <nginx-version>] [-o nginx-cc-opts] [-c] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
@@ -198,7 +198,7 @@ if ($run) {
     for my $bucket (@buckets) {
         #my $pid = $pm->start and next;
 
-        my @cmd = ('./run-node', '-a', $arch, @$bucket);
+        my @cmd = ('./run-node', $opts{i} ? ("-t", "$opts{i}") : (), '-a', $arch, @$bucket);
         #print "command: @cmd\n";
         system(@cmd) == 0
             or warn "failed to start the node. abort. cmd: @cmd\n";
