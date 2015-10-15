@@ -3318,7 +3318,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -5995,7 +5997,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -8582,7 +8586,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -11197,7 +11203,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -13752,7 +13760,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -16091,7 +16101,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -18266,7 +18278,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -20704,7 +20718,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -23209,7 +23225,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',
@@ -25436,7 +25454,9 @@ $entities = {
       'ndk',
       'ngx_set_misc',
       'ngx_lua',
-      'ngx_rds_json'
+      'ngx_rds_json',
+      'ngx_headers_more',
+      'ngx_form_input'
     ],
     'env' => [
       'PATH',

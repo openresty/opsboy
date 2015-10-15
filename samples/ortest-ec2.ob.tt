@@ -1037,7 +1037,7 @@ t[% type %]-ngx_postgres {
 t[% type %]-ngx_iconv {
     [%- PROCESS build_nginx_module name="iconv" -%]
 
-    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json;
+    dep ngx_echo ndk ngx_set_misc ngx_lua ngx_rds_json ngx_headers_more ngx_form_input;
 }
 
 t[% type %]-ngx_coolkit {
