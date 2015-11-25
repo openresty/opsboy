@@ -11,7 +11,7 @@ force = 0;
 ragel_version = 6.9;
 valgrind_version = 3.8.1;
 libev_version = 4.15;
-systemtap_version = 2.5;
+systemtap_version = 2.9;
 perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
@@ -18993,7 +18993,12 @@ stap {
     fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
     tarball systemtap-$systemtap_version.tar.gz;
     sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo rm -rf /opt/systemtap && sudo make install';
-    dep cc elfutils-devel;
+    dep cc elfutils-devel msgfmt;
+}
+
+msgfmt {
+    prog msgfmt;
+    yum gettext;
 }
 
 elfutils-devel {

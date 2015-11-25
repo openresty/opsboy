@@ -1165,7 +1165,12 @@ stap {
     fetch http://sourceware.org/systemtap/ftp/releases/systemtap-$systemtap_version.tar.gz;
     tarball systemtap-$systemtap_version.tar.gz;
     sh 'cd systemtap-$systemtap_version && ./configure --prefix=/opt/systemtap --disable-docs --disable-publican --disable-refdocs && make -j$jobs && sudo rm -rf /opt/systemtap && sudo make install';
-    dep cc elfutils-devel;
+    dep cc elfutils-devel msgfmt;
+}
+
+msgfmt {
+    prog msgfmt;
+    yum gettext;
 }
 
 elfutils-devel {
