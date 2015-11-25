@@ -36,7 +36,7 @@ nginx_cc_opt = '-O1';
     [%- UNLESS type.match("o") %]
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
     [%- END %]
-    env NGX_BUILD_CC 'ccache gcc48';
+    env NGX_BUILD_CC 'ccache gcc47';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -148,14 +148,14 @@ caching-nameserver-config {
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -432,7 +432,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc48 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -504,7 +504,7 @@ bison {
     cwd /tmp;
     fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
     tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && CC=gcc48 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -635,7 +635,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc48 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -798,8 +798,8 @@ axel {
 }
 
 cc {
-    prog gcc48;
-    yum gcc48;
+    prog gcc47;
+    yum gcc47;
     dep make;
 }
 
