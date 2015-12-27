@@ -262,6 +262,8 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['h', 'semaphore.t', qr/should not match any line in error.log but matches line/],
+        ['h', 'semaphore.t', qr/ - grep_error_log_out /],
         ['v', 'time.t', 'TEST 1: ngx.now() - response_body - response is expected', qr/< 0\.11: false/],
         ['v', 'request.t', 'TEST 7: ngx.req.start_time() - response_body - response is expected', qr/< 0\.11: false/],
         [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" matches a line in error\.log/], # FIXME
@@ -276,6 +278,8 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        ['w', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" matches a line in error\.log/],
+        ['h', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" matches a line in error\.log/],
         ['w', '041-header-filter.t', 'TEST 41: filter finalize - status code ok', qr/got: ''/],
         ['w', '041-header-filter.t', qr/TEST 41: filter finalize - response_body_like - response is expected/, qr/''/],
         ['r', '014-bugs.t', 'TEST 41: https proxy has no timeout protection for ssl handshake - status code ok', qr/got: '502'/],
