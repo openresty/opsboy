@@ -16,10 +16,12 @@ perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
+openssl_version = 1.0.2e;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 1;
-nginx_cc_opt = '-O1';
+nginx_cc_opt = '-O1 -I/opt/ssl/include';
+nginx_ld_opt = '-L/opt/ssl/lib';
 
 run-caching-nameserver {
     running '/named -u ';
@@ -36,6 +38,19 @@ caching-nameserver-config {
     test 'grep 8.8.8.8 /etc/named.conf';
     sh 'sudo wget http://agentzh.org/misc/nginx/test/caching-nameserver.conf -O /etc/named.conf';
     sh 'sudo chmod a+r /etc/named.conf';
+}
+
+openssl {
+    file /opt/ssl/bin/openssl version;
+    test '/opt/ssl/bin/openssl version|grep "$openssl_version"';
+
+    env LD_LIBRARY_PATH /opt/ssl/lib:$LD_LIBRARY_PATH;
+
+    cwd /tmp;
+    fetch http://www.openssl.org/source/openssl-$openssl_version.tar.gz;
+    tarball openssl-$openssl_version.tar.gz;
+    sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install';
+    dep cc cxx;
 }
 
 luajit_sysmalloc {
@@ -531,6 +546,7 @@ t-resty-cli  {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -580,6 +596,7 @@ tv-resty-cli  {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -751,7 +768,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -944,12 +961,6 @@ perl-protocol-websocket {
     cpan Protocol::WebSocket;
 }
 
-openssl {
-    file /usr/include/openssl/md5.h;
-
-    yum openssl-devel;
-}
-
 pcre {
     prog pcre-config;
     yum pcre-devel;
@@ -1074,10 +1085,16 @@ t-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1094,6 +1111,7 @@ t-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1132,10 +1150,16 @@ t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1152,6 +1176,7 @@ t-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1191,10 +1216,16 @@ t-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1211,6 +1242,7 @@ t-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1251,10 +1283,16 @@ t-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1271,6 +1309,7 @@ t-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1310,10 +1349,16 @@ t-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1330,6 +1375,7 @@ t-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1368,10 +1414,16 @@ t-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1388,6 +1440,7 @@ t-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1426,10 +1479,16 @@ t-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1446,6 +1505,7 @@ t-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1484,10 +1544,16 @@ t-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1504,6 +1570,7 @@ t-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1542,10 +1609,16 @@ t-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1562,6 +1635,7 @@ t-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1600,10 +1674,16 @@ t-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1620,6 +1700,7 @@ t-ngx_lua_upstream {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1658,10 +1739,16 @@ t-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1678,6 +1765,7 @@ t-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1717,10 +1805,16 @@ t-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1737,6 +1831,7 @@ t-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1780,10 +1875,16 @@ t-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1800,6 +1901,7 @@ t-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1839,10 +1941,16 @@ t-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1859,6 +1967,7 @@ t-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1898,10 +2007,16 @@ t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1918,6 +2033,7 @@ t-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -1957,10 +2073,16 @@ t-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -1977,6 +2099,7 @@ t-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2015,10 +2138,16 @@ t-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2035,6 +2164,7 @@ t-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2073,10 +2203,16 @@ t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2093,6 +2229,7 @@ t-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2134,10 +2271,16 @@ t-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2154,6 +2297,7 @@ t-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2192,10 +2336,16 @@ t-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2212,6 +2362,7 @@ t-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2254,10 +2405,16 @@ t-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2274,6 +2431,7 @@ t-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2326,6 +2484,7 @@ t-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2376,6 +2535,7 @@ t-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2426,6 +2586,7 @@ t-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2477,6 +2638,7 @@ t-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2527,6 +2689,7 @@ t-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2577,6 +2740,7 @@ t-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2627,6 +2791,7 @@ t-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2677,6 +2842,7 @@ t-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2727,6 +2893,7 @@ t-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2777,6 +2944,7 @@ t-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2826,6 +2994,7 @@ t-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2876,6 +3045,7 @@ t-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2914,10 +3084,16 @@ tv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2934,6 +3110,7 @@ tv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -2975,10 +3152,16 @@ tv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -2995,6 +3178,7 @@ tv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3037,10 +3221,16 @@ tv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3057,6 +3247,7 @@ tv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3100,10 +3291,16 @@ tv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3120,6 +3317,7 @@ tv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3162,10 +3360,16 @@ tv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3182,6 +3386,7 @@ tv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3223,10 +3428,16 @@ tv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3243,6 +3454,7 @@ tv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3284,10 +3496,16 @@ tv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3304,6 +3522,7 @@ tv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3345,10 +3564,16 @@ tv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3365,6 +3590,7 @@ tv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3406,10 +3632,16 @@ tv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3426,6 +3658,7 @@ tv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3467,10 +3700,16 @@ tv-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3487,6 +3726,7 @@ tv-ngx_lua_upstream {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3528,10 +3768,16 @@ tv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3548,6 +3794,7 @@ tv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3590,10 +3837,16 @@ tv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3610,6 +3863,7 @@ tv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3656,10 +3910,16 @@ tv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3676,6 +3936,7 @@ tv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3718,10 +3979,16 @@ tv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3738,6 +4005,7 @@ tv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3780,10 +4048,16 @@ tv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3800,6 +4074,7 @@ tv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3842,10 +4117,16 @@ tv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3862,6 +4143,7 @@ tv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3903,10 +4185,16 @@ tv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3923,6 +4211,7 @@ tv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -3964,10 +4253,16 @@ tv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -3984,6 +4279,7 @@ tv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4028,10 +4324,16 @@ tv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -4048,6 +4350,7 @@ tv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4089,10 +4392,16 @@ tv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -4109,6 +4418,7 @@ tv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4154,10 +4464,16 @@ tv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -4174,6 +4490,7 @@ tv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4229,6 +4546,7 @@ tv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4282,6 +4600,7 @@ tv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4335,6 +4654,7 @@ tv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4389,6 +4709,7 @@ tv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4442,6 +4763,7 @@ tv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4495,6 +4817,7 @@ tv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4548,6 +4871,7 @@ tv-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4601,6 +4925,7 @@ tv-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4654,6 +4979,7 @@ tv-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4707,6 +5033,7 @@ tv-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4759,6 +5086,7 @@ tv-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4812,6 +5140,7 @@ tv-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4853,10 +5182,16 @@ tr-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -4873,6 +5208,7 @@ tr-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4917,10 +5253,16 @@ tr-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -4937,6 +5279,7 @@ tr-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -4982,10 +5325,16 @@ tr-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5002,6 +5351,7 @@ tr-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5048,10 +5398,16 @@ tr-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5068,6 +5424,7 @@ tr-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5116,10 +5473,16 @@ tr-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5136,6 +5499,7 @@ tr-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5185,10 +5549,16 @@ tr-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5205,6 +5575,7 @@ tr-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5250,10 +5621,16 @@ tr-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5270,6 +5647,7 @@ tr-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5315,10 +5693,16 @@ tr-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5335,6 +5719,7 @@ tr-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5380,10 +5765,16 @@ tr-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5400,6 +5791,7 @@ tr-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5444,10 +5836,16 @@ tr-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5464,6 +5862,7 @@ tr-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5508,10 +5907,16 @@ tr-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5528,6 +5933,7 @@ tr-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5575,10 +5981,16 @@ tr-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5595,6 +6007,7 @@ tr-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5639,10 +6052,16 @@ tr-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5659,6 +6078,7 @@ tr-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5707,10 +6127,16 @@ tr-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -5727,6 +6153,7 @@ tr-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5785,6 +6212,7 @@ tr-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5841,6 +6269,7 @@ tr-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5897,6 +6326,7 @@ tr-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -5954,6 +6384,7 @@ tr-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6010,6 +6441,7 @@ tr-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6066,6 +6498,7 @@ tr-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6122,6 +6555,7 @@ tr-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6178,6 +6612,7 @@ tr-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6234,6 +6669,7 @@ tr-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6290,6 +6726,7 @@ tr-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6345,6 +6782,7 @@ tr-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6401,6 +6839,7 @@ tr-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6445,10 +6884,16 @@ trv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6465,6 +6910,7 @@ trv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6512,10 +6958,16 @@ trv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6532,6 +6984,7 @@ trv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6580,10 +7033,16 @@ trv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6600,6 +7059,7 @@ trv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6649,10 +7109,16 @@ trv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6669,6 +7135,7 @@ trv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6720,10 +7187,16 @@ trv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6740,6 +7213,7 @@ trv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6792,10 +7266,16 @@ trv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6812,6 +7292,7 @@ trv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6860,10 +7341,16 @@ trv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6880,6 +7367,7 @@ trv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6928,10 +7416,16 @@ trv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -6948,6 +7442,7 @@ trv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -6996,10 +7491,16 @@ trv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7016,6 +7517,7 @@ trv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7063,10 +7565,16 @@ trv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7083,6 +7591,7 @@ trv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7130,10 +7639,16 @@ trv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7150,6 +7665,7 @@ trv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7200,10 +7716,16 @@ trv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7220,6 +7742,7 @@ trv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7267,10 +7790,16 @@ trv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7287,6 +7816,7 @@ trv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7338,10 +7868,16 @@ trv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -7358,6 +7894,7 @@ trv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7419,6 +7956,7 @@ trv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7478,6 +8016,7 @@ trv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7537,6 +8076,7 @@ trv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7597,6 +8137,7 @@ trv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7656,6 +8197,7 @@ trv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7715,6 +8257,7 @@ trv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7774,6 +8317,7 @@ trv-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7833,6 +8377,7 @@ trv-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7892,6 +8437,7 @@ trv-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -7951,6 +8497,7 @@ trv-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8009,6 +8556,7 @@ trv-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8068,6 +8616,7 @@ trv-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8115,10 +8664,16 @@ tw-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8135,6 +8690,7 @@ tw-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8180,10 +8736,16 @@ tw-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8200,6 +8762,7 @@ tw-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8246,10 +8809,16 @@ tw-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8266,6 +8835,7 @@ tw-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8313,10 +8883,16 @@ tw-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8333,6 +8909,7 @@ tw-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8382,10 +8959,16 @@ tw-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8402,6 +8985,7 @@ tw-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8452,10 +9036,16 @@ tw-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8472,6 +9062,7 @@ tw-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8518,10 +9109,16 @@ tw-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8538,6 +9135,7 @@ tw-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8584,10 +9182,16 @@ tw-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8604,6 +9208,7 @@ tw-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8650,10 +9255,16 @@ tw-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8670,6 +9281,7 @@ tw-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8715,10 +9327,16 @@ tw-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8735,6 +9353,7 @@ tw-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8780,10 +9399,16 @@ tw-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8800,6 +9425,7 @@ tw-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8848,10 +9474,16 @@ tw-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8868,6 +9500,7 @@ tw-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8913,10 +9546,16 @@ tw-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -8933,6 +9572,7 @@ tw-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -8982,10 +9622,16 @@ tw-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -9002,6 +9648,7 @@ tw-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9061,6 +9708,7 @@ tw-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9118,6 +9766,7 @@ tw-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9175,6 +9824,7 @@ tw-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9233,6 +9883,7 @@ tw-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9290,6 +9941,7 @@ tw-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9347,6 +9999,7 @@ tw-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9404,6 +10057,7 @@ tw-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9461,6 +10115,7 @@ tw-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9518,6 +10173,7 @@ tw-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9575,6 +10231,7 @@ tw-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9631,6 +10288,7 @@ tw-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9688,6 +10346,7 @@ tw-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9733,10 +10392,16 @@ twv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -9753,6 +10418,7 @@ twv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9801,10 +10467,16 @@ twv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -9821,6 +10493,7 @@ twv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9870,10 +10543,16 @@ twv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -9890,6 +10569,7 @@ twv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -9940,10 +10620,16 @@ twv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -9960,6 +10646,7 @@ twv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10012,10 +10699,16 @@ twv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10032,6 +10725,7 @@ twv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10085,10 +10779,16 @@ twv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10105,6 +10805,7 @@ twv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10154,10 +10855,16 @@ twv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10174,6 +10881,7 @@ twv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10223,10 +10931,16 @@ twv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10243,6 +10957,7 @@ twv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10292,10 +11007,16 @@ twv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10312,6 +11033,7 @@ twv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10360,10 +11082,16 @@ twv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10380,6 +11108,7 @@ twv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10428,10 +11157,16 @@ twv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10448,6 +11183,7 @@ twv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10499,10 +11235,16 @@ twv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10519,6 +11261,7 @@ twv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10567,10 +11310,16 @@ twv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10587,6 +11336,7 @@ twv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10639,10 +11389,16 @@ twv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -10659,6 +11415,7 @@ twv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10721,6 +11478,7 @@ twv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10781,6 +11539,7 @@ twv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10841,6 +11600,7 @@ twv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10902,6 +11662,7 @@ twv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -10962,6 +11723,7 @@ twv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11022,6 +11784,7 @@ twv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11082,6 +11845,7 @@ twv-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11142,6 +11906,7 @@ twv-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11202,6 +11967,7 @@ twv-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11262,6 +12028,7 @@ twv-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11321,6 +12088,7 @@ twv-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11381,6 +12149,7 @@ twv-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11429,10 +12198,16 @@ th-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11449,6 +12224,7 @@ th-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11486,10 +12262,16 @@ th-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11506,6 +12288,7 @@ th-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11544,10 +12327,16 @@ th-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11564,6 +12353,7 @@ th-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11603,10 +12393,16 @@ th-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11623,6 +12419,7 @@ th-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11661,10 +12458,16 @@ th-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11681,6 +12484,7 @@ th-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11718,10 +12522,16 @@ th-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11738,6 +12548,7 @@ th-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11775,10 +12586,16 @@ th-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11795,6 +12612,7 @@ th-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11832,10 +12650,16 @@ th-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11852,6 +12676,7 @@ th-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11889,10 +12714,16 @@ th-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11909,6 +12740,7 @@ th-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -11946,10 +12778,16 @@ th-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -11966,6 +12804,7 @@ th-ngx_lua_upstream {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12003,10 +12842,16 @@ th-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12023,6 +12868,7 @@ th-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12061,10 +12907,16 @@ th-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12081,6 +12933,7 @@ th-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12123,10 +12976,16 @@ th-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12143,6 +13002,7 @@ th-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12181,10 +13041,16 @@ th-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12201,6 +13067,7 @@ th-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12239,10 +13106,16 @@ th-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12259,6 +13132,7 @@ th-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12297,10 +13171,16 @@ th-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12317,6 +13197,7 @@ th-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12354,10 +13235,16 @@ th-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12374,6 +13261,7 @@ th-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12411,10 +13299,16 @@ th-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12431,6 +13325,7 @@ th-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12471,10 +13366,16 @@ th-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12491,6 +13392,7 @@ th-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12528,10 +13430,16 @@ th-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12548,6 +13456,7 @@ th-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12589,10 +13498,16 @@ th-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -12609,6 +13524,7 @@ th-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12660,6 +13576,7 @@ th-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12709,6 +13626,7 @@ th-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12758,6 +13676,7 @@ th-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12808,6 +13727,7 @@ th-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12857,6 +13777,7 @@ th-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12906,6 +13827,7 @@ th-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -12955,6 +13877,7 @@ th-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13004,6 +13927,7 @@ th-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13053,6 +13977,7 @@ th-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13102,6 +14027,7 @@ th-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13150,6 +14076,7 @@ th-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13199,6 +14126,7 @@ th-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13236,10 +14164,16 @@ thv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13256,6 +14190,7 @@ thv-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13296,10 +14231,16 @@ thv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13316,6 +14257,7 @@ thv-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13357,10 +14299,16 @@ thv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13377,6 +14325,7 @@ thv-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13419,10 +14368,16 @@ thv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13439,6 +14394,7 @@ thv-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13480,10 +14436,16 @@ thv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13500,6 +14462,7 @@ thv-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13540,10 +14503,16 @@ thv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13560,6 +14529,7 @@ thv-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13600,10 +14570,16 @@ thv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13620,6 +14596,7 @@ thv-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13660,10 +14637,16 @@ thv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13680,6 +14663,7 @@ thv-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13720,10 +14704,16 @@ thv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13740,6 +14730,7 @@ thv-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13780,10 +14771,16 @@ thv-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13800,6 +14797,7 @@ thv-ngx_lua_upstream {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13840,10 +14838,16 @@ thv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13860,6 +14864,7 @@ thv-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13901,10 +14906,16 @@ thv-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13921,6 +14932,7 @@ thv-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -13966,10 +14978,16 @@ thv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -13986,6 +15004,7 @@ thv-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14027,10 +15046,16 @@ thv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14047,6 +15072,7 @@ thv-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14088,10 +15114,16 @@ thv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14108,6 +15140,7 @@ thv-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14149,10 +15182,16 @@ thv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14169,6 +15208,7 @@ thv-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14209,10 +15249,16 @@ thv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14229,6 +15275,7 @@ thv-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14269,10 +15316,16 @@ thv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14289,6 +15342,7 @@ thv-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14332,10 +15386,16 @@ thv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14352,6 +15412,7 @@ thv-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14392,10 +15453,16 @@ thv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14412,6 +15479,7 @@ thv-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14456,10 +15524,16 @@ thv-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -14476,6 +15550,7 @@ thv-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14530,6 +15605,7 @@ thv-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14582,6 +15658,7 @@ thv-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14634,6 +15711,7 @@ thv-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14687,6 +15765,7 @@ thv-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14739,6 +15818,7 @@ thv-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14791,6 +15871,7 @@ thv-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14843,6 +15924,7 @@ thv-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14895,6 +15977,7 @@ thv-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14947,6 +16030,7 @@ thv-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -14999,6 +16083,7 @@ thv-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15050,6 +16135,7 @@ thv-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15102,6 +16188,7 @@ thv-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15142,10 +16229,16 @@ tl-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15162,6 +16255,7 @@ tl-ngx_srcache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15201,10 +16295,16 @@ tl-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15221,6 +16321,7 @@ tl-ngx_rds_json {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15261,10 +16362,16 @@ tl-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15281,6 +16388,7 @@ tl-ngx_rds_csv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15322,10 +16430,16 @@ tl-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15342,6 +16456,7 @@ tl-ngx_drizzle {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15382,10 +16497,16 @@ tl-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15402,6 +16523,7 @@ tl-ngx_encrypted_session {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15441,10 +16563,16 @@ tl-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15461,6 +16589,7 @@ tl-ngx_array_var {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15500,10 +16629,16 @@ tl-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15520,6 +16655,7 @@ tl-ngx_set_misc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15559,10 +16695,16 @@ tl-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15579,6 +16721,7 @@ tl-ngx_headers_more {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15618,10 +16761,16 @@ tl-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15638,6 +16787,7 @@ tl-ngx_example_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15677,10 +16827,16 @@ tl-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15697,6 +16853,7 @@ tl-ngx_lua_upstream {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15736,10 +16893,16 @@ tl-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15756,6 +16919,7 @@ tl-ngx_xss {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15796,10 +16960,16 @@ tl-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15816,6 +16986,7 @@ tl-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15860,10 +17031,16 @@ tl-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15880,6 +17057,7 @@ tl-ngx_memc {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15920,10 +17098,16 @@ tl-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -15940,6 +17124,7 @@ tl-ngx_redis2 {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -15980,10 +17165,16 @@ tl-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16000,6 +17191,7 @@ tl-ngx_echo {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16040,10 +17232,16 @@ tl-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16060,6 +17258,7 @@ tl-ngx_eval {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16099,10 +17298,16 @@ tl-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16119,6 +17324,7 @@ tl-ngx_form_input {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16158,10 +17364,16 @@ tl-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16178,6 +17390,7 @@ tl-ngx_postgres {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16220,10 +17433,16 @@ tl-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16240,6 +17459,7 @@ tl-ngx_iconv {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16279,10 +17499,16 @@ tl-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16299,6 +17525,7 @@ tl-ngx_coolkit {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16342,10 +17569,16 @@ tl-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -16362,6 +17595,7 @@ tl-ngx_replace_filter {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16415,6 +17649,7 @@ tl-lua-resty-memcached {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16466,6 +17701,7 @@ tl-lua-resty-redis {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16517,6 +17753,7 @@ tl-lua-resty-mysql {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16569,6 +17806,7 @@ tl-lua-resty-string {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16620,6 +17858,7 @@ tl-lua-resty-upload {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16671,6 +17910,7 @@ tl-lua-resty-dns {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16722,6 +17962,7 @@ tl-lua-resty-websocket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16773,6 +18014,7 @@ tl-lua-resty-lock {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16824,6 +18066,7 @@ tl-lua-resty-logger-socket {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16875,6 +18118,7 @@ tl-lua-resty-core {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16925,6 +18169,7 @@ tl-lua-resty-upstream-healthcheck {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -16976,6 +18221,7 @@ tl-lua-resty-lrucache {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
@@ -17015,10 +18261,16 @@ to-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
     env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17073,10 +18325,16 @@ to-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
     env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17132,10 +18390,16 @@ to-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
     env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17192,10 +18456,16 @@ to-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
     env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17251,10 +18521,16 @@ to-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
     env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17309,10 +18585,16 @@ to-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
     env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17367,10 +18649,16 @@ to-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
     env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17425,10 +18713,16 @@ to-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
     env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17483,10 +18777,16 @@ to-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
     env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17541,10 +18841,16 @@ to-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
     env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17599,10 +18905,16 @@ to-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
     env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17658,10 +18970,16 @@ to-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17721,10 +19039,16 @@ to-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
     env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17780,10 +19104,16 @@ to-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
     env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17839,10 +19169,16 @@ to-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
     env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17898,10 +19234,16 @@ to-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
     env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -17956,10 +19298,16 @@ to-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
     env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18014,10 +19362,16 @@ to-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
     env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18075,10 +19429,16 @@ to-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
     env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18133,10 +19493,16 @@ to-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
     env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18195,10 +19561,16 @@ to-ngx_replace_filter {
     always;
     cwd ~/git/replace-filter-nginx-module;
     env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18903,10 +20275,16 @@ build-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -18923,6 +20301,7 @@ build-ngx_lua {
     dep ccache;
 
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;

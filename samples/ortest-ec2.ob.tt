@@ -16,10 +16,12 @@ perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
+openssl_version = 1.0.2e;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 1;
-nginx_cc_opt = '-O1';
+nginx_cc_opt = '-O1 -I/opt/ssl/include';
+nginx_ld_opt = '-L/opt/ssl/lib';
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -46,6 +48,7 @@ nginx_cc_opt = '-O1';
     env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
     [%- ELSE %]
     env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
     env NGX_BUILD_NO_DEBUG '';
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
@@ -145,6 +148,19 @@ caching-nameserver-config {
     sh 'sudo chmod a+r /etc/named.conf';
 }
 
+openssl {
+    file /opt/ssl/bin/openssl version;
+    test '/opt/ssl/bin/openssl version|grep "$openssl_version"';
+
+    env LD_LIBRARY_PATH /opt/ssl/lib:$LD_LIBRARY_PATH;
+
+    cwd /tmp;
+    fetch http://www.openssl.org/source/openssl-$openssl_version.tar.gz;
+    tarball openssl-$openssl_version.tar.gz;
+    sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install';
+    dep cc cxx;
+}
+
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
@@ -177,10 +193,16 @@ luajit-git {
     always;
     cwd ~/git/[% name %]-nginx-module;
     env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
     env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
     env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
 
@@ -635,7 +657,7 @@ ngx_openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/ngx_openresty-$openresty_version.tar.gz;
     tarball ngx_openresty-$openresty_version.tar.gz;
-    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
+    sh 'cd ngx_openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -775,12 +797,6 @@ nginx-module-test {
 perl-protocol-websocket {
     test 'perl -MProtocol::WebSocket -e1';
     cpan Protocol::WebSocket;
-}
-
-openssl {
-    file /usr/include/openssl/md5.h;
-
-    yum openssl-devel;
 }
 
 pcre {
