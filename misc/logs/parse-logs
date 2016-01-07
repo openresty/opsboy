@@ -17,6 +17,12 @@ my $outfile = $opts{o} or usage();
 my $verbose = $opts{v};
 
 my %white_list = (
+    'lua-resty-limit-traffic' => [
+        ['v', 'req.t', qr/TEST 1: a single key \(always commit\) - response_body_like - response is expected \(elapsed: \d+.\d+ sec\.\)/],
+        ['v', 'traffic.t', qr/TEST 1: sanity \(output states\) - response_body_like - response is expected /],
+        ['v', 'traffic.t', qr/TEST 2: sanity \(no output states\) - response_body_like - response is expected/],
+    ],
+
     'resty-cli' => [
         ['v', 'resty/user-args.t', 'TEST 2: minus indexes - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
         ['v', 'resty/user-args.t', 'TEST 3: with quote and options - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
