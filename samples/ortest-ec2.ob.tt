@@ -221,6 +221,7 @@ luajit-git {
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
     'lua_upstream', 'replace_filter',
+    'stream_echo',
    ]
 -%]
 
@@ -389,6 +390,10 @@ tl {
 [% FOREACH name IN lualibs -%]
     dep tl-lua-[% name %];
 [% END -%]
+}
+
+ngx_stream_echo {
+    git git://github.com/openresty/stream-echo-nginx-module.git ~/git/stream-echo-nginx-module;
 }
 
 ngx_srcache {
@@ -1070,6 +1075,12 @@ t[% type %]-ngx_replace_filter {
     [%- PROCESS build_nginx_module name="replace-filter" -%]
 
     dep sregex ngx_echo ngx_lua;
+}
+
+t[% type %]-ngx_stream_echo {
+    [%- PROCESS build_nginx_module name="stream-echo" -%]
+
+    dep ngx_lua;
 }
 
 [% FOREACH name IN lualibs %]
