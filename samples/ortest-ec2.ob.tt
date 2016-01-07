@@ -231,7 +231,7 @@ luajit-git {
         'resty-websocket', 'resty-lock',
         'resty-logger-socket', 'resty-core',
         'resty-upstream-healthcheck',
-        'resty-lrucache',
+        'resty-lrucache', 'resty-limit-traffic',
     ]
 %]
 
@@ -1072,7 +1072,7 @@ t[% type %]-ngx_replace_filter {
     dep sregex ngx_echo ngx_lua;
 }
 
-[% FOREACH name IN lualibs -%]
+[% FOREACH name IN lualibs %]
 t[% type %]-lua-[% name %] {
     [%- PROCESS build_lua_lib name="lua-" _ name -%]
 

@@ -13,6 +13,7 @@
         'lua-resty-redis' => 'github.com/openresty/lua-resty-redis',
         'lua-resty-memcached' => 'github.com/openresty/lua-resty-memcached',
         'lua-resty-lrucache' => 'github.com/openresty/lua-resty-lrucache',
+        'lua-resty-limit-traffic' => 'github.com/openresty/lua-resty-limit-traffic',
         ngx_iconv => 'github.com/calio/iconv-nginx-module',
         ngx_form_input => 'github.com/calio/form-input-nginx-module',
         ngx_coolkit => 'github.com/FRiCKLE/ngx_coolkit',

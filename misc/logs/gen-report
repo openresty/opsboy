@@ -28,6 +28,7 @@ my %github_links = (
     'lua-resty-redis' => ['openresty', 'lua-resty-redis'],
     'lua-resty-memcached' => ['openresty', 'lua-resty-memcached'],
     'lua-resty-lrucache' => ['openresty', 'lua-resty-lrucache'],
+    'lua-resty-limit-traffic' => ['openresty', 'lua-resty-limit-traffic'],
     ngx_iconv => ['calio', 'iconv-nginx-module'],
     ngx_form_input => ['calio', 'form-input-nginx-module'],
     ngx_coolkit => ['FRiCKLE', 'ngx_coolkit'],

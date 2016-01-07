@@ -53,7 +53,7 @@ my @lualibs = (
     'resty-websocket', 'resty-lock',
     'resty-logger-socket', 'resty-core',
     'resty-upstream-healthcheck',
-    'resty-lrucache',
+    'resty-lrucache', 'resty-limit-traffic',
 );
 
 if (!@ARGV) {
