@@ -874,7 +874,7 @@ no-pool-nginx {
 }
 
 ngx_openresty {
-    git git://github.com/openresty/ngx_openresty.git ~/git/ngx_openresty;
+    git git://github.com/openresty/openresty.git ~/git/openresty;
 }
 
 git {
