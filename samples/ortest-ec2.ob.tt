@@ -108,11 +108,7 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
 
     [%- UNLESS no_build -%]
-    [%- IF name == "lua" %]
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
-    [%- ELSE %]
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
-    [%- END %]
     [%- END -%]
 
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
@@ -221,7 +217,7 @@ luajit-git {
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
     'lua_upstream', 'replace_filter',
-    'stream_echo',
+    'stream_echo', 'stream_lua',
    ]
 -%]
 
@@ -394,6 +390,10 @@ tl {
 
 ngx_stream_echo {
     git git://github.com/openresty/stream-echo-nginx-module.git ~/git/stream-echo-nginx-module;
+}
+
+ngx_stream_lua {
+    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module;
 }
 
 ngx_srcache {
@@ -1081,6 +1081,13 @@ t[% type %]-ngx_stream_echo {
     [%- PROCESS build_nginx_module name="stream-echo" -%]
 
     dep ngx_lua;
+}
+
+t[% type %]-ngx_stream_lua {
+    [%- PROCESS build_nginx_module name="stream-lua" -%]
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 [% FOREACH name IN lualibs %]

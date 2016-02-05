@@ -44,7 +44,7 @@ my @mods = (
     'encrypted_session', 'form_input',
     'coolkit', 'iconv', 'example_lua',
     'lua_upstream', 'replace_filter',
-    'stream_echo',
+    'stream_echo', 'stream_lua',
 );
 
 my @lualibs = (

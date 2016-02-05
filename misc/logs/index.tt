@@ -36,6 +36,7 @@
         ngx_srcache => 'github.com/openresty/srcache-nginx-module',
         ngx_xss => 'github.com/openresty/xss-nginx-module',
         ngx_stream_echo => 'github.com/openresty/stream-echo-nginx-module',
+        ngx_stream_lua => 'github.com/openresty/stream-lua-nginx-module',
         sregex => 'github.com/openresty/sregex',
         'resty-cli' => 'github.com/openresty/resty-cli',
     }

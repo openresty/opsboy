@@ -99,6 +99,7 @@ t {
     dep t-ngx_lua_upstream;
     dep t-ngx_replace_filter;
     dep t-ngx_stream_echo;
+    dep t-ngx_stream_lua;
     dep t-lua-resty-memcached;
     dep t-lua-resty-redis;
     dep t-lua-resty-mysql;
@@ -139,6 +140,7 @@ to {
     dep to-ngx_lua_upstream;
     dep to-ngx_replace_filter;
     dep to-ngx_stream_echo;
+    dep to-ngx_stream_lua;
 }
 
 tv {
@@ -175,6 +177,7 @@ tv2 {
     dep tv-ngx_lua_upstream;
     dep tv-ngx_replace_filter;
     dep tv-ngx_stream_echo;
+    dep tv-ngx_stream_lua;
 }
 
 tr {
@@ -192,6 +195,7 @@ tr {
     dep tr-ngx_iconv;
     dep tr-ngx_replace_filter;
     dep tr-ngx_stream_echo;
+    dep tr-ngx_stream_lua;
     dep tr-lua-resty-memcached;
     dep tr-lua-resty-redis;
     dep tr-lua-resty-mysql;
@@ -244,6 +248,7 @@ trv2 {
     dep trv-ngx_iconv;
     dep trv-ngx_replace_filter;
     dep trv-ngx_stream_echo;
+    dep trv-ngx_stream_lua;
 }
 
 tw {
@@ -261,6 +266,7 @@ tw {
     dep tw-ngx_iconv;
     dep tw-ngx_replace_filter;
     dep tw-ngx_stream_echo;
+    dep tw-ngx_stream_lua;
     dep tw-lua-resty-memcached;
     dep tw-lua-resty-redis;
     dep tw-lua-resty-mysql;
@@ -313,6 +319,7 @@ twv2 {
     dep twv-ngx_iconv;
     dep twv-ngx_replace_filter;
     dep twv-ngx_stream_echo;
+    dep twv-ngx_stream_lua;
 }
 
 th {
@@ -338,6 +345,7 @@ th {
     dep th-ngx_lua_upstream;
     dep th-ngx_replace_filter;
     dep th-ngx_stream_echo;
+    dep th-ngx_stream_lua;
     dep th-lua-resty-memcached;
     dep th-lua-resty-redis;
     dep th-lua-resty-mysql;
@@ -376,6 +384,7 @@ thv {
     dep thv-ngx_lua_upstream;
     dep thv-ngx_replace_filter;
     dep thv-ngx_stream_echo;
+    dep thv-ngx_stream_lua;
     dep thv-lua-resty-memcached;
     dep thv-lua-resty-redis;
     dep thv-lua-resty-mysql;
@@ -414,6 +423,7 @@ tl {
     dep tl-ngx_lua_upstream;
     dep tl-ngx_replace_filter;
     dep tl-ngx_stream_echo;
+    dep tl-ngx_stream_lua;
     dep tl-lua-resty-memcached;
     dep tl-lua-resty-redis;
     dep tl-lua-resty-mysql;
@@ -431,6 +441,10 @@ tl {
 
 ngx_stream_echo {
     git git://github.com/openresty/stream-echo-nginx-module.git ~/git/stream-echo-nginx-module;
+}
+
+ngx_stream_lua {
+    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module;
 }
 
 ngx_srcache {
@@ -1157,7 +1171,6 @@ t-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1222,7 +1235,6 @@ t-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1288,7 +1300,6 @@ t-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1355,7 +1366,6 @@ t-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1421,7 +1431,6 @@ t-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1486,7 +1495,6 @@ t-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1551,7 +1559,6 @@ t-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1616,7 +1623,6 @@ t-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1681,7 +1687,6 @@ t-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1746,7 +1751,6 @@ t-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1811,7 +1815,6 @@ t-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -1877,8 +1880,7 @@ t-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -1947,7 +1949,6 @@ t-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2013,7 +2014,6 @@ t-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2079,7 +2079,6 @@ t-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2145,7 +2144,6 @@ t-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2210,7 +2208,6 @@ t-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2275,7 +2272,6 @@ t-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2343,7 +2339,6 @@ t-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2408,7 +2403,6 @@ t-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2477,7 +2471,6 @@ t-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2542,7 +2535,6 @@ t-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -2556,6 +2548,71 @@ t-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+t-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP $use_stap;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -3287,7 +3344,6 @@ tv-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3355,7 +3411,6 @@ tv-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3424,7 +3479,6 @@ tv-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3494,7 +3548,6 @@ tv-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3563,7 +3616,6 @@ tv-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3631,7 +3683,6 @@ tv-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3699,7 +3750,6 @@ tv-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3767,7 +3817,6 @@ tv-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3835,7 +3884,6 @@ tv-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3903,7 +3951,6 @@ tv-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -3971,7 +4018,6 @@ tv-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4040,8 +4086,7 @@ tv-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
@@ -4113,7 +4158,6 @@ tv-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4182,7 +4226,6 @@ tv-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4251,7 +4294,6 @@ tv-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4320,7 +4362,6 @@ tv-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4388,7 +4429,6 @@ tv-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4456,7 +4496,6 @@ tv-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4527,7 +4566,6 @@ tv-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4595,7 +4633,6 @@ tv-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4667,7 +4704,6 @@ tv-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4735,7 +4771,6 @@ tv-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -4750,6 +4785,74 @@ tv-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+tv-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -5524,7 +5627,6 @@ tr-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -5595,7 +5697,6 @@ tr-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -5667,7 +5768,6 @@ tr-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -5740,7 +5840,6 @@ tr-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -5815,8 +5914,7 @@ tr-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -5891,7 +5989,6 @@ tr-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -5963,7 +6060,6 @@ tr-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6035,7 +6131,6 @@ tr-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6107,7 +6202,6 @@ tr-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6178,7 +6272,6 @@ tr-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6249,7 +6342,6 @@ tr-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6323,7 +6415,6 @@ tr-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6394,7 +6485,6 @@ tr-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6469,7 +6559,6 @@ tr-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6540,7 +6629,6 @@ tr-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -6554,6 +6642,77 @@ tr-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+tr-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP $use_stap;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -7369,7 +7528,6 @@ trv-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7443,7 +7601,6 @@ trv-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7518,7 +7675,6 @@ trv-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7594,7 +7750,6 @@ trv-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7672,8 +7827,7 @@ trv-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
@@ -7751,7 +7905,6 @@ trv-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7826,7 +7979,6 @@ trv-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7901,7 +8053,6 @@ trv-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -7976,7 +8127,6 @@ trv-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8050,7 +8200,6 @@ trv-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8124,7 +8273,6 @@ trv-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8201,7 +8349,6 @@ trv-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8275,7 +8422,6 @@ trv-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8353,7 +8499,6 @@ trv-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8427,7 +8572,6 @@ trv-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -8442,6 +8586,80 @@ trv-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+trv-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    env MOCKEAGAIN r;
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -9295,7 +9513,6 @@ tw-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9367,7 +9584,6 @@ tw-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9440,7 +9656,6 @@ tw-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9514,7 +9729,6 @@ tw-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9590,8 +9804,7 @@ tw-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -9667,7 +9880,6 @@ tw-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9740,7 +9952,6 @@ tw-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9813,7 +10024,6 @@ tw-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9886,7 +10096,6 @@ tw-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -9958,7 +10167,6 @@ tw-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10030,7 +10238,6 @@ tw-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10105,7 +10312,6 @@ tw-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10177,7 +10383,6 @@ tw-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10253,7 +10458,6 @@ tw-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10325,7 +10529,6 @@ tw-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -10339,6 +10542,78 @@ tw-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+tw-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP $use_stap;
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -11168,7 +11443,6 @@ twv-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11243,7 +11517,6 @@ twv-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11319,7 +11592,6 @@ twv-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11396,7 +11668,6 @@ twv-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11475,8 +11746,7 @@ twv-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
@@ -11555,7 +11825,6 @@ twv-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11631,7 +11900,6 @@ twv-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11707,7 +11975,6 @@ twv-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11783,7 +12050,6 @@ twv-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11858,7 +12124,6 @@ twv-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -11933,7 +12198,6 @@ twv-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -12011,7 +12275,6 @@ twv-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -12086,7 +12349,6 @@ twv-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -12165,7 +12427,6 @@ twv-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -12240,7 +12501,6 @@ twv-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -12255,6 +12515,81 @@ twv-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+twv-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    env TEST_NGINX_POSTPONE_OUTPUT 1;
+    env TEST_NGINX_EVENT_TYPE poll;
+    #env MOCKEAGAIN_VERBOSE 1;
+    env MOCKEAGAIN w;
+    env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -13113,7 +13448,6 @@ th-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13177,7 +13511,6 @@ th-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13242,7 +13575,6 @@ th-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13308,7 +13640,6 @@ th-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13373,7 +13704,6 @@ th-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13437,7 +13767,6 @@ th-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13501,7 +13830,6 @@ th-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13565,7 +13893,6 @@ th-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13629,7 +13956,6 @@ th-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13693,7 +14019,6 @@ th-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13757,7 +14082,6 @@ th-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13822,8 +14146,7 @@ th-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -13891,7 +14214,6 @@ th-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -13956,7 +14278,6 @@ th-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14021,7 +14342,6 @@ th-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14086,7 +14406,6 @@ th-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14150,7 +14469,6 @@ th-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14214,7 +14532,6 @@ th-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14281,7 +14598,6 @@ th-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14345,7 +14661,6 @@ th-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14413,7 +14728,6 @@ th-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14477,7 +14791,6 @@ th-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -14491,6 +14804,70 @@ th-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+th-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -15208,7 +15585,6 @@ thv-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15275,7 +15651,6 @@ thv-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15343,7 +15718,6 @@ thv-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15412,7 +15786,6 @@ thv-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15480,7 +15853,6 @@ thv-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15547,7 +15919,6 @@ thv-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15614,7 +15985,6 @@ thv-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15681,7 +16051,6 @@ thv-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15748,7 +16117,6 @@ thv-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15815,7 +16183,6 @@ thv-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15882,7 +16249,6 @@ thv-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -15950,8 +16316,7 @@ thv-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
@@ -16022,7 +16387,6 @@ thv-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16090,7 +16454,6 @@ thv-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16158,7 +16521,6 @@ thv-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16226,7 +16588,6 @@ thv-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16293,7 +16654,6 @@ thv-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16360,7 +16720,6 @@ thv-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16430,7 +16789,6 @@ thv-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16497,7 +16855,6 @@ thv-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16568,7 +16925,6 @@ thv-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16635,7 +16991,6 @@ thv-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -16650,6 +17005,73 @@ thv-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+thv-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+    env TEST_NGINX_USE_HUP 1;
+
+    env TEST_NGINX_SLEEP 0.015;
+
+    env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND 1;
+
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
+    dep valgrind;
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -17406,7 +17828,6 @@ tl-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17472,7 +17893,6 @@ tl-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17539,7 +17959,6 @@ tl-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17607,7 +18026,6 @@ tl-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17674,7 +18092,6 @@ tl-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17740,7 +18157,6 @@ tl-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17806,7 +18222,6 @@ tl-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17872,7 +18287,6 @@ tl-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -17938,7 +18352,6 @@ tl-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18004,7 +18417,6 @@ tl-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18070,7 +18482,6 @@ tl-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18137,8 +18548,7 @@ tl-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -18208,7 +18618,6 @@ tl-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18275,7 +18684,6 @@ tl-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18342,7 +18750,6 @@ tl-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18409,7 +18816,6 @@ tl-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18475,7 +18881,6 @@ tl-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18541,7 +18946,6 @@ tl-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18610,7 +19014,6 @@ tl-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18676,7 +19079,6 @@ tl-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18746,7 +19148,6 @@ tl-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18812,7 +19213,6 @@ tl-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -18826,6 +19226,72 @@ tl-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+tl-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT $nginx_cc_opt;
+    env NGX_BUILD_LD_OPTS $nginx_ld_opt;
+    env NGX_BUILD_NO_DEBUG '';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK 1;
+    env LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH;
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -19567,7 +20033,6 @@ to-ngx_srcache {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19631,7 +20096,6 @@ to-ngx_rds_json {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19696,7 +20160,6 @@ to-ngx_rds_csv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19762,7 +20225,6 @@ to-ngx_drizzle {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19827,7 +20289,6 @@ to-ngx_encrypted_session {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19891,7 +20352,6 @@ to-ngx_array_var {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -19955,7 +20415,6 @@ to-ngx_set_misc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20019,7 +20478,6 @@ to-ngx_headers_more {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20083,7 +20541,6 @@ to-ngx_example_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20147,7 +20604,6 @@ to-ngx_lua_upstream {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20211,7 +20667,6 @@ to-ngx_xss {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20276,8 +20731,7 @@ to-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
@@ -20345,7 +20799,6 @@ to-ngx_memc {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20410,7 +20863,6 @@ to-ngx_redis2 {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20475,7 +20927,6 @@ to-ngx_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20540,7 +20991,6 @@ to-ngx_eval {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20604,7 +21054,6 @@ to-ngx_form_input {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20668,7 +21117,6 @@ to-ngx_postgres {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20735,7 +21183,6 @@ to-ngx_iconv {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20799,7 +21246,6 @@ to-ngx_coolkit {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20867,7 +21313,6 @@ to-ngx_replace_filter {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20931,7 +21376,6 @@ to-ngx_stream_echo {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
     sh 'killall nginx || exit 0';
@@ -20945,6 +21389,70 @@ to-ngx_stream_echo {
     dep gd-devel;
 
     dep ngx_lua;
+}
+
+to-ngx_stream_lua {
+    always;
+    cwd ~/git/stream-lua-nginx-module;
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env PCRE_LIB /opt/pcrejit/lib;
+    env PCRE_INC /opt/pcrejit/include;
+
+    env OPENSSL_LIB /opt/ssl/lib;
+    env OPENSSL_INC /opt/ssl/include;
+
+    env LIBDRIZZLE_INC /opt/drizzle/include/libdrizzle-1.0;
+    env LIBDRIZZLE_LIB /opt/drizzle/lib;
+
+    env LUAJIT_LIB /opt/luajit/lib;
+    env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
+
+    env TEST_NGINX_EVENT_TYPE '';
+    env MOCKEAGAIN '';
+    env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    env TEST_NGINX_USE_STAP '';
+
+    env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
+    env NGX_BUILD_CC 'ccache gcc47';
+    env CCACHE_BASEDIR '$PWD';
+    dep ccache;
+
+    env NGX_BUILD_OPT '-O3 -funsigned-char';
+    env NGX_BUILD_NO_DEBUG 1;
+    env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
+    env NGX_BUILD_JOBS $jobs;
+    env NGX_BUILD_DTRACE 1;
+
+    env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
+    env LD_PRELOAD '';
+
+    env TEST_NGINX_CHECK_LEAK '';
+
+    env TEST_NGINX_USE_HUP '';
+
+    env TEST_NGINX_SLEEP 0.015;
+    env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
+    env TEST_NGINX_USE_VALGRIND '';
+
+    sh 'PAGER= git log HEAD^..HEAD';
+
+    sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'killall nginx || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\', \'hotloop=1\', \'hotexit=1\') require \'resty.core\'"; fi; prove -I../test-nginx/lib -r t || exit 0';
+
+    dep systemtap;
+    dep run-caching-nameserver;
+
+
+    dep nginx-module-test ngx_stream_lua;
+    dep gd-devel;
+
+    dep run-memcached run-redis mockeagain pcrejit;
+    dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
 
@@ -21709,8 +22217,7 @@ build-ngx_lua {
     sh 'PAGER= git log HEAD^..HEAD';
 
     sh 'if [ -n "$force" -a "$force" != "0" ]; then rm -rf buildroot/nginx-$nginx_version*; test -f config && touch config || exit 0; fi';
-
-    sh './util/build2.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build2.sh $nginx_version )';
+    sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
 
 
