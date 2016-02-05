@@ -51,6 +51,7 @@ my %github_links = (
     ngx_example_lua => ['bakins', 'nginx-example-lua-module'],
     ngx_lua_upstream => ['openresty', 'lua-upstream-nginx-module'],
     ngx_stream_echo => ['openresty', 'stream-echo-nginx-module'],
+    ngx_stream_lua => ['openresty', 'stream-lua-nginx-module'],
     sregex => ['openresty', 'sregex'],
     'resty-cli' => ['openresty', 'resty-cli'],
 );
