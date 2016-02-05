@@ -28,7 +28,7 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
-    [%- IF type == "" OR type == "r" OR type == "w" %]
+    [%- IF (type == "" OR type == "r" OR type == "w") AND name != "stream-lua" %]
     env TEST_NGINX_USE_STAP $use_stap;
     [%- ELSE %]
     env TEST_NGINX_USE_STAP '';

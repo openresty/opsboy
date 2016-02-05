@@ -2571,7 +2571,7 @@ t-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
-    env TEST_NGINX_USE_STAP $use_stap;
+    env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
@@ -6665,7 +6665,7 @@ tr-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
-    env TEST_NGINX_USE_STAP $use_stap;
+    env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
@@ -10565,7 +10565,7 @@ tw-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
-    env TEST_NGINX_USE_STAP $use_stap;
+    env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
