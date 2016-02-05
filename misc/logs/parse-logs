@@ -338,6 +338,15 @@ my %white_list = (
         [undef, 'response.t', qr/TEST 4: .*? - pattern " -- NYI:" should not match any line in error\.log but matches line "\[TRACE --- response.lua:112 -- NYI: return to lower frame/],
     ],
 
+    ngx_stream_lua => [
+        ['', '132-lua-blocks.t', 'nginx: [emerg]', qr/Lua code block missing the closing long bracket \"\]=*\]\" in|unexpected lua closing long-bracket in|"http" directive is not allowed here in/],
+        ['', '109-timer-hup.t', qr/TEST 7: HUP reload should abort pending timers \(fuzz test\) - grep_error_log_out/, qr/got: 'stream lua found 8\d{3} pending timers/],
+        ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
+        ['r', '129-ssl-socket.t', undef, qr/failed to do SSL handshake: handshake failed/],
+        ['o', undef, 'matches a line in error.log'],
+        ['o', undef, ' - grep_error_log_out'],
+    ],
+
     ngx_lua => [
         ['h', '139-ssl-cert-by.t', qr/nginx\.sock failed .*? No such file or directory/],
         ['h', '139-ssl-cert-by.t', qr/ - response_body - response is expected /, qr/\+failed to connect: no such file or directory/],
