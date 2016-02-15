@@ -27,13 +27,14 @@ my $keypair = $opts{k} || 'ortest';
 my $instance_type = $opts{t};
 
 if (!defined $instance_type) {
-    if ($arch eq 'linux x86_64') {
+    #if ($arch eq 'linux x86_64') {
         #$instance_type = 'c1.medium';
-        $instance_type = 'c3.large';
+        #$instance_type = 'c3.large';
 
-    } else {
-        $instance_type = 'c1.medium';
-    }
+        #} else {
+        #$instance_type = 'c1.medium';
+        #}
+    $instance_type = 'c3.large';
 }
 
 my $user_data = join (" ", @ARGV)
