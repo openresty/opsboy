@@ -379,6 +379,12 @@ my %white_list = (
         #['v', '057-flush-timeout.t', 'TEST 1: flush wait - timeout - response_body - response is expected', qr/got: 'received \d+ bytes of response data\./, 'linux i386'],
         #['v', '057-flush-timeout.t', 'TEST 4: flush wait - return "timeout" error - response_body - response is expected', qr/got: 'received \d+ bytes of response data\./, 'linux i386'],
         #['v', '057-flush-timeout.t', 'TEST 5: flush wait in multiple user threads - return "timeout" error - response_body - response is expected', qr/got: 'received \d+ bytes of response data\./, 'linux i386'],
+        ['h', '129-ssl-socket.t', 'TEST 24: lua_ssl_crl - response_body - response is expected', '+failed to connect: no such file or directory'],
+        ['rv', '058-tcp-socket.t', 'TEST 35: successful reread after a read time out happen (receive -> receiveuntil) - response_body - response is expected', '+world', 'linux i386'],
+        ['rv', '058-tcp-socket.t', 'TEST 36: successful reread after a read time out happen (receiveuntil -> receiveuntil) - response_body - response is expected', '+world', 'linux i386'],
+        ['rv', '058-tcp-socket.t', 'TEST 37: successful reread after a read time out happen (receiveuntil -> receive) - response_body - response is expected', '+world', 'linux i386'],
+        ['rv', '067-req-socket.t', 'TEST 11: successful reread after reading timeout happens (receiveuntil -> receive) - response_body - response is expected', '+received: err: timeout, partial: abchello world', 'linux i386'],
+        ['h', '058-tcp-socket.t', qr/pattern "\[error\]" should not match any line in error.log but matches line .*? unexpected response for agentzh\.org/],
     ],
 
     ngx_lua => [
