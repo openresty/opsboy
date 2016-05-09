@@ -28,6 +28,13 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     [%- IF (type == "" OR type == "r" OR type == "w") AND name != "stream-lua" %]
     env TEST_NGINX_USE_STAP $use_stap;
     [%- ELSE %]
