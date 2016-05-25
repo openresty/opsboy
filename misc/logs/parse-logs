@@ -66,6 +66,7 @@ my %white_list = (
     'resty-cli' => [
         ['v', 'resty/user-args.t', 'TEST 2: minus indexes - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
         ['v', 'resty/user-args.t', 'TEST 3: with quote and options - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
+        ['v', 'resty/options.t', 'TEST 1: bad --nginx value - exit code okay', "got: '3'"],
     ],
 
     'lua-resty-lrucache' => [
@@ -132,6 +133,8 @@ my %white_list = (
         ['r', 'ssl.t', qr/ peer closed connection in SSL handshake/],
         ['r', 'ssl.t', 'TEST 3: send query w/o result set (verify, failed) - response_body - response is expected', qr/failed to connect: failed to do ssl handshake: handshake failed: nil nil/],
         ['r', 'ssl.t', 'TEST 3: send query w/o result set (verify, failed) - pattern "lua ssl certificate verify error: (18: self signed certificate)" should match a line in error.log'],
+        ['w', 'sanity.t', 'TEST 13: send query w/o result set (unix domain socket) - response_body_like - response is expected', 'failed to close: broken pipe'],
+        ['w', 'sanity.t', qr/TEST 13: send query w\/o result set \(unix domain socket\) - pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(\d+: Broken pipe\)/],
     ],
 
     'lua-resty-redis' => [
@@ -399,6 +402,7 @@ my %white_list = (
         ['h', '139-ssl-cert-by.t', qr/ - response_body - response is expected /, qr/\+failed to connect: no such file or directory/],
         ['h', '139-ssl-cert-by.t', qr/ should match a line in error\.log /],
         ['h', '139-ssl-cert-by.t', qr/ - grep_error_log_out /],
+        ['h', '058-tcp-socket.t', qr/TEST 53: tcp_nodelay off - pattern "\[error\]" should not match any line in error\.log but matches line .*? unexpected response for agentzh\.org/],
         [undef, undef, qr/pattern "\[error\]" should not match any line in error.log but matches line ".*? wrong ident \d+ response for \w+\.org, expect \d+/],
         ['w', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" should match a line in error\.log/],
         ['h', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" should match a line in error\.log/],
