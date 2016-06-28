@@ -28,6 +28,13 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     [%- IF (type == "" OR type == "r" OR type == "w") AND name != "stream-lua" %]
     env TEST_NGINX_USE_STAP $use_stap;
     [%- ELSE %]
@@ -1006,7 +1013,7 @@ t[% type %]-ngx_lua {
     [%- PROCESS build_nginx_module name="lua" -%]
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;

@@ -573,6 +573,13 @@ t-resty-cli  {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -622,6 +629,13 @@ tv-resty-cli  {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -1143,6 +1157,13 @@ t-ngx_srcache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1206,6 +1227,13 @@ t-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1271,6 +1299,13 @@ t-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1338,6 +1373,13 @@ t-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1403,6 +1445,13 @@ t-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1466,6 +1515,13 @@ t-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1531,6 +1587,13 @@ t-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1594,6 +1657,13 @@ t-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1659,6 +1729,13 @@ t-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1723,6 +1800,13 @@ t-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1786,6 +1870,13 @@ t-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1852,6 +1943,13 @@ t-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -1893,7 +1991,7 @@ t-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -1920,6 +2018,13 @@ t-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -1986,6 +2091,13 @@ t-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2050,6 +2162,13 @@ t-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2116,6 +2235,13 @@ t-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2180,6 +2306,13 @@ t-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2243,6 +2376,13 @@ t-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2311,6 +2451,13 @@ t-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2374,6 +2521,13 @@ t-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2443,6 +2597,13 @@ t-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2506,6 +2667,13 @@ t-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2571,6 +2739,13 @@ t-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2625,6 +2800,13 @@ t-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2677,6 +2859,13 @@ t-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2728,6 +2917,13 @@ t-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2782,6 +2978,13 @@ t-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2833,6 +3036,13 @@ t-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2886,6 +3096,13 @@ t-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -2937,6 +3154,13 @@ t-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -2990,6 +3214,13 @@ t-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3041,6 +3272,13 @@ t-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -3094,6 +3332,13 @@ t-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3144,6 +3389,13 @@ t-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -3197,6 +3449,13 @@ t-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3248,6 +3507,13 @@ t-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -3313,6 +3579,13 @@ tv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -3381,6 +3654,13 @@ tv-ngx_rds_json {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3448,6 +3728,13 @@ tv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -3518,6 +3805,13 @@ tv-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3586,6 +3880,13 @@ tv-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3652,6 +3953,13 @@ tv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -3720,6 +4028,13 @@ tv-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3786,6 +4101,13 @@ tv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -3854,6 +4176,13 @@ tv-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3921,6 +4250,13 @@ tv-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -3987,6 +4323,13 @@ tv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4056,6 +4399,13 @@ tv-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4100,7 +4450,7 @@ tv-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -4127,6 +4477,13 @@ tv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4196,6 +4553,13 @@ tv-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4263,6 +4627,13 @@ tv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4332,6 +4703,13 @@ tv-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4399,6 +4777,13 @@ tv-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4465,6 +4850,13 @@ tv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4536,6 +4928,13 @@ tv-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4602,6 +5001,13 @@ tv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4674,6 +5080,13 @@ tv-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4740,6 +5153,13 @@ tv-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -4808,6 +5228,13 @@ tv-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4865,6 +5292,13 @@ tv-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4920,6 +5354,13 @@ tv-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -4974,6 +5415,13 @@ tv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5031,6 +5479,13 @@ tv-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5085,6 +5540,13 @@ tv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5141,6 +5603,13 @@ tv-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5195,6 +5664,13 @@ tv-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5251,6 +5727,13 @@ tv-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5305,6 +5788,13 @@ tv-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5361,6 +5851,13 @@ tv-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5414,6 +5911,13 @@ tv-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5470,6 +5974,13 @@ tv-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5524,6 +6035,13 @@ tv-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -5592,6 +6110,13 @@ tr-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -5662,6 +6187,13 @@ tr-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -5734,6 +6266,13 @@ tr-ngx_rds_csv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5805,6 +6344,13 @@ tr-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -5880,6 +6426,13 @@ tr-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -5927,7 +6480,7 @@ tr-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -5954,6 +6507,13 @@ tr-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6026,6 +6586,13 @@ tr-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6096,6 +6663,13 @@ tr-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6168,6 +6742,13 @@ tr-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6238,6 +6819,13 @@ tr-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6307,6 +6895,13 @@ tr-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6381,6 +6976,13 @@ tr-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6450,6 +7052,13 @@ tr-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6525,6 +7134,13 @@ tr-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6594,6 +7210,13 @@ tr-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6665,6 +7288,13 @@ tr-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6725,6 +7355,13 @@ tr-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6783,6 +7420,13 @@ tr-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6840,6 +7484,13 @@ tr-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -6900,6 +7551,13 @@ tr-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -6957,6 +7615,13 @@ tr-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -7016,6 +7681,13 @@ tr-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7073,6 +7745,13 @@ tr-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -7132,6 +7811,13 @@ tr-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7189,6 +7875,13 @@ tr-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -7248,6 +7941,13 @@ tr-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7304,6 +8004,13 @@ tr-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -7363,6 +8070,13 @@ tr-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7420,6 +8134,13 @@ tr-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -7491,6 +8212,13 @@ trv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -7564,6 +8292,13 @@ trv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -7639,6 +8374,13 @@ trv-ngx_rds_csv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7713,6 +8455,13 @@ trv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -7791,6 +8540,13 @@ trv-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -7841,7 +8597,7 @@ trv-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -7868,6 +8624,13 @@ trv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -7943,6 +8706,13 @@ trv-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8016,6 +8786,13 @@ trv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8091,6 +8868,13 @@ trv-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8164,6 +8948,13 @@ trv-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8236,6 +9027,13 @@ trv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8313,6 +9111,13 @@ trv-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8385,6 +9190,13 @@ trv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8463,6 +9275,13 @@ trv-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8535,6 +9354,13 @@ trv-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8609,6 +9435,13 @@ trv-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8672,6 +9505,13 @@ trv-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8733,6 +9573,13 @@ trv-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8793,6 +9640,13 @@ trv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8856,6 +9710,13 @@ trv-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -8916,6 +9777,13 @@ trv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -8978,6 +9846,13 @@ trv-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9038,6 +9913,13 @@ trv-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -9100,6 +9982,13 @@ trv-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9160,6 +10049,13 @@ trv-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -9222,6 +10118,13 @@ trv-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9281,6 +10184,13 @@ trv-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -9343,6 +10253,13 @@ trv-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9403,6 +10320,13 @@ trv-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -9478,6 +10402,13 @@ tw-ngx_srcache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9548,6 +10479,13 @@ tw-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -9621,6 +10559,13 @@ tw-ngx_rds_csv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9693,6 +10638,13 @@ tw-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -9769,6 +10721,13 @@ tw-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9817,7 +10776,7 @@ tw-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -9844,6 +10803,13 @@ tw-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -9917,6 +10883,13 @@ tw-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -9988,6 +10961,13 @@ tw-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10061,6 +11041,13 @@ tw-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10132,6 +11119,13 @@ tw-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10202,6 +11196,13 @@ tw-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10277,6 +11278,13 @@ tw-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10347,6 +11355,13 @@ tw-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10423,6 +11438,13 @@ tw-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10493,6 +11515,13 @@ tw-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10565,6 +11594,13 @@ tw-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10626,6 +11662,13 @@ tw-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10685,6 +11728,13 @@ tw-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10743,6 +11793,13 @@ tw-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10804,6 +11861,13 @@ tw-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10862,6 +11926,13 @@ tw-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -10922,6 +11993,13 @@ tw-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -10980,6 +12058,13 @@ tw-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -11040,6 +12125,13 @@ tw-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11098,6 +12190,13 @@ tw-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -11158,6 +12257,13 @@ tw-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11215,6 +12321,13 @@ tw-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -11275,6 +12388,13 @@ tw-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP $use_stap;
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11333,6 +12453,13 @@ tw-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 
@@ -11405,6 +12532,13 @@ twv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -11479,6 +12613,13 @@ twv-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -11555,6 +12696,13 @@ twv-ngx_rds_csv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11630,6 +12778,13 @@ twv-ngx_drizzle {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -11709,6 +12864,13 @@ twv-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11760,7 +12922,7 @@ twv-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -11787,6 +12949,13 @@ twv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -11863,6 +13032,13 @@ twv-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -11937,6 +13113,13 @@ twv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12013,6 +13196,13 @@ twv-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12087,6 +13277,13 @@ twv-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12160,6 +13357,13 @@ twv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12238,6 +13442,13 @@ twv-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12311,6 +13522,13 @@ twv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12390,6 +13608,13 @@ twv-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12463,6 +13688,13 @@ twv-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12538,6 +13770,13 @@ twv-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12602,6 +13841,13 @@ twv-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12664,6 +13910,13 @@ twv-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12725,6 +13978,13 @@ twv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12789,6 +14049,13 @@ twv-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12850,6 +14117,13 @@ twv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -12913,6 +14187,13 @@ twv-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -12974,6 +14255,13 @@ twv-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13037,6 +14325,13 @@ twv-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13098,6 +14393,13 @@ twv-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13161,6 +14463,13 @@ twv-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13221,6 +14530,13 @@ twv-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13284,6 +14600,13 @@ twv-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13345,6 +14668,13 @@ twv-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13421,6 +14751,13 @@ th-ngx_srcache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13483,6 +14820,13 @@ th-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13547,6 +14891,13 @@ th-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13613,6 +14964,13 @@ th-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13677,6 +15035,13 @@ th-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13739,6 +15104,13 @@ th-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13803,6 +15175,13 @@ th-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13865,6 +15244,13 @@ th-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -13929,6 +15315,13 @@ th-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -13992,6 +15385,13 @@ th-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14054,6 +15454,13 @@ th-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14119,6 +15526,13 @@ th-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14159,7 +15573,7 @@ th-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -14186,6 +15600,13 @@ th-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14251,6 +15672,13 @@ th-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14314,6 +15742,13 @@ th-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14379,6 +15814,13 @@ th-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14442,6 +15884,13 @@ th-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14504,6 +15953,13 @@ th-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14571,6 +16027,13 @@ th-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14633,6 +16096,13 @@ th-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14701,6 +16171,13 @@ th-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14763,6 +16240,13 @@ th-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -14827,6 +16311,13 @@ th-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14880,6 +16371,13 @@ th-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14931,6 +16429,13 @@ th-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -14981,6 +16486,13 @@ th-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15034,6 +16546,13 @@ th-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15084,6 +16603,13 @@ th-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15136,6 +16662,13 @@ th-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15186,6 +16719,13 @@ th-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15238,6 +16778,13 @@ th-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15288,6 +16835,13 @@ th-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15340,6 +16894,13 @@ th-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15389,6 +16950,13 @@ th-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15441,6 +17009,13 @@ th-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15491,6 +17066,13 @@ th-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15555,6 +17137,13 @@ thv-ngx_srcache {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15622,6 +17211,13 @@ thv-ngx_rds_json {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15688,6 +17284,13 @@ thv-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15757,6 +17360,13 @@ thv-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15824,6 +17434,13 @@ thv-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -15889,6 +17506,13 @@ thv-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -15956,6 +17580,13 @@ thv-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16021,6 +17652,13 @@ thv-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16088,6 +17726,13 @@ thv-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16154,6 +17799,13 @@ thv-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16219,6 +17871,13 @@ thv-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16287,6 +17946,13 @@ thv-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16330,7 +17996,7 @@ thv-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -16357,6 +18023,13 @@ thv-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16425,6 +18098,13 @@ thv-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16491,6 +18171,13 @@ thv-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16559,6 +18246,13 @@ thv-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16625,6 +18319,13 @@ thv-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16690,6 +18391,13 @@ thv-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16760,6 +18468,13 @@ thv-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16825,6 +18540,13 @@ thv-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -16896,6 +18618,13 @@ thv-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -16961,6 +18690,13 @@ thv-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17028,6 +18764,13 @@ thv-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17084,6 +18827,13 @@ thv-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17138,6 +18888,13 @@ thv-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17191,6 +18948,13 @@ thv-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17247,6 +19011,13 @@ thv-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17300,6 +19071,13 @@ thv-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17355,6 +19133,13 @@ thv-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17408,6 +19193,13 @@ thv-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17463,6 +19255,13 @@ thv-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17516,6 +19315,13 @@ thv-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17571,6 +19377,13 @@ thv-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17623,6 +19436,13 @@ thv-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17678,6 +19498,13 @@ thv-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17731,6 +19558,13 @@ thv-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17799,6 +19633,13 @@ tl-ngx_srcache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -17863,6 +19704,13 @@ tl-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17929,6 +19777,13 @@ tl-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -17997,6 +19852,13 @@ tl-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18063,6 +19925,13 @@ tl-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18127,6 +19996,13 @@ tl-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18193,6 +20069,13 @@ tl-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18257,6 +20140,13 @@ tl-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18323,6 +20213,13 @@ tl-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18388,6 +20285,13 @@ tl-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18452,6 +20356,13 @@ tl-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18519,6 +20430,13 @@ tl-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18561,7 +20479,7 @@ tl-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -18588,6 +20506,13 @@ tl-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18655,6 +20580,13 @@ tl-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18720,6 +20652,13 @@ tl-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18787,6 +20726,13 @@ tl-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18852,6 +20798,13 @@ tl-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -18916,6 +20869,13 @@ tl-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -18985,6 +20945,13 @@ tl-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19049,6 +21016,13 @@ tl-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19119,6 +21093,13 @@ tl-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19183,6 +21164,13 @@ tl-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19249,6 +21237,13 @@ tl-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19304,6 +21299,13 @@ tl-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19357,6 +21359,13 @@ tl-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19409,6 +21418,13 @@ tl-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19464,6 +21480,13 @@ tl-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19516,6 +21539,13 @@ tl-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19570,6 +21600,13 @@ tl-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19622,6 +21659,13 @@ tl-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19676,6 +21720,13 @@ tl-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19728,6 +21779,13 @@ tl-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19782,6 +21840,13 @@ tl-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19833,6 +21898,13 @@ tl-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -19887,6 +21959,13 @@ tl-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -19939,6 +22018,13 @@ tl-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20006,6 +22092,13 @@ to-ngx_srcache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20068,6 +22161,13 @@ to-ngx_rds_json {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20132,6 +22232,13 @@ to-ngx_rds_csv {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20198,6 +22305,13 @@ to-ngx_drizzle {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20262,6 +22376,13 @@ to-ngx_encrypted_session {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20324,6 +22445,13 @@ to-ngx_array_var {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20388,6 +22516,13 @@ to-ngx_set_misc {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20450,6 +22585,13 @@ to-ngx_headers_more {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20514,6 +22656,13 @@ to-ngx_example_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20577,6 +22726,13 @@ to-ngx_lua_upstream {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20639,6 +22795,13 @@ to-ngx_xss {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20704,6 +22867,13 @@ to-ngx_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20744,7 +22914,7 @@ to-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -20771,6 +22941,13 @@ to-ngx_memc {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20836,6 +23013,13 @@ to-ngx_redis2 {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -20899,6 +23083,13 @@ to-ngx_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -20964,6 +23155,13 @@ to-ngx_eval {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21027,6 +23225,13 @@ to-ngx_form_input {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21089,6 +23294,13 @@ to-ngx_postgres {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21156,6 +23368,13 @@ to-ngx_iconv {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21218,6 +23437,13 @@ to-ngx_coolkit {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21286,6 +23512,13 @@ to-ngx_replace_filter {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21348,6 +23581,13 @@ to-ngx_stream_echo {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21412,6 +23652,13 @@ to-ngx_stream_lua {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21465,6 +23712,13 @@ to-lua-resty-memcached {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21516,6 +23770,13 @@ to-lua-resty-redis {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21566,6 +23827,13 @@ to-lua-resty-mysql {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21619,6 +23887,13 @@ to-lua-resty-string {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21669,6 +23944,13 @@ to-lua-resty-upload {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21721,6 +24003,13 @@ to-lua-resty-dns {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21771,6 +24060,13 @@ to-lua-resty-websocket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21823,6 +24119,13 @@ to-lua-resty-lock {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21873,6 +24176,13 @@ to-lua-resty-logger-socket {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -21925,6 +24235,13 @@ to-lua-resty-core {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -21974,6 +24291,13 @@ to-lua-resty-upstream-healthcheck {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -22026,6 +24350,13 @@ to-lua-resty-lrucache {
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
 
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
+
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
@@ -22076,6 +24407,13 @@ to-lua-resty-limit-traffic {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
 
@@ -22188,6 +24526,13 @@ build-ngx_lua {
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
+
+    # warm-up the DNS cache with the domtains used in our tests.
+    sh 'dig @127.0.0.1 openresty.org || exit 0';
+    sh 'dig @127.0.0.1 agentzh.org || exit 0';
+    sh 'dig @127.0.0.1 sregex.org || exit 0';
+    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
 

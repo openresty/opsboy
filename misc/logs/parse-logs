@@ -66,6 +66,7 @@ my %white_list = (
     'resty-cli' => [
         ['v', 'resty/user-args.t', 'TEST 2: minus indexes - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
         ['v', 'resty/user-args.t', 'TEST 3: with quote and options - stdout like okay', qr/arg -1: .*? --suppressions=valgrind\.suppress/],
+        ['v', 'resty/options.t', 'TEST 1: bad --nginx value - exit code okay', "got: '3'"],
     ],
 
     'lua-resty-lrucache' => [
@@ -132,6 +133,8 @@ my %white_list = (
         ['r', 'ssl.t', qr/ peer closed connection in SSL handshake/],
         ['r', 'ssl.t', 'TEST 3: send query w/o result set (verify, failed) - response_body - response is expected', qr/failed to connect: failed to do ssl handshake: handshake failed: nil nil/],
         ['r', 'ssl.t', 'TEST 3: send query w/o result set (verify, failed) - pattern "lua ssl certificate verify error: (18: self signed certificate)" should match a line in error.log'],
+        ['w', 'sanity.t', 'TEST 13: send query w/o result set (unix domain socket) - response_body_like - response is expected', 'failed to close: broken pipe'],
+        ['w', 'sanity.t', qr/TEST 13: send query w\/o result set \(unix domain socket\) - pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(\d+: Broken pipe\)/],
     ],
 
     'lua-resty-redis' => [
@@ -321,6 +324,12 @@ my %white_list = (
         ['r', 'ssl.t', qr/pattern ".*?" should match a line in error\.log/],
         ['r', 'ssl.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line ".*? peer closed connection in SSL handshake/],
         ['r', 'ssl.t', qr/TEST 14: ngx\.semaphore in ssl_certificate_by_lua\* - grep_error_log_out/],
+        ['r', 'balancer.t', 'TEST 16: https (keepalive) - status code ok', qr/got: '502'/],
+        ['r', 'balancer.t', 'TEST 16: https (keepalive) - response_body - response is expected', qr/502 Bad Gateway/],
+        ['r', 'balancer.t', qr/TEST 16: https \(keepalive\) - pattern "\[error]" should not match any line in error\.log but matches line .*? peer closed connection in SSL handshake while SSL handshaking to upstream/],
+        ['r', 'balancer.t', 'TEST 17: https (no keepalive) - status code ok', qr/got: '502'/],
+        ['r', 'balancer.t', 'TEST 17: https (no keepalive) - response_body - response is expected', '502 Bad Gateway'],
+        ['r', 'balancer.t', qr/TEST 17: https \(no keepalive\) - pattern "\[error]" should not match any line in error\.log but matches line .*? peer closed connection in SSL handshake while SSL handshaking to upstream/],
         ['v', 'balancer.t', qr/should match a line in error\.log/, undef, 'linux i386'],
         ['v', 'semaphore.t', qr/ - grep_error_log_out /, undef, 'linux i386'],
         ['h', 'semaphore.t', qr/should not match any line in error.log but matches line/],
@@ -393,6 +402,7 @@ my %white_list = (
         ['h', '139-ssl-cert-by.t', qr/ - response_body - response is expected /, qr/\+failed to connect: no such file or directory/],
         ['h', '139-ssl-cert-by.t', qr/ should match a line in error\.log /],
         ['h', '139-ssl-cert-by.t', qr/ - grep_error_log_out /],
+        ['h', '058-tcp-socket.t', qr/TEST 53: tcp_nodelay off - pattern "\[error\]" should not match any line in error\.log but matches line .*? unexpected response for agentzh\.org/],
         [undef, undef, qr/pattern "\[error\]" should not match any line in error.log but matches line ".*? wrong ident \d+ response for \w+\.org, expect \d+/],
         ['w', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" should match a line in error\.log/],
         ['h', '056-flush.t', qr/TEST 1: flush wait - content - pattern "lua reuse free buf chain, but reallocate memory because 5 >= 0" should match a line in error\.log/],
@@ -435,6 +445,8 @@ my %white_list = (
         ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected', undef, 'linux i386'],
         ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - stap output expected', undef, 'linux i386'],
         ['', '126-shdict-frag.t', 'TEST 7: merge big slabs (less than max slab size) backward - stap output expected', undef, 'linux i386'],
+        ['', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - grep_error_log_out', 'got: ""'],
+        ['', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - response_body - response is expected', 'got: "not ok: c=1\x{0a}"'],
         ['v', '023-rewrite/tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like'],
         ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
@@ -482,6 +494,7 @@ my %white_list = (
         ['v', '067-req-socket.t', 'TEST 15: successful reread after reading timeout happens (receive -> receiveuntil) - response_body - response is expected'],
         ['v', '067-req-socket.t', 'TEST 16: successful reread after reading timeout happens (receiveuntil -> receive) - response_body - response is expected'],
         ['v', '124-init-worker.t', 'TEST 18: syslog error log - udp_query ok'],
+        ['v', '141-luajit.t', 'TEST 1: avoid the data segment from growing on Linux - response_body - response is expected', 'got: "fail: p = 0x'],
         ['h', '058-tcp-socket.t', qr/TEST 4: with resolver - pattern "\[error\]" should not match any line in error\.log but matches line .*? wrong ident \d+ response for/],
         ['h', '124-init-worker.t', 'TEST 18: syslog error log - udp_query ok'],
         ['h', '129-ssl-socket.t', 'should match a line in error.log'],
