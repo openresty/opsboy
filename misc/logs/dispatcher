@@ -10,8 +10,12 @@ use List::Util qw( sum );
 #use Parallel::ForkManager;
 
 my %opts;
-getopts("i:a:t:e:v:o:Scrf", \%opts) or
-    die "Usage: $0 [-S] [-i instance-type] [-e exclude-pattern] [-v <nginx-version>] [-o nginx-cc-opts] [-c] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+getopts("hi:a:t:e:v:o:Scrf", \%opts) or
+    die usage(1);
+
+if ($opts{h}) {
+    usage(0);
+}
 
 my $arch = $opts{a}
     or die "No -a <arch> option specified.\n";
@@ -207,4 +211,16 @@ if ($run) {
     }
 
     #$pm->wait_all_children();
+}
+
+sub usage {
+    my $rc = shift;
+    my $msg =
+        "Usage: $0 [-S] [-i instance-type] [-e exclude-pattern] [-v <nginx-version>] [-o nginx-cc-opts] [-c] [-r] [-f] -t <minutes> -a <arch> <component>...\n";
+    if ($rc != 0) {
+        print STDERR $msg;
+        exit $rc;
+    }
+    print $msg;
+    exit 0;
 }
