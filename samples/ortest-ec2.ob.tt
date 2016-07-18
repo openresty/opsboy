@@ -160,7 +160,7 @@ openssl {
     cwd /tmp;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
-    sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install';
+    sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install_sw';
     dep cc cxx;
 }
 
