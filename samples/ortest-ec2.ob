@@ -47,7 +47,7 @@ openssl {
     env LD_LIBRARY_PATH /opt/ssl/lib:$LD_LIBRARY_PATH;
 
     cwd /tmp;
-    fetch http://www.openssl.org/source/openssl-$openssl_version.tar.gz;
+    fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
     sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install';
     dep cc cxx;
