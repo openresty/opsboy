@@ -41,6 +41,7 @@ caching-nameserver-config {
 }
 
 openssl {
+    always;
     file /opt/ssl/bin/openssl;
     test '/opt/ssl/bin/openssl version|grep "OpenSSL $openssl_version"';
 
@@ -49,8 +50,8 @@ openssl {
     cwd /tmp;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
-    sh 'cd openssl-$openssl_version && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install_sw';
-    dep cc cxx;
+    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-$openssl_version-sess_set_get_cb_yield.patch && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install_sw';
+    dep cc cxx openresty;
 }
 
 luajit_sysmalloc {
