@@ -41,7 +41,6 @@ caching-nameserver-config {
 }
 
 openssl {
-    always;
     file /opt/ssl/bin/openssl;
     test '/opt/ssl/bin/openssl version|grep "OpenSSL $openssl_version"';
 
