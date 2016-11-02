@@ -414,6 +414,14 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        [undef, '142-ssl-session-store.t', 'nginx: [emerg]', '"ssl_session_store_by_lua_block" directive is not allowed here in '],
+        [undef, '146-malloc-trim.t', ' - grep_error_log_out', '+malloc_trim(1) returned 1', 'linux i386'],
+        ['v', '146-malloc-trim.t', ' - grep_error_log_out', '+malloc_trim(1) returned 0'],
+        [undef, '146-malloc-trim.t', 'TEST 8: malloc_trim() every 1 req - grep_error_log_out', "got: 'malloc_trim(1) returned 1", 'linux i386'],
+        [undef, '146-malloc-trim.t', 'TEST 1: malloc_trim() every 1 req, in subreq - grep_error_log_out', "got: 'malloc_trim(1) returned 1", 'linux i386'],
+        [undef, '043-shdict.t', 'nginx: [emerg]', 'lua_shared_dict "dogs" is already defined as "dogs" in'],
+        [undef, '148-fake-shm-zone.t', 'nginx: [emerg]', 'lua_fake_shm "x1" is already defined as "x1" in'],
+        ['h', '145-shdict-list.t', 'response_body - response is expected'],
         ['h', '140-ssl-c-api.t', 'should match a line in error.log'],
         ['h', '139-ssl-cert-by.t', qr/nginx\.sock failed .*? No such file or directory/],
         ['h', '139-ssl-cert-by.t', qr/ - response_body - response is expected /, qr/\+failed to connect: no such file or directory/],
