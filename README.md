@@ -7,8 +7,90 @@ Table of Contents
 =================
 
 * [Name](#name)
+* [Synopsis](#synopsis)
 * [Description](#description)
 * [Copyright & License](#copyright--license)
+
+Synopsis
+========
+
+Basic usage
+
+```
+
+# assignment in opsboy file scope.
+foo = bar; # Opsboy's assignment syntax. variable can be interpolated when startwith dollar sign and within strings.
+
+# comment in opsboy file.
+#foo = bar; # opsboy use # as comment syntax.
+
+# rule and target.
+
+Basically,
+
+    foo {
+	directive1;
+	directive2;
+    }
+
+is a rule. And foo is the target. It's quite similar to Makefile's rules perse.
+
+We use Opsboy's compile out perl and send make and target arguments to execute 
+it.
+
+./openresty-test.pl make foo 
+
+# command
+All opsboy command will list below.
+
+# git
+git git@github.com location;  #git clone resource to location.
+
+# file
+file location; # check if file exist, if not create.
+
+# running
+running 'process matching part'; # check process is running.
+
+# dep
+dep block1 block2 block3; # execute depend block.
+
+# cwd
+ cwd location; # change working directory.
+
+# test
+test cmd; # if system(cmd) != 0 will not execute the block.
+
+# env
+env key value; # working like bash's export command;
+env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH'; # we can use shell variable here.
+
+# always
+always; # exec blocking without conditions.
+
+# sh
+sh 'CMD'; # exec some shell command.
+
+# yum
+yum 'PKG'; # package installation through supported package manager (brew, yum ,
+dnf and pkg_add available now).
+
+# debuginfo
+debuginfo 'kernel-`uname -r`'; #install debuginfo.
+
+# prog
+prog program; # check program whether exist in system's execuatable path.
+
+# fetch
+fetch source; # download source from internet with timestamp-checking.
+
+# tarball
+tarball file; # tar -xvf or -jxvf file.
+
+# cpan
+cpan package; # install perl CPAN packages.
+
+```
 
 Description
 ===========
