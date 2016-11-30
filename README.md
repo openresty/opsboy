@@ -7,8 +7,96 @@ Table of Contents
 =================
 
 * [Name](#name)
+* [Synopsis](#synopsis)
 * [Description](#description)
 * [Copyright & License](#copyright--license)
+
+Synopsis
+========
+
+Basic usage
+
+```
+
+# assignment in opsboy file scope.
+foo = bar; # opsboy's assignment syntax. variables can be interpolated like in shell.
+
+# comment in opsboy file.
+#foo = bar; # opsboy use # as comment syntax.
+
+# rule and target.
+
+Basically,
+
+    foo {
+        directive1;
+        directive2;
+    }
+
+is a rule. And foo is the target. It's quite similar to Makefile's rules per se.
+
+We use the opsboy compiler to generate standalone Perl scripts that can build a
+system environment incrementally through a specification of rules.
+
+./openresty-test.pl make foo
+
+# command
+All opsboy syntactic structures and directives are listed below.
+
+# git
+git git@github.com location;  # git clone resource to location.
+
+# file
+file location; # check if file exist, if not create.
+
+# running
+running 'process matching part'; # check the existence of running processes
+through the specified command-line string pattern. if no processes match the
+pattern, make the current rule fail immediately.
+
+# dep
+dep block1 block2 block3; # specifying dependency rule names which must be
+checked and fulfilled before running the current rule.
+
+# cwd
+ cwd location; # change working directory.
+
+# test
+test cmd; # test if the command cmd can run successfully. If not, make the
+current rule fail without executing any other commands associated with the
+current rule.
+
+# env
+env key value; # working like bash's export command;
+env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH'; # we can interpolate
+other environment variables inside the envirment variable values here.
+
+# always
+always; # exec blocking without conditions.
+
+# sh
+sh 'CMD'; # exec some shell command.
+
+# yum
+yum 'PKG'; # package installation through supported package manager (brew, yum,
+dnf and pkg_add available now).
+
+# debuginfo
+debuginfo 'kernel-`uname -r`'; # install debuginfo.
+
+# prog
+prog program; # check whether the program exists and executable in the system's PATH environment.
+
+# fetch
+fetch source; # download source from internet with timestamp-checking.
+
+# tarball
+tarball file; # tar -xvf or -jxvf file.
+
+# cpan
+cpan package; # install perl CPAN packages.
+
+```
 
 Description
 ===========
