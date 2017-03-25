@@ -205,7 +205,7 @@ if (can_run("yum")) {
 }
 
 sub make ($$) {
-    my ($target, $parent) = shift;
+    my ($target, $parent) = @_;
 
     if ($made{$target}) {
         return;
