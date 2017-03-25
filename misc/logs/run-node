@@ -6,10 +6,8 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-d01cbdb3', # linux-i386-11 (ap-southeast-1)
-    #'linux i386' => 'ami-a65c83c5', # linux-i386-10 (ap-southeast-1)
-    #'linux x86_64' => 'ami-1958877a', # linux-x64-10 (ap-southeast-1)
-    'linux x86_64' => 'ami-71e04012', # linux-x64-11 (ap-southeast-1)
+    'linux i386' => 'ami-09e84669', # ortest-linux-i386-1 (us-west-2)
+    'linux x86_64' => 'ami-b4e846d4', # ortest-linux-x64-1 (us-west-2)
 );
 
 my %opts;
@@ -27,13 +25,11 @@ my $keypair = $opts{k} || 'ortest';
 my $instance_type = $opts{t};
 
 if (!defined $instance_type) {
-    #if ($arch eq 'linux x86_64') {
-        #$instance_type = 'c1.medium';
-        #$instance_type = 'c3.large';
+    #if ($arch =~ /x86_64/) {
+    #$instance_type = 'm3.medium';
 
-        #} else {
-        #$instance_type = 'c1.medium';
-        #}
+    #} else {
+    #}
     $instance_type = 'c3.large';
 }
 
@@ -42,13 +38,13 @@ my $user_data = join (" ", @ARGV)
 
 my @cmd = ("ec2-run-instances", $ami, "-k", $keypair, "-d", $user_data,
         "--debug", "-t", $instance_type, #'--availability-zone', 'us-west-1b',
-        '--region', 'ap-southeast-1',
+        '--region', 'us-west-2',
         '--instance-initiated-shutdown-behavior', 'terminate',
         '-g', 'ortest');
 
 my $check = $opts{c};
 
-#print "@cmd\n";
+warn "@cmd\n";
 
 if ($check) {
     exit;
