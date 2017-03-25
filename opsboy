@@ -467,6 +467,7 @@ sub make ($$) {
     }
 
     $made{$target} = 1;
+    delete $making{$target};
 }
 
 sub sh (@) {
