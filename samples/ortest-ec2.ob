@@ -795,7 +795,7 @@ pcrejit {
 
     cwd /tmp;
     fetch http://linux.stanford.edu/pub/exim/pcre/pcre-$pcre_version.tar.bz2;
-    tarball pcre-$pcre_version.tar.gz;
+    tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
