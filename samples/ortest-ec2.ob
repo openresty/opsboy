@@ -3,10 +3,10 @@
 jobs = 3;
 ngx_redis_version = 0.3.7;
 nginx_version = 1.11.2;
-openresty_version = 1.9.15.1;
-redis_version = 3.0.5;
+openresty_version = 1.11.2.2;
+redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.33;
+pcre_version = 8.40;
 force = 0;
 ragel_version = 6.9;
 valgrind_version = 3.11.0;
@@ -16,7 +16,7 @@ perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
-openssl_version = 1.0.2h;
+openssl_version = 1.0.2k;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 1;
@@ -49,7 +49,7 @@ openssl {
     cwd /tmp;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
-    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-$openssl_version-sess_set_get_cb_yield.patch && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install_sw';
+    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-1.0.2h-sess_set_get_cb_yield.patch && ./config shared --prefix=/opt/ssl -DPURIFY && make -j$jobs && sudo make install_sw';
     dep cc cxx openresty;
 }
 
@@ -781,7 +781,7 @@ ngx_lua {
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-    dep luajit ndk;
+    dep luajit ndk lua-resty-core;
 }
 
 pcrejit {
