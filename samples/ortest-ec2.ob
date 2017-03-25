@@ -781,7 +781,7 @@ ngx_lua {
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-    dep luajit ndk lua-resty-core;
+    dep luajit ndk;
 }
 
 pcrejit {
