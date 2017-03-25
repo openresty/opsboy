@@ -178,7 +178,7 @@ my ($check_only, $git_pull);
 
 my (%made, %making);
 
-sub make ($);
+sub make ($$);
 sub check_dir ($);
 sub main ();
 sub can_run ($);
@@ -204,15 +204,15 @@ if (can_run("yum")) {
     $use_yum = 1;
 }
 
-sub make ($) {
-    my $target = shift;
+sub make ($$) {
+    my ($target, $parent) = shift;
 
     if ($made{$target}) {
         return;
     }
 
     if ($making{$target}) {
-        die "Circular dependency found around $target\n";
+        die "Circular dependency found through ", $parent || "ROOT", " -> $target\n";
     }
 
     $making{$target} = 1;
@@ -262,7 +262,7 @@ sub make ($) {
 
     if ($deps) {
         for my $dep (@$deps) {
-            make($dep);
+            make($dep, $target);
         }
     }
 
@@ -555,14 +555,14 @@ sub main () {
     for my $goal (@goals) {
         if ($keep_going) {
             eval {
-                make($goal);
+                make($goal, undef);
             };
             if ($@) {
                 warn $@;
             }
 
         } else {
-            make($goal);
+            make($goal, undef);
         }
     }
 
