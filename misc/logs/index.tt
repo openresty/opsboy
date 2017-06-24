@@ -251,8 +251,8 @@
 <p>&nbsp; <a href="archive/">http://qa.openresty.org/archive/</a></p>
 
 <h2><a name="maintainer">Maintainer</a></h2>
-<p>Yichun "agentzh" Zhang (章亦春) &lt;agentzh@gmail.com&gt; (<a href="http://agentzh.org/">http://agentzh.org</a>), CloudFlare.</p>
-<p>This Amazon EC2 test cluster has been sponsored by CloudFlare, Inc (http://www.cloudflare.com).</p>
+<p>Yichun "agentzh" Zhang (章亦春) &lt;agentzh@gmail.com&gt; (<a href="http://agentzh.org/">http://agentzh.org</a>), OpenResty Inc.</p>
+<p>This Amazon EC2 test cluster is currently sponsored by OpenResty Inc. (https://www.openresty.com).</p>
 <p>If you like to add more tests to this test cluster and its reports, feel free to contact me.</p>
 
 </body>
