@@ -4,8 +4,8 @@ jsonfiles=$(patsubst %.log,%.json,$(logfiles))
 dirname=$(shell echo html/archive/`date +'%Y-%m-%d'`)
 
 gen: parse gen-report
-	-mkdir -p html/images
-	-rm html/*.*
+	mkdir -p html/images
+	rm -f html/*.*
 	./gen-report ortest
 	mkdir -p $(dirname)
 	cp main.css html/
