@@ -144,6 +144,7 @@ my %white_list = (
         ['r', 'ssl.t', 'TEST 3: send query w/o result set (verify, failed) - pattern "lua ssl certificate verify error: (18: self signed certificate)" should match a line in error.log'],
         ['w', 'sanity.t', 'TEST 13: send query w/o result set (unix domain socket) - response_body_like - response is expected', 'failed to close: broken pipe'],
         ['w', 'sanity.t', qr/TEST 13: send query w\/o result set \(unix domain socket\) - pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(\d+: Broken pipe\)/],
+        ['w', 'charset.t', qr/send\(\) failed \(32: Broken pipe\)/i],
     ],
 
     'lua-resty-redis' => [
@@ -327,6 +328,9 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['h', 'errlog.t', 'TEST 31: ringbuf sentinel bug2 - response_body - response is expected', qr/\+log lines: \\\#9/],
+        ['h', 'errlog.t', 'TEST 19: fetch a few and generate a few, then fetch again (overflown again) - response_body_like'],
+        [undef, 'errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/\A\s*\'log lines: \#20\n/s],
         [undef, 're-opt.t', 'TEST 1: default jit_stack_size too small - response_body - response is expected', qr/got: 'from: 1\nto: 1563\n'/, 'linux i386'],
         [undef, 'errlog.t', 'nginx: [emerg]', 'invalid number of arguments in "lua_capture_error_log" directive in '],
         [undef, 'errlog.t', 'nginx: [emerg]', 'invalid capture error log size "3k", minimum size is 4096 in '],
