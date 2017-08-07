@@ -328,6 +328,8 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['h', 'errlog.t', 'TEST 20: fetch a few and generate a few, then fetch again (not overflown again) - response_body_like - response is expected', qr/\A\s*'msg count: \d/s],
+        ['h', 'errlog.t', 'TEST 18: flood the capturing buffer (5k) - response_body_like - response is expected', qr/\A\s*'log lines: /s],
         ['h', 'errlog.t', 'TEST 31: ringbuf sentinel bug2 - response_body - response is expected', qr/\+log lines: \\\#9/],
         ['h', 'errlog.t', 'TEST 19: fetch a few and generate a few, then fetch again (overflown again) - response_body_like'],
         [undef, 'errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/\A\s*\'log lines: \#20\n/s],
