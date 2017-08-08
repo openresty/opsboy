@@ -452,6 +452,9 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        [undef, '153-semaphore-hup.t', 'TEST 2: timer + reload (lua code cache off) - grep_error_log_out', qr/^\s*created semaphore object$/ms],
+        [undef, '153-semaphore-hup.t', 'TEST 1: timer + reload - grep_error_log_out', qr/^\s*created semaphore object$/ms],
+        ['hv', '154-semaphore.t', 'TEST 2: timer + shutdown error log (lua code cache off)', 'Memcheck:Leak'],
         ['v', '152-timer-every.t', 'TEST 6: memory leak check - response_body - response is expected', qr/\+growth1 == growth2: false$/sm],
         ['v', '152-timer-every.t', qr/TEST 1: simple very - pattern ".*?elapsed:.*?" should match a line in error\.log/sm],
         ['v', '152-timer-every.t', 'TEST 3: lua variable sharing via upvalue - response_body - response is expected', qr/\+foo = 3$/sm],
