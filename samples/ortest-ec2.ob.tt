@@ -433,7 +433,7 @@ cxx {
 }
 
 ngx_postgres {
-    git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
+    git git://github.com/openresty/ngx_postgres.git ~/git/postgres-nginx-module;
     env LIBPQ_INC /usr/include;
     env LIBPQ_LIB /usr/lib64;
     dep libpq;

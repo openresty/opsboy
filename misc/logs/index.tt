@@ -27,7 +27,7 @@
         ngx_headers_more => 'github.com/openresty/headers-more-nginx-module',
         ngx_lua => 'github.com/openresty/lua-nginx-module',
         ngx_memc => 'github.com/openresty/memc-nginx-module',
-        ngx_postgres => 'github.com/FRiCKLE/ngx_postgres',
+        ngx_postgres => 'github.com/openresty/ngx_postgres',
         ngx_rds_csv => 'github.com/openresty/rds-csv-nginx-module',
         ngx_rds_json => 'github.com/openresty/rds-json-nginx-module',
         ngx_redis2 => 'github.com/openresty/redis2-nginx-module',
