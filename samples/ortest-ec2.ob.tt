@@ -134,6 +134,17 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     dep run-caching-nameserver;
 [% END -%]
 
+ngx-lua-tests-firewall-rules {
+    test 'iptables -S|grep "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
+    sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
+    dep iptables;
+}
+
+iptables {
+    prog iptables;
+    yum iptables;
+}
+
 run-caching-nameserver {
     running '/named -u ';
     sh 'sudo service named start';
@@ -1018,6 +1029,7 @@ t[% type %]-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 t[% type %]-ngx_memc {

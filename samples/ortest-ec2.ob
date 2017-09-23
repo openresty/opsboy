@@ -23,6 +23,17 @@ use_stap = 1;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
 
+ngx-lua-tests-firewall-rules {
+    test 'iptables -S|grep "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
+    sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
+    dep iptables;
+}
+
+iptables {
+    prog iptables;
+    yum iptables;
+}
+
 run-caching-nameserver {
     running '/named -u ';
     sh 'sudo service named start';
@@ -477,7 +488,7 @@ cxx {
 }
 
 ngx_postgres {
-    git git://github.com/FRiCKLE/ngx_postgres.git ~/git/postgres-nginx-module;
+    git git://github.com/openresty/ngx_postgres.git ~/git/postgres-nginx-module;
     env LIBPQ_INC /usr/include;
     env LIBPQ_LIB /usr/lib64;
     dep libpq;
@@ -1996,6 +2007,7 @@ t-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 t-ngx_memc {
@@ -4455,6 +4467,7 @@ tv-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 tv-ngx_memc {
@@ -6485,6 +6498,7 @@ tr-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 tr-ngx_memc {
@@ -8602,6 +8616,7 @@ trv-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 trv-ngx_memc {
@@ -10781,6 +10796,7 @@ tw-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 tw-ngx_memc {
@@ -12927,6 +12943,7 @@ twv-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 twv-ngx_memc {
@@ -15578,6 +15595,7 @@ th-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 th-ngx_memc {
@@ -18001,6 +18019,7 @@ thv-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 thv-ngx_memc {
@@ -20484,6 +20503,7 @@ tl-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 tl-ngx_memc {
@@ -22919,6 +22939,7 @@ to-ngx_lua {
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
+    dep ngx-lua-tests-firewall-rules;
 }
 
 to-ngx_memc {
