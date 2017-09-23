@@ -135,7 +135,7 @@ nginx_ld_opt = '-L/opt/ssl/lib';
 [% END -%]
 
 ngx-lua-tests-firewall-rules {
-    test 'iptables -S|grep "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
+    test 'sudo iptables -S|grep -- "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
     sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
     dep iptables;
 }
