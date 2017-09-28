@@ -17,5 +17,6 @@ ortest-fb.pl
 ortest-mac.pl
 ortest-sol.pl
 ortest-fc.pl
+ortest-ec2.pl
 openresty-tester.pl
 go
