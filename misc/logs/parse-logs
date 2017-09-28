@@ -76,6 +76,7 @@ my %white_list = (
         ['v', 'resty/options.t', 'TEST 14: --shdict option missing size - exit code okay', "got: '3'"],
         ['v', 'resty/signals.t', 'TEST 3: Forward SIGTERM to child process - exit code okay', "got: '3'"],
         ['v', 'resty/signals.t', 'TEST 1: Forward SIGINT to child process - exit code okay', "got: '2'"],
+        ['v', 'resty/signals.t', 'TEST 8: Forward SIGHUP to child process - exit code okay', "got: '1'"],
     ],
 
     'lua-resty-lrucache' => [
@@ -328,6 +329,8 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['h', 'shared.t', 'TEST 10: shared.expire returns error on not found key - response_body - response is expected'],
+        ['h', 'shared.t', 'TEST 3: shared.ttl returns error on not found key - response_body - response is expected'],
         ['h', 'errlog.t', 'TEST 20: fetch a few and generate a few, then fetch again (not overflown again) - response_body_like - response is expected', qr/\A\s*'msg count: \d/s],
         ['h', 'errlog.t', 'TEST 18: flood the capturing buffer (5k) - response_body_like - response is expected', qr/\A\s*'log lines: /s],
         ['h', 'errlog.t', 'TEST 31: ringbuf sentinel bug2 - response_body - response is expected', qr/\+log lines: \\\#9/],
@@ -353,6 +356,7 @@ my %white_list = (
         ['v', 'process-type-master.t', 'TEST 1: sanity - grep_error_log_out', " loop]\ninit_worker_by_lua:8: process type: single\n'"],
         ['v', 'process-type-privileged-agent.t', 'TEST 1: sanity - response_body - response is expected', qr/got: "type: single\b/],
         ['v', 'process-type-privileged-agent.t', 'TEST 1: sanity - grep_error_log_out', " loop]\n'"],
+        ['v', 'shared.t', 'TEST 11: shared.expire updates ttl of key with non-default ttl - response_body - response is expected', qr/got: 'after 0\.2s: nil\nafter 0\.4s: nil/],
         ['h', 'ocsp.t', qr/ should match a line in error\.log/],
         ['h', 'ocsp.t', qr/ - response_body - response is expected/, qr/\+failed to connect: no such file or directory/],
         ['h', 'ocsp.t', qr/pattern "\[emerg\]" should not match any line in error\.log but matches line ".*?No such file or directory/],
@@ -452,6 +456,8 @@ my %white_list = (
     ],
 
     ngx_lua => [
+        ['r', '139-ssl-cert-by.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
+        ['r', '142-ssl-session-store.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
         [undef, '153-semaphore-hup.t', 'TEST 2: timer + reload (lua code cache off) - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         [undef, '153-semaphore-hup.t', 'TEST 1: timer + reload - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         ['hv', '154-semaphore.t', 'TEST 2: timer + shutdown error log (lua code cache off)', 'Memcheck:Leak'],
@@ -476,6 +482,7 @@ my %white_list = (
         ['h', '139-ssl-cert-by.t', qr/ should match a line in error\.log /],
         ['h', '139-ssl-cert-by.t', qr/ - grep_error_log_out /],
         ['h', '146-malloc-trim.t', qr/ - grep_error_log_out /],
+        ['h', '146-malloc-trim.t', 'should not match any line in error.log but matches line'],
         ['h', '148-fake-shm-zone.t', ' - response_body - response is expected', qr/\+isold=true/],
         ['h', '058-tcp-socket.t', qr/TEST 53: tcp_nodelay off - pattern "\[error\]" should not match any line in error\.log but matches line .*? unexpected response for agentzh\.org/],
         ['h', '101-on-abort.t', ' should not match any line in error.log but matches line '],
@@ -523,11 +530,11 @@ my %white_list = (
         ['', '058-tcp-socket.t', 'TEST 8: resolver error (host not found)'],
         ['', '058-tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like - response is expected'],
         ['', '058-tcp-socket.t', qr/wrong ident \d+ response for blah-blah-not-found\.agentzh\.org/],
-        ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected', undef, 'linux i386'],
-        ['', '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - stap output expected', undef, 'linux i386'],
-        ['', '126-shdict-frag.t', 'TEST 7: merge big slabs (less than max slab size) backward - stap output expected', undef, 'linux i386'],
-        ['', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - grep_error_log_out', 'got: ""'],
-        ['', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - response_body - response is expected', 'got: "not ok: c=1\x{0a}"'],
+        [undef, '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected', undef, 'linux i386'],
+        [undef, '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - stap output expected', undef, 'linux i386'],
+        [undef, '126-shdict-frag.t', 'TEST 7: merge big slabs (less than max slab size) backward - stap output expected', undef, 'linux i386'],
+        ['v', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - grep_error_log_out', 'got: ""'],
+        ['v', '135-worker-id.t', 'TEST 2: worker id should be nil for non-worker processes - response_body - response is expected', 'got: "not ok: c=1\x{0a}"'],
         ['v', '023-rewrite/tcp-socket.t', 'TEST 9: resolver error (timeout) - response_body_like'],
         ['w', '023-rewrite/req-socket.t', 'TEST 7: Expect & 100 Continue'],
         ['w', '072-conditional-get.t', 'TEST 3: If-Unmodified-Since false'],
