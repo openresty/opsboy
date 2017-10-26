@@ -445,8 +445,8 @@ cxx {
 
 ngx_postgres {
     git git://github.com/openresty/ngx_postgres.git ~/git/postgres-nginx-module;
-    env LIBPQ_INC /usr/include;
-    env LIBPQ_LIB /usr/lib64;
+    env LIBPQ_INC /usr/include/pgsql92;
+    env LIBPQ_LIB /usr/lib64/pgsql92;
     dep libpq;
 }
 
@@ -559,8 +559,8 @@ sregex-git {
 
 libpq {
     #file /usr/lib64/libpq.so;
-    file /usr/include/libpq-fe.h;
-    yum postgresql9-devel;
+    file /usr/include/pgsql92/libpq-fe.h;
+    yum postgresql92-devel;
 }
 
 ngx_drizzle {
