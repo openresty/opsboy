@@ -286,20 +286,27 @@ sub make ($$) {
             $value =~ s/^~/$ENV{HOME}/;
             #warn "Setting $name to $value\n";
             $value =~ s/`(.*?)`/my $s = `$1`; chomp $s; $s/ge;
+            print "$name=$value\n";
             $ENV{$name} = $value;
         }
     }
 
     if ($gits) {
-        if (@$gits % 2 != 0) {
+        my $nargs = @$gits;
+        if ($nargs != 3 && $nargs != 2) {
             die "Bad number of arguments to the \"git\" command: ",
-                scalar(@$gits);
+                $nargs;
         }
 
         my @args = @$gits;
         while (@args) {
             my $url = shift @args;
             my $dir = shift @args;
+            my $branch = shift @args;
+
+            if (!defined $branch) {
+                $branch = 'master';
+            }
 
             $dir =~ s/^~/$ENV{HOME}/;
 
@@ -316,25 +323,30 @@ sub make ($$) {
                     system("mv $dir $dir.bak");
                 }
 
-                sh("git", "clone", $url, $dir);
+                sh("git", "clone", "-b", $branch, $url, $dir);
 
             } else {
                 if ($git_pull) {
-                    sh("cd $dir && git reset --hard && git checkout master && git pull");
+                    sh("cd $dir && git fetch origin && git reset --hard && git checkout $branch && git merge origin/$branch");
                 }
             }
         }
     }
 
     my $requires_making;
+    my ($found_progs, $found_tests, $found_runnings, $found_files);
 
     my $progs = $rules->{prog};
     if ($progs) {
-        for my $prog (@$progs) {
-            if (!can_run($prog)) {
-                warn "program $prog missing.\n";
-                $requires_making = 1;
-                last;
+        if (@$progs) {
+            $found_progs = 1;
+
+            for my $prog (@$progs) {
+                if (!can_run($prog)) {
+                    warn "program $prog missing.\n";
+                    $requires_making = 1;
+                    last;
+                }
             }
         }
     }
@@ -342,46 +354,65 @@ sub make ($$) {
     my $tests = $rules->{test};
     if ($tests) {
         #warn "Found tests!";
-        for my $test (@$tests) {
-            #warn "running command $test";
-            if (system($test) != 0) {
-                warn "shell test failed: $test\n";
-                $requires_making = 1;
-                last;
+
+        if (@$tests) {
+            $found_tests = 1;
+
+            for my $test (@$tests) {
+                #warn "running command $test";
+                if (system($test) != 0) {
+                    warn "shell test failed: $test\n";
+                    $requires_making = 1;
+                    last;
+                }
             }
         }
     }
 
     my $runnings = $rules->{running};
     if ($runnings) {
-        for my $running (@$runnings) {
-            if (system("ps aux|grep '$running'|grep -v grep") != 0) {
-                warn "process matching '$running' not found.\n";
-                $requires_making = 1;
-                last;
+        if (@$runnings) {
+            $found_runnings = 1;
+
+            for my $running (@$runnings) {
+                if (system("ps aux|grep '$running'|grep -v grep") != 0) {
+                    warn "process matching '$running' not found.\n";
+                    $requires_making = 1;
+                    last;
+                }
             }
         }
     }
 
     my $files = $rules->{file};
     if ($files) {
-        for my $file (@$files) {
-            $file =~ s/^~/$ENV{HOME}/;
-            $file =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/eg;
-            if (!-e $file) {
-                $requires_making = 1;
-                last;
+        if (@$files) {
+            $found_files = 1;
+
+            for my $file (@$files) {
+                $file =~ s/^~/$ENV{HOME}/;
+                $file =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/eg;
+                if (!-e $file) {
+                    $requires_making = 1;
+                    last;
+                }
             }
         }
     }
 
     if ($rules->{always}) {
         $requires_making = 1;
+
+    } elsif (!$requires_making) {
+        if (!$found_progs && !$found_tests && !$found_runnings && !$found_files) {
+            $requires_making = 1;
+        }
     }
 
     if ($requires_making) {
         my $pkgs = $rules->{yum};
         if ($pkgs) {
+            #warn "pkgs: @$pkgs";
             for my $pkg (@$pkgs) {
                 if ($freebsd) {
                     sh("sudo pkg_add -r $pkg");
@@ -419,7 +450,7 @@ sub make ($$) {
         my $cpans = $rules->{cpan};
         if ($cpans) {
             for my $cpan (@$cpans) {
-                sh("sudo", "cpan", $cpan);
+                sh("sudo", "cpanm", "-n", $cpan);
             }
         }
 
