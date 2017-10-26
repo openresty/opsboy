@@ -2,11 +2,11 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.11.2;
-openresty_version = 1.11.2.2;
+nginx_version = 1.13.6;
+openresty_version = 1.13.6.1rc0;
 redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.40;
+pcre_version = 8.41;
 force = 0;
 ragel_version = 6.9;
 valgrind_version = 3.11.0;
@@ -16,7 +16,7 @@ perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
-openssl_version = 1.0.2l;
+openssl_version = 1.0.2k;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 1;
