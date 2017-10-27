@@ -153,6 +153,11 @@ my %white_list = (
     ],
 
     'lua-resty-logger-socket' => [
+        [undef, 'timeout.t', 'TEST 1: connect timeout - pattern "tcp socket connect timed out" should match a line in error.log'],
+        [undef, 'timeout.t', 'TEST 1: connect timeout - pattern "reconnect to the log server" should match a line in error.log'],
+        [undef, 'timeout.t', 'TEST 4: return previous log error - pattern "lua tcp socket connect timed out" should match a line in error.log'],
+        [undef, 'timeout.t', 'TEST 4: return previous log error - pattern "reconnect to the log server: timeout" should match a line in error.log'],
+        [undef, 'timeout.t', 'TEST 4: return previous log error - pattern "log error:try to send log messages to the log server failed after 1 retries: try to connect to the log server failed after 1 retries: timeout" should match a line in error.log'],
         ['h', 'sanity.t', qr/pattern ".*?" should match a line in error\.log/],
         ['h', 'sanity.t', qr/pattern ".*?" should not match any line in error\.log but matches line/],
         ['r', 'sanity.t', qr/TEST 18: SSL logging - Verify - pattern "lua ssl certificate verify error" should match a line in error.log/],

@@ -125,6 +125,13 @@ for my $jsonfile (@jsonfiles) {
         }
 
         my $module = $rec->{module};
+
+        #warn $module;
+
+        if ($module eq 'ngx_stream_echo') {
+            next;
+        }
+
         my $module_group;
         if (!defined $nginx_group->{$module}) {
             $module_group = {};
