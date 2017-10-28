@@ -327,7 +327,7 @@ sub make ($$) {
 
             } else {
                 if ($git_pull) {
-                    sh("cd $dir && git fetch origin && git reset --hard && git checkout $branch && git merge origin/$branch");
+                    sh("cd $dir && git fetch origin && git reset --hard && git checkout $branch && git reset --hard origin/$branch");
                 }
             }
         }
@@ -463,6 +463,29 @@ sub make ($$) {
                 }
                 print "cd $cwd\n";
                 chdir $cwd or die "Cannot cd to $cwd\n";
+            }
+        }
+
+        my $envs = $rules->{env};
+        if (defined $envs) {
+            my @vals = @$envs;
+            while (@vals) {
+                my $name = shift @vals;
+                if (!defined $name) {
+                    die "Undefined environment name.\n";
+                }
+
+                my $value = shift @vals;
+                if (!defined $value) {
+                    die "Environment $name does not take a value.\n";
+                }
+
+                $value =~ s/\$(\w+)/defined $ENV{$1} ? $ENV{$1} : ''/ge;
+                $value =~ s/^~/$ENV{HOME}/;
+                #warn "Setting $name to $value\n";
+                $value =~ s/`(.*?)`/my $s = `$1`; chomp $s; $s/ge;
+                print "$name=$value\n";
+                $ENV{$name} = $value;
             }
         }
 
