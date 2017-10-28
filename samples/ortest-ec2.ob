@@ -2008,6 +2008,7 @@ t-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 t-ngx_memc {
@@ -4467,6 +4468,7 @@ tv-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 tv-ngx_memc {
@@ -6497,6 +6499,7 @@ tr-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 tr-ngx_memc {
@@ -8614,6 +8617,7 @@ trv-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 trv-ngx_memc {
@@ -10793,6 +10797,7 @@ tw-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 tw-ngx_memc {
@@ -12939,6 +12944,7 @@ twv-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 twv-ngx_memc {
@@ -15590,6 +15596,7 @@ th-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 th-ngx_memc {
@@ -18013,6 +18020,7 @@ thv-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 thv-ngx_memc {
@@ -20496,6 +20504,7 @@ tl-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 tl-ngx_memc {
@@ -22931,6 +22940,7 @@ to-ngx_lua {
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
+    dep ngx_stream_lua;
 }
 
 to-ngx_memc {
