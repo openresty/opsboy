@@ -2436,7 +2436,6 @@ t-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -4914,7 +4913,6 @@ tv-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -6963,7 +6961,6 @@ tr-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -9099,7 +9096,6 @@ trv-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -11267,7 +11263,6 @@ tw-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -13432,7 +13427,6 @@ twv-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -16018,7 +16012,6 @@ th-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -18460,7 +18453,6 @@ thv-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -20938,7 +20930,6 @@ tl-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -23362,7 +23353,6 @@ to-ngx_postgres {
     dep nginx-module-test ngx_postgres;
     dep gd-devel;
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -24478,14 +24468,6 @@ to-lua-resty-limit-traffic {
     dep build-ngx_lua;
 }
 
-
-ngx-postgres-build-script {
-    file ~/git/postgres-nginx-module/util/build.sh;
-    test 'test -x ~/git/postgres-nginx-module/util/build.sh';
-    cwd ~/git/postgres-nginx-module/util;
-    fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
-    sh 'mv ngx-postgres-build.sh build.sh && chmod +x build.sh';
-}
 
 ngx-coolkit-build-script {
     file ~/git/coolkit-nginx-module/util/build.sh;

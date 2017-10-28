@@ -1068,7 +1068,6 @@ t[% type %]-ngx_form_input {
 t[% type %]-ngx_postgres {
     [%- PROCESS build_nginx_module name="postgres" -%]
 
-    dep ngx-postgres-build-script;
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
     dep ngx_auth_request run-postgres;
@@ -1126,14 +1125,6 @@ t[% type %]-lua-[% name %] {
 [% END -%]
 
 [%- END %]
-
-ngx-postgres-build-script {
-    file ~/git/postgres-nginx-module/util/build.sh;
-    test 'test -x ~/git/postgres-nginx-module/util/build.sh';
-    cwd ~/git/postgres-nginx-module/util;
-    fetch 'http://agentzh.org/misc/nginx/ngx-postgres-build.sh';
-    sh 'mv ngx-postgres-build.sh build.sh && chmod +x build.sh';
-}
 
 ngx-coolkit-build-script {
     file ~/git/coolkit-nginx-module/util/build.sh;
