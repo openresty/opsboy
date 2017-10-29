@@ -334,6 +334,8 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['l', undef, 'nginx: [emerg]', qr/bind\(\) to 0\.0\.0\.0:\d+ failed \(\d+: Address already in use\)/],
+        ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
         ['h', 'shared.t', 'TEST 10: shared.expire returns error on not found key - response_body - response is expected'],
         ['h', 'shared.t', 'TEST 3: shared.ttl returns error on not found key - response_body - response is expected'],
         ['h', 'errlog.t', 'TEST 20: fetch a few and generate a few, then fetch again (not overflown again) - response_body_like - response is expected', qr/\A\s*'msg count: \d/s],
@@ -412,6 +414,8 @@ my %white_list = (
     ],
 
     ngx_stream_lua => [
+        ['l', undef, 'nginx: [emerg]', qr/bind\(\) to 0\.0\.0\.0:\d+ failed \(\d+: Address already in use\)/],
+        ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
         [undef, '132-lua-blocks.t', 'nginx: [emerg]', qr/Lua code block missing the closing long bracket \"\]=*\]\" in|unexpected lua closing long-bracket in|"http" directive is not allowed here in /],
         [undef, '109-timer-hup.t', qr/TEST 7: HUP reload should abort pending timers \(fuzz test\) - grep_error_log_out/, qr/got: 'stream lua found 8\d{3} pending timers/],
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
@@ -1156,7 +1160,7 @@ for my $rec (@records) {
                 if ($expected) {
                     if (@expected_fails) {
                         my $last = $expected_fails[-1];
-                        if ($last->{file} eq $f->{file}
+                        if ((!defined $last->{file} || $last->{file} eq $f->{file})
                             && $last->{name} eq $f->{name}
                             && ((!defined $last->{details} && !defined $f->{details})
                                 || $last->{details} eq $f->{details}))
