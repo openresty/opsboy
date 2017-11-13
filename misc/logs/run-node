@@ -32,7 +32,7 @@ if (!defined $instance_type) {
 
     #} else {
     #}
-    $instance_type = 'c3.large';
+    $instance_type = 'c5.large';
 }
 
 my $user_data = join (" ", @ARGV)
