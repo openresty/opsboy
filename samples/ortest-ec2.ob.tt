@@ -1140,7 +1140,7 @@ valgrind {
     file /opt/valgrind/bin/valgrind;
     test '/opt/valgrind/bin/valgrind --version|grep $valgrind_version';
     cwd /tmp;
-    fetch http://valgrind.org/downloads/valgrind-$valgrind_version.tar.bz2;
+    fetch ftp://sourceware.org/pub/valgrind/valgrind-$valgrind_version.tar.bz2;
     tarball valgrind-$valgrind_version.tar.bz2;
     sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
     dep cc;
