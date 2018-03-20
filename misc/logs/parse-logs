@@ -383,6 +383,8 @@ my %white_list = (
         ['r', 'ssl.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line ".*? peer closed connection in SSL handshake/],
         ['r', 'ssl.t', qr/TEST 14: ngx\.semaphore in ssl_certificate_by_lua\* - grep_error_log_out/],
         ['r', 'ssl.t', qr/\[crit\] .*? SSL_do_handshake\(\) failed .*?random number generator:SSLEAY_RAND_BYTES:PRNG not seeded/],
+        ['r', 'ssl.t', qr/TEST 21: yield during doing handshake with client which uses low version OpenSSL - response_body - response is expected/],
+        ['r', 'ssl.t', qr/TEST 21: yield during doing handshake with client which uses low version OpenSSL - pattern .*? should not match any line in error.log but matches line/],
         ['r', 'balancer.t', 'TEST 16: https (keepalive) - status code ok', qr/got: '502'/],
         ['r', 'balancer.t', 'TEST 16: https (keepalive) - response_body - response is expected', qr/502 Bad Gateway/],
         ['r', 'balancer.t', qr/TEST 16: https \(keepalive\) - pattern "\[error]" should not match any line in error\.log but matches line .*? peer closed connection in SSL handshake while SSL handshaking to upstream/],
@@ -397,6 +399,8 @@ my %white_list = (
         ['r', 'ssl-session-fetch.t', qr/pattern ".*?" should match a line in error\.log/],
         ['r', 'ssl-session-fetch.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line ".*? peer closed connection in SSL handshake/],
         ['r', 'ssl-session-fetch.t', ' - grep_error_log_out'],
+        ['r', 'ssl-session-fetch.t', 'TEST 5: yield during doing handshake with client which uses low version OpenSSL - response_body - response is expected'],
+        ['r', 'ssl-session-fetch.t', 'TEST 5: yield during doing handshake with client which uses low version OpenSSL - pattern .*? should not match any line in error.log but matches line'],
         ['v', 'balancer.t', qr/should match a line in error\.log/, undef, 'linux i386'],
         ['v', 'semaphore.t', qr/ - grep_error_log_out /, undef, 'linux i386'],
         ['h', 'semaphore.t', qr/should not match any line in error.log but matches line/],
@@ -468,6 +472,8 @@ my %white_list = (
     ngx_lua => [
         [undef, undef, qr/ - stap output expected/, undef, 'linux i386'],
         [undef, undef, qr/ - stap output should match the pattern/, qr/doesn't match/m, 'linux i386'],
+        [undef, '044-req-body.t', qr/TEST 44: zero size request body and reset it to a new file/],  # FIXME: stap goes crazy on EC2. should fix this up.
+        ['r', '132-lua-blocks.t', qr/TEST 24: inline Lua code cache should not mess up across different phases - pattern .*? should match a line in error\.log/],
         ['r', '139-ssl-cert-by.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
         ['r', '142-ssl-session-store.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
         [undef, '153-semaphore-hup.t', 'TEST 2: timer + reload (lua code cache off) - grep_error_log_out', qr/^\s*created semaphore object$/ms],
