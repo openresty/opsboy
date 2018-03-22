@@ -680,7 +680,7 @@ openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/openresty-$openresty_version.tar.gz;
     tarball openresty-$openresty_version.tar.gz;
-    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -msse4.2" && make -j$jobs && sudo make install';
+    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -msse4.2" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
