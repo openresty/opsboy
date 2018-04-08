@@ -171,7 +171,7 @@ openssl {
     cwd /tmp;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
-    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-1.0.2h-sess_set_get_cb_yield.patch && ./config shared no-asm -g --prefix=/opt/ssl -DPURIFY && sed -i \'s/ -O3 / -O0 /g\' Makefile && make -j$jobs && sudo make install_sw';
+    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-1.0.2h-sess_set_get_cb_yield.patch && ./config no-threads no-asm shared enable-ssl3 enable-ssl3-method -g --prefix=/opt/ssl -DPURIFY && sed -i \'s/ -O3 / -O0 /g\' Makefile && make -j$jobs && sudo make install_sw';
     dep cc cxx openresty;
 }
 
