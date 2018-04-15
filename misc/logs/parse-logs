@@ -481,6 +481,7 @@ my %white_list = (
         ['r', '132-lua-blocks.t', qr/TEST 24: inline Lua code cache should not mess up across different phases - pattern .*? should match a line in error\.log/],
         ['r', '139-ssl-cert-by.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
         ['r', '142-ssl-session-store.t', 'TEST 1: simple logging - grep_error_log_out', qr/'reusable connection: 1/],
+        ['r', '014-bugs.t', qr/SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
         [undef, '153-semaphore-hup.t', 'TEST 2: timer + reload (lua code cache off) - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         [undef, '153-semaphore-hup.t', 'TEST 1: timer + reload - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         ['hv', '154-semaphore.t', 'TEST 2: timer + shutdown error log (lua code cache off)', 'Memcheck:Leak'],
@@ -810,7 +811,7 @@ while (<>) {
         $luajit_ver = $1;
     }
 
-    if (!defined $openssl_ver && /^built with OpenSSL (\d+\.\d+\.\d+[a-z]\w*)/) {
+    if (!defined $openssl_ver && /^built with OpenSSL (\d+\.\d+\.\d+.*)/) {
         #die "found openssl $1";
         $openssl_ver = $1;;
     }
