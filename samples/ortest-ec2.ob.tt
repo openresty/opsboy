@@ -19,7 +19,7 @@ luajit_branch = v2.1-agentzh;
 openssl_version = 1.1.0h;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
-use_stap = 1;
+use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
 
