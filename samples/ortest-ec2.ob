@@ -1934,6 +1934,7 @@ t-ngx_xss {
 
 t-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -4391,6 +4392,7 @@ tv-ngx_xss {
 
 tv-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -15523,6 +15525,7 @@ th-ngx_xss {
 
 th-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -17944,6 +17947,7 @@ thv-ngx_xss {
 
 thv-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -20429,6 +20433,7 @@ tl-ngx_xss {
 
 tl-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
@@ -22867,6 +22872,7 @@ to-ngx_xss {
 
 to-ngx_lua {
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';

@@ -1019,6 +1019,7 @@ t[% type %]-ngx_lua {
 
     [%- IF NOT type.match("[wr]") -%]
     env LD_PRELOAD '~/git/mockeagain/mockeagain.so';
+    dep mockeagain;
     [%- END -%]
 
     [%- PROCESS build_nginx_module name="lua" -%]
