@@ -131,6 +131,7 @@ my %white_list = (
     ],
 
     'lua-resty-mysql' => [
+        ['h', 'sanity.t', 'should match a line in error.log'],
         ['v', 'world.t', 'ERROR: client socket timed out - TEST 1: test an old bug in table.new() on i386 in luajit v2.1'],
         ['v', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - status code ok'],
         ['v', 'world.t', 'TEST 1: test an old bug in table.new() on i386 in luajit v2.1 - response_body - response is expected'],
@@ -335,6 +336,8 @@ my %white_list = (
     ],
 
     'lua-resty-core' => [
+        ['v', 'shared.t', 'TEST 4 shared.ttl returns key ttl for non-default ttl - response_body_like - response is expected'],
+        ['v', 'shared.t', 'TEST 4 shared.ttl returns key ttl for non-default ttl - pattern "[error]" should not match any line in error.log but matches line'],
         ['l', undef, 'nginx: [emerg]', qr/bind\(\) to 0\.0\.0\.0:\d+ failed \(\d+: Address already in use\)/],
         ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
         ['h', 'shared.t', 'TEST 10: shared.expire returns error on not found key - response_body - response is expected'],
