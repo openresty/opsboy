@@ -212,7 +212,8 @@ sub make ($$) {
     }
 
     if ($making{$target}) {
-        die "Circular dependency found through ", $parent || "ROOT", " -> $target\n";
+        warn "Circular dependency found through ", $parent || "ROOT", " -> $target\n";
+        return;
     }
 
     $making{$target} = 1;
