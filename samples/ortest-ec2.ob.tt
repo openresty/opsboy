@@ -2,11 +2,11 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.15.6;
-openresty_version = 1.15.6.1rc0;
+nginx_version = 1.15.8;
+openresty_version = 1.15.8.1rc0;
 redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.41;
+pcre_version = 8.42;
 force = 0;
 ragel_version = 6.9;
 valgrind_version = 3.13.0;
