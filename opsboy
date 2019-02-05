@@ -211,12 +211,13 @@ sub make ($$) {
         return;
     }
 
-    if ($making{$target}) {
-        warn "Circular dependency found through ", $parent || "ROOT", " -> $target\n";
+    my $prev_parent = $making{$target};
+    if (defined $prev_parent) {
+        warn "Circular dependency found through ", $parent || "ROOT", " -> $target (previously, $prev_parent -> $target)\n";
         return;
     }
 
-    $making{$target} = 1;
+    $making{$target} = $parent || 'ROOT';
 
     my $rules = $entities->{$target};
     if (!$rules) {
