@@ -693,6 +693,7 @@ lua-[% name %] {
     dep lua-resty-lrucache;
     [%- END %]
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 [% END %]
 
