@@ -784,7 +784,7 @@ ngx_lua_upstream {
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-    dep ngx_lua;
+    dep ngx_lua lua-resty-core;
 }
 
 ngx_lua {
@@ -792,7 +792,7 @@ ngx_lua {
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-    dep luajit ndk;
+    dep luajit ndk lua-resty-core;
 }
 
 pcrejit {
