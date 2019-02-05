@@ -206,7 +206,7 @@ luajit-git {
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
-    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;

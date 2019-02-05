@@ -805,7 +805,7 @@ pcrejit {
     test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
 
     cwd /tmp;
-    fetch http://linux.stanford.edu/pub/exim/pcre/pcre-$pcre_version.tar.bz2;
+    fetch ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-$pcre_version.tar.bz2;
     tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
@@ -837,67 +837,80 @@ openresty-debug {
 lua-resty-memcached {
     git git://github.com/openresty/lua-resty-memcached.git ~/git/lua-resty-memcached;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-redis {
     git git://github.com/openresty/lua-resty-redis.git ~/git/lua-resty-redis;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-mysql {
     git git://github.com/openresty/lua-resty-mysql.git ~/git/lua-resty-mysql;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-string {
     git git://github.com/openresty/lua-resty-string.git ~/git/lua-resty-string;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-upload {
     git git://github.com/openresty/lua-resty-upload.git ~/git/lua-resty-upload;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-dns {
     git git://github.com/openresty/lua-resty-dns.git ~/git/lua-resty-dns;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-websocket {
     git git://github.com/openresty/lua-resty-websocket.git ~/git/lua-resty-websocket;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-lock {
     git git://github.com/openresty/lua-resty-lock.git ~/git/lua-resty-lock;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-logger-socket {
     git git://github.com/cloudflare/lua-resty-logger-socket.git ~/git/lua-resty-logger-socket;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-core {
     git git://github.com/openresty/lua-resty-core.git ~/git/lua-resty-core;
     dep lua-resty-lrucache;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-upstream-healthcheck {
     git git://github.com/openresty/lua-resty-upstream-healthcheck.git ~/git/lua-resty-upstream-healthcheck;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-lrucache {
     git git://github.com/openresty/lua-resty-lrucache.git ~/git/lua-resty-lrucache;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 lua-resty-limit-traffic {
     git git://github.com/openresty/lua-resty-limit-traffic.git ~/git/lua-resty-limit-traffic;
     dep ngx_lua;
+    dep no-pool-nginx;
 }
 
 
@@ -1150,7 +1163,7 @@ cpan {
 t-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1221,7 +1234,7 @@ t-ngx_srcache {
 t-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1293,7 +1306,7 @@ t-ngx_rds_json {
 t-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1366,7 +1379,7 @@ t-ngx_rds_csv {
 t-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1438,7 +1451,7 @@ t-ngx_drizzle {
 t-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1509,7 +1522,7 @@ t-ngx_encrypted_session {
 t-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1580,7 +1593,7 @@ t-ngx_array_var {
 t-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1651,7 +1664,7 @@ t-ngx_set_misc {
 t-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1722,7 +1735,7 @@ t-ngx_headers_more {
 t-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1793,7 +1806,7 @@ t-ngx_example_lua {
 t-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1864,7 +1877,7 @@ t-ngx_lua_upstream {
 t-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -1937,7 +1950,7 @@ t-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2015,7 +2028,7 @@ t-ngx_lua {
 t-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2087,7 +2100,7 @@ t-ngx_memc {
 t-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2159,7 +2172,7 @@ t-ngx_redis2 {
 t-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2231,7 +2244,7 @@ t-ngx_echo {
 t-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2302,7 +2315,7 @@ t-ngx_eval {
 t-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2373,7 +2386,7 @@ t-ngx_form_input {
 t-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2446,7 +2459,7 @@ t-ngx_postgres {
 t-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2517,7 +2530,7 @@ t-ngx_iconv {
 t-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2592,7 +2605,7 @@ t-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2663,7 +2676,7 @@ t-ngx_replace_filter {
 t-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -2734,7 +2747,7 @@ t-ngx_stream_echo {
 t-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3575,7 +3588,7 @@ t-lua-resty-limit-traffic {
 tv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3649,7 +3662,7 @@ tv-ngx_srcache {
 tv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3724,7 +3737,7 @@ tv-ngx_rds_json {
 tv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3800,7 +3813,7 @@ tv-ngx_rds_csv {
 tv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3875,7 +3888,7 @@ tv-ngx_drizzle {
 tv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -3949,7 +3962,7 @@ tv-ngx_encrypted_session {
 tv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4023,7 +4036,7 @@ tv-ngx_array_var {
 tv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4097,7 +4110,7 @@ tv-ngx_set_misc {
 tv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4171,7 +4184,7 @@ tv-ngx_headers_more {
 tv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4245,7 +4258,7 @@ tv-ngx_example_lua {
 tv-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4319,7 +4332,7 @@ tv-ngx_lua_upstream {
 tv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4395,7 +4408,7 @@ tv-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4476,7 +4489,7 @@ tv-ngx_lua {
 tv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4551,7 +4564,7 @@ tv-ngx_memc {
 tv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4626,7 +4639,7 @@ tv-ngx_redis2 {
 tv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4701,7 +4714,7 @@ tv-ngx_echo {
 tv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4775,7 +4788,7 @@ tv-ngx_eval {
 tv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4849,7 +4862,7 @@ tv-ngx_form_input {
 tv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4925,7 +4938,7 @@ tv-ngx_postgres {
 tv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -4999,7 +5012,7 @@ tv-ngx_iconv {
 tv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -5077,7 +5090,7 @@ tv-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -5151,7 +5164,7 @@ tv-ngx_replace_filter {
 tv-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -5225,7 +5238,7 @@ tv-ngx_stream_echo {
 tv-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6108,7 +6121,7 @@ tv-lua-resty-limit-traffic {
 tr-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6185,7 +6198,7 @@ tr-ngx_srcache {
 tr-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6263,7 +6276,7 @@ tr-ngx_rds_json {
 tr-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6342,7 +6355,7 @@ tr-ngx_rds_csv {
 tr-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6423,7 +6436,7 @@ tr-ngx_lua {
 
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6507,7 +6520,7 @@ tr-ngx_lua {
 tr-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6585,7 +6598,7 @@ tr-ngx_memc {
 tr-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6663,7 +6676,7 @@ tr-ngx_redis2 {
 tr-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6741,7 +6754,7 @@ tr-ngx_echo {
 tr-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6818,7 +6831,7 @@ tr-ngx_eval {
 tr-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6895,7 +6908,7 @@ tr-ngx_form_input {
 tr-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -6974,7 +6987,7 @@ tr-ngx_postgres {
 tr-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -7051,7 +7064,7 @@ tr-ngx_iconv {
 tr-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -7132,7 +7145,7 @@ tr-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -7209,7 +7222,7 @@ tr-ngx_replace_filter {
 tr-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -7286,7 +7299,7 @@ tr-ngx_stream_echo {
 tr-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8211,7 +8224,7 @@ tr-lua-resty-limit-traffic {
 trv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8291,7 +8304,7 @@ trv-ngx_srcache {
 trv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8372,7 +8385,7 @@ trv-ngx_rds_json {
 trv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8454,7 +8467,7 @@ trv-ngx_rds_csv {
 trv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8538,7 +8551,7 @@ trv-ngx_lua {
 
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8625,7 +8638,7 @@ trv-ngx_lua {
 trv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8706,7 +8719,7 @@ trv-ngx_memc {
 trv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8787,7 +8800,7 @@ trv-ngx_redis2 {
 trv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8868,7 +8881,7 @@ trv-ngx_echo {
 trv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -8948,7 +8961,7 @@ trv-ngx_eval {
 trv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9028,7 +9041,7 @@ trv-ngx_form_input {
 trv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9110,7 +9123,7 @@ trv-ngx_postgres {
 trv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9190,7 +9203,7 @@ trv-ngx_iconv {
 trv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9274,7 +9287,7 @@ trv-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9354,7 +9367,7 @@ trv-ngx_replace_filter {
 trv-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -9434,7 +9447,7 @@ trv-ngx_stream_echo {
 trv-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10401,7 +10414,7 @@ trv-lua-resty-limit-traffic {
 tw-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10479,7 +10492,7 @@ tw-ngx_srcache {
 tw-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10558,7 +10571,7 @@ tw-ngx_rds_json {
 tw-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10638,7 +10651,7 @@ tw-ngx_rds_csv {
 tw-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10720,7 +10733,7 @@ tw-ngx_lua {
 
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10805,7 +10818,7 @@ tw-ngx_lua {
 tw-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10884,7 +10897,7 @@ tw-ngx_memc {
 tw-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -10963,7 +10976,7 @@ tw-ngx_redis2 {
 tw-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11042,7 +11055,7 @@ tw-ngx_echo {
 tw-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11120,7 +11133,7 @@ tw-ngx_eval {
 tw-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11198,7 +11211,7 @@ tw-ngx_form_input {
 tw-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11278,7 +11291,7 @@ tw-ngx_postgres {
 tw-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11356,7 +11369,7 @@ tw-ngx_iconv {
 tw-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11438,7 +11451,7 @@ tw-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11516,7 +11529,7 @@ tw-ngx_replace_filter {
 tw-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -11594,7 +11607,7 @@ tw-ngx_stream_echo {
 tw-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12533,7 +12546,7 @@ tw-lua-resty-limit-traffic {
 twv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12614,7 +12627,7 @@ twv-ngx_srcache {
 twv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12696,7 +12709,7 @@ twv-ngx_rds_json {
 twv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12779,7 +12792,7 @@ twv-ngx_rds_csv {
 twv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12864,7 +12877,7 @@ twv-ngx_lua {
 
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -12952,7 +12965,7 @@ twv-ngx_lua {
 twv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13034,7 +13047,7 @@ twv-ngx_memc {
 twv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13116,7 +13129,7 @@ twv-ngx_redis2 {
 twv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13198,7 +13211,7 @@ twv-ngx_echo {
 twv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13279,7 +13292,7 @@ twv-ngx_eval {
 twv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13360,7 +13373,7 @@ twv-ngx_form_input {
 twv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13443,7 +13456,7 @@ twv-ngx_postgres {
 twv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13524,7 +13537,7 @@ twv-ngx_iconv {
 twv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13609,7 +13622,7 @@ twv-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13690,7 +13703,7 @@ twv-ngx_replace_filter {
 twv-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -13771,7 +13784,7 @@ twv-ngx_stream_echo {
 twv-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -14752,7 +14765,7 @@ twv-lua-resty-limit-traffic {
 th-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -14822,7 +14835,7 @@ th-ngx_srcache {
 th-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -14893,7 +14906,7 @@ th-ngx_rds_json {
 th-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -14965,7 +14978,7 @@ th-ngx_rds_csv {
 th-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15036,7 +15049,7 @@ th-ngx_drizzle {
 th-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15106,7 +15119,7 @@ th-ngx_encrypted_session {
 th-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15176,7 +15189,7 @@ th-ngx_array_var {
 th-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15246,7 +15259,7 @@ th-ngx_set_misc {
 th-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15316,7 +15329,7 @@ th-ngx_headers_more {
 th-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15386,7 +15399,7 @@ th-ngx_example_lua {
 th-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15456,7 +15469,7 @@ th-ngx_lua_upstream {
 th-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15528,7 +15541,7 @@ th-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15605,7 +15618,7 @@ th-ngx_lua {
 th-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15676,7 +15689,7 @@ th-ngx_memc {
 th-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15747,7 +15760,7 @@ th-ngx_redis2 {
 th-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15818,7 +15831,7 @@ th-ngx_echo {
 th-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15888,7 +15901,7 @@ th-ngx_eval {
 th-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -15958,7 +15971,7 @@ th-ngx_form_input {
 th-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -16030,7 +16043,7 @@ th-ngx_postgres {
 th-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -16100,7 +16113,7 @@ th-ngx_iconv {
 th-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -16174,7 +16187,7 @@ th-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -16244,7 +16257,7 @@ th-ngx_replace_filter {
 th-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -16314,7 +16327,7 @@ th-ngx_stream_echo {
 th-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17141,7 +17154,7 @@ th-lua-resty-limit-traffic {
 thv-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17214,7 +17227,7 @@ thv-ngx_srcache {
 thv-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17288,7 +17301,7 @@ thv-ngx_rds_json {
 thv-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17363,7 +17376,7 @@ thv-ngx_rds_csv {
 thv-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17437,7 +17450,7 @@ thv-ngx_drizzle {
 thv-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17510,7 +17523,7 @@ thv-ngx_encrypted_session {
 thv-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17583,7 +17596,7 @@ thv-ngx_array_var {
 thv-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17656,7 +17669,7 @@ thv-ngx_set_misc {
 thv-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17729,7 +17742,7 @@ thv-ngx_headers_more {
 thv-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17802,7 +17815,7 @@ thv-ngx_example_lua {
 thv-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17875,7 +17888,7 @@ thv-ngx_lua_upstream {
 thv-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -17950,7 +17963,7 @@ thv-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18030,7 +18043,7 @@ thv-ngx_lua {
 thv-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18104,7 +18117,7 @@ thv-ngx_memc {
 thv-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18178,7 +18191,7 @@ thv-ngx_redis2 {
 thv-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18252,7 +18265,7 @@ thv-ngx_echo {
 thv-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18325,7 +18338,7 @@ thv-ngx_eval {
 thv-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18398,7 +18411,7 @@ thv-ngx_form_input {
 thv-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18473,7 +18486,7 @@ thv-ngx_postgres {
 thv-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18546,7 +18559,7 @@ thv-ngx_iconv {
 thv-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18623,7 +18636,7 @@ thv-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18696,7 +18709,7 @@ thv-ngx_replace_filter {
 thv-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -18769,7 +18782,7 @@ thv-ngx_stream_echo {
 thv-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -19638,7 +19651,7 @@ thv-lua-resty-limit-traffic {
 tl-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -19710,7 +19723,7 @@ tl-ngx_srcache {
 tl-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -19783,7 +19796,7 @@ tl-ngx_rds_json {
 tl-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -19857,7 +19870,7 @@ tl-ngx_rds_csv {
 tl-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -19930,7 +19943,7 @@ tl-ngx_drizzle {
 tl-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20002,7 +20015,7 @@ tl-ngx_encrypted_session {
 tl-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20074,7 +20087,7 @@ tl-ngx_array_var {
 tl-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20146,7 +20159,7 @@ tl-ngx_set_misc {
 tl-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20218,7 +20231,7 @@ tl-ngx_headers_more {
 tl-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20290,7 +20303,7 @@ tl-ngx_example_lua {
 tl-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20362,7 +20375,7 @@ tl-ngx_lua_upstream {
 tl-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20436,7 +20449,7 @@ tl-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20515,7 +20528,7 @@ tl-ngx_lua {
 tl-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20588,7 +20601,7 @@ tl-ngx_memc {
 tl-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20661,7 +20674,7 @@ tl-ngx_redis2 {
 tl-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20734,7 +20747,7 @@ tl-ngx_echo {
 tl-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20806,7 +20819,7 @@ tl-ngx_eval {
 tl-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20878,7 +20891,7 @@ tl-ngx_form_input {
 tl-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -20952,7 +20965,7 @@ tl-ngx_postgres {
 tl-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -21024,7 +21037,7 @@ tl-ngx_iconv {
 tl-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -21100,7 +21113,7 @@ tl-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -21172,7 +21185,7 @@ tl-ngx_replace_filter {
 tl-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -21244,7 +21257,7 @@ tl-ngx_stream_echo {
 tl-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22099,7 +22112,7 @@ tl-lua-resty-limit-traffic {
 to-ngx_srcache {
     always;
     cwd ~/git/srcache-nginx-module;
-    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/srcache-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22169,7 +22182,7 @@ to-ngx_srcache {
 to-ngx_rds_json {
     always;
     cwd ~/git/rds-json-nginx-module;
-    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-json-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22240,7 +22253,7 @@ to-ngx_rds_json {
 to-ngx_rds_csv {
     always;
     cwd ~/git/rds-csv-nginx-module;
-    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/rds-csv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22312,7 +22325,7 @@ to-ngx_rds_csv {
 to-ngx_drizzle {
     always;
     cwd ~/git/drizzle-nginx-module;
-    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/drizzle-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22383,7 +22396,7 @@ to-ngx_drizzle {
 to-ngx_encrypted_session {
     always;
     cwd ~/git/encrypted-session-nginx-module;
-    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/encrypted-session-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22453,7 +22466,7 @@ to-ngx_encrypted_session {
 to-ngx_array_var {
     always;
     cwd ~/git/array-var-nginx-module;
-    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/array-var-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22523,7 +22536,7 @@ to-ngx_array_var {
 to-ngx_set_misc {
     always;
     cwd ~/git/set-misc-nginx-module;
-    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/set-misc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22593,7 +22606,7 @@ to-ngx_set_misc {
 to-ngx_headers_more {
     always;
     cwd ~/git/headers-more-nginx-module;
-    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/headers-more-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22663,7 +22676,7 @@ to-ngx_headers_more {
 to-ngx_example_lua {
     always;
     cwd ~/git/example-lua-nginx-module;
-    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/example-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22733,7 +22746,7 @@ to-ngx_example_lua {
 to-ngx_lua_upstream {
     always;
     cwd ~/git/lua-upstream-nginx-module;
-    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-upstream-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22803,7 +22816,7 @@ to-ngx_lua_upstream {
 to-ngx_xss {
     always;
     cwd ~/git/xss-nginx-module;
-    env PATH '~/git/xss-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/xss-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22875,7 +22888,7 @@ to-ngx_lua {
     dep mockeagain;
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -22952,7 +22965,7 @@ to-ngx_lua {
 to-ngx_memc {
     always;
     cwd ~/git/memc-nginx-module;
-    env PATH '~/git/memc-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/memc-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23023,7 +23036,7 @@ to-ngx_memc {
 to-ngx_redis2 {
     always;
     cwd ~/git/redis2-nginx-module;
-    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/redis2-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23094,7 +23107,7 @@ to-ngx_redis2 {
 to-ngx_echo {
     always;
     cwd ~/git/echo-nginx-module;
-    env PATH '~/git/echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23165,7 +23178,7 @@ to-ngx_echo {
 to-ngx_eval {
     always;
     cwd ~/git/eval-nginx-module;
-    env PATH '~/git/eval-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/eval-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23235,7 +23248,7 @@ to-ngx_eval {
 to-ngx_form_input {
     always;
     cwd ~/git/form-input-nginx-module;
-    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/form-input-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23305,7 +23318,7 @@ to-ngx_form_input {
 to-ngx_postgres {
     always;
     cwd ~/git/postgres-nginx-module;
-    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/postgres-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23377,7 +23390,7 @@ to-ngx_postgres {
 to-ngx_iconv {
     always;
     cwd ~/git/iconv-nginx-module;
-    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/iconv-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23447,7 +23460,7 @@ to-ngx_iconv {
 to-ngx_coolkit {
     always;
     cwd ~/git/coolkit-nginx-module;
-    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/coolkit-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23521,7 +23534,7 @@ to-ngx_replace_filter {
 
     always;
     cwd ~/git/replace-filter-nginx-module;
-    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/replace-filter-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23591,7 +23604,7 @@ to-ngx_replace_filter {
 to-ngx_stream_echo {
     always;
     cwd ~/git/stream-echo-nginx-module;
-    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-echo-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -23661,7 +23674,7 @@ to-ngx_stream_echo {
 to-ngx_stream_lua {
     always;
     cwd ~/git/stream-lua-nginx-module;
-    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/stream-lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
@@ -24528,7 +24541,7 @@ pegex {
 build-ngx_lua {
     always;
     cwd ~/git/lua-nginx-module;
-    env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+    env PATH '~/git/lua-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
 
     env PCRE_LIB /opt/pcrejit/lib;
     env PCRE_INC /opt/pcrejit/include;
