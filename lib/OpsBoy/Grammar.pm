@@ -4,7 +4,7 @@ extends 'Pegex::Grammar';
 
 use constant file => 'grammar/opsboy.pgx';
 
-sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.60)
+sub make_tree {   # Generated/Inlined by Pegex::Grammar (0.63001)
   {
     '+grammar' => 'opsboy',
     '+toprule' => 'specification',
