@@ -8,8 +8,8 @@ use Getopt::Std;
 my %ami_config = (
     'linux i386' => 'ami-1511a46d', # ortest-i386-2018-01-07 (us-west-2)
     #'linux i386' => 'ami-1567a96d', # linux-i386-5 (us-west-2)
-    #'linux x86_64' => 'ami-f6fb2a8e', # ortest-x64-2017-11-13 (us-west-2)
-    'linux x86_64' => 'ami-2216a35a', # ortest-x64-2018-01-07 (us-west-2)
+    #'linux x86_64' => 'ami-2216a35a', # ortest-x64-2018-01-07 (us-west-2)
+    'linux x86_64' => 'ami-0a7f1502cf012b78f', # ortest-x64-2019-02-05 (us-west-2)
 );
 
 my %opts;

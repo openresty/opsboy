@@ -624,7 +624,6 @@ t-resty-cli  {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test resty-cli;
@@ -684,7 +683,6 @@ tv-resty-cli  {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test resty-cli;
@@ -1221,7 +1219,6 @@ t-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1292,7 +1289,6 @@ t-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1364,7 +1360,6 @@ t-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1437,7 +1432,6 @@ t-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1509,7 +1503,6 @@ t-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1580,7 +1573,6 @@ t-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1651,7 +1643,6 @@ t-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1722,7 +1713,6 @@ t-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1793,7 +1783,6 @@ t-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1864,7 +1853,6 @@ t-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -1935,7 +1923,6 @@ t-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2008,7 +1995,6 @@ t-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2023,6 +2009,7 @@ t-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 t-ngx_memc {
@@ -2086,7 +2073,6 @@ t-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2158,7 +2144,6 @@ t-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2230,7 +2215,6 @@ t-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2302,7 +2286,6 @@ t-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2373,7 +2356,6 @@ t-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2444,7 +2426,6 @@ t-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2517,7 +2498,6 @@ t-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2588,7 +2568,6 @@ t-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2663,7 +2642,6 @@ t-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2734,7 +2712,6 @@ t-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2805,7 +2782,6 @@ t-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -2866,7 +2842,6 @@ t-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -2925,7 +2900,6 @@ t-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -2984,7 +2958,6 @@ t-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -3044,7 +3017,6 @@ t-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -3103,7 +3075,6 @@ t-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -3162,7 +3133,6 @@ t-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -3221,7 +3191,6 @@ t-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -3280,7 +3249,6 @@ t-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -3339,7 +3307,6 @@ t-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -3398,7 +3365,6 @@ t-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -3456,7 +3422,6 @@ t-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -3515,7 +3480,6 @@ t-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -3574,7 +3538,6 @@ t-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -3649,7 +3612,6 @@ tv-ngx_srcache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -3723,7 +3685,6 @@ tv-ngx_rds_json {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -3798,7 +3759,6 @@ tv-ngx_rds_csv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -3874,7 +3834,6 @@ tv-ngx_drizzle {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -3949,7 +3908,6 @@ tv-ngx_encrypted_session {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4023,7 +3981,6 @@ tv-ngx_array_var {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4097,7 +4054,6 @@ tv-ngx_set_misc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4171,7 +4127,6 @@ tv-ngx_headers_more {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4245,7 +4200,6 @@ tv-ngx_example_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4319,7 +4273,6 @@ tv-ngx_lua_upstream {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4393,7 +4346,6 @@ tv-ngx_xss {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4469,7 +4421,6 @@ tv-ngx_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4484,6 +4435,7 @@ tv-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 tv-ngx_memc {
@@ -4550,7 +4502,6 @@ tv-ngx_memc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4625,7 +4576,6 @@ tv-ngx_redis2 {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4700,7 +4650,6 @@ tv-ngx_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4775,7 +4724,6 @@ tv-ngx_eval {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4849,7 +4797,6 @@ tv-ngx_form_input {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4923,7 +4870,6 @@ tv-ngx_postgres {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -4999,7 +4945,6 @@ tv-ngx_iconv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -5073,7 +5018,6 @@ tv-ngx_coolkit {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -5151,7 +5095,6 @@ tv-ngx_replace_filter {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -5225,7 +5168,6 @@ tv-ngx_stream_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -5299,7 +5241,6 @@ tv-ngx_stream_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -5363,7 +5304,6 @@ tv-lua-resty-memcached {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -5425,7 +5365,6 @@ tv-lua-resty-redis {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -5487,7 +5426,6 @@ tv-lua-resty-mysql {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -5550,7 +5488,6 @@ tv-lua-resty-string {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -5612,7 +5549,6 @@ tv-lua-resty-upload {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -5674,7 +5610,6 @@ tv-lua-resty-dns {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -5736,7 +5671,6 @@ tv-lua-resty-websocket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -5798,7 +5732,6 @@ tv-lua-resty-lock {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -5860,7 +5793,6 @@ tv-lua-resty-logger-socket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -5922,7 +5854,6 @@ tv-lua-resty-core {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -5983,7 +5914,6 @@ tv-lua-resty-upstream-healthcheck {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -6045,7 +5975,6 @@ tv-lua-resty-lrucache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -6107,7 +6036,6 @@ tv-lua-resty-limit-traffic {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -6185,7 +6113,6 @@ tr-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6262,7 +6189,6 @@ tr-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6340,7 +6266,6 @@ tr-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6419,7 +6344,6 @@ tr-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6500,7 +6424,6 @@ tr-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6515,6 +6438,7 @@ tr-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 tr-ngx_memc {
@@ -6584,7 +6508,6 @@ tr-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6662,7 +6585,6 @@ tr-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6740,7 +6662,6 @@ tr-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6818,7 +6739,6 @@ tr-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6895,7 +6815,6 @@ tr-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -6972,7 +6891,6 @@ tr-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7051,7 +6969,6 @@ tr-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7128,7 +7045,6 @@ tr-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7209,7 +7125,6 @@ tr-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7286,7 +7201,6 @@ tr-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7363,7 +7277,6 @@ tr-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -7430,7 +7343,6 @@ tr-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -7495,7 +7407,6 @@ tr-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -7560,7 +7471,6 @@ tr-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -7626,7 +7536,6 @@ tr-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -7691,7 +7600,6 @@ tr-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -7756,7 +7664,6 @@ tr-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -7821,7 +7728,6 @@ tr-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -7886,7 +7792,6 @@ tr-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -7951,7 +7856,6 @@ tr-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -8016,7 +7920,6 @@ tr-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -8080,7 +7983,6 @@ tr-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -8145,7 +8047,6 @@ tr-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -8210,7 +8111,6 @@ tr-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -8291,7 +8191,6 @@ trv-ngx_srcache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8371,7 +8270,6 @@ trv-ngx_rds_json {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8452,7 +8350,6 @@ trv-ngx_rds_csv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8534,7 +8431,6 @@ trv-ngx_drizzle {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8618,7 +8514,6 @@ trv-ngx_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8633,6 +8528,7 @@ trv-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 trv-ngx_memc {
@@ -8705,7 +8601,6 @@ trv-ngx_memc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8786,7 +8681,6 @@ trv-ngx_redis2 {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8867,7 +8761,6 @@ trv-ngx_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -8948,7 +8841,6 @@ trv-ngx_eval {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9028,7 +8920,6 @@ trv-ngx_form_input {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9108,7 +8999,6 @@ trv-ngx_postgres {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9190,7 +9080,6 @@ trv-ngx_iconv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9270,7 +9159,6 @@ trv-ngx_coolkit {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9354,7 +9242,6 @@ trv-ngx_replace_filter {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9434,7 +9321,6 @@ trv-ngx_stream_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9514,7 +9400,6 @@ trv-ngx_stream_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -9584,7 +9469,6 @@ trv-lua-resty-memcached {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -9652,7 +9536,6 @@ trv-lua-resty-redis {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -9720,7 +9603,6 @@ trv-lua-resty-mysql {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -9789,7 +9671,6 @@ trv-lua-resty-string {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -9857,7 +9738,6 @@ trv-lua-resty-upload {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -9925,7 +9805,6 @@ trv-lua-resty-dns {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -9993,7 +9872,6 @@ trv-lua-resty-websocket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -10061,7 +9939,6 @@ trv-lua-resty-lock {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -10129,7 +10006,6 @@ trv-lua-resty-logger-socket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -10197,7 +10073,6 @@ trv-lua-resty-core {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -10264,7 +10139,6 @@ trv-lua-resty-upstream-healthcheck {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -10332,7 +10206,6 @@ trv-lua-resty-lrucache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -10400,7 +10273,6 @@ trv-lua-resty-limit-traffic {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -10479,7 +10351,6 @@ tw-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10557,7 +10428,6 @@ tw-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10636,7 +10506,6 @@ tw-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10716,7 +10585,6 @@ tw-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10798,7 +10666,6 @@ tw-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10813,6 +10680,7 @@ tw-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 tw-ngx_memc {
@@ -10883,7 +10751,6 @@ tw-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -10962,7 +10829,6 @@ tw-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11041,7 +10907,6 @@ tw-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11120,7 +10985,6 @@ tw-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11198,7 +11062,6 @@ tw-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11276,7 +11139,6 @@ tw-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11356,7 +11218,6 @@ tw-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11434,7 +11295,6 @@ tw-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11516,7 +11376,6 @@ tw-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11594,7 +11453,6 @@ tw-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11672,7 +11530,6 @@ tw-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -11740,7 +11597,6 @@ tw-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -11806,7 +11662,6 @@ tw-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -11872,7 +11727,6 @@ tw-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -11939,7 +11793,6 @@ tw-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -12005,7 +11858,6 @@ tw-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -12071,7 +11923,6 @@ tw-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -12137,7 +11988,6 @@ tw-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -12203,7 +12053,6 @@ tw-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -12269,7 +12118,6 @@ tw-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -12335,7 +12183,6 @@ tw-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -12400,7 +12247,6 @@ tw-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -12466,7 +12312,6 @@ tw-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -12532,7 +12377,6 @@ tw-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -12614,7 +12458,6 @@ twv-ngx_srcache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -12695,7 +12538,6 @@ twv-ngx_rds_json {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -12777,7 +12619,6 @@ twv-ngx_rds_csv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -12860,7 +12701,6 @@ twv-ngx_drizzle {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -12945,7 +12785,6 @@ twv-ngx_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -12960,6 +12799,7 @@ twv-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 twv-ngx_memc {
@@ -13033,7 +12873,6 @@ twv-ngx_memc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13115,7 +12954,6 @@ twv-ngx_redis2 {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13197,7 +13035,6 @@ twv-ngx_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13279,7 +13116,6 @@ twv-ngx_eval {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13360,7 +13196,6 @@ twv-ngx_form_input {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13441,7 +13276,6 @@ twv-ngx_postgres {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13524,7 +13358,6 @@ twv-ngx_iconv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13605,7 +13438,6 @@ twv-ngx_coolkit {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13690,7 +13522,6 @@ twv-ngx_replace_filter {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13771,7 +13602,6 @@ twv-ngx_stream_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13852,7 +13682,6 @@ twv-ngx_stream_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -13923,7 +13752,6 @@ twv-lua-resty-memcached {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -13992,7 +13820,6 @@ twv-lua-resty-redis {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -14061,7 +13888,6 @@ twv-lua-resty-mysql {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -14131,7 +13957,6 @@ twv-lua-resty-string {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -14200,7 +14025,6 @@ twv-lua-resty-upload {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -14269,7 +14093,6 @@ twv-lua-resty-dns {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -14338,7 +14161,6 @@ twv-lua-resty-websocket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -14407,7 +14229,6 @@ twv-lua-resty-lock {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -14476,7 +14297,6 @@ twv-lua-resty-logger-socket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -14545,7 +14365,6 @@ twv-lua-resty-core {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -14613,7 +14432,6 @@ twv-lua-resty-upstream-healthcheck {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -14682,7 +14500,6 @@ twv-lua-resty-lrucache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -14751,7 +14568,6 @@ twv-lua-resty-limit-traffic {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -14822,7 +14638,6 @@ th-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -14892,7 +14707,6 @@ th-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -14963,7 +14777,6 @@ th-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15035,7 +14848,6 @@ th-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15106,7 +14918,6 @@ th-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15176,7 +14987,6 @@ th-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15246,7 +15056,6 @@ th-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15316,7 +15125,6 @@ th-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15386,7 +15194,6 @@ th-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15456,7 +15263,6 @@ th-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15526,7 +15332,6 @@ th-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15598,7 +15403,6 @@ th-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15613,6 +15417,7 @@ th-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 th-ngx_memc {
@@ -15675,7 +15480,6 @@ th-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15746,7 +15550,6 @@ th-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15817,7 +15620,6 @@ th-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15888,7 +15690,6 @@ th-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -15958,7 +15759,6 @@ th-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16028,7 +15828,6 @@ th-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16100,7 +15899,6 @@ th-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16170,7 +15968,6 @@ th-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16244,7 +16041,6 @@ th-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16314,7 +16110,6 @@ th-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16384,7 +16179,6 @@ th-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -16444,7 +16238,6 @@ th-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -16502,7 +16295,6 @@ th-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -16560,7 +16352,6 @@ th-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -16619,7 +16410,6 @@ th-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -16677,7 +16467,6 @@ th-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -16735,7 +16524,6 @@ th-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -16793,7 +16581,6 @@ th-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -16851,7 +16638,6 @@ th-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -16909,7 +16695,6 @@ th-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -16967,7 +16752,6 @@ th-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -17024,7 +16808,6 @@ th-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -17082,7 +16865,6 @@ th-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -17140,7 +16922,6 @@ th-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -17214,7 +16995,6 @@ thv-ngx_srcache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17287,7 +17067,6 @@ thv-ngx_rds_json {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17361,7 +17140,6 @@ thv-ngx_rds_csv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17436,7 +17214,6 @@ thv-ngx_drizzle {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17510,7 +17287,6 @@ thv-ngx_encrypted_session {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17583,7 +17359,6 @@ thv-ngx_array_var {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17656,7 +17431,6 @@ thv-ngx_set_misc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17729,7 +17503,6 @@ thv-ngx_headers_more {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17802,7 +17575,6 @@ thv-ngx_example_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17875,7 +17647,6 @@ thv-ngx_lua_upstream {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -17948,7 +17719,6 @@ thv-ngx_xss {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18023,7 +17793,6 @@ thv-ngx_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18038,6 +17807,7 @@ thv-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 thv-ngx_memc {
@@ -18103,7 +17873,6 @@ thv-ngx_memc {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18177,7 +17946,6 @@ thv-ngx_redis2 {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18251,7 +18019,6 @@ thv-ngx_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18325,7 +18092,6 @@ thv-ngx_eval {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18398,7 +18164,6 @@ thv-ngx_form_input {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18471,7 +18236,6 @@ thv-ngx_postgres {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18546,7 +18310,6 @@ thv-ngx_iconv {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18619,7 +18382,6 @@ thv-ngx_coolkit {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18696,7 +18458,6 @@ thv-ngx_replace_filter {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18769,7 +18530,6 @@ thv-ngx_stream_echo {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18842,7 +18602,6 @@ thv-ngx_stream_lua {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -18905,7 +18664,6 @@ thv-lua-resty-memcached {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -18966,7 +18724,6 @@ thv-lua-resty-redis {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -19027,7 +18784,6 @@ thv-lua-resty-mysql {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -19089,7 +18845,6 @@ thv-lua-resty-string {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -19150,7 +18905,6 @@ thv-lua-resty-upload {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -19211,7 +18965,6 @@ thv-lua-resty-dns {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -19272,7 +19025,6 @@ thv-lua-resty-websocket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -19333,7 +19085,6 @@ thv-lua-resty-lock {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -19394,7 +19145,6 @@ thv-lua-resty-logger-socket {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -19455,7 +19205,6 @@ thv-lua-resty-core {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -19515,7 +19264,6 @@ thv-lua-resty-upstream-healthcheck {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -19576,7 +19324,6 @@ thv-lua-resty-lrucache {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -19637,7 +19384,6 @@ thv-lua-resty-limit-traffic {
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -19710,7 +19456,6 @@ tl-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -19782,7 +19527,6 @@ tl-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -19855,7 +19599,6 @@ tl-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -19929,7 +19672,6 @@ tl-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20002,7 +19744,6 @@ tl-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20074,7 +19815,6 @@ tl-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20146,7 +19886,6 @@ tl-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20218,7 +19957,6 @@ tl-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20290,7 +20028,6 @@ tl-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20362,7 +20099,6 @@ tl-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20434,7 +20170,6 @@ tl-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20508,7 +20243,6 @@ tl-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20523,6 +20257,7 @@ tl-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 tl-ngx_memc {
@@ -20587,7 +20322,6 @@ tl-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20660,7 +20394,6 @@ tl-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20733,7 +20466,6 @@ tl-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20806,7 +20538,6 @@ tl-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20878,7 +20609,6 @@ tl-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -20950,7 +20680,6 @@ tl-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21024,7 +20753,6 @@ tl-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21096,7 +20824,6 @@ tl-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21172,7 +20899,6 @@ tl-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21244,7 +20970,6 @@ tl-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21316,7 +21041,6 @@ tl-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -21378,7 +21102,6 @@ tl-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -21438,7 +21161,6 @@ tl-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -21498,7 +21220,6 @@ tl-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -21559,7 +21280,6 @@ tl-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -21619,7 +21339,6 @@ tl-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -21679,7 +21398,6 @@ tl-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -21739,7 +21457,6 @@ tl-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -21799,7 +21516,6 @@ tl-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -21859,7 +21575,6 @@ tl-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -21919,7 +21634,6 @@ tl-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -21978,7 +21692,6 @@ tl-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -22038,7 +21751,6 @@ tl-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -22098,7 +21810,6 @@ tl-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -22169,7 +21880,6 @@ to-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22239,7 +21949,6 @@ to-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22310,7 +22019,6 @@ to-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22382,7 +22090,6 @@ to-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22453,7 +22160,6 @@ to-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22523,7 +22229,6 @@ to-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22593,7 +22298,6 @@ to-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22663,7 +22367,6 @@ to-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22733,7 +22436,6 @@ to-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22803,7 +22505,6 @@ to-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22873,7 +22574,6 @@ to-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22945,7 +22645,6 @@ to-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -22960,6 +22659,7 @@ to-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 to-ngx_memc {
@@ -23022,7 +22722,6 @@ to-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23093,7 +22792,6 @@ to-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23164,7 +22862,6 @@ to-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23235,7 +22932,6 @@ to-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23305,7 +23001,6 @@ to-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23375,7 +23070,6 @@ to-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23447,7 +23141,6 @@ to-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23517,7 +23210,6 @@ to-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23591,7 +23283,6 @@ to-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23661,7 +23352,6 @@ to-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23731,7 +23421,6 @@ to-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 
@@ -23791,7 +23480,6 @@ to-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-memcached;
@@ -23849,7 +23537,6 @@ to-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-redis;
@@ -23907,7 +23594,6 @@ to-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-mysql;
@@ -23966,7 +23652,6 @@ to-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-string;
@@ -24024,7 +23709,6 @@ to-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upload;
@@ -24082,7 +23766,6 @@ to-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-dns;
@@ -24140,7 +23823,6 @@ to-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-websocket;
@@ -24198,7 +23880,6 @@ to-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lock;
@@ -24256,7 +23937,6 @@ to-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-logger-socket;
@@ -24314,7 +23994,6 @@ to-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-core;
@@ -24371,7 +24050,6 @@ to-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-upstream-healthcheck;
@@ -24429,7 +24107,6 @@ to-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-lrucache;
@@ -24487,7 +24164,6 @@ to-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
-    dep systemtap;
     dep run-caching-nameserver;
 
     dep ngx_lua nginx-module-test lua-resty-limit-traffic;
@@ -24598,7 +24274,6 @@ build-ngx_lua {
     sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
 
 
-    dep systemtap;
     dep run-caching-nameserver;
 
 

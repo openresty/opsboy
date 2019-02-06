@@ -130,7 +130,6 @@ nginx_ld_opt = '-L/opt/ssl/lib';
     dep valgrind;
     [%- END %]
 
-    dep systemtap;
     dep run-caching-nameserver;
 [% END -%]
 
@@ -1033,6 +1032,7 @@ t[% type %]-ngx_lua {
     dep lua-resty-core openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
+    dep systemtap;
 }
 
 t[% type %]-ngx_memc {
