@@ -23,10 +23,28 @@ use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
 
-ngx-lua-tests-firewall-rules {
+ngx-lua-tests-firewall-reject {
     test 'sudo iptables -S|grep -- "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
     sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
     dep iptables;
+}
+
+ngx-lua-tests-firewall-drop-tcp {
+    test 'sudo iptables -S|grep -- "-A OUTPUT -p tcp --dst 127.0.0.2 --dport 12345 -j DROP"';
+    sh 'sudo iptables -I OUTPUT 1 -p tcp --dst 127.0.0.2 --dport 12345 -j DROP';
+    dep iptables;
+}
+
+ngx-lua-tests-firewall-drop-udp {
+    test 'sudo iptables -S|grep -- "-A OUTPUT -p udp --dst 127.0.0.2 --dport 12345 -j DROP"';
+    sh 'sudo iptables -I OUTPUT 1 -p udp --dst 127.0.0.2 --dport 12345 -j DROP';
+    dep iptables;
+}
+
+ngx-lua-tests-firewall-rules {
+    dep ngx-lua-tests-firewall-reject;
+    dep ngx-lua-tests-firewall-drop-tcp;
+    dep ngx-lua-tests-firewall-drop-udp;
 }
 
 iptables {
