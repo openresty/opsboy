@@ -2,6 +2,7 @@
 *.swp
 *.swo
 out*
+misc/logs/sync
 misc/logs/LAST_TIME*
 misc/logs/ast.json
 misc/logs/html/archive/
