@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#set -x
-rsync -cvr agentzh.org:~/ortest/ ortest/ || exit 1
+rsync -av ec2-user@qa-data.openresty.org:~/ortest/ ortest/ || exit 1
+mkdir -p ortest/
 cd ortest/ || exit 1
 for tar in $(ls *.tar.gz); do
     log=${tar%.tar.gz}.log
@@ -10,4 +10,3 @@ for tar in $(ls *.tar.gz); do
         tar -xzf $tar || exit 1
     fi
 done
-
