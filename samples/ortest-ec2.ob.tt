@@ -22,6 +22,7 @@ use_lua_resty_core = 0;
 use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
+luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJIT_ENABLE_GC64 -DLUAJIT_ENABLE_LUA52COMPAT -msse4.2';
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -195,14 +196,14 @@ openssl {
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC -DLUA_USE_APICHECK -DLUA_USE_ASSERT -msse4.2" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -msse4.2" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -698,7 +699,7 @@ openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/openresty-$openresty_version.tar.gz;
     tarball openresty-$openresty_version.tar.gz;
-    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -msse4.2" && make -j$jobs && sudo make install';
+    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include $luajit_xcflags" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
