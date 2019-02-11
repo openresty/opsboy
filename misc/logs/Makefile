@@ -19,6 +19,10 @@ parse: $(jsonfiles)
 pull:
 	./sync
 
+serve:
+	mkdir -p logs/
+	nginx -p .
+
 %.json: %.log parse-logs
 	./parse-logs -o $@ $<
 
