@@ -9,6 +9,8 @@ misc/logs/ortest/
 misc/logs/upload
 misc/mysqld
 misc/logs/html/
+misc/logs/logs
+misc/logs/*_temp
 samples/ortest-fc.ob
 samples/ortest-fb.ob
 samples/ortest-sol.ob
