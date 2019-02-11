@@ -264,6 +264,7 @@ luajit-git {
         'resty-logger-socket', 'resty-core',
         'resty-upstream-healthcheck',
         'resty-lrucache', 'resty-limit-traffic',
+        'tablepool', 'resty-signal', 'resty-shell',
     ]
 %]
 
@@ -708,6 +709,13 @@ lua-[% name %] {
     git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
     [%- IF name == "resty-core" %]
     dep lua-resty-lrucache;
+    [%- END %]
+    [%- IF name == "resty-shell" %]
+    dep lua-tablepool lua-resty-signal;
+    [%- END %]
+    [%- IF name == "resty-signal" %]
+    sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
+    dep cc;
     [%- END %]
     dep ngx_lua;
     dep no-pool-nginx;
