@@ -18,6 +18,8 @@ my %cpu_lualibs = (
     'resty-string' => 1,
     'resty-lrucache' => 1,
     'resty-lock' => 1,
+    'resty-signal' => 1,
+    'tablepool' => 1,
 );
 
 my @clibs = qw(
@@ -55,6 +57,7 @@ my @lualibs = (
     'resty-logger-socket', 'resty-core',
     'resty-upstream-healthcheck',
     'resty-lrucache', 'resty-limit-traffic',
+    'resty-signal', 'resty-shell', 'tablepool',
 );
 
 if (!@ARGV) {
