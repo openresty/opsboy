@@ -1101,7 +1101,8 @@ for my $rec (@records) {
                         my $file = $spec->[1];
 
                         if (defined $file) {
-                            if (defined $f->{file} && $f->{file} eq $file) {
+                            if (defined $f->{file}
+                                && ($f->{file} eq $file || $module eq 'lua-resty-core' && "stream/$f->{file}" eq $file)) {
                                 #warn "Hit $file!";
                                 my $test = $spec->[2];
                                 if (defined $test) {
