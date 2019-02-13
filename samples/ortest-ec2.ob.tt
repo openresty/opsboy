@@ -1134,6 +1134,7 @@ t[% type %]-ngx_stream_echo {
 t[% type %]-ngx_stream_lua {
     [%- PROCESS build_nginx_module name="stream-lua" -%]
 
+    dep ngx-lua-tests-firewall-rules;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
