@@ -31,7 +31,7 @@ my %github_links = (
     'lua-resty-limit-traffic' => ['openresty', 'lua-resty-limit-traffic'],
     'lua-resty-shell' => ['openresty', 'lua-resty-shell'],
     'lua-resty-signal' => ['openresty', 'lua-resty-signal'],
-    'lua-tablepool' => ['openresty', 'lua-tablepool'],
+    #'lua-tablepool' => ['openresty', 'lua-tablepool'],
     ngx_iconv => ['calio', 'iconv-nginx-module'],
     ngx_form_input => ['calio', 'form-input-nginx-module'],
     ngx_coolkit => ['FRiCKLE', 'ngx_coolkit'],
@@ -133,7 +133,7 @@ for my $jsonfile (@jsonfiles) {
 
         #warn $module;
 
-        if ($module eq 'ngx_stream_echo') {
+        if ($module eq 'ngx_stream_echo' || $module eq 'lua-tablepool') {
             next;
         }
 
