@@ -94,7 +94,7 @@ LuaJIT [% rec.luajit_ver %][% IF rec.luajit_rev %], commit <a href="https://gith
 
 [% IF rec.openssl_ver %]
 <h2><a name="openssl">OpenSSL</a></h2>
-LuaJIT [% rec.openssl_ver %][% IF rec.openssl_rev %], commit <a href="https://github.com/openresty/openssl_rev %]">[% rec.openssl_rev %]</a>[% END %]
+OpenSSL [% rec.openssl_ver %][% IF rec.openssl_rev %], commit <a href="https://github.com/openresty/openssl_rev %]">[% rec.openssl_rev %]</a>[% END %]
 [% END %]
 
 [% IF rec.config_error %]
