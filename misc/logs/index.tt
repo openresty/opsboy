@@ -16,7 +16,7 @@
         'lua-resty-limit-traffic' => 'github.com/openresty/lua-resty-limit-traffic',
         'lua-resty-signal' => 'github.com/openresty/lua-resty-signal',
         'lua-resty-shell' => 'github.com/openresty/lua-resty-shell',
-        'lua-tablepool' => 'github.com/openresty/lua-tablepool',
+        #'lua-tablepool' => 'github.com/openresty/lua-tablepool',
         ngx_iconv => 'github.com/calio/iconv-nginx-module',
         ngx_form_input => 'github.com/calio/form-input-nginx-module',
         ngx_coolkit => 'github.com/FRiCKLE/ngx_coolkit',

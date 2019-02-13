@@ -265,7 +265,8 @@ luajit-git {
         'resty-logger-socket', 'resty-core',
         'resty-upstream-healthcheck',
         'resty-lrucache', 'resty-limit-traffic',
-        'tablepool', 'resty-signal', 'resty-shell',
+        'resty-signal', 'resty-shell',
+        #'tablepool',
     ]
 %]
 
@@ -712,7 +713,8 @@ lua-[% name %] {
     dep lua-resty-lrucache;
     [%- END %]
     [%- IF name == "resty-shell" %]
-    dep lua-tablepool lua-resty-signal;
+    #dep lua-tablepool;
+    dep lua-resty-signal;
     [%- END %]
     [%- IF name == "resty-signal" %]
     sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
