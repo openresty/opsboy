@@ -491,6 +491,10 @@ resty-cli {
     dep perl-IPC-Run test-longstring test-base text-diff;
 }
 
+lua-tablepool {
+    git git://github.com/openresty/lua-tablepool.git ~/git/lua-tablepool;
+}
+
 perl516 {
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
@@ -713,8 +717,7 @@ lua-[% name %] {
     dep lua-resty-lrucache;
     [%- END %]
     [%- IF name == "resty-shell" %]
-    #dep lua-tablepool;
-    dep lua-resty-signal;
+    dep lua-tablepool lua-resty-signal;
     [%- END %]
     [%- IF name == "resty-signal" %]
     sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
