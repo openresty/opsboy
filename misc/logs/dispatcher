@@ -63,8 +63,7 @@ close $in;
 
 my $ast = $jsonxs->decode($json);
 
-my $arch_tree = $ast->{$arch}
-    or die "No $arch found in $infile.\n";
+my $arch_tree = $ast->{$arch};
 
 my %elapsed;
 while (my ($ngx, $ngx_tree) = each %$arch_tree) {
