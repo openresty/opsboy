@@ -306,7 +306,9 @@ sub make ($$) {
             my $dir = shift @args;
             my $branch = shift @args;
 
-            if (!defined $branch) {
+            if (defined $branch) {
+                $branch =~ s/\$([a-zA-Z]\w*)/$ENV{$1}/g;
+            } else {
                 $branch = 'master';
             }
 

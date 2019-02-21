@@ -98,7 +98,7 @@ luajit {
 }
 
 luajit-git {
-    git git://github.com/openresty/luajit2.git ~/git/luajit2;
+    git git://github.com/openresty/luajit2.git ~/git/luajit2 $luajit_branch;
 }
 
 
