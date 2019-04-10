@@ -54,6 +54,7 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
     env NGX_BUILD_OPT '-O3 -funsigned-char';
     env NGX_BUILD_NO_DEBUG 1;
     env NGX_BUILD_EXTRA_CONFIG_OPTS '--with-threads';
+    env LUA_PATH '../lua-resty-core/lib/?.lua;../lua-resty-lrucache/lib/?.lua;;';
     [%- ELSE %]
     env NGX_BUILD_OPT $nginx_cc_opt;
     env NGX_BUILD_LD_OPTS $nginx_ld_opt;
@@ -123,7 +124,7 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="package.path = \'$HOME/git/lua-resty-core/lib/?.lua;$HOME/git/lua-resty-lrucache/lib/?.lua;\' .. (package.path or \'\') jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
@@ -432,6 +433,7 @@ ngx_stream_echo {
 
 ngx_stream_lua {
     git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module;
+    dep lua-resty-core;
 }
 
 ngx_srcache {
@@ -659,7 +661,7 @@ ngx_lua_upstream {
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
-    dep ngx_lua lua-resty-core;
+    dep ngx_lua;
 }
 
 ngx_lua {
@@ -723,7 +725,7 @@ lua-[% name %] {
     sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
     dep cc;
     [%- END %]
-    dep ngx_lua;
+    dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 [% END %]
@@ -1061,7 +1063,7 @@ t[% type %]-ngx_lua {
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
-    dep lua-resty-core openresty-debug;
+    dep openresty-debug;
     dep ngx-lua-tests-firewall-rules;
     dep ngx_stream_lua;
     dep systemtap;
@@ -1151,10 +1153,6 @@ t[% type %]-lua-[% name %] {
     [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
     [%- END -%]
-
-    [%- IF name != "lua-resty-core" %]
-    dep lua-resty-core;
-    [%- END %]
 
     dep build-ngx_lua;
 }
