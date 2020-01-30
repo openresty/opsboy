@@ -22,7 +22,7 @@ use_lua_resty_core = 0;
 use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
-luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJIT_ENABLE_GC64 -DLUAJIT_ENABLE_LUA52COMPAT -msse4.2';
+luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJIT_ENABLE_LUA52COMPAT -msse4.2';
 
 ngx-lua-tests-firewall-reject {
     test 'sudo iptables -S|grep -- "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
