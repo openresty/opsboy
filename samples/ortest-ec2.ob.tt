@@ -2,11 +2,11 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.15.8;
-openresty_version = 1.15.8.1rc0;
+nginx_version = 1.17.8;
+openresty_version = 1.17.8.1rc1;
 redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
-pcre_version = 8.42;
+pcre_version = 8.43;
 force = 0;
 ragel_version = 6.9;
 valgrind_version = 3.13.0;
@@ -16,7 +16,7 @@ perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
-openssl_version = 1.1.0j;
+openssl_version = 1.1.1d;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 0;
@@ -124,7 +124,7 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
 
     [%- UNLESS no_test -%]
     sh 'killall nginx || exit 0';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require \'resty.core\' require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
     [%- IF type.match("v") -%]
