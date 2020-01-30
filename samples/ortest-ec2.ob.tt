@@ -17,6 +17,7 @@ bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
 openssl_version = 1.1.1d;
+openssl_patch_version = 1.1.1c;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 0;
@@ -190,7 +191,7 @@ openssl {
     cwd /tmp;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
-    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-1.1.0d-sess_set_get_cb_yield.patch && ./config no-threads no-asm shared enable-ssl3 enable-ssl3-method --libdir=lib -g --prefix=/opt/ssl -DPURIFY && sed -i \'s/ -O3 / -O1 /g\' Makefile && make -j$jobs && sudo make install_sw';
+    sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-$openssl_patch_version-sess_set_get_cb_yield.patch && ./config no-threads no-asm shared enable-ssl3 enable-ssl3-method --libdir=lib -g --prefix=/opt/ssl -DPURIFY && sed -i \'s/ -O3 / -O1 /g\' Makefile && make -j$jobs && sudo make install_sw';
     dep cc cxx openresty;
 }
 
