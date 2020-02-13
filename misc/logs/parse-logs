@@ -460,7 +460,7 @@ my %white_list = (
         ['v', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stdin.t', qr/TEST (?:1|8|9): .*? - response_body - response is expected /],
-        ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30): .*? - response_body - response is expected /],
+        ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|28|30): .*? - response_body - response is expected /],
     ],
 
     ngx_stream_lua => [
@@ -540,6 +540,11 @@ my %white_list = (
         ['h', '140-ssl-c-api.t', 'should match a line in error.log'],
         ['h', '140-ssl-c-api.t', ' - response_body - response is expected', '+failed to connect: no such file or directory'],
         ['h', '140-ssl-c-api.t', 'TEST 1: simple cert + private key - pattern "lua ssl server name: "test.com"" should match a line in error.log'],
+        [undef, '091-coroutine.t', 'nginx: [error]', 'init_by_lua error: init_by_lua:7: init_by_lua:4: something went wrong'],
+        [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*?/],
+        ['r', '058-tcp-socket.t', qr/TEST (?:62|65|66): receiveany .*? - response_body - response is expected/],
+        ['w', '058-tcp-socket.t', qr/TEST (?:62|65|66): receiveany .*? - response_body - response is expected/],
+
     ],
 
     ngx_lua => [
@@ -790,8 +795,9 @@ my %white_list = (
         ['r', '143-ssl-session-fetch.t', ' - grep_error_log_out'],
         ['r', '158-global-var.t', qr/TEST 8: .*? - response_body_like - response is expected /, 'failed to do SSL handshake: handshake failed'],
         ['r', '158-global-var.t', qr/TEST 8: .*? - grep_error_log_out/],
-        ['r', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
-        ['w', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
+        ['r', '058-tcp-socket.t', qr/TEST (?:65|68|69): receiveany .*? - response_body - response is expected/],
+        ['w', '058-tcp-socket.t', qr/TEST (?:65|68|69): receiveany .*? - response_body - response is expected/],
+        [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*?/],
     ],
 
     ngx_drizzle => [
