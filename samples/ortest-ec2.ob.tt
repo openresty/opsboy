@@ -8,7 +8,7 @@ redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.43;
 force = 0;
-ragel_version = 6.9;
+ragel_version = 6.10;
 valgrind_version = 3.13.0;
 libev_version = 4.15;
 systemtap_version = 3.2;
@@ -24,6 +24,7 @@ use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
 luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJIT_ENABLE_LUA52COMPAT -msse4.2';
+gcc_version = 48
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -47,7 +48,7 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
     [%- UNLESS type.match("o") %]
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
     [%- END %]
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc$gcc_version';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
