@@ -439,6 +439,7 @@ my %white_list = (
         ['h', 'stream/semaphore.t', qr/ - grep_error_log_out /],
         ['v', 'time.t', 'TEST 1: ngx.now() - response_body - response is expected', qr/< 0\.11: false/],
         ['v', 'stream/time.t', 'TEST 1: ngx.now() - response_body - response is expected', qr/< 0\.11: false/],
+        ['v', 'stream/request.t', 'TEST 1: ngx.req.start_time() - response_body - response is expected', qr/< 0\.11: false/],
         ['v', 'request.t', 'TEST 7: ngx.req.start_time() - response_body - response is expected', qr/< 0\.11: false/],
         [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" should match a line in error\.log/], # FIXME
         ['v', 're-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
@@ -451,6 +452,10 @@ my %white_list = (
         ['wv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
         ['h', 'shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
         ['h', 'stream/shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
+        ['r', 'request.t', qr/TEST 1: ngx\.req\.get_headers - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['w', 'request.t', qr/TEST 1: ngx\.req\.get_headers - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['r', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['w', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
         ['h', 'request.t', qr/TEST 3: ngx.req.get_headers \(count is 2\) - pattern .*?TRACE.*? should match a line in error\.log/],
         ['rv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
         ['wv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
