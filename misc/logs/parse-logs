@@ -797,6 +797,8 @@ my %white_list = (
         ['r', '158-global-var.t', qr/TEST 8: .*? - grep_error_log_out/],
         ['r', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
         ['w', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
+        [undef, '091-coroutine.t', 'nginx: [error]', qr/init_by_lua error: init_by_lua:\d+: init_by_lua:\d+: something went wrong/],
+        [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
     ],
 
     ngx_drizzle => [
