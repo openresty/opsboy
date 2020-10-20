@@ -606,6 +606,7 @@ my %white_list = (
         ['w', '067-req-socket.t', qr/TEST 14: successful reread after reading timeout happens \(receive -> receive\) - response_body - response is expected/, undef, 'linux i386'],
         ['w', '067-req-socket.t', qr/TEST 15: successful reread after reading timeout happens \(receive -> receiveuntil\) - response_body - response is expected/, undef, 'linux i386'],
         ['w', '067-req-socket.t', qr/TEST 16: successful reread after reading timeout happens \(receiveuntil -> receive\) - response_body - response is expected/, undef, 'linux i386'],
+        ['r', '067-req-socket.t', 'TEST 18: receiveany - response_body - response is expected'],
         ['w', '014-bugs.t', qr/TEST 41: https proxy has no timeout protection for ssl handshake/],
         ['r', '129-ssl-socket.t', undef, qr/failed to do SSL handshake: handshake failed/],
         ['w', '005-exit.t', 'TEST 24: exit 444 in header filter - status code ok'],
@@ -795,10 +796,12 @@ my %white_list = (
         ['r', '143-ssl-session-fetch.t', ' - grep_error_log_out'],
         ['r', '158-global-var.t', qr/TEST 8: .*? - response_body_like - response is expected /, 'failed to do SSL handshake: handshake failed'],
         ['r', '158-global-var.t', qr/TEST 8: .*? - grep_error_log_out/],
-        ['r', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
-        ['w', '058-tcp-socket.t', qr/TEST (?:64|67|68): receiveany .*? - response_body - response is expected/],
+        ['r', '058-tcp-socket.t', qr/TEST (?:64|65|67|68|69): receiveany .*? - response_body - response is expected/],
+        ['w', '058-tcp-socket.t', qr/TEST (?:64|65|67|68|69): receiveany .*? - response_body - response is expected/],
         [undef, '091-coroutine.t', 'nginx: [error]', qr/init_by_lua error: init_by_lua:\d+: init_by_lua:\d+: something went wrong/],
         [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
+        ['r', '116-raw-req-socket.t', 'TEST 16: receiveany - response_body - response is expected'],
+        ['w', '116-raw-req-socket.t', 'TEST 16: receiveany - response_body - response is expected'],
     ],
 
     ngx_drizzle => [
