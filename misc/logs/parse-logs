@@ -545,6 +545,8 @@ my %white_list = (
         ['h', '140-ssl-c-api.t', 'should match a line in error.log'],
         ['h', '140-ssl-c-api.t', ' - response_body - response is expected', '+failed to connect: no such file or directory'],
         ['h', '140-ssl-c-api.t', 'TEST 1: simple cert + private key - pattern "lua ssl server name: "test.com"" should match a line in error.log'],
+        [undef, '091-coroutine.t', 'nginx: [error]', qr/init_by_lua error: init_by_lua:\d+: init_by_lua:\d+: something went wrong/],
+        [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
     ],
 
     ngx_lua => [
