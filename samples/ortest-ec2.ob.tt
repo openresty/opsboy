@@ -230,6 +230,7 @@ luajit-git {
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
     [%- IF name == "lua-resty-mysql" %]
+    env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
