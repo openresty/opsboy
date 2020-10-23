@@ -556,6 +556,10 @@ lua-tablepool {
     git git://github.com/openresty/lua-tablepool.git ~/git/lua-tablepool;
 }
 
+lua-resty-rsa {
+    git git://github.com/spacewander/lua-resty-rsa.git ~/git/lua-resty-rsa;
+}
+
 perl516 {
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
@@ -887,6 +891,7 @@ lua-resty-redis {
 
 lua-resty-mysql {
     git git://github.com/openresty/lua-resty-mysql.git ~/git/lua-resty-mysql;
+    dep lua-resty-rsa lua-resty-string;
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
@@ -3016,6 +3021,7 @@ t-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -5572,6 +5578,7 @@ tv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -7711,6 +7718,7 @@ tr-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -9943,6 +9951,7 @@ trv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -12173,6 +12182,7 @@ tw-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -14436,6 +14446,7 @@ twv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -17008,6 +17019,7 @@ th-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -19526,6 +19538,7 @@ thv-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -22054,6 +22067,7 @@ tl-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 
@@ -24544,6 +24558,7 @@ to-lua-resty-mysql {
     dep ngx_lua nginx-module-test lua-resty-mysql;
 
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     dep build-ngx_lua;
 }
 

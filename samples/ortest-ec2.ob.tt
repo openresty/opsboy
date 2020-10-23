@@ -498,6 +498,10 @@ lua-tablepool {
     git git://github.com/openresty/lua-tablepool.git ~/git/lua-tablepool;
 }
 
+lua-resty-rsa {
+    git git://github.com/spacewander/lua-resty-rsa.git ~/git/lua-resty-rsa;
+}
+
 perl516 {
     file '/opt/perl516/bin/perl';
     test '/opt/perl516/bin/perl -v|grep "$perl516_version"';
@@ -725,6 +729,9 @@ lua-[% name %] {
     [%- IF name == "resty-signal" %]
     sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
     dep cc;
+    [%- END %]
+    [%- IF name == "resty-mysql" %]
+    dep lua-resty-rsa lua-resty-string;
     [%- END %]
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
@@ -1153,6 +1160,7 @@ t[% type %]-lua-[% name %] {
 
     [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql.sock;
+    env DB_VERSION mysql:5.5;
     [%- END -%]
 
     dep build-ngx_lua;
