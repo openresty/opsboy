@@ -2983,9 +2983,8 @@ t-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5539,9 +5538,8 @@ tv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7678,9 +7676,8 @@ tr-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -9910,9 +9907,8 @@ trv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12145,9 +12141,8 @@ tw-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14408,9 +14403,8 @@ twv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -16994,9 +16988,8 @@ th-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -19512,9 +19505,8 @@ thv-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -22044,9 +22036,8 @@ tl-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -24538,9 +24529,8 @@ to-lua-resty-mysql {
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
-    env TEST_NGINX_MYSQL_PATH /var/lib/mysql/mysql_3307.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.6;
+    env DB_VERSION mysql:5.5;
     sh './.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
