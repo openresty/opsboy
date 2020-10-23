@@ -204,6 +204,7 @@ my %white_list = (
         ['v', 'sanity.t', 'TEST 13: expire() - response_body - response is expected', qr/\+lock 1: expire: nil, not found$/sm],
         ['v', 'sanity.t', 'TEST 4: waited locks - response_body_like - response is expected'],
         ['v', 'sanity.t', 'TEST 5: waited locks (custom step) - response_body_like - response is expected'],
+        ['h', 'sanity.t', 'TEST 5: waited locks (custom step) - response_body_like - response is expected'],
         ['v', 'sanity.t', 'TEST 6: waited locks (custom ratio) - response_body_like - response is expected'],
         ['v', 'sanity.t', 'TEST 7: waited locks (custom max step) - response_body_like - response is expected'],
         ['v', 'sanity.t', 'TEST 8: lock expired by itself - response_body_like - response is expected'],
