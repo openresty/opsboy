@@ -2,22 +2,22 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.17.8;
+nginx_version = 1.19.3;
 openresty_version = 1.17.8.2;
 redis_version = 3.2.8;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.43;
 force = 0;
-ragel_version = 6.9;
+ragel_version = 6.10;
 valgrind_version = 3.13.0;
 libev_version = 4.15;
-systemtap_version = 3.2;
+systemtap_version = 4.3;
 perl516_version = 5.16.2;
 bison_version = 3.0.4;
 ccache_version = 3.1.9;
 luajit_branch = v2.1-agentzh;
-openssl_version = 1.1.1d;
-openssl_patch_version = 1.1.1c;
+openssl_version = 1.1.1h;
+openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 0;
@@ -87,14 +87,14 @@ openssl {
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc47 CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -562,7 +562,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc47 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc48 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -636,7 +636,7 @@ t-resty-cli  {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -692,7 +692,7 @@ tv-resty-cli  {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -737,7 +737,7 @@ bison {
     cwd /tmp;
     fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
     tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && CC=gcc47 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    sh 'cd bison-$bison_version/ && CC=gcc48 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -868,7 +868,7 @@ openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/openresty-$openresty_version.tar.gz;
     tarball openresty-$openresty_version.tar.gz;
-    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc47 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include $luajit_xcflags" && make -j$jobs && sudo make install';
+    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc48 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include $luajit_xcflags" && make -j$jobs && sudo make install';
     dep libdrizzle openssl pcre valgrind;
 }
 
@@ -1109,8 +1109,8 @@ axel {
 }
 
 cc {
-    prog gcc47;
-    yum gcc47;
+    prog gcc48;
+    yum gcc48;
     dep make;
 }
 
@@ -1246,7 +1246,7 @@ t-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1316,7 +1316,7 @@ t-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1387,7 +1387,7 @@ t-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1459,7 +1459,7 @@ t-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1530,7 +1530,7 @@ t-ngx_encrypted_session {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1600,7 +1600,7 @@ t-ngx_array_var {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1670,7 +1670,7 @@ t-ngx_set_misc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1740,7 +1740,7 @@ t-ngx_headers_more {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1810,7 +1810,7 @@ t-ngx_example_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1880,7 +1880,7 @@ t-ngx_lua_upstream {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -1950,7 +1950,7 @@ t-ngx_xss {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2022,7 +2022,7 @@ t-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2100,7 +2100,7 @@ t-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2171,7 +2171,7 @@ t-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2242,7 +2242,7 @@ t-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2313,7 +2313,7 @@ t-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2383,7 +2383,7 @@ t-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2453,7 +2453,7 @@ t-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2525,7 +2525,7 @@ t-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2595,7 +2595,7 @@ t-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2669,7 +2669,7 @@ t-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2739,7 +2739,7 @@ t-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2809,7 +2809,7 @@ t-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2870,7 +2870,7 @@ t-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2926,7 +2926,7 @@ t-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -2982,7 +2982,7 @@ t-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3039,7 +3039,7 @@ t-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3095,7 +3095,7 @@ t-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3151,7 +3151,7 @@ t-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3207,7 +3207,7 @@ t-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3263,7 +3263,7 @@ t-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3319,7 +3319,7 @@ t-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3375,7 +3375,7 @@ t-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3431,7 +3431,7 @@ t-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3487,7 +3487,7 @@ t-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3543,7 +3543,7 @@ t-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3599,7 +3599,7 @@ t-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3655,7 +3655,7 @@ t-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3724,7 +3724,7 @@ tv-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3797,7 +3797,7 @@ tv-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3871,7 +3871,7 @@ tv-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -3946,7 +3946,7 @@ tv-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4020,7 +4020,7 @@ tv-ngx_encrypted_session {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4093,7 +4093,7 @@ tv-ngx_array_var {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4166,7 +4166,7 @@ tv-ngx_set_misc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4239,7 +4239,7 @@ tv-ngx_headers_more {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4312,7 +4312,7 @@ tv-ngx_example_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4385,7 +4385,7 @@ tv-ngx_lua_upstream {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4458,7 +4458,7 @@ tv-ngx_xss {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4533,7 +4533,7 @@ tv-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4614,7 +4614,7 @@ tv-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4688,7 +4688,7 @@ tv-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4762,7 +4762,7 @@ tv-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4836,7 +4836,7 @@ tv-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4909,7 +4909,7 @@ tv-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -4982,7 +4982,7 @@ tv-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5057,7 +5057,7 @@ tv-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5130,7 +5130,7 @@ tv-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5207,7 +5207,7 @@ tv-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5280,7 +5280,7 @@ tv-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5353,7 +5353,7 @@ tv-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5417,7 +5417,7 @@ tv-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5476,7 +5476,7 @@ tv-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5535,7 +5535,7 @@ tv-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5595,7 +5595,7 @@ tv-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5654,7 +5654,7 @@ tv-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5713,7 +5713,7 @@ tv-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5772,7 +5772,7 @@ tv-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5831,7 +5831,7 @@ tv-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5890,7 +5890,7 @@ tv-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -5949,7 +5949,7 @@ tv-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6008,7 +6008,7 @@ tv-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6067,7 +6067,7 @@ tv-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6126,7 +6126,7 @@ tv-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6185,7 +6185,7 @@ tv-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6244,7 +6244,7 @@ tv-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6316,7 +6316,7 @@ tr-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6392,7 +6392,7 @@ tr-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6469,7 +6469,7 @@ tr-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6547,7 +6547,7 @@ tr-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6627,7 +6627,7 @@ tr-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6711,7 +6711,7 @@ tr-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6788,7 +6788,7 @@ tr-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6865,7 +6865,7 @@ tr-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -6942,7 +6942,7 @@ tr-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7018,7 +7018,7 @@ tr-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7094,7 +7094,7 @@ tr-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7172,7 +7172,7 @@ tr-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7248,7 +7248,7 @@ tr-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7328,7 +7328,7 @@ tr-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7404,7 +7404,7 @@ tr-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7480,7 +7480,7 @@ tr-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7547,7 +7547,7 @@ tr-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7609,7 +7609,7 @@ tr-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7671,7 +7671,7 @@ tr-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7734,7 +7734,7 @@ tr-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7796,7 +7796,7 @@ tr-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7858,7 +7858,7 @@ tr-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7920,7 +7920,7 @@ tr-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -7982,7 +7982,7 @@ tr-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8044,7 +8044,7 @@ tr-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8106,7 +8106,7 @@ tr-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8168,7 +8168,7 @@ tr-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8230,7 +8230,7 @@ tr-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8292,7 +8292,7 @@ tr-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8354,7 +8354,7 @@ tr-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8416,7 +8416,7 @@ tr-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8491,7 +8491,7 @@ trv-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8570,7 +8570,7 @@ trv-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8650,7 +8650,7 @@ trv-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8731,7 +8731,7 @@ trv-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8814,7 +8814,7 @@ trv-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8901,7 +8901,7 @@ trv-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -8981,7 +8981,7 @@ trv-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9061,7 +9061,7 @@ trv-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9141,7 +9141,7 @@ trv-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9220,7 +9220,7 @@ trv-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9299,7 +9299,7 @@ trv-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9380,7 +9380,7 @@ trv-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9459,7 +9459,7 @@ trv-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9542,7 +9542,7 @@ trv-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9621,7 +9621,7 @@ trv-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9700,7 +9700,7 @@ trv-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9770,7 +9770,7 @@ trv-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9835,7 +9835,7 @@ trv-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9900,7 +9900,7 @@ trv-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -9966,7 +9966,7 @@ trv-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10031,7 +10031,7 @@ trv-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10096,7 +10096,7 @@ trv-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10161,7 +10161,7 @@ trv-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10226,7 +10226,7 @@ trv-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10291,7 +10291,7 @@ trv-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10356,7 +10356,7 @@ trv-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10421,7 +10421,7 @@ trv-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10486,7 +10486,7 @@ trv-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10551,7 +10551,7 @@ trv-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10616,7 +10616,7 @@ trv-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10681,7 +10681,7 @@ trv-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10759,7 +10759,7 @@ tw-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10836,7 +10836,7 @@ tw-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10914,7 +10914,7 @@ tw-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -10993,7 +10993,7 @@ tw-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11074,7 +11074,7 @@ tw-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11159,7 +11159,7 @@ tw-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11237,7 +11237,7 @@ tw-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11315,7 +11315,7 @@ tw-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11393,7 +11393,7 @@ tw-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11470,7 +11470,7 @@ tw-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11547,7 +11547,7 @@ tw-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11626,7 +11626,7 @@ tw-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11703,7 +11703,7 @@ tw-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11784,7 +11784,7 @@ tw-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11861,7 +11861,7 @@ tw-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -11938,7 +11938,7 @@ tw-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12006,7 +12006,7 @@ tw-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12069,7 +12069,7 @@ tw-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12132,7 +12132,7 @@ tw-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12196,7 +12196,7 @@ tw-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12259,7 +12259,7 @@ tw-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12322,7 +12322,7 @@ tw-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12385,7 +12385,7 @@ tw-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12448,7 +12448,7 @@ tw-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12511,7 +12511,7 @@ tw-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12574,7 +12574,7 @@ tw-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12637,7 +12637,7 @@ tw-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12700,7 +12700,7 @@ tw-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12763,7 +12763,7 @@ tw-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12826,7 +12826,7 @@ tw-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12889,7 +12889,7 @@ tw-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -12965,7 +12965,7 @@ twv-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13045,7 +13045,7 @@ twv-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13126,7 +13126,7 @@ twv-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13208,7 +13208,7 @@ twv-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13292,7 +13292,7 @@ twv-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13380,7 +13380,7 @@ twv-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13461,7 +13461,7 @@ twv-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13542,7 +13542,7 @@ twv-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13623,7 +13623,7 @@ twv-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13703,7 +13703,7 @@ twv-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13783,7 +13783,7 @@ twv-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13865,7 +13865,7 @@ twv-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -13945,7 +13945,7 @@ twv-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14029,7 +14029,7 @@ twv-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14109,7 +14109,7 @@ twv-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14189,7 +14189,7 @@ twv-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14260,7 +14260,7 @@ twv-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14326,7 +14326,7 @@ twv-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14392,7 +14392,7 @@ twv-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14459,7 +14459,7 @@ twv-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14525,7 +14525,7 @@ twv-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14591,7 +14591,7 @@ twv-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14657,7 +14657,7 @@ twv-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14723,7 +14723,7 @@ twv-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14789,7 +14789,7 @@ twv-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14855,7 +14855,7 @@ twv-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14921,7 +14921,7 @@ twv-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -14987,7 +14987,7 @@ twv-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15053,7 +15053,7 @@ twv-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15119,7 +15119,7 @@ twv-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15185,7 +15185,7 @@ twv-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15264,7 +15264,7 @@ th-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15333,7 +15333,7 @@ th-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15403,7 +15403,7 @@ th-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15474,7 +15474,7 @@ th-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15544,7 +15544,7 @@ th-ngx_encrypted_session {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15613,7 +15613,7 @@ th-ngx_array_var {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15682,7 +15682,7 @@ th-ngx_set_misc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15751,7 +15751,7 @@ th-ngx_headers_more {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15820,7 +15820,7 @@ th-ngx_example_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15889,7 +15889,7 @@ th-ngx_lua_upstream {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -15958,7 +15958,7 @@ th-ngx_xss {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16029,7 +16029,7 @@ th-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16106,7 +16106,7 @@ th-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16176,7 +16176,7 @@ th-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16246,7 +16246,7 @@ th-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16316,7 +16316,7 @@ th-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16385,7 +16385,7 @@ th-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16454,7 +16454,7 @@ th-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16525,7 +16525,7 @@ th-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16594,7 +16594,7 @@ th-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16667,7 +16667,7 @@ th-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16736,7 +16736,7 @@ th-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16805,7 +16805,7 @@ th-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16865,7 +16865,7 @@ th-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16920,7 +16920,7 @@ th-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -16975,7 +16975,7 @@ th-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17031,7 +17031,7 @@ th-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17086,7 +17086,7 @@ th-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17141,7 +17141,7 @@ th-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17196,7 +17196,7 @@ th-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17251,7 +17251,7 @@ th-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17306,7 +17306,7 @@ th-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17361,7 +17361,7 @@ th-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17416,7 +17416,7 @@ th-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17471,7 +17471,7 @@ th-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17526,7 +17526,7 @@ th-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17581,7 +17581,7 @@ th-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17636,7 +17636,7 @@ th-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17704,7 +17704,7 @@ thv-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17776,7 +17776,7 @@ thv-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17849,7 +17849,7 @@ thv-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17923,7 +17923,7 @@ thv-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -17996,7 +17996,7 @@ thv-ngx_encrypted_session {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18068,7 +18068,7 @@ thv-ngx_array_var {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18140,7 +18140,7 @@ thv-ngx_set_misc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18212,7 +18212,7 @@ thv-ngx_headers_more {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18284,7 +18284,7 @@ thv-ngx_example_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18356,7 +18356,7 @@ thv-ngx_lua_upstream {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18428,7 +18428,7 @@ thv-ngx_xss {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18502,7 +18502,7 @@ thv-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18582,7 +18582,7 @@ thv-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18655,7 +18655,7 @@ thv-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18728,7 +18728,7 @@ thv-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18801,7 +18801,7 @@ thv-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18873,7 +18873,7 @@ thv-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -18945,7 +18945,7 @@ thv-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19019,7 +19019,7 @@ thv-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19091,7 +19091,7 @@ thv-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19167,7 +19167,7 @@ thv-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19239,7 +19239,7 @@ thv-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19311,7 +19311,7 @@ thv-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19374,7 +19374,7 @@ thv-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19432,7 +19432,7 @@ thv-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19490,7 +19490,7 @@ thv-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19549,7 +19549,7 @@ thv-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19607,7 +19607,7 @@ thv-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19665,7 +19665,7 @@ thv-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19723,7 +19723,7 @@ thv-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19781,7 +19781,7 @@ thv-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19839,7 +19839,7 @@ thv-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19897,7 +19897,7 @@ thv-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -19955,7 +19955,7 @@ thv-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20013,7 +20013,7 @@ thv-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20071,7 +20071,7 @@ thv-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20129,7 +20129,7 @@ thv-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20187,7 +20187,7 @@ thv-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20258,7 +20258,7 @@ tl-ngx_srcache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20329,7 +20329,7 @@ tl-ngx_rds_json {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20401,7 +20401,7 @@ tl-ngx_rds_csv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20474,7 +20474,7 @@ tl-ngx_drizzle {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20546,7 +20546,7 @@ tl-ngx_encrypted_session {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20617,7 +20617,7 @@ tl-ngx_array_var {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20688,7 +20688,7 @@ tl-ngx_set_misc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20759,7 +20759,7 @@ tl-ngx_headers_more {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20830,7 +20830,7 @@ tl-ngx_example_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20901,7 +20901,7 @@ tl-ngx_lua_upstream {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -20972,7 +20972,7 @@ tl-ngx_xss {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21045,7 +21045,7 @@ tl-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21124,7 +21124,7 @@ tl-ngx_memc {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21196,7 +21196,7 @@ tl-ngx_redis2 {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21268,7 +21268,7 @@ tl-ngx_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21340,7 +21340,7 @@ tl-ngx_eval {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21411,7 +21411,7 @@ tl-ngx_form_input {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21482,7 +21482,7 @@ tl-ngx_postgres {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21555,7 +21555,7 @@ tl-ngx_iconv {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21626,7 +21626,7 @@ tl-ngx_coolkit {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21701,7 +21701,7 @@ tl-ngx_replace_filter {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21772,7 +21772,7 @@ tl-ngx_stream_echo {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21843,7 +21843,7 @@ tl-ngx_stream_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21905,7 +21905,7 @@ tl-lua-resty-memcached {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -21962,7 +21962,7 @@ tl-lua-resty-redis {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22019,7 +22019,7 @@ tl-lua-resty-mysql {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22077,7 +22077,7 @@ tl-lua-resty-string {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22134,7 +22134,7 @@ tl-lua-resty-upload {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22191,7 +22191,7 @@ tl-lua-resty-dns {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22248,7 +22248,7 @@ tl-lua-resty-websocket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22305,7 +22305,7 @@ tl-lua-resty-lock {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22362,7 +22362,7 @@ tl-lua-resty-logger-socket {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22419,7 +22419,7 @@ tl-lua-resty-core {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22476,7 +22476,7 @@ tl-lua-resty-upstream-healthcheck {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22533,7 +22533,7 @@ tl-lua-resty-lrucache {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22590,7 +22590,7 @@ tl-lua-resty-limit-traffic {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22647,7 +22647,7 @@ tl-lua-resty-signal {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22704,7 +22704,7 @@ tl-lua-resty-shell {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22773,7 +22773,7 @@ to-ngx_srcache {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22843,7 +22843,7 @@ to-ngx_rds_json {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22914,7 +22914,7 @@ to-ngx_rds_csv {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -22986,7 +22986,7 @@ to-ngx_drizzle {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23057,7 +23057,7 @@ to-ngx_encrypted_session {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23127,7 +23127,7 @@ to-ngx_array_var {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23197,7 +23197,7 @@ to-ngx_set_misc {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23267,7 +23267,7 @@ to-ngx_headers_more {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23337,7 +23337,7 @@ to-ngx_example_lua {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23407,7 +23407,7 @@ to-ngx_lua_upstream {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23477,7 +23477,7 @@ to-ngx_xss {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23549,7 +23549,7 @@ to-ngx_lua {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23627,7 +23627,7 @@ to-ngx_memc {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23698,7 +23698,7 @@ to-ngx_redis2 {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23769,7 +23769,7 @@ to-ngx_echo {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23840,7 +23840,7 @@ to-ngx_eval {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23910,7 +23910,7 @@ to-ngx_form_input {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -23980,7 +23980,7 @@ to-ngx_postgres {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24052,7 +24052,7 @@ to-ngx_iconv {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24122,7 +24122,7 @@ to-ngx_coolkit {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24196,7 +24196,7 @@ to-ngx_replace_filter {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24266,7 +24266,7 @@ to-ngx_stream_echo {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24336,7 +24336,7 @@ to-ngx_stream_lua {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24397,7 +24397,7 @@ to-lua-resty-memcached {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24453,7 +24453,7 @@ to-lua-resty-redis {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24509,7 +24509,7 @@ to-lua-resty-mysql {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24566,7 +24566,7 @@ to-lua-resty-string {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24622,7 +24622,7 @@ to-lua-resty-upload {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24678,7 +24678,7 @@ to-lua-resty-dns {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24734,7 +24734,7 @@ to-lua-resty-websocket {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24790,7 +24790,7 @@ to-lua-resty-lock {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24846,7 +24846,7 @@ to-lua-resty-logger-socket {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24902,7 +24902,7 @@ to-lua-resty-core {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -24958,7 +24958,7 @@ to-lua-resty-upstream-healthcheck {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -25014,7 +25014,7 @@ to-lua-resty-lrucache {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -25070,7 +25070,7 @@ to-lua-resty-limit-traffic {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -25126,7 +25126,7 @@ to-lua-resty-signal {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -25182,7 +25182,7 @@ to-lua-resty-shell {
     env TEST_NGINX_USE_STAP '';
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
@@ -25292,7 +25292,7 @@ build-ngx_lua {
 
     env NGX_BUILD_CC_OPTS '-I/opt/systemtap/include';
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
-    env NGX_BUILD_CC 'ccache gcc47';
+    env NGX_BUILD_CC 'ccache gcc48';
     env CCACHE_BASEDIR '$PWD';
     dep ccache;
 
