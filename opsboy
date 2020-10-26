@@ -497,7 +497,7 @@ sub make ($$) {
         if (defined $fetches) {
             for my $fetch (@$fetches) {
                 $fetch =~ s/\$(\w+)/$ENV{$1}/g;
-                sh('wget', '-N', $fetch);
+                sh('wget', '--max-redirect=20', '-N', $fetch);
             }
         }
 
