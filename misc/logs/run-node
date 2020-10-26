@@ -43,9 +43,11 @@ my $user_data = join (" ", @ARGV)
 my @cmd = ("aws", "ec2", "run-instances", "--image-id", $ami, "--key-name", $keypair, "--user-data", $user_data,
         "--instance-type", $instance_type, #"--debug", '--availability-zone', 'us-west-1b',
         '--region', 'us-west-2',
+        # '--subnet-id', 'subnet-0d1309b13efc7eff4',
         '--subnet-id', 'subnet-3438276c',
         '--instance-initiated-shutdown-behavior', 'terminate',
         '--output', 'text',
+        # '--security-group-ids', 'sg-071003cfa80142cfc'
         '--security-group-ids', 'sg-d7e8e8aa');
 
 my $check = $opts{c};
