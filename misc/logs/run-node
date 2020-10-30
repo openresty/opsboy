@@ -6,7 +6,7 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-057904615c50f4f7d', # ortest-i386-2020-10-27 (us-west-2)
+    'linux i386' => 'ami-0f5e2fc77651fe35d', # ortest-i386-2020-10-29 (us-west-2)
     #'linux i386' => 'ami-014d8251709f6fcc4', # ortest-i386-2019-02-22 (us-west-2)
     #'linux i386' => 'ami-1511a46d', # ortest-i386-2018-01-07 (us-west-2)
     #'linux x86_64' => 'ami-0a7f1502cf012b78f', # ortest-x64-2019-02-05 (us-west-2)
