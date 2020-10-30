@@ -457,16 +457,20 @@ my %white_list = (
         ['w', 'request.t', qr/TEST 1: ngx\.req\.get_headers - pattern .*?TRACE.*? should match a line in error\.log/],
         ['r', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
         ['w', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['v', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
         ['h', 'request.t', qr/TEST 3: ngx.req.get_headers \(count is 2\) - pattern .*?TRACE.*? should match a line in error\.log/],
         ['rv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
         ['wv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
         #['wv', 'shared.t', qr/TEST 4 shared\.ttl returns key ttl for non-default ttl - response_body_like - response is expected/],
         #['wv', 'shared.t', 'TEST 4 shared.ttl returns key ttl for non-default ttl - pattern "[error]" should not match any line in error.log but matches line'],
+        ['v', 'shared.t', 'TEST 4: shared.ttl returns key ttl for non-default (positive) ttl - response_body_like - response is expected', qr/doesn't match/],
         [undef, 'response.t', qr/TEST 4: .*? - pattern " -- NYI:" should not match any line in error\.log but matches line "\[TRACE --- response.lua:112 -- NYI: return to lower frame/],
         ['v', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stdin.t', qr/TEST (?:1|8|9): .*? - response_body - response is expected /],
-        ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30): .*? - response_body - response is expected /],
+        ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30|33): .*? - response_body - response is expected /],
+        ['v', 'pipe-stdout.t', 'TEST 11: read process, pattern is read any, with limited, limit smaller than read data - response_body - response is expected'],
+        ['wv', 'pipe-stdout.t', 'TEST 33: read process, aborted by uthread kill, with graceful shutdown - response_body - response is expected', qr/\+stdout err: timeout/],
     ],
 
     ngx_stream_lua => [
@@ -480,6 +484,7 @@ my %white_list = (
         ['r', '023-preread/sanity.t', 'TEST 13: phase postponing works - pattern "$ssl_preread_server_name = my.sni.server.name while prereading client data" should match a line in error.log'],
         ['r', '023-preread/sanity.t', qr/SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
         ['w', '023-preread/sanity.t', 'TEST 13: phase postponing works - response_body - response is expected', qr/receive stream response error: connection reset by/],
+        ['w', undef, 'ERROR: client socket timed out', undef, 'linux i386'],
         ['r', '023-preread/req-socket.t', qr/SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
         ['r', '023-preread/req-socket.t', 'should match a line in error.log'],
         ['r', '139-ssl-cert-by.t', qr/ - response_body - response is expected /, qr/\+failed to do SSL handshake: handshake failed/],
@@ -550,6 +555,10 @@ my %white_list = (
         [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
         ['r', '058-tcp-socket.t', qr/TEST (?:62|65|66): receiveany .*? - response_body - response is expected/],
         ['w', '058-tcp-socket.t', qr/TEST (?:62|65|66): receiveany .*? - response_body - response is expected/],
+        ['r', '067-req-socket.t', 'TEST 13: sanity of raw req socket receive any'],
+        ['r', '067-req-socket.t', 'TEST 14: receiveany small block size for a big size block'],
+        ['w', '067-req-socket.t', 'TEST 13: sanity of raw req socket receive any'],
+        ['w', '067-req-socket.t', 'TEST 14: receiveany small block size for a big size block'],
     ],
 
     ngx_lua => [
@@ -807,6 +816,8 @@ my %white_list = (
         [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
         ['r', '116-raw-req-socket.t', 'TEST 16: receiveany - response_body - response is expected'],
         ['w', '116-raw-req-socket.t', 'TEST 16: receiveany - response_body - response is expected'],
+        ['r', '016-resp-header.t', qr/TEST 94: .*? - pattern "upstream prematurely closed connection while sending to client" should match a line in error\.log/],
+        ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
     ],
 
     ngx_drizzle => [
