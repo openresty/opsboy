@@ -235,7 +235,7 @@ luajit-git {
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mysql:5.5;
-    sh './.travis/initializedb.sh';
+    sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     [%- END -%]
 
     [%- PROCESS nginx_test_config no_build=1 -%]
