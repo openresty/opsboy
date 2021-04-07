@@ -1351,7 +1351,7 @@ for my $rec (@records) {
 
             if (@fails && ($module ne 'ngx_postgres' || $mode !~ /w/)) {
                 if ($verbose) {
-                    print join("\n", map { "@$_" } @fails), "\n";
+                    print join("\n", map { %$_ } @fails), "\n";
                 }
             }
         }
