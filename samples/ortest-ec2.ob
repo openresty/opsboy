@@ -16,6 +16,8 @@ perl516_version = 5.16.2;
 bison_version = 3.7.3;
 ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
+opsboy_branch = master;
+test_nginx_branch = master;
 openssl_version = 1.1.1k;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
@@ -1145,7 +1147,7 @@ prove {
 }
 
 test-nginx {
-    git git://github.com/openresty/test-nginx.git ~/git/test-nginx;
+    git git://github.com/openresty/test-nginx.git ~/git/test-nginx $test_nginx_branch;
     dep test-base time-hires test-longstring list-moreutils perl-http-response;
     dep ab weighttp;
 }
@@ -25994,7 +25996,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/openresty/opsboy.git ~/git/opsboy;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy $opsboy_branch;
     dep cc pegex tt2;
 }
 
