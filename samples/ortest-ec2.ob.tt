@@ -18,6 +18,9 @@ ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
 opsboy_branch = master;
 test_nginx_branch = master;
+ngx_lua_branch = master;
+stream_lua_branch = master;
+resty_core_branch = master;
 openssl_version = 1.1.1k;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
@@ -455,7 +458,7 @@ ngx_stream_echo {
 }
 
 ngx_stream_lua {
-    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module;
+    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module $stream_lua_branch;
     dep lua-resty-core;
 }
 
@@ -692,7 +695,7 @@ ngx_lua_upstream {
 }
 
 ngx_lua {
-    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module;
+    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module $ngx_lua_branch;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -741,10 +744,15 @@ openresty-debug {
 lua-[% name %] {
     [%- author = lualib_authors.$name %]
     [%- IF NOT author; author = "openresty"; END %]
-    git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
+
     [%- IF name == "resty-core" %]
+    git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %] $resty_core_branch;
     dep lua-resty-lrucache;
+
+    [%- ELSE -%]
+    git git://github.com/[% author %]/lua-[% name %].git ~/git/lua-[% name %];
     [%- END %]
+
     [%- IF name == "resty-shell" %]
     dep lua-tablepool lua-resty-signal;
     [%- END %]

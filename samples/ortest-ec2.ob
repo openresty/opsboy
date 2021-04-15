@@ -18,6 +18,9 @@ ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
 opsboy_branch = master;
 test_nginx_branch = master;
+ngx_lua_branch = master;
+stream_lua_branch = master;
+resty_core_branch = master;
 openssl_version = 1.1.1k;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
@@ -504,7 +507,7 @@ ngx_stream_echo {
 }
 
 ngx_stream_lua {
-    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module;
+    git git://github.com/openresty/stream-lua-nginx-module.git ~/git/stream-lua-nginx-module $stream_lua_branch;
     dep lua-resty-core;
 }
 
@@ -848,7 +851,7 @@ ngx_lua_upstream {
 }
 
 ngx_lua {
-    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module;
+    git git://github.com/openresty/lua-nginx-module.git ~/git/lua-nginx-module $ngx_lua_branch;
 
     env LUAJIT_LIB /opt/luajit/lib;
     env LUAJIT_INC `echo -n /opt/luajit/include/luajit-*`;
@@ -896,18 +899,21 @@ openresty-debug {
 
 lua-resty-memcached {
     git git://github.com/openresty/lua-resty-memcached.git ~/git/lua-resty-memcached;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-redis {
     git git://github.com/openresty/lua-resty-redis.git ~/git/lua-resty-redis;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-mysql {
     git git://github.com/openresty/lua-resty-mysql.git ~/git/lua-resty-mysql;
+
     dep lua-resty-rsa lua-resty-string run-docker;
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
@@ -915,67 +921,80 @@ lua-resty-mysql {
 
 lua-resty-string {
     git git://github.com/openresty/lua-resty-string.git ~/git/lua-resty-string;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-upload {
     git git://github.com/openresty/lua-resty-upload.git ~/git/lua-resty-upload;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-dns {
     git git://github.com/openresty/lua-resty-dns.git ~/git/lua-resty-dns;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-websocket {
     git git://github.com/openresty/lua-resty-websocket.git ~/git/lua-resty-websocket;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-lock {
     git git://github.com/openresty/lua-resty-lock.git ~/git/lua-resty-lock;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-logger-socket {
     git git://github.com/cloudflare/lua-resty-logger-socket.git ~/git/lua-resty-logger-socket;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-core {
-    git git://github.com/openresty/lua-resty-core.git ~/git/lua-resty-core;
+
+    git git://github.com/openresty/lua-resty-core.git ~/git/lua-resty-core $resty_core_branch;
     dep lua-resty-lrucache;
+
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-upstream-healthcheck {
     git git://github.com/openresty/lua-resty-upstream-healthcheck.git ~/git/lua-resty-upstream-healthcheck;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-lrucache {
     git git://github.com/openresty/lua-resty-lrucache.git ~/git/lua-resty-lrucache;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-limit-traffic {
     git git://github.com/openresty/lua-resty-limit-traffic.git ~/git/lua-resty-limit-traffic;
+
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
 }
 
 lua-resty-signal {
     git git://github.com/openresty/lua-resty-signal.git ~/git/lua-resty-signal;
+
     sh 'cd ~/git/lua-resty-signal && LD_PRELOAD= make';
     dep cc;
     dep ngx_lua ngx_stream_lua;
@@ -984,6 +1003,7 @@ lua-resty-signal {
 
 lua-resty-shell {
     git git://github.com/openresty/lua-resty-shell.git ~/git/lua-resty-shell;
+
     dep lua-tablepool lua-resty-signal;
     dep ngx_lua ngx_stream_lua;
     dep no-pool-nginx;
