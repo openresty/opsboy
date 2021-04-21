@@ -54,6 +54,12 @@ ngx-lua-tests-firewall-rules {
     dep ngx-lua-tests-firewall-drop-udp;
 }
 
+ngx-lua-tests-ip-settings {
+    test '[ $(sudo ip addr show lo | grep -E "10.254.254.[12]/24" | wc -l) -eq 2 ]';
+    sh 'sudo ip addr add 10.254.254.1/24 dev lo';
+    sh 'sudo ip addr add 10.254.254.2/24 dev lo';
+}
+
 iptables {
     prog iptables;
     yum iptables;
@@ -2933,6 +2939,7 @@ t-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -5559,6 +5566,7 @@ tv-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -7754,6 +7762,7 @@ tr-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -10042,6 +10051,7 @@ trv-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -12343,6 +12353,7 @@ tw-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -14662,6 +14673,7 @@ twv-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -17346,6 +17358,7 @@ th-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -19934,6 +19947,7 @@ thv-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -22544,6 +22558,7 @@ tl-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
@@ -25116,6 +25131,7 @@ to-ngx_stream_lua {
     dep gd-devel;
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }

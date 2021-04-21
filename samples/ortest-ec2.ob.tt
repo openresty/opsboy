@@ -167,6 +167,12 @@ ngx-lua-tests-firewall-rules {
     dep ngx-lua-tests-firewall-drop-udp;
 }
 
+ngx-lua-tests-ip-settings {
+    test '[ $(sudo ip addr show lo | grep -E "10.254.254.[12]/24" | wc -l) -eq 2 ]';
+    sh 'sudo ip addr add 10.254.254.1/24 dev lo';
+    sh 'sudo ip addr add 10.254.254.2/24 dev lo';
+}
+
 iptables {
     prog iptables;
     yum iptables;
@@ -1180,6 +1186,7 @@ t[% type %]-ngx_stream_lua {
     [%- PROCESS build_nginx_module name="stream-lua" -%]
 
     dep ngx-lua-tests-firewall-rules;
+    dep ngx-lua-tests-ip-settings;
     dep run-memcached run-redis mockeagain pcrejit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
