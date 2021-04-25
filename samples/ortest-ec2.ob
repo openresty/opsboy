@@ -1173,6 +1173,7 @@ prove {
 }
 
 test-nginx {
+    test 'perl -I$HOME/git/test-nginx/ -MTest::Nginx -e1';
     git git://github.com/openresty/test-nginx.git ~/git/test-nginx $test_nginx_branch;
     dep test-base time-hires test-longstring list-moreutils perl-http-response;
     dep ab weighttp;
@@ -3007,7 +3008,7 @@ t-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -5637,7 +5638,7 @@ tv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -7836,7 +7837,7 @@ tr-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10128,7 +10129,7 @@ trv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12428,7 +12429,7 @@ tw-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -14751,7 +14752,7 @@ twv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17425,7 +17426,7 @@ th-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20017,7 +20018,7 @@ thv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -22627,7 +22628,7 @@ tl-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25199,7 +25200,7 @@ to-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
-
+    dep ngx-lua-tests-firewall-rules;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';

@@ -247,6 +247,8 @@ luajit-git {
     env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mysql:5.5;
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
+    [%- ELSIF name == "lua-resty-redis" -%]
+    dep ngx-lua-tests-firewall-rules;
     [%- END -%]
 
     [%- PROCESS nginx_test_config no_build=1 -%]
@@ -931,6 +933,7 @@ prove {
 }
 
 test-nginx {
+    test 'perl -I$HOME/git/test-nginx/ -MTest::Nginx -e1';
     git git://github.com/openresty/test-nginx.git ~/git/test-nginx $test_nginx_branch;
     dep test-base time-hires test-longstring list-moreutils perl-http-response;
     dep ab weighttp;
