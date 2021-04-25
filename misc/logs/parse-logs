@@ -381,7 +381,9 @@ my %white_list = (
         ['h', 'errlog.t', 'TEST 30: ringbuf sentinel bug1 - response_body - response is expected', 'log lines:'],
         ['h', 'errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/'log lines: \#\d+\n/ms],
         ['h', 'stream/errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/'log lines: \#\d+\n/ms],
+        ['h', 'stream/process-type-single.t', 'TEST 1: sanity -'],
         ['v', 'process-type-hup.t', 'TEST 1: sanity - pattern "init_worker_by_lua:6'],
+        ['v', 'stream/process-type-hup.t', 'TEST 1: sanity - pattern "init_worker_by_lua:6'],
         ['h', 'process-type-single.t', 'TEST 1: sanity - response_body - response is expected', qr/got: "process type: worker\b/],
         ['h', 'process-type-single.t', 'TEST 1: sanity - grep_error_log_out', " loop]\n"],
         ['rv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
@@ -443,6 +445,7 @@ my %white_list = (
         ['v', 'stream/request.t', 'TEST 1: ngx.req.start_time() - response_body - response is expected', qr/< 0\.11: false/],
         ['v', 'request.t', 'TEST 7: ngx.req.start_time() - response_body - response is expected', qr/< 0\.11: false/],
         [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" should match a line in error\.log/], # FIXME
+        [undef, '/stream/re-match.t', qr/TEST 1: matched, no submatch, no jit compile, no regex cache - pattern "(?^:\[TRACE\s+\d+ content_by_lua\(nginx\.conf:\d+\):4 loop\])" should match a line in error.log/], # FIXME
         ['v', 're-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
         ['rv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
         ['wv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
@@ -818,6 +821,8 @@ my %white_list = (
         ['w', '116-raw-req-socket.t', 'TEST 16: receiveany - response_body - response is expected'],
         ['r', '016-resp-header.t', qr/TEST 94: .*? - pattern "upstream prematurely closed connection while sending to client" should match a line in error\.log/],
         ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
+        ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
+        ['h', '162-exit-worker.t', qr/TEST 4: exit_worker_by_lua single process ngx.timer not work - pattern "[error]"/],
     ],
 
     ngx_drizzle => [
