@@ -16,7 +16,6 @@ perl516_version = 5.16.2;
 bison_version = 3.7.3;
 ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
-opsboy_branch = master;
 test_nginx_branch = master;
 ngx_lua_branch = master;
 stream_lua_branch = master;
@@ -1227,7 +1226,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/openresty/opsboy.git ~/git/opsboy $opsboy_branch;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy;
     dep cc pegex tt2;
 }
 
