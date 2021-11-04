@@ -207,6 +207,9 @@ caching-nameserver-config {
 }
 
 openssl {
+    # NB: the 'openssl' command will be used by the test case
+    env PATH /opt/ssl/bin:$PATH;
+
     file /opt/ssl/bin/openssl;
     test '/opt/ssl/bin/openssl version|grep "OpenSSL $openssl_version"';
 
