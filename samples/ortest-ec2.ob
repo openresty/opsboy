@@ -2,7 +2,7 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.19.9;
+nginx_version = 1.21.3;
 openresty_version = 1.19.3.1;
 redis_version = 5.0.9;
 ngx_auth_request_version = 0.2;
@@ -16,12 +16,11 @@ perl516_version = 5.16.2;
 bison_version = 3.7.3;
 ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
-opsboy_branch = master;
 test_nginx_branch = master;
 ngx_lua_branch = master;
 stream_lua_branch = master;
 resty_core_branch = master;
-openssl_version = 1.1.1k;
+openssl_version = 1.1.1l;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
@@ -26036,7 +26035,7 @@ valgrind {
 }
 
 opsboy {
-    git git://github.com/openresty/opsboy.git ~/git/opsboy $opsboy_branch;
+    git git://github.com/openresty/opsboy.git ~/git/opsboy;
     dep cc pegex tt2;
 }
 
