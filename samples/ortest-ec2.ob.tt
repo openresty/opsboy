@@ -723,7 +723,7 @@ pcrejit {
 
     cwd /tmp;
     fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.gz;
-    tarball pcre-$pcre_version.tar.bz2;
+    tarball pcre-$pcre_version.tar.gz;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
