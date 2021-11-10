@@ -6,12 +6,14 @@ use warnings;
 use Getopt::Std;
 
 my %ami_config = (
-    'linux i386' => 'ami-0f5e2fc77651fe35d', # ortest-i386-2020-10-29 (us-west-2)
+    # 'linux i386' => 'ami-0f5e2fc77651fe35d', # ortest-i386-2020-10-29 (us-west-2)
+    'linux i386' => 'ami-0dc0b34a7ed0a0ca6', # ortest-i386-2021-11-10 (us-west-2)
     #'linux i386' => 'ami-014d8251709f6fcc4', # ortest-i386-2019-02-22 (us-west-2)
     #'linux i386' => 'ami-1511a46d', # ortest-i386-2018-01-07 (us-west-2)
     #'linux x86_64' => 'ami-0a7f1502cf012b78f', # ortest-x64-2019-02-05 (us-west-2)
     # 'linux x86_64' => 'ami-0c8c75dc393ed306c', # ortest-x64-2019-02-06 (us-west-2)
-    'linux x86_64' => 'ami-0dc0b34a7ed0a0ca6', # ortest-x64-2020-10-27 (us-west-2)
+    # 'linux x86_64' => 'ami-0dc0b34a7ed0a0ca6', # ortest-x64-2020-10-27 (us-west-2)
+    'linux x86_64' => 'ami-014056b00ebb216c4', # ortest-x64-2021-11-10 (us-west-2)
 );
 
 my %opts;
@@ -43,12 +45,12 @@ my $user_data = join (" ", @ARGV)
 my @cmd = ("aws", "ec2", "run-instances", "--image-id", $ami, "--key-name", $keypair, "--user-data", $user_data,
         "--instance-type", $instance_type, #"--debug", '--availability-zone', 'us-west-1b',
         '--region', 'us-west-2',
-        # '--subnet-id', 'subnet-0d1309b13efc7eff4',
-        '--subnet-id', 'subnet-3438276c',
+        '--subnet-id', 'subnet-0d1309b13efc7eff4',
+        # '--subnet-id', 'subnet-3438276c',
         '--instance-initiated-shutdown-behavior', 'terminate',
         '--output', 'text',
-        # '--security-group-ids', 'sg-071003cfa80142cfc'
-        '--security-group-ids', 'sg-d7e8e8aa');
+        '--security-group-ids', 'sg-071003cfa80142cfc');
+        # '--security-group-ids', 'sg-d7e8e8aa');
 
 my $check = $opts{c};
 
