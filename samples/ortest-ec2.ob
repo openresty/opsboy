@@ -649,6 +649,8 @@ t-resty-cli  {
     cwd ~/git/resty-cli;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -706,6 +708,8 @@ tv-resty-cli  {
     always;
     cwd ~/git/resty-cli;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -876,7 +880,7 @@ pcrejit {
     test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
 
     cwd /tmp;
-    fetch ftp://ftp.pcre.org/pub/pcre/pcre-$pcre_version.tar.bz2;
+    fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.bz2;
     tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
@@ -1065,9 +1069,16 @@ mockeagain-git {
 }
 
 run-redis {
-    running 'redis-server -';
+    running 'redis-server \*:6379';
     sh '(echo "daemonize yes"; echo "loglevel warning")|redis-server -';
     dep redis;
+}
+
+run-redis-bloom {
+    running 'redis-server \*:6380';
+    sh 'sudo docker run -d -p 6380:6380 --rm --name redis-redisbloom redislabs/rebloom:2.2.9 redis-server --loadmodule /usr/lib/redis/modules/redisbloom.so --port 6380 --port 6380';
+
+    dep run-docker;
 }
 
 redis {
@@ -1123,8 +1134,17 @@ mysql {
 
 run-memcached {
     running 'memcached -d -p 11211 -U 11211';
-    sh 'memcached -d -p 11211 -U 11211 -l 127.0.0.1';
+    sh 'memcached -d -p 11211 -U 11211 -l 127.0.0.1 -o track_sizes';
     dep memcached;
+}
+
+run-memcached-tls {
+    running 'memcached -u nobody -d -Z -p 11212';
+    cwd ~/git/lua-resty-memcached;
+    sh 'memcached -u nobody -d -Z -p 11212 -l 127.0.0.1 -o track_sizes -o ssl_chain_cert=./t/cert/server.crt -o ssl_key=./t/cert/server.key';
+
+    dep memcached;
+    dep lua-resty-memcached;
 }
 
 memcached {
@@ -2953,6 +2973,9 @@ t-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3010,7 +3033,11 @@ t-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3068,6 +3095,8 @@ t-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -3131,6 +3160,8 @@ t-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3188,6 +3219,8 @@ t-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3247,6 +3280,8 @@ t-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3304,6 +3339,8 @@ t-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3363,6 +3400,8 @@ t-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3420,6 +3459,8 @@ t-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3479,6 +3520,8 @@ t-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3536,6 +3579,8 @@ t-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3595,6 +3640,8 @@ t-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3652,6 +3699,8 @@ t-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -3711,6 +3760,8 @@ t-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -3768,6 +3819,8 @@ t-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5580,6 +5633,9 @@ tv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -5640,7 +5696,11 @@ tv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -5701,6 +5761,8 @@ tv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -5767,6 +5829,8 @@ tv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -5827,6 +5891,8 @@ tv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -5889,6 +5955,8 @@ tv-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -5949,6 +6017,8 @@ tv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6011,6 +6081,8 @@ tv-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -6071,6 +6143,8 @@ tv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6133,6 +6207,8 @@ tv-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -6193,6 +6269,8 @@ tv-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6255,6 +6333,8 @@ tv-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -6315,6 +6395,8 @@ tv-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6377,6 +6459,8 @@ tv-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -6437,6 +6521,8 @@ tv-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -7776,6 +7862,9 @@ tr-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -7839,7 +7928,11 @@ tr-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -7903,6 +7996,8 @@ tr-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -7972,6 +8067,8 @@ tr-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8035,6 +8132,8 @@ tr-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8100,6 +8199,8 @@ tr-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8163,6 +8264,8 @@ tr-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8228,6 +8331,8 @@ tr-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8291,6 +8396,8 @@ tr-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8356,6 +8463,8 @@ tr-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8419,6 +8528,8 @@ tr-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8484,6 +8595,8 @@ tr-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8547,6 +8660,8 @@ tr-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8612,6 +8727,8 @@ tr-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -8675,6 +8792,8 @@ tr-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10065,6 +10184,9 @@ trv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10131,7 +10253,11 @@ trv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10198,6 +10324,8 @@ trv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -10270,6 +10398,8 @@ trv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10336,6 +10466,8 @@ trv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10404,6 +10536,8 @@ trv-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10470,6 +10604,8 @@ trv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10538,6 +10674,8 @@ trv-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10604,6 +10742,8 @@ trv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10672,6 +10812,8 @@ trv-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10738,6 +10880,8 @@ trv-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10806,6 +10950,8 @@ trv-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -10872,6 +11018,8 @@ trv-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10940,6 +11088,8 @@ trv-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -11006,6 +11156,8 @@ trv-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12367,6 +12519,9 @@ tw-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12431,7 +12586,11 @@ tw-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12496,6 +12655,8 @@ tw-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -12566,6 +12727,8 @@ tw-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12630,6 +12793,8 @@ tw-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12696,6 +12861,8 @@ tw-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12760,6 +12927,8 @@ tw-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12826,6 +12995,8 @@ tw-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -12890,6 +13061,8 @@ tw-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -12956,6 +13129,8 @@ tw-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -13020,6 +13195,8 @@ tw-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13086,6 +13263,8 @@ tw-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -13150,6 +13329,8 @@ tw-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13216,6 +13397,8 @@ tw-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -13280,6 +13463,8 @@ tw-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -14687,6 +14872,9 @@ twv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -14754,7 +14942,11 @@ twv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -14822,6 +15014,8 @@ twv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -14895,6 +15089,8 @@ twv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -14962,6 +15158,8 @@ twv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15031,6 +15229,8 @@ twv-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -15098,6 +15298,8 @@ twv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15167,6 +15369,8 @@ twv-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -15234,6 +15438,8 @@ twv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15303,6 +15509,8 @@ twv-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -15370,6 +15578,8 @@ twv-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15439,6 +15649,8 @@ twv-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -15506,6 +15718,8 @@ twv-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15575,6 +15789,8 @@ twv-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -15642,6 +15858,8 @@ twv-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -17372,6 +17590,9 @@ th-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17428,7 +17649,11 @@ th-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17485,6 +17710,8 @@ th-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -17547,6 +17774,8 @@ th-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17603,6 +17832,8 @@ th-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -17661,6 +17892,8 @@ th-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17717,6 +17950,8 @@ th-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -17775,6 +18010,8 @@ th-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17831,6 +18068,8 @@ th-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -17889,6 +18128,8 @@ th-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -17945,6 +18186,8 @@ th-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -18003,6 +18246,8 @@ th-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -18059,6 +18304,8 @@ th-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -18117,6 +18364,8 @@ th-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -18173,6 +18422,8 @@ th-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -19961,6 +20212,9 @@ thv-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20020,7 +20274,11 @@ thv-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20080,6 +20338,8 @@ thv-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -20145,6 +20405,8 @@ thv-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20204,6 +20466,8 @@ thv-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -20265,6 +20529,8 @@ thv-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20324,6 +20590,8 @@ thv-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -20385,6 +20653,8 @@ thv-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20444,6 +20714,8 @@ thv-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -20505,6 +20777,8 @@ thv-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20564,6 +20838,8 @@ thv-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -20625,6 +20901,8 @@ thv-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20684,6 +20962,8 @@ thv-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -20745,6 +21025,8 @@ thv-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -20804,6 +21086,8 @@ thv-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -22572,6 +22856,9 @@ tl-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -22630,7 +22917,11 @@ tl-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -22689,6 +22980,8 @@ tl-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -22753,6 +23046,8 @@ tl-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -22811,6 +23106,8 @@ tl-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -22871,6 +23168,8 @@ tl-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -22929,6 +23228,8 @@ tl-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -22989,6 +23290,8 @@ tl-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -23047,6 +23350,8 @@ tl-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -23107,6 +23412,8 @@ tl-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -23165,6 +23472,8 @@ tl-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -23225,6 +23534,8 @@ tl-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -23283,6 +23594,8 @@ tl-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -23343,6 +23656,8 @@ tl-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -23401,6 +23716,8 @@ tl-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25145,6 +25462,9 @@ to-lua-resty-memcached {
     cwd ~/git/lua-resty-memcached;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
+    dep run-memcached-tls;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25202,7 +25522,11 @@ to-lua-resty-redis {
     always;
     cwd ~/git/lua-resty-redis;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25260,6 +25584,8 @@ to-lua-resty-mysql {
     always;
     cwd ~/git/lua-resty-mysql;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -25323,6 +25649,8 @@ to-lua-resty-string {
     cwd ~/git/lua-resty-string;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25380,6 +25708,8 @@ to-lua-resty-upload {
     always;
     cwd ~/git/lua-resty-upload;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25439,6 +25769,8 @@ to-lua-resty-dns {
     cwd ~/git/lua-resty-dns;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25496,6 +25828,8 @@ to-lua-resty-websocket {
     always;
     cwd ~/git/lua-resty-websocket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25555,6 +25889,8 @@ to-lua-resty-lock {
     cwd ~/git/lua-resty-lock;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25612,6 +25948,8 @@ to-lua-resty-logger-socket {
     always;
     cwd ~/git/lua-resty-logger-socket;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25671,6 +26009,8 @@ to-lua-resty-core {
     cwd ~/git/lua-resty-core;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25728,6 +26068,8 @@ to-lua-resty-upstream-healthcheck {
     always;
     cwd ~/git/lua-resty-upstream-healthcheck;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25787,6 +26129,8 @@ to-lua-resty-lrucache {
     cwd ~/git/lua-resty-lrucache;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25844,6 +26188,8 @@ to-lua-resty-limit-traffic {
     always;
     cwd ~/git/lua-resty-limit-traffic;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -25903,6 +26249,8 @@ to-lua-resty-signal {
     cwd ~/git/lua-resty-signal;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
     env TEST_NGINX_RESOLVER '127.0.0.1';
@@ -25960,6 +26308,8 @@ to-lua-resty-shell {
     always;
     cwd ~/git/lua-resty-shell;
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
+
+    env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';

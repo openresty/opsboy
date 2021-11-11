@@ -244,6 +244,8 @@ luajit-git {
     cwd ~/git/[% name %];
     env PATH '~/git/lua-nginx-module/work/nginx/sbin:$PATH';
 
+    env TEST_NGINX_REDIS_PORT '';
+
     [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
@@ -251,6 +253,11 @@ luajit-git {
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     [%- ELSIF name == "lua-resty-redis" -%]
     dep ngx-lua-tests-firewall-rules;
+    dep run-redis-bloom;
+    env TEST_NGINX_REDIS_PORT 6380;
+    [%- END -%]
+    [%- IF name == "lua-resty-memcached" %]
+    dep run-memcached-tls;
     [%- END -%]
 
     [%- PROCESS nginx_test_config no_build=1 -%]
@@ -722,8 +729,8 @@ pcrejit {
     test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
 
     cwd /tmp;
-    fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.gz;
-    tarball pcre-$pcre_version.tar.gz;
+    fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.bz2;
+    tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
@@ -825,9 +832,16 @@ mockeagain-git {
 }
 
 run-redis {
-    running 'redis-server -';
+    running 'redis-server \*:6379';
     sh '(echo "daemonize yes"; echo "loglevel warning")|redis-server -';
     dep redis;
+}
+
+run-redis-bloom {
+    running 'redis-server \*:6380';
+    sh 'sudo docker run -d -p 6380:6380 --rm --name redis-redisbloom redislabs/rebloom:2.2.9 redis-server --loadmodule /usr/lib/redis/modules/redisbloom.so --port 6380 --port 6380';
+
+    dep run-docker;
 }
 
 redis {
@@ -883,8 +897,17 @@ mysql {
 
 run-memcached {
     running 'memcached -d -p 11211 -U 11211';
-    sh 'memcached -d -p 11211 -U 11211 -l 127.0.0.1';
+    sh 'memcached -d -p 11211 -U 11211 -l 127.0.0.1 -o track_sizes';
     dep memcached;
+}
+
+run-memcached-tls {
+    running 'memcached -u nobody -d -Z -p 11212';
+    cwd ~/git/lua-resty-memcached;
+    sh 'memcached -u nobody -d -Z -p 11212 -l 127.0.0.1 -o track_sizes -o ssl_chain_cert=./t/cert/server.crt -o ssl_key=./t/cert/server.key';
+
+    dep memcached;
+    dep lua-resty-memcached;
 }
 
 memcached {
