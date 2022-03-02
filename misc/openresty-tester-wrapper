@@ -15,7 +15,7 @@ if [ -n "$branch" ]; then
     git -C "$rootdir/git/opsboy" reset --hard \
         && git -C "$rootdir/git/opsboy" fetch origin "$branch" \
         && git -C "$rootdir/git/opsboy" checkout "$branch" \
-        && git -C "$rootdir/git/opsboy" pull \
+        && git -C "$rootdir/git/opsboy" reset --hard "origin/$branch" \
         && make -C "$rootdir/git/opsboy" -j2
 fi
 

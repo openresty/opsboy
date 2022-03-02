@@ -331,7 +331,7 @@ sub make ($$) {
 
             } else {
                 if ($git_pull) {
-                    sh("cd $dir && git fetch origin && git reset --hard && git checkout $branch && git reset --hard origin/$branch");
+                    sh("cd $dir && git fetch origin && git reset --hard && git checkout $branch && if [ -z \$(git tag -l $branch) ]; then git reset --hard origin/$branch; fi");
                 }
             }
         }
