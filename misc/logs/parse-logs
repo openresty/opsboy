@@ -154,6 +154,8 @@ my %white_list = (
 
     'lua-resty-redis' => [
         ['w', 'mock.t', 'TEST 1: continue using the obj when read timeout happens - tcp_query ok'],
+        ['v', 'ssl.t', 'TEST 4: ssl connection with ssl_verify (without CA) - response_body', qr/got: 'failed to connect: failed to do ssl handshake: timeout/],
+        ['v', 'ssl.t', 'TEST 5: ssl connection with ssl_verify (with CA) - response_body', qr/got: 'failed to connect: failed to do ssl handshake: timeout/],
     ],
 
     'lua-resty-logger-socket' => [
@@ -341,6 +343,7 @@ my %white_list = (
     'lua-resty-core' => [
         ['l', undef, 'nginx: [emerg]', qr/bind\(\) to 0\.0\.0\.0:\d+ failed \(\d+: Address already in use\)/],
         ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
+        ['l', undef, 'TEST 18: ngx.req.get_header (metatable is nil)'],
         ['h', 'shared.t', 'TEST 11: shared.expire returns error on not found key - response_body - response is expected'],
         ['h', 'shared.t', 'TEST 3: shared.ttl returns error on not found key - response_body - response is expected'],
         ['h', 'errlog.t', 'TEST 20: fetch a few and generate a few, then fetch again (not overflown again) - response_body_like - response is expected', qr/\A\s*'msg count: \d/s],
@@ -447,8 +450,8 @@ my %white_list = (
         [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" should match a line in error\.log/], # FIXME
         [undef, '/stream/re-match.t', qr/TEST 1: matched, no submatch, no jit compile, no regex cache - pattern "(?^:\[TRACE\s+\d+ content_by_lua\(nginx\.conf:\d+\):4 loop\])" should match a line in error.log/], # FIXME
         ['v', 're-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
-        ['rv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
-        ['wv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
+        ['rv', 'stream/re-sub.t', qr/ERROR: client socket timed out - (?:t\/stream\/re-sub.t )?TEST 5: replace template \+ submatches \(exceeding buffers\)/],
+        ['wv', 'stream/re-sub.t', qr/ERROR: client socket timed out - (?:t\/stream\/re-sub.t )?TEST 5: replace template \+ submatches \(exceeding buffers\)/],
         ['rv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - status code ok'],
         ['wv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - status code ok'],
         ['v', 're-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
@@ -472,6 +475,7 @@ my %white_list = (
         ['r', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stdin.t', qr/TEST (?:1|8|9): .*? - response_body - response is expected /],
         ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30|33): .*? - response_body - response is expected /],
+        ['hv', 'pipe-stdout.t', qr/TEST 21: .*? - response_body - response is expected /],
         ['v', 'pipe-stdout.t', 'TEST 11: read process, pattern is read any, with limited, limit smaller than read data - response_body - response is expected'],
         ['wv', 'pipe-stdout.t', 'TEST 33: read process, aborted by uthread kill, with graceful shutdown - response_body - response is expected', qr/\+stdout err: timeout/],
         [undef, 'process-type-privileged-agent-connections.t', 'nginx: [error]', qr/enable_privileged_agent failed: bad 'connections' argument/],
@@ -712,6 +716,7 @@ my %white_list = (
         ['v', '143-ssl-session-fetch.t', 'TEST 2: sleep - grep_error_log_out'],
         ['h', '058-tcp-socket.t', qr/TEST 4: with resolver - pattern "\[error\]" should not match any line in error\.log but matches line .*? wrong ident \d+ response for/],
         ['h', '014-bugs.t', qr/wrong ident \d+ response for not-exist\.agentzh\.org, expect \d+/],
+        ['h', '089-phase.t', qr/\QTEST 9: get_phase in ngx.timer callback - pattern "[error]" should not match any line in error.log but matches line\E.*\Q[lua] exit_worker_by_lua/],
         ['h', '124-init-worker.t', 'TEST 18: syslog error log - udp_query ok'],
         ['h', '129-ssl-socket.t', 'should match a line in error.log'],
         ['h', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? response is expected/, qr/failed to connect: no such file or directory/],
@@ -826,6 +831,10 @@ my %white_list = (
         ['h', '162-exit-worker.t', qr/TEST 4: exit_worker_by_lua single process ngx.timer not work - pattern "[error]"/],
         [undef, '014-bugs.t', 'nginx: [emerg]', qr/unexpected "A"/],
         [undef, '082-body-filter-2.t'],
+        ['hv', '094-uthread-exit.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
+        ['hv', '127-uthread-kill.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
+        ['hv', '162-exit-worker.t', qr{exit_worker_by_lua_file error: cannot open .*/servroot/html/exit_worker.lua: No such file or directory}],
+        ['hv', '166-ssl-client-hello.t', qr{\Qshould not match any line in error.log but matches line\E ".*? \Q[error]\E .*? \Qsend() failed (111: Connection refused)\E"}],
     ],
 
     ngx_drizzle => [
@@ -1107,8 +1116,8 @@ while (<>) {
         $rec->{tests} = $2;
         $rec->{secs} = $3;
 
-    } elsif (/^TEST \d+: .*/) {
-        $test_name = $&;
+    } elsif (/^(?:[-\/\w]+\.t\s)?(TEST \d+: .*)/) {
+        $test_name = $1;
 
     } elsif ($rec && $rec->{mode} =~ /v/ && /^==\d+==\s+/) {
         $failure = {
