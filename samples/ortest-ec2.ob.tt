@@ -2,8 +2,8 @@
 
 jobs = 3;
 ngx_redis_version = 0.3.7;
-nginx_version = 1.21.3;
-openresty_version = 1.19.3.1;
+nginx_version = 1.21.4;
+openresty_version = 1.19.9.1;
 redis_version = 5.0.9;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.44;
@@ -17,10 +17,10 @@ bison_version = 3.7.3;
 ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
 test_nginx_branch = master;
-ngx_lua_branch = master;
-stream_lua_branch = master;
-resty_core_branch = master;
-openssl_version = 1.1.1l;
+ngx_lua_branch = '0.10.21.x';
+stream_lua_branch = 'v0.0.11rc1';
+resty_core_branch = 'v0.1.23rc1';
+openssl_version = 1.1.1n;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
@@ -935,7 +935,7 @@ pcre {
 axel {
     prog axel;
     cwd /tmp;
-    fetch 'http://alioth.debian.org/frs/download.php/3016/axel-2.4.tar.bz2';
+    fetch 'http://alioth-archive.debian.org/releases/axel/axel/2.4/axel-2.4.tar.bz2';
     tarball axel-2.4.tar.bz2;
     sh 'cd axel-2.4 && ./configure && make && sudo make install';
     dep cc;
