@@ -10,6 +10,15 @@ name=ortest_`date +'%Y%m%d-%H%M%S'`_`hostname`
 logfile2=/tmp/$name.log
 mlog=$rootdir/ortest.log
 
+branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
+if [ -n "$branch" ]; then
+    git -C "$rootdir/git/opsboy" reset --hard \
+        && git -C "$rootdir/git/opsboy" fetch origin "$branch" \
+        && git -C "$rootdir/git/opsboy" checkout "$branch" \
+        && git -C "$rootdir/git/opsboy" pull \
+        && make -C "$rootdir/git/opsboy" -j2
+fi
+
 #$run"whoami > $logfile 2>&1" $user
 $run"(echo -n 'DATE '; TZ=GMT date +'%Y-%m-%d %H:%M:%S') > $logfile 2>&1" $user
 $run"(echo -n 'ARCH '; uname -a) >> $logfile 2>&1" $user
