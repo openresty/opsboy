@@ -1140,6 +1140,12 @@ while (<>) {
     } elsif ($rec && ($rec->{mode} !~ /l/ || /the nginx process \d+ is gone/) && /^\#\s+Failed test '(.*?)'?$/) {
         my $name = $1;
         #warn "$rec->{module}: $rec->{mode}: $name\n";
+
+        # NB: append test file before TEST block name in Test::Nginx
+        if ($name !~ /^TEST/ && $name =~ /^.+ (TEST \d+:.*)/) {
+            $name = $1;
+        }
+
         $failure = {
             name => $name,
         };
