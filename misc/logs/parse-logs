@@ -486,6 +486,7 @@ my %white_list = (
         ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
         [undef, '132-lua-blocks.t', 'nginx: [emerg]', qr/Lua code block missing the closing long bracket \"\]=*\]\" in|unexpected lua closing long-bracket in|"http" directive is not allowed here in /],
         [undef, '109-timer-hup.t', qr/TEST 7: HUP reload should abort pending timers \(fuzz test\) - grep_error_log_out/, qr/got: 'stream lua found 8\d{3} pending timers/],
+        ['v', '109-timer-hup.t', 'TEST 7: HUP reload should abort pending timers (fuzz test) - grep_error_log_out'],
         ['r', '071-idle-socket.t', 'TEST 6: set keepalive when cosocket recv buffer has unread data'],
         ['r', '129-ssl-socket.t', undef, qr/failed to do SSL handshake: handshake failed/],
         ['r', '023-preread/sanity.t', 'TEST 13: phase postponing works - response_body - response is expected', qr/receive stream response error: connection reset by/],
@@ -567,6 +568,9 @@ my %white_list = (
         ['r', '067-req-socket.t', 'TEST 14: receiveany small block size for a big size block'],
         ['w', '067-req-socket.t', 'TEST 13: sanity of raw req socket receive any'],
         ['w', '067-req-socket.t', 'TEST 14: receiveany small block size for a big size block'],
+        ['h', '068-socket-keepalive.t', qr/pattern ".*?" should not match any line in error\.log/],
+        ['h', '068-socket-keepalive.t', qr/pattern ".*?" should match a line in error\.log/],
+        ['h', '068-socket-keepalive.t', 'TEST 18: custom pools (same pool for the same path) - unix - response_body - response is expected'],
     ],
 
     ngx_lua => [
