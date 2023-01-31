@@ -26,7 +26,7 @@ lockfile=/var/lock/subsys/$prog
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
-userdata=`ec2-metadata -d|sed 's/^user-data: *//'`
+userdata=$(ec2-metadata -d|sed 's/^user-data: *//')
 if [ "$userdata" = "not available" ]; then
     userdata=
 fi
@@ -34,7 +34,7 @@ fi
 start() {
     if [ -z "$userdata" ]; then
         echo "No tasks found."
-	action $"Starting $prog: " /bin/true
+        action $"Starting $prog: " /bin/true
         ret=0
 
     else
@@ -45,7 +45,8 @@ start() {
             action $"Starting $prog: " /bin/true
             ret=0
         else
-            cd $rootdir/git/opsboy
+            cd "$rootdir/git/opsboy" || exit 1
+            chown root:root .git/
             git reset --hard
             git pull
             make -j2
@@ -62,6 +63,7 @@ start() {
             fi
         fi
     fi
+
     return $ret
 }
 
