@@ -172,7 +172,7 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{true_fails} = $rec->{true_fails};
         $mode_group->{tests} = $rec->{tests};
         $mode_group->{files} = $rec->{files};
-        $mode_group->{commit} = substr($rec->{commit}, 0, 8);
+        $mode_group->{commit} = substr($rec->{commit} // '', 0, 8);
         $mode_group->{test_date} = $test_date;
         $mode_group->{elapsed} = $rec->{secs};
         $mode_group->{warns} = $rec->{warns};
