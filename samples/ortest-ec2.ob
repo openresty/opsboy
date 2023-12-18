@@ -1119,6 +1119,13 @@ run-mysql {
     dep mysql;
 }
 
+run-ncserver {
+    running 'python3 util/ncserver.py';
+    cwd ~/git/lua-nginx-module;
+    sh 'nohup python3 util/ncserver.py &'
+    dep python3;
+}
+
 mysql {
     prog mysqld_safe;
     yum mysql mysql-server;
@@ -1222,6 +1229,11 @@ weighttp {
 python {
     prog python;
     yum python;
+}
+
+python3 {
+    prog python36;
+    yum python36;
 }
 
 libev {
@@ -2152,7 +2164,7 @@ t-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -4779,7 +4791,7 @@ tv-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -6975,7 +6987,7 @@ tr-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -9264,7 +9276,7 @@ trv-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -11621,7 +11633,7 @@ tw-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -13941,7 +13953,7 @@ twv-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -16780,7 +16792,7 @@ th-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -19369,7 +19381,7 @@ thv-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -22024,7 +22036,7 @@ tl-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
@@ -24641,7 +24653,7 @@ to-ngx_lua {
     dep nginx-module-test ngx_lua;
     dep gd-devel;
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;

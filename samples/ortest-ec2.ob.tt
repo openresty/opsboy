@@ -882,6 +882,13 @@ run-mysql {
     dep mysql;
 }
 
+run-ncserver {
+    running 'python3 util/ncserver.py';
+    cwd ~/git/lua-nginx-module;
+    sh 'nohup python3 util/ncserver.py &'
+    dep python3;
+}
+
 mysql {
     prog mysqld_safe;
     yum mysql mysql-server;
@@ -985,6 +992,11 @@ weighttp {
 python {
     prog python;
     yum python;
+}
+
+python3 {
+    prog python36;
+    yum python36;
 }
 
 libev {
@@ -1130,7 +1142,7 @@ t[% type %]-ngx_lua {
 
     [%- PROCESS build_nginx_module name="lua" -%]
 
-    dep run-memcached run-redis run-mysql mockeagain;
+    dep run-memcached run-redis run-mysql run-ncserver mockeagain;
     dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
