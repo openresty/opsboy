@@ -592,6 +592,7 @@ my %white_list = (
         [undef, '153-semaphore-hup.t', 'TEST 2: timer + reload (lua code cache off) - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         [undef, '153-semaphore-hup.t', 'TEST 1: timer + reload - grep_error_log_out', qr/^\s*created semaphore object$/ms],
         ['hv', '154-semaphore.t', 'TEST 2: timer + shutdown error log (lua code cache off)', 'Memcheck:Leak'],
+        ['h', '154-semaphore.t', 'TEST 3: exit before post_handler was called - grep_error_log_out'],
         ['v', '124-init-worker.t', qr/TEST 24: destory Lua VM in cache processes \(with init worker but without privileged agent\) - pattern .*?lua close the global Lua VM/],
         ['v', '124-init-worker.t', qr/TEST 22: destory Lua VM in cache processes \(with privileged agent\) - grep_error_log_out/, qr/\A\s*''\s+doesn't match/sm],
         ['v', '124-init-worker.t', qr/TEST 22: destory Lua VM in cache processes \(with privileged agent\) - pattern .*?start privileged agent process/],
