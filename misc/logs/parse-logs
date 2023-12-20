@@ -845,6 +845,7 @@ my %white_list = (
         [undef, '014-bugs.t', 'nginx: [emerg]', qr/unexpected "A"/],
         [undef, '082-body-filter-2.t'],
         ['hv', '094-uthread-exit.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
+        ['h', '094-uthread-exit.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
         ['hv', '127-uthread-kill.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
         ['hv', '162-exit-worker.t', qr{exit_worker_by_lua_file error: cannot open .*/servroot/html/exit_worker.lua: No such file or directory}],
         ['hv', '166-ssl-client-hello.t', qr{\Qshould not match any line in error.log but matches line\E ".*? \Q[error]\E .*? \Qsend() failed (111: Connection refused)\E"}],
