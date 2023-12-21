@@ -588,6 +588,9 @@ my %white_list = (
         ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
         ['w', '154-semaphore.t', 'TEST 3: exit before post_handler was called - grep_error_log_out'],
+        ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
+        ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
+        ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
     ],
 
     ngx_lua => [
