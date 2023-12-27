@@ -488,7 +488,7 @@ ngx_srcache {
 
 ngx_memc {
     git https://github.com/openresty/memc-nginx-module.git ~/git/memc-nginx-module;
-    dep ragel;
+    dep ragel ngx-lua-tests-firewall-drop-tcp ngx-lua-tests-firewall-drop-udp;
 }
 
 ragel {
