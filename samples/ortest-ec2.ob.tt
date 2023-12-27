@@ -1,7 +1,6 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-ngx_redis_version = 0.3.7;
 nginx_version = 1.21.4;
 openresty_version = 1.19.9.1;
 redis_version = 5.0.9;
@@ -1045,10 +1044,7 @@ ndk {
 }
 
 ngx_redis {
-    file ~/work/nginx/ngx_http_redis-$ngx_redis_version;
-    cwd ~/work/nginx;
-    fetch http://people.freebsd.org/~osa/ngx_http_redis-$ngx_redis_version.tar.gz;
-    tarball ngx_http_redis-$ngx_redis_version.tar.gz;
+    git https://github.com/openresty/ngx_http_redis.git ~/work/nginx/ngx_http_redis;
 }
 
 cpan {
