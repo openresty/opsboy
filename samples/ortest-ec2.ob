@@ -1119,9 +1119,9 @@ run-mysql {
 }
 
 run-ncserver {
-    running 'python3 util/ncserver.py';
+    running 'python3 util/nc_server.py';
     cwd ~/git/lua-nginx-module;
-    sh 'nohup python3 util/ncserver.py &'
+    sh 'nohup python3 util/nc_server.py &';
     dep python3;
 }
 
