@@ -7,10 +7,9 @@ use Getopt::Std;
 use JSON::XS;
 use POSIX qw( ceil );
 use List::Util qw( sum );
-#use Parallel::ForkManager;
 
 my %opts;
-getopts("hi:a:t:e:v:o:Scrf", \%opts) or
+getopts("hi:a:t:e:v:o:Scrfb:", \%opts) or
     die usage(1);
 
 if ($opts{h}) {
@@ -41,6 +40,8 @@ my $nginx_ver = $opts{v};
 if (defined $nginx_ver && $nginx_ver !~ /^\d+\.\d+\.\d+$/) {
     die "Bad nginx version number specified in the -v option: $nginx_ver\n";
 }
+
+my $opsboy_branch = $opts{b};
 
 my @goals;
 my @comps = @ARGV;
@@ -99,8 +100,6 @@ for my $goal (@goals) {
 @goals = @new_goals;
 
 @goals = sort { $elapsed{$b} <=> $elapsed{$a} } @goals;
-
-#warn "@goals\n";
 
 my $Secs = $Mins * 60;
 my $n = ceil($sum / $Secs);
@@ -191,25 +190,21 @@ for my $bucket (@buckets) {
         push @$bucket, "use_stap=0";
     }
 
+    if ($opsboy_branch) {
+        push @$bucket, "opsboy_branch=$opsboy_branch";
+    }
+
     warn "bucket $i: @$bucket ($mins min)\n";
     $i++;
 }
 
 if ($run) {
-    #my $pm = Parallel::ForkManager->new(10);
-
     for my $bucket (@buckets) {
-        #my $pid = $pm->start and next;
-
         my @cmd = ('./run-node', $opts{i} ? ("-t", "$opts{i}") : (), '-a', $arch, @$bucket);
         #print "command: @cmd\n";
         system(@cmd) == 0
             or warn "failed to start the node. abort. cmd: @cmd\n";
-
-        #$pm->finish;
     }
-
-    #$pm->wait_all_children();
 }
 
 sub usage {
