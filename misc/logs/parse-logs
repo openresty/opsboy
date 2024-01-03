@@ -385,7 +385,7 @@ my %white_list = (
         ['h', 'errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/'log lines: \#\d+\n/ms],
         ['h', 'stream/errlog.t', 'TEST 17: flood the capturing buffer (4k) - response_body_like - response is expected', qr/'log lines: \#\d+\n/ms],
         ['h', 'stream/process-type-single.t', 'TEST 1: sanity -'],
-        ['v', 'process-type-hup.t', 'TEST 1: sanity - pattern "init_worker_by_lua:6'],
+        ['v', 'process-type-hup.t', 'TEST 1: sanity - pattern "init_worker_by_lua(nginx.conf:48):6'],
         ['v', 'stream/process-type-hup.t', 'TEST 1: sanity - pattern "init_worker_by_lua:6'],
         ['h', 'process-type-single.t', 'TEST 1: sanity - response_body - response is expected', qr/got: "process type: worker\b/],
         ['h', 'process-type-single.t', 'TEST 1: sanity - grep_error_log_out', " loop]\n"],
@@ -421,6 +421,12 @@ my %white_list = (
         ['r', 'ssl.t', qr/SSL_do_handshake\(\) failed \(SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
         ['r', 'stream/ssl.t', qr/SSL_do_handshake\(\) failed \(SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
         ['r', 'stream/ssl.t', qr/ignoring stale global SSL error \(SSL: error:\d+:random number generator:RAND_bytes:PRNG not seeded/],
+        ['rv', 'stream/ssl.t', 'ERROR: client socket timed out - TEST 23: verify client with CA certificates'],
+        ['rv', 'stream/ssl.t', 'TEST 23: verify client with CA certificates - status code ok'],
+        ['rv', 'stream/ssl.t', 'TEST 23: verify client with CA certificates - response_body - response is expected'],
+        ['rv', 'stream/ssl.t', 'ERROR: client socket timed out - TEST 24: verify client without CA certificates'],
+        ['rv', 'stream/ssl.t', 'TEST 24: verify client without CA certificates - status code ok'],
+        ['rv', 'stream/ssl.t', 'TEST 24: verify client without CA certificates - response_body - response is expected'],
         ['r', 'balancer.t', 'TEST 16: https (keepalive) - status code ok', qr/got: '502'/],
         ['r', 'balancer.t', 'TEST 16: https (keepalive) - response_body - response is expected', qr/502 Bad Gateway/],
         ['r', 'balancer.t', qr/TEST 16: https \(keepalive\) - pattern "\[error]" should not match any line in error\.log but matches line .*? peer closed connection in SSL handshake while SSL handshaking to upstream/],
@@ -456,8 +462,8 @@ my %white_list = (
         [undef, 're-match.t', qr/TEST 2: matched, no submatch, jit compile, regex cache - pattern ".*?TRACE .*?" should match a line in error\.log/], # FIXME
         [undef, '/stream/re-match.t', qr/TEST 1: matched, no submatch, no jit compile, no regex cache - pattern "(?^:\[TRACE\s+\d+ content_by_lua\(nginx\.conf:\d+\):4 loop\])" should match a line in error.log/], # FIXME
         ['v', 're-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
-        ['rv', 'stream/re-sub.t', qr/ERROR: client socket timed out - (?:t\/stream\/re-sub.t )?TEST 5: replace template \+ submatches \(exceeding buffers\)/],
-        ['wv', 'stream/re-sub.t', qr/ERROR: client socket timed out - (?:t\/stream\/re-sub.t )?TEST 5: replace template \+ submatches \(exceeding buffers\)/],
+        ['rv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
+        ['wv', 'stream/re-sub.t', 'ERROR: client socket timed out - TEST 5: replace template + submatches (exceeding buffers)'],
         ['rv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - status code ok'],
         ['wv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - status code ok'],
         ['v', 're-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
@@ -465,12 +471,10 @@ my %white_list = (
         ['wv', 'stream/re-sub.t', 'TEST 5: replace template + submatches (exceeding buffers) - response_body - response is expected'],
         ['h', 'shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
         ['h', 'stream/shdict.t', 'TEST 2: get an nonexistent key - response_body - response is expected'],
-        ['r', 'request.t', qr/TEST 1: ngx\.req\.get_headers - pattern .*?TRACE.*? should match a line in error\.log/],
-        ['w', 'request.t', qr/TEST 1: ngx\.req\.get_headers - pattern .*?TRACE.*? should match a line in error\.log/],
-        ['r', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
-        ['w', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
-        ['v', 'request.t', qr/TEST 2: ngx\.req\.get_headers \(raw\) - pattern .*?TRACE.*? should match a line in error\.log/],
-        ['h', 'request.t', qr/TEST 3: ngx.req.get_headers \(count is 2\) - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['r', 'request.t', qr/TEST \d+: ngx\.req\.get_headers(?: \(.*?\))? - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['w', 'request.t', qr/TEST \d+: ngx\.req\.get_headers(?: \(.*?\))? - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['h', 'request.t', qr/TEST \d+: ngx\.req\.get_headers(?: \(.*?\))? - pattern .*?TRACE.*? should match a line in error\.log/],
+        ['v', 'request.t', qr/TEST \d+: ngx\.req\.get_headers(?: \(.*?\))? - pattern .*?TRACE.*? should match a line in error\.log/],
         ['rv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
         ['wv', 're-sub.t', qr/TEST 3: func \+ submatches - pattern "NYI" should not match any line in error\.log but matches line "\[TRACE --- content_by_lua\(.*?\):1 -- NYI: bytecode 51 at content_by_lua\(.*?\):5\]/],
         #['wv', 'shared.t', qr/TEST 4 shared\.ttl returns key ttl for non-default ttl - response_body_like - response is expected/],
@@ -481,9 +485,10 @@ my %white_list = (
         ['r', 'pipe-stderr.t', qr/TEST 7: .*? - response_body - response is expected /],
         ['r', 'pipe-stdin.t', qr/TEST (?:1|8|9): .*? - response_body - response is expected /],
         ['r', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30|33): .*? - response_body - response is expected /],
+        ['w', 'pipe-stdout.t', qr/TEST (?:8|10|11|21|30|33): .*? - response_body - response is expected /],
         ['hv', 'pipe-stdout.t', qr/TEST 21: .*? - response_body - response is expected /],
         ['v', 'pipe-stdout.t', 'TEST 11: read process, pattern is read any, with limited, limit smaller than read data - response_body - response is expected'],
-        ['wv', 'pipe-stdout.t', 'TEST 33: read process, aborted by uthread kill, with graceful shutdown - response_body - response is expected', qr/\+stdout err: timeout/],
+        ['v', 'pipe-stdout.t', 'TEST 33: read process, aborted by uthread kill, with graceful shutdown - response_body - response is expected', qr/\+stdout err: timeout/],
         [undef, 'process-type-privileged-agent-connections.t', 'nginx: [error]', qr/enable_privileged_agent failed: bad 'connections' argument/],
         ["h", 'worker.t', 'TEST 5: ngx.worker.pids - response_body_like - response is expected', qr/worker pid is wrong/],
         [undef, 're-gmatch.t', 'TEST 1: matched, no submatch, no jit compile, no regex cache - pattern "(?^:\[TRACE\s+\d+ content_by_lua\(nginx\.conf:\d+\):4 loop\])" should match a line in error.log'],
@@ -582,6 +587,7 @@ my %white_list = (
         ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
+        ['w', '154-semaphore.t', 'TEST 3: exit before post_handler was called - grep_error_log_out'],
     ],
 
     ngx_lua => [
@@ -1159,9 +1165,9 @@ while (<>) {
         my $name = $1;
         #warn "$rec->{module}: $rec->{mode}: $name\n";
 
-        # NB: append test file before TEST block name in Test::Nginx
-        if ($name !~ /^TEST/ && $name =~ /^.+ (TEST \d+:.*)/) {
-            $name = $1;
+        # NB: removed test file before TEST block name in Test::Nginx
+        if ($name !~ /^TEST/) {
+            $name =~ s/\S+\.t (TEST \d+: .*)$/$1/g;
         }
 
         $failure = {
