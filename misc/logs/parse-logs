@@ -584,6 +584,7 @@ my %white_list = (
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should not match any line in error\.log/],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should match a line in error\.log/],
         ['h', '068-socket-keepalive.t', 'TEST 18: custom pools (same pool for the same path) - unix - response_body - response is expected'],
+        ['w', '154-semaphore.t', 'TEST 3: exit before post_handler was called - grep_error_log_out'],
     ],
 
     ngx_lua => [
