@@ -7,6 +7,7 @@ use Getopt::Std;
 use JSON::XS;
 use POSIX qw( ceil );
 use List::Util qw( sum );
+#use Parallel::ForkManager;
 
 my %opts;
 getopts("hi:a:t:e:v:o:Scrfb:", \%opts) or
@@ -100,6 +101,8 @@ for my $goal (@goals) {
 @goals = @new_goals;
 
 @goals = sort { $elapsed{$b} <=> $elapsed{$a} } @goals;
+
+#warn "@goals\n";
 
 my $Secs = $Mins * 60;
 my $n = ceil($sum / $Secs);
@@ -199,12 +202,20 @@ for my $bucket (@buckets) {
 }
 
 if ($run) {
+    #my $pm = Parallel::ForkManager->new(10);
+
     for my $bucket (@buckets) {
+        #my $pid = $pm->start and next;
+
         my @cmd = ('./run-node', $opts{i} ? ("-t", "$opts{i}") : (), '-a', $arch, @$bucket);
         #print "command: @cmd\n";
         system(@cmd) == 0
             or warn "failed to start the node. abort. cmd: @cmd\n";
+
+        #$pm->finish;
     }
+
+    #$pm->wait_all_children();
 }
 
 sub usage {
