@@ -1,8 +1,8 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-nginx_version = 1.21.4;
-openresty_version = 1.19.9.1;
+nginx_version = 1.25.3;
+openresty_version = 1.21.4.3;
 redis_version = 5.0.9;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.44;
@@ -19,7 +19,7 @@ test_nginx_branch = master;
 ngx_lua_branch = master;
 stream_lua_branch = master;
 resty_core_branch = master;
-openssl_version = 1.1.1n;
+openssl_version = 1.1.1w;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
@@ -528,7 +528,7 @@ ngx_srcache {
 
 ngx_memc {
     git https://github.com/openresty/memc-nginx-module.git ~/git/memc-nginx-module;
-    dep ragel;
+    dep ragel ngx-lua-tests-firewall-drop-tcp ngx-lua-tests-firewall-drop-udp;
 }
 
 ragel {
@@ -1119,9 +1119,9 @@ run-mysql {
 }
 
 run-ncserver {
-    running 'python3 util/ncserver.py';
+    running 'python3 util/nc_server.py';
     cwd ~/git/lua-nginx-module;
-    sh 'nohup python3 util/ncserver.py &'
+    sh 'nohup python3 util/nc_server.py &';
     dep python3;
 }
 

@@ -3,13 +3,17 @@
 use strict;
 use warnings;
 
+use POSIX qw(strftime);
 use Getopt::Std;
 
 my %ami_config = (
     # 'linux i386' => 'ami-0f5e2fc77651fe35d', # ortest-i386-2020-10-29 (us-west-2)
     # 'linux i386' => 'ami-0dc0b34a7ed0a0ca6', # ortest-i386-2021-11-10 (us-west-2)
     # 'linux i386' => 'ami-052f816e2ef0ade2c', # ortest-i386-2021-11-10 (us-west-2)
-    'linux i386' => 'ami-033e271d7a9297ad0', # ortest-i386-2022-04-13 (us-west-2)
+    # 'linux i386' => 'ami-033e271d7a9297ad0', # ortest-i386-2022-04-13 (us-west-2)
+    # 'linux i386' => 'ami-0188f994dfcfa297c', # ortest-i386-2023-12-12 (us-west-2)
+    #'linux i386' => 'ami-0d1715526f93f1331', # ortest-i386-2023-12-28 (us-west-2)
+    'linux i386' => 'ami-047cad0cc610833b0', # ortest-i386-2023-12-28_2 (us-west-2)
     #'linux i386' => 'ami-014d8251709f6fcc4', # ortest-i386-2019-02-22 (us-west-2)
     #'linux i386' => 'ami-1511a46d', # ortest-i386-2018-01-07 (us-west-2)
     #'linux x86_64' => 'ami-0a7f1502cf012b78f', # ortest-x64-2019-02-05 (us-west-2)
@@ -17,7 +21,8 @@ my %ami_config = (
     # 'linux x86_64' => 'ami-0dc0b34a7ed0a0ca6', # ortest-x64-2020-10-27 (us-west-2)
     # 'linux x86_64' => 'ami-014056b00ebb216c4', # ortest-x64-2021-11-10 (us-west-2)
     # 'linux x86_64' => 'ami-0ced5728c06f5f399', # ortest-x86_64-2022-04-13 (us-west-2)
-    'linux x86_64' => 'ami-0cef3f6128fa955c5', # ortest-x86_64-2023-01-31 (us-west-2)
+    # 'linux x86_64' => 'ami-0cef3f6128fa955c5', # ortest-x86_64-2023-01-31 (us-west-2)
+    'linux x86_64' => 'ami-04fcc0530e5723c22', # ortest-x86_64-2023-12-12 (us-west-2)
 );
 
 my %opts;
@@ -46,12 +51,14 @@ if (!defined $instance_type) {
 my $user_data = join (" ", @ARGV)
     or die "No user data specified.\n";
 
+my $date = strftime "%Y%m%d-%H%M", localtime;
 my @cmd = ("aws", "ec2", "run-instances", "--image-id", $ami, "--key-name", $keypair, "--user-data", $user_data,
         "--instance-type", $instance_type, #"--debug", '--availability-zone', 'us-west-1b',
         '--region', 'us-west-2',
         '--subnet-id', 'subnet-0d1309b13efc7eff4',
         # '--subnet-id', 'subnet-3438276c',
         '--instance-initiated-shutdown-behavior', 'terminate',
+        '--tag-specifications', "ResourceType=instance,Tags=[{Key=Name,Value=ortest-$date}]",
         '--output', 'text',
         '--security-group-ids', 'sg-071003cfa80142cfc');
         # '--security-group-ids', 'sg-d7e8e8aa');

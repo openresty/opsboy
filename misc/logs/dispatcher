@@ -10,7 +10,7 @@ use List::Util qw( sum );
 #use Parallel::ForkManager;
 
 my %opts;
-getopts("hi:a:t:e:v:o:Scrf", \%opts) or
+getopts("hi:a:t:e:v:o:Scrfb:", \%opts) or
     die usage(1);
 
 if ($opts{h}) {
@@ -41,6 +41,8 @@ my $nginx_ver = $opts{v};
 if (defined $nginx_ver && $nginx_ver !~ /^\d+\.\d+\.\d+$/) {
     die "Bad nginx version number specified in the -v option: $nginx_ver\n";
 }
+
+my $opsboy_branch = $opts{b};
 
 my @goals;
 my @comps = @ARGV;
@@ -189,6 +191,10 @@ for my $bucket (@buckets) {
 
     if ($no_stap) {
         push @$bucket, "use_stap=0";
+    }
+
+    if ($opsboy_branch) {
+        push @$bucket, "opsboy_branch=$opsboy_branch";
     }
 
     warn "bucket $i: @$bucket ($mins min)\n";
