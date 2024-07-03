@@ -1,8 +1,8 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-nginx_version = 1.25.3;
-openresty_version = 1.21.4.3;
+nginx_version = 1.27.0;
+openresty_version = 1.25.3.1;
 redis_version = 5.0.9;
 ngx_auth_request_version = 0.2;
 pcre_version = 8.44;
@@ -16,9 +16,9 @@ bison_version = 3.7.3;
 ccache_version = 3.7.12;
 luajit_branch = v2.1-agentzh;
 test_nginx_branch = master;
-ngx_lua_branch = master;
-stream_lua_branch = master;
-resty_core_branch = master;
+ngx_lua_branch = travis-1.27.0;
+stream_lua_branch = travis-1.27.0;
+resty_core_branch = travis-1.27.0;
 openssl_version = 1.1.1w;
 openssl_patch_version = 1.1.1f;
 #luajit_branch = v2.1-agentzh-no-stitch;
