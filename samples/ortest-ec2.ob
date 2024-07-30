@@ -695,6 +695,7 @@ t-resty-cli  {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -758,6 +759,7 @@ tv-resty-cli  {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -1357,6 +1359,7 @@ t-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1430,6 +1433,7 @@ t-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1504,6 +1508,7 @@ t-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1579,6 +1584,7 @@ t-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1653,6 +1659,7 @@ t-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1726,6 +1733,7 @@ t-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1799,6 +1807,7 @@ t-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1872,6 +1881,7 @@ t-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -1945,6 +1955,7 @@ t-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2018,6 +2029,7 @@ t-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2091,6 +2103,7 @@ t-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2166,6 +2179,7 @@ t-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2247,6 +2261,7 @@ t-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2321,6 +2336,7 @@ t-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2395,6 +2411,7 @@ t-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2469,6 +2486,7 @@ t-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2542,6 +2560,7 @@ t-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2615,6 +2634,7 @@ t-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2690,6 +2710,7 @@ t-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2763,6 +2784,7 @@ t-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2840,6 +2862,7 @@ t-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2913,6 +2936,7 @@ t-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -2986,6 +3010,7 @@ t-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3054,6 +3079,7 @@ t-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3117,6 +3143,7 @@ t-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3182,6 +3209,7 @@ t-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3243,6 +3271,7 @@ t-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3304,6 +3333,7 @@ t-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3365,6 +3395,7 @@ t-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3426,6 +3457,7 @@ t-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3487,6 +3519,7 @@ t-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3548,6 +3581,7 @@ t-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3609,6 +3643,7 @@ t-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3670,6 +3705,7 @@ t-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3731,6 +3767,7 @@ t-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3792,6 +3829,7 @@ t-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3853,6 +3891,7 @@ t-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3914,6 +3953,7 @@ t-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -3988,6 +4028,7 @@ tv-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4064,6 +4105,7 @@ tv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4141,6 +4183,7 @@ tv-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4219,6 +4262,7 @@ tv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4296,6 +4340,7 @@ tv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4372,6 +4417,7 @@ tv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4448,6 +4494,7 @@ tv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4524,6 +4571,7 @@ tv-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4600,6 +4648,7 @@ tv-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4676,6 +4725,7 @@ tv-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4752,6 +4802,7 @@ tv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4830,6 +4881,7 @@ tv-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4914,6 +4966,7 @@ tv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -4991,6 +5044,7 @@ tv-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5068,6 +5122,7 @@ tv-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5145,6 +5200,7 @@ tv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5221,6 +5277,7 @@ tv-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5297,6 +5354,7 @@ tv-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5375,6 +5433,7 @@ tv-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5451,6 +5510,7 @@ tv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5531,6 +5591,7 @@ tv-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5607,6 +5668,7 @@ tv-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5683,6 +5745,7 @@ tv-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5754,6 +5817,7 @@ tv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5820,6 +5884,7 @@ tv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5888,6 +5953,7 @@ tv-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -5952,6 +6018,7 @@ tv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6016,6 +6083,7 @@ tv-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6080,6 +6148,7 @@ tv-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6144,6 +6213,7 @@ tv-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6208,6 +6278,7 @@ tv-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6272,6 +6343,7 @@ tv-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6336,6 +6408,7 @@ tv-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6400,6 +6473,7 @@ tv-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6464,6 +6538,7 @@ tv-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6528,6 +6603,7 @@ tv-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6592,6 +6668,7 @@ tv-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6656,6 +6733,7 @@ tv-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -6735,6 +6813,7 @@ tr-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -6814,6 +6893,7 @@ tr-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -6894,6 +6974,7 @@ tr-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -6975,6 +7056,7 @@ tr-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7058,6 +7140,7 @@ tr-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7145,6 +7228,7 @@ tr-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7225,6 +7309,7 @@ tr-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7305,6 +7390,7 @@ tr-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7385,6 +7471,7 @@ tr-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7464,6 +7551,7 @@ tr-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7543,6 +7631,7 @@ tr-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7624,6 +7713,7 @@ tr-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7703,6 +7793,7 @@ tr-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7786,6 +7877,7 @@ tr-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7865,6 +7957,7 @@ tr-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -7944,6 +8037,7 @@ tr-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8018,6 +8112,7 @@ tr-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8087,6 +8182,7 @@ tr-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8158,6 +8254,7 @@ tr-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8225,6 +8322,7 @@ tr-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8292,6 +8390,7 @@ tr-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8359,6 +8458,7 @@ tr-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8426,6 +8526,7 @@ tr-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8493,6 +8594,7 @@ tr-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8560,6 +8662,7 @@ tr-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8627,6 +8730,7 @@ tr-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8694,6 +8798,7 @@ tr-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8761,6 +8866,7 @@ tr-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8828,6 +8934,7 @@ tr-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8895,6 +9002,7 @@ tr-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -8962,6 +9070,7 @@ tr-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -9042,6 +9151,7 @@ trv-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9124,6 +9234,7 @@ trv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9207,6 +9318,7 @@ trv-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9291,6 +9403,7 @@ trv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9377,6 +9490,7 @@ trv-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9467,6 +9581,7 @@ trv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9550,6 +9665,7 @@ trv-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9633,6 +9749,7 @@ trv-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9716,6 +9833,7 @@ trv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9798,6 +9916,7 @@ trv-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9880,6 +9999,7 @@ trv-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -9964,6 +10084,7 @@ trv-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10046,6 +10167,7 @@ trv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10132,6 +10254,7 @@ trv-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10214,6 +10337,7 @@ trv-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10296,6 +10420,7 @@ trv-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10373,6 +10498,7 @@ trv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10445,6 +10571,7 @@ trv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10519,6 +10646,7 @@ trv-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10589,6 +10717,7 @@ trv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10659,6 +10788,7 @@ trv-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10729,6 +10859,7 @@ trv-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10799,6 +10930,7 @@ trv-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10869,6 +11001,7 @@ trv-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -10939,6 +11072,7 @@ trv-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11009,6 +11143,7 @@ trv-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11079,6 +11214,7 @@ trv-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11149,6 +11285,7 @@ trv-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11219,6 +11356,7 @@ trv-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11289,6 +11427,7 @@ trv-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11359,6 +11498,7 @@ trv-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -11439,6 +11579,7 @@ tw-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11519,6 +11660,7 @@ tw-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11600,6 +11742,7 @@ tw-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11682,6 +11825,7 @@ tw-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11766,6 +11910,7 @@ tw-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11854,6 +11999,7 @@ tw-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -11935,6 +12081,7 @@ tw-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12016,6 +12163,7 @@ tw-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12097,6 +12245,7 @@ tw-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12177,6 +12326,7 @@ tw-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12257,6 +12407,7 @@ tw-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12339,6 +12490,7 @@ tw-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12419,6 +12571,7 @@ tw-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12503,6 +12656,7 @@ tw-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12583,6 +12737,7 @@ tw-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12663,6 +12818,7 @@ tw-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12738,6 +12894,7 @@ tw-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12808,6 +12965,7 @@ tw-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12880,6 +13038,7 @@ tw-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -12948,6 +13107,7 @@ tw-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13016,6 +13176,7 @@ tw-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13084,6 +13245,7 @@ tw-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13152,6 +13314,7 @@ tw-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13220,6 +13383,7 @@ tw-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13288,6 +13452,7 @@ tw-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13356,6 +13521,7 @@ tw-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13424,6 +13590,7 @@ tw-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13492,6 +13659,7 @@ tw-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13560,6 +13728,7 @@ tw-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13628,6 +13797,7 @@ tw-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13696,6 +13866,7 @@ tw-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -13777,6 +13948,7 @@ twv-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -13860,6 +14032,7 @@ twv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -13944,6 +14117,7 @@ twv-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14029,6 +14203,7 @@ twv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14116,6 +14291,7 @@ twv-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14207,6 +14383,7 @@ twv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14291,6 +14468,7 @@ twv-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14375,6 +14553,7 @@ twv-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14459,6 +14638,7 @@ twv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14542,6 +14722,7 @@ twv-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14625,6 +14806,7 @@ twv-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14710,6 +14892,7 @@ twv-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14793,6 +14976,7 @@ twv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14880,6 +15064,7 @@ twv-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -14963,6 +15148,7 @@ twv-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15046,6 +15232,7 @@ twv-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15124,6 +15311,7 @@ twv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15197,6 +15385,7 @@ twv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15272,6 +15461,7 @@ twv-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15343,6 +15533,7 @@ twv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15414,6 +15605,7 @@ twv-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15485,6 +15677,7 @@ twv-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15556,6 +15749,7 @@ twv-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15627,6 +15821,7 @@ twv-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15698,6 +15893,7 @@ twv-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15769,6 +15965,7 @@ twv-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15840,6 +16037,7 @@ twv-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15911,6 +16109,7 @@ twv-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -15982,6 +16181,7 @@ twv-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -16053,6 +16253,7 @@ twv-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -16124,6 +16325,7 @@ twv-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -16196,6 +16398,7 @@ th-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16268,6 +16471,7 @@ th-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16341,6 +16545,7 @@ th-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16415,6 +16620,7 @@ th-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16488,6 +16694,7 @@ th-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16560,6 +16767,7 @@ th-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16632,6 +16840,7 @@ th-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16704,6 +16913,7 @@ th-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16776,6 +16986,7 @@ th-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16848,6 +17059,7 @@ th-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16920,6 +17132,7 @@ th-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -16994,6 +17207,7 @@ th-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17074,6 +17288,7 @@ th-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17147,6 +17362,7 @@ th-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17220,6 +17436,7 @@ th-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17293,6 +17510,7 @@ th-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17365,6 +17583,7 @@ th-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17437,6 +17656,7 @@ th-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17511,6 +17731,7 @@ th-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17583,6 +17804,7 @@ th-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17659,6 +17881,7 @@ th-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17731,6 +17954,7 @@ th-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17803,6 +18027,7 @@ th-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17870,6 +18095,7 @@ th-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17932,6 +18158,7 @@ th-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -17996,6 +18223,7 @@ th-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18056,6 +18284,7 @@ th-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18116,6 +18345,7 @@ th-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18176,6 +18406,7 @@ th-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18236,6 +18467,7 @@ th-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18296,6 +18528,7 @@ th-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18356,6 +18589,7 @@ th-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18416,6 +18650,7 @@ th-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18476,6 +18711,7 @@ th-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18536,6 +18772,7 @@ th-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18596,6 +18833,7 @@ th-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18656,6 +18894,7 @@ th-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18716,6 +18955,7 @@ th-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -18789,6 +19029,7 @@ thv-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -18864,6 +19105,7 @@ thv-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -18940,6 +19182,7 @@ thv-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19017,6 +19260,7 @@ thv-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19093,6 +19337,7 @@ thv-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19168,6 +19413,7 @@ thv-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19243,6 +19489,7 @@ thv-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19318,6 +19565,7 @@ thv-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19393,6 +19641,7 @@ thv-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19468,6 +19717,7 @@ thv-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19543,6 +19793,7 @@ thv-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19620,6 +19871,7 @@ thv-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19703,6 +19955,7 @@ thv-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19779,6 +20032,7 @@ thv-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19855,6 +20109,7 @@ thv-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -19931,6 +20186,7 @@ thv-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20006,6 +20262,7 @@ thv-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20081,6 +20338,7 @@ thv-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20158,6 +20416,7 @@ thv-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20233,6 +20492,7 @@ thv-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20312,6 +20572,7 @@ thv-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20387,6 +20648,7 @@ thv-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20462,6 +20724,7 @@ thv-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20532,6 +20795,7 @@ thv-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20597,6 +20861,7 @@ thv-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20664,6 +20929,7 @@ thv-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20727,6 +20993,7 @@ thv-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20790,6 +21057,7 @@ thv-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20853,6 +21121,7 @@ thv-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20916,6 +21185,7 @@ thv-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -20979,6 +21249,7 @@ thv-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21042,6 +21313,7 @@ thv-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21105,6 +21377,7 @@ thv-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21168,6 +21441,7 @@ thv-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21231,6 +21505,7 @@ thv-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21294,6 +21569,7 @@ thv-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21357,6 +21633,7 @@ thv-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21420,6 +21697,7 @@ thv-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';    dep luajit_sysmalloc;
     dep valgrind;
 
@@ -21494,6 +21772,7 @@ tl-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21568,6 +21847,7 @@ tl-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21643,6 +21923,7 @@ tl-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21719,6 +22000,7 @@ tl-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21794,6 +22076,7 @@ tl-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21868,6 +22151,7 @@ tl-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -21942,6 +22226,7 @@ tl-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22016,6 +22301,7 @@ tl-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22090,6 +22376,7 @@ tl-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22164,6 +22451,7 @@ tl-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22238,6 +22526,7 @@ tl-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22314,6 +22603,7 @@ tl-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22396,6 +22686,7 @@ tl-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22471,6 +22762,7 @@ tl-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22546,6 +22838,7 @@ tl-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22621,6 +22914,7 @@ tl-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22695,6 +22989,7 @@ tl-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22769,6 +23064,7 @@ tl-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22845,6 +23141,7 @@ tl-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22919,6 +23216,7 @@ tl-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -22997,6 +23295,7 @@ tl-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23071,6 +23370,7 @@ tl-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23145,6 +23445,7 @@ tl-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23214,6 +23515,7 @@ tl-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23278,6 +23580,7 @@ tl-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23344,6 +23647,7 @@ tl-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23406,6 +23710,7 @@ tl-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23468,6 +23773,7 @@ tl-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23530,6 +23836,7 @@ tl-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23592,6 +23899,7 @@ tl-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23654,6 +23962,7 @@ tl-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23716,6 +24025,7 @@ tl-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23778,6 +24088,7 @@ tl-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23840,6 +24151,7 @@ tl-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23902,6 +24214,7 @@ tl-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -23964,6 +24277,7 @@ tl-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24026,6 +24340,7 @@ tl-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24088,6 +24403,7 @@ tl-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24160,6 +24476,7 @@ to-ngx_srcache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24233,6 +24550,7 @@ to-ngx_rds_json {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24307,6 +24625,7 @@ to-ngx_rds_csv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24382,6 +24701,7 @@ to-ngx_drizzle {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24456,6 +24776,7 @@ to-ngx_encrypted_session {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24529,6 +24850,7 @@ to-ngx_array_var {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24602,6 +24924,7 @@ to-ngx_set_misc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24675,6 +24998,7 @@ to-ngx_headers_more {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24748,6 +25072,7 @@ to-ngx_example_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24821,6 +25146,7 @@ to-ngx_lua_upstream {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24894,6 +25220,7 @@ to-ngx_xss {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -24969,6 +25296,7 @@ to-ngx_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25050,6 +25378,7 @@ to-ngx_memc {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25124,6 +25453,7 @@ to-ngx_redis2 {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25198,6 +25528,7 @@ to-ngx_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25272,6 +25603,7 @@ to-ngx_eval {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25345,6 +25677,7 @@ to-ngx_form_input {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25418,6 +25751,7 @@ to-ngx_postgres {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25493,6 +25827,7 @@ to-ngx_iconv {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25566,6 +25901,7 @@ to-ngx_coolkit {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25643,6 +25979,7 @@ to-ngx_replace_filter {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25716,6 +26053,7 @@ to-ngx_stream_echo {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25789,6 +26127,7 @@ to-ngx_stream_lua {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25857,6 +26196,7 @@ to-lua-resty-memcached {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25920,6 +26260,7 @@ to-lua-resty-redis {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -25985,6 +26326,7 @@ to-lua-resty-mysql {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26046,6 +26388,7 @@ to-lua-resty-string {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26107,6 +26450,7 @@ to-lua-resty-upload {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26168,6 +26512,7 @@ to-lua-resty-dns {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26229,6 +26574,7 @@ to-lua-resty-websocket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26290,6 +26636,7 @@ to-lua-resty-lock {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26351,6 +26698,7 @@ to-lua-resty-logger-socket {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26412,6 +26760,7 @@ to-lua-resty-core {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26473,6 +26822,7 @@ to-lua-resty-upstream-healthcheck {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26534,6 +26884,7 @@ to-lua-resty-lrucache {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26595,6 +26946,7 @@ to-lua-resty-limit-traffic {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26656,6 +27008,7 @@ to-lua-resty-signal {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;
@@ -26717,6 +27070,7 @@ to-lua-resty-shell {
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
 
     dep run-caching-nameserver;

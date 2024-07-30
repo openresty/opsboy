@@ -131,6 +131,7 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
     sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
     [%- END -%]
 
