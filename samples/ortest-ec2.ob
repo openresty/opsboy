@@ -657,8 +657,9 @@ t-resty-cli  {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -717,8 +718,9 @@ tv-resty-cli  {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -1317,8 +1319,9 @@ t-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1389,8 +1392,9 @@ t-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1462,8 +1466,9 @@ t-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1536,8 +1541,9 @@ t-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1609,8 +1615,9 @@ t-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1681,8 +1688,9 @@ t-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1753,8 +1761,9 @@ t-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1825,8 +1834,9 @@ t-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1897,8 +1907,9 @@ t-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -1969,8 +1980,9 @@ t-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2041,8 +2053,9 @@ t-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2115,8 +2128,9 @@ t-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2195,8 +2209,9 @@ t-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2268,8 +2283,9 @@ t-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2341,8 +2357,9 @@ t-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2414,8 +2431,9 @@ t-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2486,8 +2504,9 @@ t-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2558,8 +2577,9 @@ t-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2632,8 +2652,9 @@ t-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2704,8 +2725,9 @@ t-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2780,8 +2802,9 @@ t-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2852,8 +2875,9 @@ t-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -2924,8 +2948,9 @@ t-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -2991,8 +3016,9 @@ t-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3053,8 +3079,9 @@ t-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3117,8 +3144,9 @@ t-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3177,8 +3205,9 @@ t-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3237,8 +3266,9 @@ t-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3297,8 +3327,9 @@ t-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3357,8 +3388,9 @@ t-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3417,8 +3449,9 @@ t-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3477,8 +3510,9 @@ t-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3537,8 +3571,9 @@ t-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3597,8 +3632,9 @@ t-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3657,8 +3693,9 @@ t-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3717,8 +3754,9 @@ t-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3777,8 +3815,9 @@ t-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3837,8 +3876,9 @@ t-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -3908,8 +3948,9 @@ tv-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -3983,8 +4024,9 @@ tv-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4059,8 +4101,9 @@ tv-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4136,8 +4179,9 @@ tv-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4212,8 +4256,9 @@ tv-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4287,8 +4332,9 @@ tv-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4362,8 +4408,9 @@ tv-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4437,8 +4484,9 @@ tv-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4512,8 +4560,9 @@ tv-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4587,8 +4636,9 @@ tv-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4662,8 +4712,9 @@ tv-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4739,8 +4790,9 @@ tv-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4822,8 +4874,9 @@ tv-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4898,8 +4951,9 @@ tv-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -4974,8 +5028,9 @@ tv-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5050,8 +5105,9 @@ tv-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5125,8 +5181,9 @@ tv-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5200,8 +5257,9 @@ tv-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5277,8 +5335,9 @@ tv-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5352,8 +5411,9 @@ tv-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5431,8 +5491,9 @@ tv-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5506,8 +5567,9 @@ tv-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5581,8 +5643,9 @@ tv-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5651,8 +5714,9 @@ tv-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5716,8 +5780,9 @@ tv-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5783,8 +5848,9 @@ tv-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5846,8 +5912,9 @@ tv-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5909,8 +5976,9 @@ tv-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -5972,8 +6040,9 @@ tv-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6035,8 +6104,9 @@ tv-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6098,8 +6168,9 @@ tv-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6161,8 +6232,9 @@ tv-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6224,8 +6296,9 @@ tv-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6287,8 +6360,9 @@ tv-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6350,8 +6424,9 @@ tv-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6413,8 +6488,9 @@ tv-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6476,8 +6552,9 @@ tv-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6539,8 +6616,9 @@ tv-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -6613,8 +6691,9 @@ tr-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -6691,8 +6770,9 @@ tr-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -6770,8 +6850,9 @@ tr-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -6850,8 +6931,9 @@ tr-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -6932,8 +7014,9 @@ tr-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7018,8 +7101,9 @@ tr-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7097,8 +7181,9 @@ tr-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7176,8 +7261,9 @@ tr-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7255,8 +7341,9 @@ tr-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7333,8 +7420,9 @@ tr-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7411,8 +7499,9 @@ tr-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7491,8 +7580,9 @@ tr-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7569,8 +7659,9 @@ tr-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7651,8 +7742,9 @@ tr-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7729,8 +7821,9 @@ tr-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7807,8 +7900,9 @@ tr-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -7880,8 +7974,9 @@ tr-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -7948,8 +8043,9 @@ tr-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8018,8 +8114,9 @@ tr-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8084,8 +8181,9 @@ tr-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8150,8 +8248,9 @@ tr-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8216,8 +8315,9 @@ tr-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8282,8 +8382,9 @@ tr-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8348,8 +8449,9 @@ tr-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8414,8 +8516,9 @@ tr-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8480,8 +8583,9 @@ tr-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8546,8 +8650,9 @@ tr-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8612,8 +8717,9 @@ tr-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8678,8 +8784,9 @@ tr-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8744,8 +8851,9 @@ tr-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8810,8 +8918,9 @@ tr-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -8887,8 +8996,9 @@ trv-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -8968,8 +9078,9 @@ trv-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9050,8 +9161,9 @@ trv-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9133,8 +9245,9 @@ trv-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9218,8 +9331,9 @@ trv-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9307,8 +9421,9 @@ trv-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9389,8 +9504,9 @@ trv-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9471,8 +9587,9 @@ trv-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9553,8 +9670,9 @@ trv-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9634,8 +9752,9 @@ trv-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9715,8 +9834,9 @@ trv-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9798,8 +9918,9 @@ trv-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9879,8 +10000,9 @@ trv-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -9964,8 +10086,9 @@ trv-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10045,8 +10168,9 @@ trv-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10126,8 +10250,9 @@ trv-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10202,8 +10327,9 @@ trv-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10273,8 +10399,9 @@ trv-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10346,8 +10473,9 @@ trv-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10415,8 +10543,9 @@ trv-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10484,8 +10613,9 @@ trv-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10553,8 +10683,9 @@ trv-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10622,8 +10753,9 @@ trv-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10691,8 +10823,9 @@ trv-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10760,8 +10893,9 @@ trv-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10829,8 +10963,9 @@ trv-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10898,8 +11033,9 @@ trv-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -10967,8 +11103,9 @@ trv-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -11036,8 +11173,9 @@ trv-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -11105,8 +11243,9 @@ trv-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -11174,8 +11313,9 @@ trv-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -11254,8 +11394,9 @@ tw-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11333,8 +11474,9 @@ tw-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11413,8 +11555,9 @@ tw-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11494,8 +11637,9 @@ tw-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11577,8 +11721,9 @@ tw-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11664,8 +11809,9 @@ tw-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11744,8 +11890,9 @@ tw-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11824,8 +11971,9 @@ tw-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11904,8 +12052,9 @@ tw-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -11983,8 +12132,9 @@ tw-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12062,8 +12212,9 @@ tw-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12143,8 +12294,9 @@ tw-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12222,8 +12374,9 @@ tw-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12305,8 +12458,9 @@ tw-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12384,8 +12538,9 @@ tw-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12463,8 +12618,9 @@ tw-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -12537,8 +12693,9 @@ tw-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12606,8 +12763,9 @@ tw-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12677,8 +12835,9 @@ tw-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12744,8 +12903,9 @@ tw-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12811,8 +12971,9 @@ tw-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12878,8 +13039,9 @@ tw-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -12945,8 +13107,9 @@ tw-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13012,8 +13175,9 @@ tw-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13079,8 +13243,9 @@ tw-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13146,8 +13311,9 @@ tw-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13213,8 +13379,9 @@ tw-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13280,8 +13447,9 @@ tw-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13347,8 +13515,9 @@ tw-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13414,8 +13583,9 @@ tw-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13481,8 +13651,9 @@ tw-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;
@@ -13559,8 +13730,9 @@ twv-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -13641,8 +13813,9 @@ twv-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -13724,8 +13897,9 @@ twv-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -13808,8 +13982,9 @@ twv-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -13894,8 +14069,9 @@ twv-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -13984,8 +14160,9 @@ twv-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14067,8 +14244,9 @@ twv-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14150,8 +14328,9 @@ twv-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14233,8 +14412,9 @@ twv-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14315,8 +14495,9 @@ twv-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14397,8 +14578,9 @@ twv-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14481,8 +14663,9 @@ twv-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14563,8 +14746,9 @@ twv-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14649,8 +14833,9 @@ twv-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14731,8 +14916,9 @@ twv-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14813,8 +14999,9 @@ twv-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14890,8 +15077,9 @@ twv-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -14962,8 +15150,9 @@ twv-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15036,8 +15225,9 @@ twv-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15106,8 +15296,9 @@ twv-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15176,8 +15367,9 @@ twv-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15246,8 +15438,9 @@ twv-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15316,8 +15509,9 @@ twv-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15386,8 +15580,9 @@ twv-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15456,8 +15651,9 @@ twv-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15526,8 +15722,9 @@ twv-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15596,8 +15793,9 @@ twv-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15666,8 +15864,9 @@ twv-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15736,8 +15935,9 @@ twv-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15806,8 +16006,9 @@ twv-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15876,8 +16077,9 @@ twv-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -15957,8 +16159,9 @@ th-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16028,8 +16231,9 @@ th-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16100,8 +16304,9 @@ th-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16173,8 +16378,9 @@ th-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16245,8 +16451,9 @@ th-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16316,8 +16523,9 @@ th-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16387,8 +16595,9 @@ th-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16458,8 +16667,9 @@ th-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16529,8 +16739,9 @@ th-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16600,8 +16811,9 @@ th-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16671,8 +16883,9 @@ th-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16744,8 +16957,9 @@ th-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16823,8 +17037,9 @@ th-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16895,8 +17110,9 @@ th-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -16967,8 +17183,9 @@ th-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17039,8 +17256,9 @@ th-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17110,8 +17328,9 @@ th-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17181,8 +17400,9 @@ th-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17254,8 +17474,9 @@ th-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17325,8 +17546,9 @@ th-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17400,8 +17622,9 @@ th-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17471,8 +17694,9 @@ th-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17542,8 +17766,9 @@ th-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17608,8 +17833,9 @@ th-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17669,8 +17895,9 @@ th-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17732,8 +17959,9 @@ th-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17791,8 +18019,9 @@ th-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17850,8 +18079,9 @@ th-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17909,8 +18139,9 @@ th-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -17968,8 +18199,9 @@ th-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18027,8 +18259,9 @@ th-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18086,8 +18319,9 @@ th-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18145,8 +18379,9 @@ th-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18204,8 +18439,9 @@ th-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18263,8 +18499,9 @@ th-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18322,8 +18559,9 @@ th-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18381,8 +18619,9 @@ th-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18440,8 +18679,9 @@ th-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18510,8 +18750,9 @@ thv-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18584,8 +18825,9 @@ thv-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18659,8 +18901,9 @@ thv-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18735,8 +18978,9 @@ thv-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18810,8 +19054,9 @@ thv-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18884,8 +19129,9 @@ thv-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -18958,8 +19204,9 @@ thv-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19032,8 +19279,9 @@ thv-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19106,8 +19354,9 @@ thv-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19180,8 +19429,9 @@ thv-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19254,8 +19504,9 @@ thv-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19330,8 +19581,9 @@ thv-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19412,8 +19664,9 @@ thv-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19487,8 +19740,9 @@ thv-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19562,8 +19816,9 @@ thv-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19637,8 +19892,9 @@ thv-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19711,8 +19967,9 @@ thv-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19785,8 +20042,9 @@ thv-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19861,8 +20119,9 @@ thv-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -19935,8 +20194,9 @@ thv-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20013,8 +20273,9 @@ thv-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20087,8 +20348,9 @@ thv-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20161,8 +20423,9 @@ thv-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20230,8 +20493,9 @@ thv-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20294,8 +20558,9 @@ thv-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20360,8 +20625,9 @@ thv-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20422,8 +20688,9 @@ thv-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20484,8 +20751,9 @@ thv-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20546,8 +20814,9 @@ thv-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20608,8 +20877,9 @@ thv-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20670,8 +20940,9 @@ thv-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20732,8 +21003,9 @@ thv-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20794,8 +21066,9 @@ thv-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20856,8 +21129,9 @@ thv-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20918,8 +21192,9 @@ thv-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -20980,8 +21255,9 @@ thv-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21042,8 +21318,9 @@ thv-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21104,8 +21381,9 @@ thv-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21177,8 +21455,9 @@ tl-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21250,8 +21529,9 @@ tl-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21324,8 +21604,9 @@ tl-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21399,8 +21680,9 @@ tl-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21473,8 +21755,9 @@ tl-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21546,8 +21829,9 @@ tl-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21619,8 +21903,9 @@ tl-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21692,8 +21977,9 @@ tl-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21765,8 +22051,9 @@ tl-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21838,8 +22125,9 @@ tl-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21911,8 +22199,9 @@ tl-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -21986,8 +22275,9 @@ tl-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22067,8 +22357,9 @@ tl-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22141,8 +22432,9 @@ tl-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22215,8 +22507,9 @@ tl-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22289,8 +22582,9 @@ tl-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22362,8 +22656,9 @@ tl-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22435,8 +22730,9 @@ tl-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22510,8 +22806,9 @@ tl-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22583,8 +22880,9 @@ tl-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22660,8 +22958,9 @@ tl-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22733,8 +23032,9 @@ tl-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22806,8 +23106,9 @@ tl-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22874,8 +23175,9 @@ tl-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -22937,8 +23239,9 @@ tl-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23002,8 +23305,9 @@ tl-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23063,8 +23367,9 @@ tl-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23124,8 +23429,9 @@ tl-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23185,8 +23491,9 @@ tl-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23246,8 +23553,9 @@ tl-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23307,8 +23615,9 @@ tl-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23368,8 +23677,9 @@ tl-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23429,8 +23739,9 @@ tl-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23490,8 +23801,9 @@ tl-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23551,8 +23863,9 @@ tl-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23612,8 +23925,9 @@ tl-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23673,8 +23987,9 @@ tl-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23734,8 +24049,9 @@ tl-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23806,8 +24122,9 @@ to-ngx_srcache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23878,8 +24195,9 @@ to-ngx_rds_json {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -23951,8 +24269,9 @@ to-ngx_rds_csv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24025,8 +24344,9 @@ to-ngx_drizzle {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24098,8 +24418,9 @@ to-ngx_encrypted_session {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24170,8 +24491,9 @@ to-ngx_array_var {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24242,8 +24564,9 @@ to-ngx_set_misc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24314,8 +24637,9 @@ to-ngx_headers_more {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24386,8 +24710,9 @@ to-ngx_example_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24458,8 +24783,9 @@ to-ngx_lua_upstream {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24530,8 +24856,9 @@ to-ngx_xss {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24604,8 +24931,9 @@ to-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24684,8 +25012,9 @@ to-ngx_memc {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24757,8 +25086,9 @@ to-ngx_redis2 {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24830,8 +25160,9 @@ to-ngx_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24903,8 +25234,9 @@ to-ngx_eval {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -24975,8 +25307,9 @@ to-ngx_form_input {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25047,8 +25380,9 @@ to-ngx_postgres {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25121,8 +25455,9 @@ to-ngx_iconv {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25193,8 +25528,9 @@ to-ngx_coolkit {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25269,8 +25605,9 @@ to-ngx_replace_filter {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25341,8 +25678,9 @@ to-ngx_stream_echo {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25413,8 +25751,9 @@ to-ngx_stream_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25480,8 +25819,9 @@ to-lua-resty-memcached {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25542,8 +25882,9 @@ to-lua-resty-redis {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25606,8 +25947,9 @@ to-lua-resty-mysql {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25666,8 +26008,9 @@ to-lua-resty-string {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25726,8 +26069,9 @@ to-lua-resty-upload {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25786,8 +26130,9 @@ to-lua-resty-dns {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25846,8 +26191,9 @@ to-lua-resty-websocket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25906,8 +26252,9 @@ to-lua-resty-lock {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -25966,8 +26313,9 @@ to-lua-resty-logger-socket {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26026,8 +26374,9 @@ to-lua-resty-core {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26086,8 +26435,9 @@ to-lua-resty-upstream-healthcheck {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26146,8 +26496,9 @@ to-lua-resty-lrucache {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26206,8 +26557,9 @@ to-lua-resty-limit-traffic {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26266,8 +26618,9 @@ to-lua-resty-signal {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26326,8 +26679,9 @@ to-lua-resty-shell {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP '';
@@ -26437,8 +26791,9 @@ build-ngx_lua {
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     env TEST_NGINX_USE_STAP $use_stap;

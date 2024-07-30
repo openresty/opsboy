@@ -36,8 +36,9 @@ luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJI
     # warm-up the DNS cache with the domtains used in our tests.
     sh 'dig @127.0.0.1 openresty.org || exit 0';
     sh 'dig @127.0.0.1 agentzh.org || exit 0';
-    sh 'dig @127.0.0.1 sregex.org || exit 0';
-    sh 'dig @127.0.0.1 g.sregex.org || exit 0';
+    # NB: sregex.org is not available now.
+    # sh 'dig @127.0.0.1 sregex.org || exit 0';
+    # sh 'dig @127.0.0.1 g.sregex.org || exit 0';
     sh 'dig @127.0.0.1 www.google.com || exit 0';
 
     [%- IF (type == "" OR type == "r" OR type == "w") AND name != "stream-lua" %]
