@@ -492,6 +492,7 @@ my %white_list = (
         [undef, 'process-type-privileged-agent-connections.t', 'nginx: [error]', qr/enable_privileged_agent failed: bad 'connections' argument/],
         ["h", 'worker.t', 'TEST 5: ngx.worker.pids - response_body_like - response is expected', qr/worker pid is wrong/],
         [undef, 're-gmatch.t', 'TEST 1: matched, no submatch, no jit compile, no regex cache - pattern "(?^:\[TRACE\s+\d+ content_by_lua\(nginx\.conf:\d+\):4 loop\])" should match a line in error.log'],
+        ['v', 'balancer-keepalive.t', " - grep_error_log_out (req 0)", qr/lua balancer: keepalive no free connection/],
     ],
 
     ngx_stream_lua => [
