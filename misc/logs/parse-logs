@@ -1042,6 +1042,7 @@ while (<>) {
                 luajit_ver => $luajit_ver,
                 luajit_rev => $luajit_rev,
                 openssl_ver => $openssl_ver,
+                segfaults => 0,
             };
 
             undef $openssl_ver;
@@ -1212,6 +1213,14 @@ while (<>) {
 
             $i--;
         }
+    } elsif ($rec && m{^Segmentation Fault: (\S+)}) {
+        my $segfault = $1;
+
+        if (@{ $rec->{segfaults} } && $rec->{segfaults}[-1] eq $segfault) {
+            next;
+        }
+
+        push @{$rec->{segfaults}}, $segfault;
     }
 }
 

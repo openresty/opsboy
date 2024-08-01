@@ -52,6 +52,9 @@
 [% IF rec.comp_errors %]
     <li><a href="#comp_err">Compilation Error</a></li>
 [% END %]
+[% IF rec.segfaults %]
+    <li><a href="#segfaults">Segmentation Faults</a></li>
+[% END %]
     <li><a href="#unexpected">Unexpected Failures</a></li>
     <li><a href="#expected">Expected Failures</a></li>
     <li><a href="#warnings">Warnings</a></li>
@@ -108,6 +111,14 @@ OpenSSL [% rec.openssl_ver %][% IF rec.openssl_rev %], commit <a href="https://g
     [%- FOREACH err IN rec.comp_errors %]
 <p>
 [% err | html | html_line_break %]
+</p>
+    [%- END %]
+[% END %]
+[% IF rec.segfaults %]
+<h2><a name="segfaults">Segmentation Faults</a></h2>
+    [%- FOREACH segfault IN rec.segfaults %]
+<p>
+[% segfault | html | html_line_break %]
 </p>
     [%- END %]
 [% END %]

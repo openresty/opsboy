@@ -182,6 +182,7 @@ for my $jsonfile (@jsonfiles) {
         $mode_group->{luajit_ver} = $rec->{luajit_ver};
         $mode_group->{luajit_rev} = $rec->{luajit_rev};
         $mode_group->{openssl_ver} = $rec->{openssl_ver};
+        $mode_group->{segfaults} = $rec->{segfaults};
     }
 }
 
