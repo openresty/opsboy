@@ -585,6 +585,8 @@ my %white_list = (
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should not match any line in error\.log/],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should match a line in error\.log/],
         ['h', '068-socket-keepalive.t', 'TEST 18: custom pools (same pool for the same path) - unix - response_body - response is expected'],
+        ['w', '068-socket-keepalive.t', qr/TEST 53: wrong first argument of setkeepalive\(\) - response_body - response is expected/, qr/-connected: 1\n\+c-request sent: 61/],
+        ['w', '068-socket-keepalive.t', qr/TEST 54: wrong second argument of setkeepalive\(\) - response_body - response is expected/, qr/-connected: 1\n\+c-request sent: 61/],
         ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
