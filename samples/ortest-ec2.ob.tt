@@ -4,7 +4,6 @@ jobs = 3;
 nginx_version = 1.27.0;
 openresty_version = 1.25.3.1;
 redis_version = 5.0.9;
-ngx_auth_request_version = 0.2;
 pcre_version = 8.44;
 force = 0;
 ragel_version = 6.10;
@@ -744,13 +743,6 @@ pcrejit {
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
 }
 
-ngx_auth_request {
-    file ~/work/nginx/ngx_http_auth_request_module-$ngx_auth_request_version;
-    cwd ~/work/nginx;
-    fetch http://mdounin.ru/files/ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
-    tarball ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
-}
-
 ngx_coolkit {
     git https://github.com/FRiCKLE/ngx_coolkit.git ~/git/coolkit-nginx-module;
 }
@@ -1198,7 +1190,7 @@ t[% type %]-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 t[% type %]-ngx_iconv {
@@ -1292,7 +1284,7 @@ build-ngx_lua {
     [%- PROCESS build_nginx_module name="lua" no_test=1 -%]
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;

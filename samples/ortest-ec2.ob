@@ -4,7 +4,6 @@ jobs = 3;
 nginx_version = 1.27.0;
 openresty_version = 1.25.3.1;
 redis_version = 5.0.9;
-ngx_auth_request_version = 0.2;
 pcre_version = 8.44;
 force = 0;
 ragel_version = 6.10;
@@ -897,13 +896,6 @@ pcrejit {
     fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.bz2;
     tarball pcre-$pcre_version.tar.bz2;
     sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
-}
-
-ngx_auth_request {
-    file ~/work/nginx/ngx_http_auth_request_module-$ngx_auth_request_version;
-    cwd ~/work/nginx;
-    fetch http://mdounin.ru/files/ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
-    tarball ngx_http_auth_request_module-$ngx_auth_request_version.tar.gz;
 }
 
 ngx_coolkit {
@@ -2692,7 +2684,7 @@ t-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 t-ngx_iconv {
@@ -5489,7 +5481,7 @@ tv-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 tv-ngx_iconv {
@@ -7827,7 +7819,7 @@ tr-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 tr-ngx_iconv {
@@ -10258,7 +10250,7 @@ trv-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 trv-ngx_iconv {
@@ -12727,7 +12719,7 @@ tw-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 tw-ngx_iconv {
@@ -15189,7 +15181,7 @@ twv-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 twv-ngx_iconv {
@@ -18114,7 +18106,7 @@ th-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 th-ngx_iconv {
@@ -20873,7 +20865,7 @@ thv-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 thv-ngx_iconv {
@@ -23674,7 +23666,7 @@ tl-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 tl-ngx_iconv {
@@ -26437,7 +26429,7 @@ to-ngx_postgres {
 
     dep ngx_echo ngx_lua ngx_eval ngx_rds_json;
     dep ndk ngx_set_misc ngx_form_input ngx_coolkit;
-    dep ngx_auth_request run-postgres;
+    dep run-postgres;
 }
 
 to-ngx_iconv {
@@ -27904,7 +27896,7 @@ build-ngx_lua {
     dep gd-devel;
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc ngx_auth_request;
+    dep pcrejit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
