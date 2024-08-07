@@ -27,6 +27,7 @@ use_stap = 0;
 nginx_cc_opt = '-O1 -I/opt/ssl/include';
 nginx_ld_opt = '-L/opt/ssl/lib';
 luajit_xcflags = '-DLUAJIT_NUMMODE=2 -DLUA_USE_APICHECK -DLUA_USE_ASSERT -DLUAJIT_ENABLE_LUA52COMPAT -msse4.2';
+postgres_version = 9.2.24;
 
 [%- BLOCK nginx_test_config %]
     env TEST_NGINX_EVENT_TYPE '';
@@ -513,8 +514,8 @@ cxx {
 
 ngx_postgres {
     git https://github.com/openresty/ngx_postgres.git ~/git/postgres-nginx-module;
-    env LIBPQ_INC /usr/include/pgsql92;
-    env LIBPQ_LIB /usr/lib64/pgsql92;
+    env LIBPQ_INC /opt/pgsql92/include;
+    env LIBPQ_LIB /opt/pgsql92/lib;
     dep libpq;
 }
 
@@ -634,9 +635,15 @@ sregex-git {
 }
 
 libpq {
-    #file /usr/lib64/libpq.so;
-    file /usr/include/pgsql92/libpq-fe.h;
-    yum postgresql92-devel;
+    file /opt/pgsql92/lib/libpq.so;
+    env LD_LIBRARY_PATH /opt/pgsql92/lib:$LD_LIBRARY_PATH;
+
+    cwd /tmp;
+    fetch https://ftp.postgresql.org/pub/source/v$postgres_version/postgresql-$postgres_version.tar.gz;
+    tarball postgresql-$postgres_version.tar.gz;
+    sh 'cd postgresql-$postgres_version && ./configure --prefix=/opt/pgsql92 --with-openssl CFLAGS="-I/opt/ssl/include" LDFLAGS="-L/opt/ssl/lib -Wl,-rpath,/opt/ssl/lib" && make -j$jobs && sudo make install';
+
+    dep cc openssl;
 }
 
 ngx_drizzle {
