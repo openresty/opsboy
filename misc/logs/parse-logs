@@ -1044,7 +1044,7 @@ while (<>) {
                 luajit_ver => $luajit_ver,
                 luajit_rev => $luajit_rev,
                 openssl_ver => $openssl_ver,
-                segfaults => 0,
+                segfaults => [],
             };
 
             undef $openssl_ver;
@@ -1215,7 +1215,7 @@ while (<>) {
 
             $i--;
         }
-    } elsif ($rec && m{^Segmentation Fault: (\S+)}) {
+    } elsif ($rec && m{^Segmentation Fault: ([^\n]+)}) {
         my $segfault = $1;
 
         if (@{ $rec->{segfaults} } && $rec->{segfaults}[-1] eq $segfault) {
@@ -1239,7 +1239,7 @@ for my $rec (@records) {
     }
 
     if (($rec->{tests_pass} && $rec->{valgrind_pass})
-        || ($rec->{mode} =~ /l/ && !@{ $rec->{failures} }))
+        || ($rec->{mode} =~ /l/ && !@{ $rec->{failures}} && !@{ $rec->{segfaults} }))
     {
         if ($verbose) {
             print "\e[32mPASS\e[39m\n";
@@ -1405,7 +1405,7 @@ for my $rec (@records) {
         $rec->{expected_fails} = \@expected_fails;
         delete $rec->{failures};
 
-        if (!@fails && $rec->{tests}) {
+        if (!@fails && !@{ $rec->{segfaults} } && $rec->{tests}) {
             if ($verbose) {
                 print "\e[33mPASS\e[39m\n";
             }
