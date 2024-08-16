@@ -813,7 +813,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty;
+    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.27.1;
 }
 
 git {
