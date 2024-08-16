@@ -1,7 +1,7 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-nginx_version = 1.27.0;
+nginx_version = 1.27.1;
 openresty_version = 1.25.3.1;
 redis_version = 5.0.9;
 pcre_version = 8.44;
@@ -1054,7 +1054,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty;
+    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.27.1;
 }
 
 git {
