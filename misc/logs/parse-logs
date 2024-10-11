@@ -1018,10 +1018,12 @@ while (<>) {
                 if ($n >= 2) {
                     my $a = $rec->{failures}[$n - 1];
                     my $b = $rec->{failures}[$n - 2];
-                    if (((!defined $a->{file} && !defined $b->{file}) || $a->{file} eq $b->{file})
-                        && ((!defined $a->{name} && !defined $b->{name}) || $a->{name} eq $b->{name})
-                        && ((!defined $a->{details} && !defined $b->{details})
-                            || $a->{details} eq $b->{details}))
+                    if (((!defined($a->{file}) && !defined($b->{file}))
+                         || (defined($a->{file}) && defined($b->{file}) && $a->{file} eq $b->{file}))
+                        && ((!defined($a->{name}) && !defined($b->{name}))
+                            || (defined($a->{name}) && defined($b->{name}) && $a->{name} eq $b->{name}))
+                        && ((!defined($a->{details}) && !defined($b->{details}))
+                            || (defined($a->{details}) && defined($b->{details}) && $a->{details} eq $b->{details})))
                     {
                         #warn "remove duplicate test failures";
                         pop @{ $rec->{failures} };
