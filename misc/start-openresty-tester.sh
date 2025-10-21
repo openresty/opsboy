@@ -17,9 +17,7 @@ fi
 mkdir -p /home/ec2-user/build
 chown ec2-user:ec2-user /home/ec2-user/build
 ln -s /home/ec2-user/build /tmp/build
-if [ ! -f /opt/luajit/share/luajit-2.1/cjson.so ]; then
-    sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/share/luajit-2.1/
-fi
+sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson.so
 sudo chown -R ec2-user:ec2-user /home/ec2-user/git/opsboy
 sudo -u ec2-user /usr/bin/git config pull.rebase true
 sudo -u ec2-user /usr/bin/git reset --hard
