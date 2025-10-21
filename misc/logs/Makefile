@@ -12,7 +12,9 @@ gen: parse gen-report
 	cp new_icon.gif html/images
 	cp html/*.* $(dirname)/
 
-.PHONY: pull parse upload gen
+.PHONY: pull parse upload gen regen
+
+regen: clean gen
 
 parse: $(jsonfiles)
 
@@ -23,9 +25,12 @@ serve:
 	mkdir -p logs/
 	nginx -p .
 
-%.json: %.log parse-logs
+#%.json: %.log parse-logs
+%.json: %.log
 	./parse-logs -o $@ $<
 
 upload:
 	./upload
 
+clean:
+	find ortest -name "ortest_2025102*.json" | xargs rm || true

@@ -7,9 +7,9 @@ redis_version = 5.0.9;
 pcre2_version = 10.46;
 force = 0;
 ragel_version = 6.10;
-valgrind_version = 3.16.1;
+valgrind_version = 3.25.1;
 libev_version = 4.33;
-systemtap_version = 4.3;
+systemtap_version = 5.3;
 perl516_version = 5.16.2;
 bison_version = 3.8.1;
 ccache_version = 4.12.1;
@@ -90,6 +90,7 @@ libpostgres_version = 9.3.25;
 
     env LD_LIBRARY_PATH '/opt/luajit-sysm/lib:$LD_LIBRARY_PATH';
     env TEST_NGINX_USE_VALGRIND 1;
+    env TEST_NGINX_TIMEOUT 6;
 
     [%- ELSE -%]
     env LD_LIBRARY_PATH '/opt/luajit/lib:$LD_LIBRARY_PATH';
@@ -132,8 +133,8 @@ libpostgres_version = 9.3.25;
     sh 'killall nginx || exit 0';
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
-    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+    sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty sudo kill';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I. -I../test-nginx/lib -r t || exit 0';
     sh 'sudo dmesg -T | grep "segfault at" | sed "s/^/Segmentation Fault: /" || exit 0';
     [%- END -%]
 
@@ -149,6 +150,11 @@ ngx-lua-tests-firewall-reject {
     test 'sudo iptables -S|grep -- "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
     sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
     dep iptables;
+}
+
+ngx-lua-tests-prohibit-route {
+    test 'sudo ip route | grep "prohibit 0.0.0.1"';
+    sh 'sudo ip route add prohibit 0.0.0.1/32';
 }
 
 ngx-lua-tests-firewall-drop-tcp {
@@ -167,6 +173,7 @@ ngx-lua-tests-firewall-rules {
     dep ngx-lua-tests-firewall-reject;
     dep ngx-lua-tests-firewall-drop-tcp;
     dep ngx-lua-tests-firewall-drop-udp;
+    dep ngx-lua-tests-prohibit-route;
 }
 
 ngx-lua-tests-ip-settings {
@@ -198,7 +205,7 @@ docker {
 
 run-docker {
     file /var/run/docker.sock;
-    sh 'sudo service docker start';
+    sh 'sudo systemctl start docker';
     dep docker;
 }
 
@@ -228,6 +235,7 @@ luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
     sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit-sysm/lib/lua/5.1/cjson.so';
     dep luajit-git valgrind;
 }
 
@@ -235,6 +243,7 @@ luajit {
     always;
     cwd ~/git/luajit2;
     sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson.so';
     dep luajit-git;
 }
 
@@ -252,12 +261,12 @@ luajit-git {
     [%- IF name == "lua-resty-mysql" %]
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
     env TEST_NGINX_MYSQL_PORT 3307;
-    env DB_VERSION mysql:5.5;
+    env DB_VERSION mariadb:10.3;
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     [%- ELSIF name == "lua-resty-redis" -%]
     dep ngx-lua-tests-firewall-rules;
-    dep run-redis-bloom;
-    env TEST_NGINX_REDIS_PORT 6380;
+    dep run-redis;
+    env TEST_NGINX_REDIS_PORT 6379;
     [%- END -%]
     [%- IF name == "lua-resty-memcached" %]
     dep run-memcached-tls;
@@ -513,8 +522,9 @@ cxx {
 
 ngx_postgres {
     git https://github.com/openresty/ngx_postgres.git ~/git/postgres-nginx-module;
-    env LIBPQ_INC /opt/pgsql93/include;
-    env LIBPQ_LIB /opt/pgsql93/lib;
+    # use pg from os
+    #env LIBPQ_INC /opt/pgsql93/include;
+    #env LIBPQ_LIB /opt/pgsql93/lib;
     dep libpq;
 }
 
@@ -634,15 +644,8 @@ sregex-git {
 }
 
 libpq {
-    file /opt/pgsql93/lib/libpq.so;
-    env LD_LIBRARY_PATH /opt/pgsql93/lib:$LD_LIBRARY_PATH;
-
-    cwd /tmp;
-    fetch https://ftp.postgresql.org/pub/source/v$libpostgres_version/postgresql-$libpostgres_version.tar.gz;
-    tarball postgresql-$libpostgres_version.tar.gz;
-    sh 'cd postgresql-$libpostgres_version && ./configure --prefix=/opt/pgsql93 --with-openssl CFLAGS="-I/opt/ssl/include" LDFLAGS="-L/opt/ssl/lib -Wl,-rpath,/opt/ssl/lib" && make -j$jobs && sudo make install';
-
-    dep cc openssl;
+    yum libpq;
+    yum libpq-devel;
 }
 
 ngx_drizzle {
@@ -813,7 +816,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.29.2;
+    git https://github.com/openresty/openresty.git ~/git/openresty master;
 }
 
 git {
@@ -835,14 +838,7 @@ mockeagain-git {
 
 run-redis {
     running 'redis-server \*:6379';
-    sh '(echo "daemonize yes"; echo "loglevel warning")|redis-server -';
-    dep redis;
-}
-
-run-redis-bloom {
-    running 'redis-server \*:6380';
-    sh 'sudo docker run -d -p 6380:6380 --rm --name redis-redisbloom redislabs/rebloom:2.2.9 redis-server --loadmodule /usr/lib/redis/modules/redisbloom.so --port 6380 --port 6380';
-
+    sh 'sudo docker run -d -p 6379:6379 --rm --name redis-redisbloom redislabs/rebloom:latest';
     dep run-docker;
 }
 
@@ -908,6 +904,7 @@ mysql {
 run-memcached {
     running 'memcached -d -p 11211 -U 11211';
     sh 'memcached -d -p 11211 -U 11211 -l 127.0.0.1 -o track_sizes';
+    sh 'memcached -u nobody -d -Z -o track_sizes -o ssl_chain_cert=/home/ec2-user/git/lua-resty-memcached/t/cert/server.crt -o ssl_key=/home/ec2-user/git/lua-resty-memcached/t/cert/server.key -p 11212 -l 127.0.0.1';
     dep memcached;
 }
 
@@ -998,8 +995,8 @@ python {
 }
 
 python3 {
-    prog python36;
-    yum python36;
+    prog python3;
+    yum python3;
 }
 
 libev {
