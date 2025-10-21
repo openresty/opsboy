@@ -1054,7 +1054,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.29.2;
+    git https://github.com/openresty/openresty.git ~/git/openresty master;
 }
 
 git {
