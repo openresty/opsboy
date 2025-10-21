@@ -22,7 +22,8 @@ my %ami_config = (
     # 'linux x86_64' => 'ami-014056b00ebb216c4', # ortest-x64-2021-11-10 (us-west-2)
     # 'linux x86_64' => 'ami-0ced5728c06f5f399', # ortest-x86_64-2022-04-13 (us-west-2)
     # 'linux x86_64' => 'ami-0cef3f6128fa955c5', # ortest-x86_64-2023-01-31 (us-west-2)
-    'linux x86_64' => 'ami-04fcc0530e5723c22', # ortest-x86_64-2023-12-12 (us-west-2)
+    #'linux x86_64' => 'ami-04fcc0530e5723c22', # ortest-x86_64-2023-12-12 (us-west-2)
+    'linux x86_64' => 'ami-0a154a7f71e0a0e72', # ortest-x86_64-2025-10-21.1 (us-west-2)
 );
 
 my %opts;
@@ -55,12 +56,14 @@ my $date = strftime "%Y%m%d-%H%M", localtime;
 my @cmd = ("aws", "ec2", "run-instances", "--image-id", $ami, "--key-name", $keypair, "--user-data", $user_data,
         "--instance-type", $instance_type, #"--debug", '--availability-zone', 'us-west-1b',
         '--region', 'us-west-2',
-        '--subnet-id', 'subnet-0d1309b13efc7eff4',
+        '--subnet-id', 'subnet-43b4a508',
+        #'--subnet-id', 'subnet-0d1309b13efc7eff4',
         # '--subnet-id', 'subnet-3438276c',
-        '--instance-initiated-shutdown-behavior', 'terminate',
+        '--instance-initiated-shutdown-behavior', 'stop',
         '--tag-specifications', "ResourceType=instance,Tags=[{Key=Name,Value=ortest-$date}]",
         '--output', 'text',
-        '--security-group-ids', 'sg-071003cfa80142cfc');
+        '--security-group-ids', 'sg-0b7026cb77214408c');
+        #'--security-group-ids', 'sg-071003cfa80142cfc');
         # '--security-group-ids', 'sg-d7e8e8aa');
 
 my $check = $opts{c};

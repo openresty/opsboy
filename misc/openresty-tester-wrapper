@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 rootdir=/home/ec2-user
 exec=$rootdir/openresty-tester.pl
 user=ec2-user
@@ -9,6 +11,7 @@ run='su --session-command='
 name=ortest_`date +'%Y%m%d-%H%M%S'`_`hostname`
 logfile2=/tmp/$name.log
 mlog=$rootdir/ortest.log
+echo > $mlog
 
 branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
 if [ -n "$branch" ]; then
@@ -24,11 +27,11 @@ $run"(echo -n 'DATE '; TZ=GMT date +'%Y-%m-%d %H:%M:%S') > $logfile 2>&1" $user
 $run"(echo -n 'ARCH '; uname -a) >> $logfile 2>&1" $user
 $run"PATH=$PATH $exec make -k --git-pull $args >> $logfile 2>&1" $user
 
-$run"cp $logfile $logfile2 > $mlog" $user
-$run"cd /tmp && tar -czf $name.tar.gz $name.log > $mlog 2>&1" $user
-$run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz > $mlog 2>&1" $user
+$run"cp $logfile $logfile2 2>&1 | tee -a $mlog" $user
+$run"cd /tmp && tar -czf $name.tar.gz $name.log 2>&1 | tee -a $mlog" $user
+$run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz 2>&1 | tee -a $mlog" $user
 $run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 
-shutdown -P +3
+shutdown -P +5
 #shutdown -P now
 

@@ -1,25 +1,25 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-nginx_version = 1.27.1;
-openresty_version = 1.25.3.1;
+nginx_version = 1.29.2;
+openresty_version = 1.29.2.1;
 redis_version = 5.0.9;
-pcre_version = 8.44;
+pcre2_version = 10.46;
 force = 0;
 ragel_version = 6.10;
 valgrind_version = 3.16.1;
 libev_version = 4.33;
 systemtap_version = 4.3;
 perl516_version = 5.16.2;
-bison_version = 3.7.3;
-ccache_version = 3.7.12;
+bison_version = 3.8.1;
+ccache_version = 4.12.1;
 luajit_branch = v2.1-agentzh;
 test_nginx_branch = master;
 ngx_lua_branch = master;
 stream_lua_branch = master;
 resty_core_branch = master;
-openssl_version = 1.1.1w;
-openssl_patch_version = 1.1.1f;
+openssl_version = 3.5.4;
+openssl_patch_version = 3.5.4;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 0;
@@ -51,9 +51,9 @@ libpostgres_version = 9.3.25;
     [%- UNLESS type.match("o") %]
     env NGX_BUILD_CC_OPTS '-DNGX_LUA_USE_ASSERT -DNGX_LUA_ABORT_AT_PANIC $NGX_BUILD_CC_OPTS';
     [%- END %]
-    env NGX_BUILD_CC 'ccache gcc48';
+    env NGX_BUILD_CC 'ccache gcc';
     env CCACHE_BASEDIR '$PWD';
-    dep ccache;
+    #dep ccache;
 
     [%- IF type.match("o") %]
     env NGX_BUILD_OPT '-O3 -funsigned-char';
@@ -125,7 +125,7 @@ libpostgres_version = 9.3.25;
     sh './util/build.sh $nginx_version || ( [ -z "$force" -o "$force" = "0" ] && touch config && ./util/build.sh $nginx_version )';
     [%- END -%]
 
-    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre|drizzle|ssl"';
+    sh 'nginx -V && ldd `which nginx`|grep -E "lua|pcre2|drizzle|ssl"';
 
     [%- UNLESS no_test -%]
     sh 'sudo dmesg --clear';
@@ -182,13 +182,13 @@ iptables {
 
 run-caching-nameserver {
     running '/named -u ';
-    sh 'sudo service named start';
+    sh 'sudo systemctl start named';
     dep named caching-nameserver-config;
 }
 
 named {
     prog named;
-    yum caching-nameserver;
+    yum bind;
 }
 
 docker {
@@ -217,7 +217,7 @@ openssl {
 
     env LD_LIBRARY_PATH /opt/ssl/lib:$LD_LIBRARY_PATH;
 
-    cwd /tmp;
+    cwd /tmp/build;
     fetch https://www.openssl.org/source/openssl-$openssl_version.tar.gz;
     tarball openssl-$openssl_version.tar.gz;
     sh 'cd openssl-$openssl_version && patch -p1 < ~/git/openresty/patches/openssl-$openssl_patch_version-sess_set_get_cb_yield.patch && ./config no-threads no-asm shared enable-ssl3 enable-ssl3-method --libdir=lib -g --prefix=/opt/ssl -DPURIFY && sed -i \'s/ -O3 / -O1 /g\' Makefile && make -j$jobs && sudo make install_sw';
@@ -227,14 +227,14 @@ openssl {
 luajit_sysmalloc {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
+    sh 'sudo rm -rf /opt/luajit-sysm; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc CCDEBUG=-g XCFLAGS="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include -DLUAJIT_USE_SYSMALLOC $luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit-sysm && sudo make install PREFIX=/opt/luajit-sysm';
     dep luajit-git valgrind;
 }
 
 luajit {
     always;
     cwd ~/git/luajit2;
-    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc48 CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
     dep luajit-git;
 }
 
@@ -271,10 +271,10 @@ luajit-git {
 [% BLOCK build_nginx_module %]
     always;
     cwd ~/git/[% name %]-nginx-module;
-    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH';
+    env PATH '~/git/[% name %]-nginx-module/work/nginx/sbin:/usr/local/openresty-debug/bin:$PATH:~/git/nginx-devel-utils';
 
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
+    env PCRE2_LIB /opt/pcre2jit/lib;
+    env PCRE2_INC /opt/pcre2jit/include;
 
     env OPENSSL_LIB /opt/ssl/lib;
     env OPENSSL_INC /opt/ssl/include;
@@ -553,7 +553,7 @@ perl516 {
     cwd /tmp;
     fetch http://www.cpan.org/src/5.0/perl-$perl516_version.tar.gz;
     tarball perl-$perl516_version.tar.gz;
-    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc48 -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
+    sh 'cd perl-$perl516_version && sh Configure -Doptimize="-g -O2" -Dcc=gcc -Dprefix=/opt/perl516 -des && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -625,7 +625,7 @@ bison {
     cwd /tmp;
     fetch http://ftp.gnu.org/gnu/bison/bison-$bison_version.tar.gz;
     tarball bison-$bison_version.tar.gz;
-    sh 'cd bison-$bison_version/ && CC=gcc48 ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
+    sh 'cd bison-$bison_version/ && CC=gcc ./configure --prefix=/opt/bison && make -j$jobs && sudo make install';
     dep cc;
 }
 
@@ -728,19 +728,19 @@ ngx_lua {
     dep luajit ndk lua-resty-core;
 }
 
-pcrejit {
-    env PCRE_LIB /opt/pcrejit/lib;
-    env PCRE_INC /opt/pcrejit/include;
+pcre2jit {
+    env PCRE2_LIB /opt/pcre2jit/lib;
+    env PCRE2_INC /opt/pcre2jit/include;
 
-    file /opt/pcrejit/lib/libpcre.so;
-    file /opt/pcrejit/include/pcre.h;
+    file /opt/pcre2jit/lib/libpcre2-8.so;
+    file /opt/pcre2jit/include/pcre2.h;
 
-    test '/opt/pcrejit/bin/pcre-config --version|grep "$pcre_version"';
+    test '/opt/pcre2jit/bin/pcre2-config --version|grep "$pcre2_version"';
 
     cwd /tmp;
-    fetch https://downloads.sourceforge.net/project/pcre/pcre/$pcre_version/pcre-$pcre_version.tar.bz2;
-    tarball pcre-$pcre_version.tar.bz2;
-    sh 'cd pcre-$pcre_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcrejit && make -j$jobs && sudo make install';
+    fetch https://github.com/PCRE2Project/pcre2/releases/download/pcre2-$pcre2_version/pcre2-$pcre2_version.tar.gz;
+    tarball pcre2-$pcre2_version.tar.gz;
+    sh 'cd pcre2-$pcre2_version && CFLAGS="-g -O" CXXFLAGS="-g -O" ./configure --enable-jit --enable-utf8 --prefix=/opt/pcre2jit && make -j$jobs && sudo make install';
 }
 
 ngx_coolkit {
@@ -755,8 +755,8 @@ openresty-debug {
     cwd /tmp;
     fetch http://agentzh.org/misc/nginx/openresty-$openresty_version.tar.gz;
     tarball openresty-$openresty_version.tar.gz;
-    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc48 --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include $luajit_xcflags" && make -j$jobs && sudo make install';
-    dep libdrizzle openssl pcre valgrind;
+    sh 'cd openresty-$openresty_version && ./configure --with-cc=gcc --with-cc-opt="$nginx_cc_opt" --with-ld-opt="$nginx_ld_opt" --prefix=/usr/local/openresty-debug --with-luajit --with-stream_ssl_preread_module --with-http_drizzle_module --with-libdrizzle=/opt/drizzle --with-http_iconv_module -j$jobs --with-debug --with-luajit-xcflags="-DLUAJIT_USE_VALGRIND -I/opt/valgrind/include $luajit_xcflags" && make -j$jobs && sudo make install';
+    dep libdrizzle openssl pcre2 valgrind;
 }
 
 [% FOREACH name IN lualibs %]
@@ -813,7 +813,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.27.1;
+    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.29.2;
 }
 
 git {
@@ -858,20 +858,20 @@ redis {
 
 run-postgres {
     running 'postgres: writer process';
-    sh 'sudo service postgresql93 start || (sleep 10 && sudo service postgresql93 start) || sudo service postgresql93 initdb';
+    sh 'sudo systemctl start postgresql || (sleep 10 && sudo systemctl start postgresql) || sudo systemctl start postgresql';
     sh 'timeout=30; while [ ${timeout} -gt 0 ]; do if pg_isready; then break; else sleep 1; ((timeout--)); fi; done';
     dep run-postgres2;
 }
 
 run-postgres2 {
     running 'postgres: writer process';
-    sh 'sudo service postgresql93 start || (sleep 10 && sudo service postgresql93 start) || sudo service postgresql93 initdb';
+    sh 'sudo systemctl start postgresql || (sleep 10 && sudo systemctl start postgresql) || sudo /usr/bin/postgresql-setup --initdb';
     dep postgres;
 }
 
 postgres {
     prog pg_ctl;
-    yum postgresql93-server;
+    yum postgresql15 postgresql15-server;
 
     # vim /var/lib/pgsql9/data/pg_hba.conf
     # psql> create user ngx_test with password 'ngx_test';
@@ -880,8 +880,8 @@ postgres {
 }
 
 run-mysql {
-    running 'mysqld --';
-    sh 'sudo service mysqld start || (sleep 10 && sudo service mysqld start)';
+    running 'mariadbd --';
+    sh 'sudo systemctl start mariadb';
     dep mysql;
 }
 
@@ -894,7 +894,7 @@ run-ncserver {
 
 mysql {
     prog mysqld_safe;
-    yum mysql mysql-server;
+    yum mariadb105-server mariadb105;
 
     # mysql -u root
     # mysql> create database ngx_test;
@@ -929,7 +929,7 @@ nginx-module-test {
     always;
     env PATH $PWD/work/nginx/sbin:$HOME/git/nginx-devel-utils:$PATH;
     dep prove test-nginx no-pool-nginx nginx-devel-utils axel perl-protocol-websocket;
-    dep cc openssl pcre;
+    dep cc openssl pcre2;
 }
 
 perl-protocol-websocket {
@@ -937,9 +937,9 @@ perl-protocol-websocket {
     cpan Protocol::WebSocket;
 }
 
-pcre {
-    prog pcre-config;
-    yum pcre-devel;
+pcre2 {
+    prog pcre2-config;
+    yum pcre2-devel;
 }
 
 axel {
@@ -952,8 +952,8 @@ axel {
 }
 
 cc {
-    prog gcc48;
-    yum gcc48;
+    prog gcc;
+    yum gcc;
     dep make;
 }
 
@@ -988,7 +988,7 @@ weighttp {
     prog weighttp;
     git https://github.com/lighttpd/weighttp ~/git/weighttp;
     cwd ~/git/weighttp;
-    sh './waf configure && ./waf build && sudo ./waf install';
+    sh 'autogen.sh && configure && make && sudo make install';
     dep libev python;
 }
 
@@ -1143,7 +1143,7 @@ t[% type %]-ngx_lua {
     [%- PROCESS build_nginx_module name="lua" -%]
 
     dep run-memcached run-redis run-mysql run-ncserver mockeagain;
-    dep pcrejit ndk ngx_set_misc;
+    dep pcre2jit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle ngx_srcache;
     dep ngx_rds_json ngx_coolkit ngx_redis2 ngx_lua_upstream;
@@ -1227,7 +1227,7 @@ t[% type %]-ngx_stream_lua {
 
     dep ngx-lua-tests-firewall-rules;
     dep ngx-lua-tests-ip-settings;
-    dep run-memcached run-redis mockeagain pcrejit;
+    dep run-memcached run-redis mockeagain pcre2jit;
     dep ngx_lua ngx_echo ngx_stream_echo ngx_headers_more ngx_memc;
 }
 
@@ -1285,7 +1285,7 @@ build-ngx_lua {
     [%- PROCESS build_nginx_module name="lua" no_test=1 -%]
 
     dep run-memcached run-redis run-mysql mockeagain;
-    dep pcrejit ndk ngx_set_misc;
+    dep pcre2jit ndk ngx_set_misc;
     dep ngx_echo ngx_memc ngx_headers_more;
     dep ngx_drizzle;
     dep ngx_rds_json ngx_coolkit;
@@ -1353,11 +1353,11 @@ tar {
     yum install tar;
 }
 
-ccache {
-    prog ccache;
-    test 'ccache -V|grep -q "version $ccache_version"';
-    cwd /tmp;
-    fetch https://github.com/ccache/ccache/releases/download/v$ccache_version/ccache-$ccache_version.tar.gz;
-    tarball ccache-$ccache_version.tar.gz;
-    sh 'cd ccache-$ccache_version && ./configure && make -j$jobs && sudo make install';
-}
+#ccache {
+#    prog ccache;
+#    test 'ccache -V|grep -q "version $ccache_version"';
+#    cwd /tmp;
+#    fetch https://github.com/ccache/ccache/releases/download/v$ccache_version/ccache-$ccache_version.tar.gz;
+#    tarball ccache-$ccache_version.tar.gz;
+#    sh 'cd ccache-$ccache_version && ./configure && make -j$jobs && sudo make install';
+#}
