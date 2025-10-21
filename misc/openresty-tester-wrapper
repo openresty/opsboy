@@ -15,10 +15,10 @@ echo > $mlog
 
 branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
 if [ -n "$branch" ]; then
-    git -C "$rootdir/git/opsboy" reset --hard \
-        && git -C "$rootdir/git/opsboy" fetch origin "$branch" \
-        && git -C "$rootdir/git/opsboy" checkout "$branch" \
-        && git -C "$rootdir/git/opsboy" reset --hard "origin/$branch" \
+    sudo -u ec2-user git -C "$rootdir/git/opsboy" reset --hard \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" fetch origin "$branch" \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" checkout "$branch" \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" reset --hard "origin/$branch" \
         && make -C "$rootdir/git/opsboy" -j2
 fi
 
@@ -32,6 +32,10 @@ $run"cd /tmp && tar -czf $name.tar.gz $name.log 2>&1 | tee -a $mlog" $user
 $run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz 2>&1 | tee -a $mlog" $user
 $run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 
-shutdown -P +5
+# shutdown cmd will prevent ssh from login
+sleep 180
+
+# allow user to cancel via the `sudo shutdown -c`
+shutdown -P +1
 #shutdown -P now
 

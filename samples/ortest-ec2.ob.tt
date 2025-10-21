@@ -9,7 +9,7 @@ force = 0;
 ragel_version = 6.10;
 valgrind_version = 3.16.1;
 libev_version = 4.33;
-systemtap_version = 4.3;
+systemtap_version = 5.3;
 perl516_version = 5.16.2;
 bison_version = 3.8.1;
 ccache_version = 4.12.1;
@@ -133,7 +133,7 @@ libpostgres_version = 9.3.25;
     sh 'killall -9 weighttp || exit 0';
     sh 'killall -9 ab || exit 0';
     sh 'ps -ef | grep -E "[v]algrind" | tr -s " " | cut -d " " -f2 | xargs --no-run-if-empty kill';
-    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I../test-nginx/lib -r t || exit 0';
+    sh 'if [ "$use_lua_resty_core" = "1" ]; then export TEST_NGINX_INIT_BY_LUA="jit.opt.start(\'minstitch=0\') require(\'resty.core.base\').set_string_buf_size(1) require(\'resty.core.regex\').set_buf_grow_ratio(1)"; fi; prove -I. -I../test-nginx/lib -r t || exit 0';
     sh 'sudo dmesg -T | grep "segfault at" | sed "s/^/Segmentation Fault: /" || exit 0';
     [%- END -%]
 
@@ -149,6 +149,11 @@ ngx-lua-tests-firewall-reject {
     test 'sudo iptables -S|grep -- "-A OUTPUT -p udp -m udp --dport 10086 -j REJECT"';
     sh 'sudo iptables -I OUTPUT 1 -p udp --dport 10086 -j REJECT';
     dep iptables;
+}
+
+ngx-lua-tests-prohibit-route {
+    test 'sudo ip route | grep "prohibit 0.0.0.1"';
+    sh 'sudo ip route add prohibit 0.0.0.1/32';
 }
 
 ngx-lua-tests-firewall-drop-tcp {
@@ -167,6 +172,7 @@ ngx-lua-tests-firewall-rules {
     dep ngx-lua-tests-firewall-reject;
     dep ngx-lua-tests-firewall-drop-tcp;
     dep ngx-lua-tests-firewall-drop-udp;
+    dep ngx-lua-tests-prohibit-route;
 }
 
 ngx-lua-tests-ip-settings {
@@ -813,7 +819,7 @@ no-pool-nginx {
 }
 
 openresty {
-    git https://github.com/openresty/openresty.git ~/git/openresty nginx-1.29.2;
+    git https://github.com/openresty/openresty.git ~/git/openresty master;
 }
 
 git {
@@ -998,8 +1004,8 @@ python {
 }
 
 python3 {
-    prog python36;
-    yum python36;
+    prog python3;
+    yum python3;
 }
 
 libev {
