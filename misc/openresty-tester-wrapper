@@ -15,10 +15,10 @@ echo > $mlog
 
 branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
 if [ -n "$branch" ]; then
-    git -C "$rootdir/git/opsboy" reset --hard \
-        && git -C "$rootdir/git/opsboy" fetch origin "$branch" \
-        && git -C "$rootdir/git/opsboy" checkout "$branch" \
-        && git -C "$rootdir/git/opsboy" reset --hard "origin/$branch" \
+    sudo -u ec2-user git -C "$rootdir/git/opsboy" reset --hard \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" fetch origin "$branch" \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" checkout "$branch" \
+        && sudo -u ec2-user git -C "$rootdir/git/opsboy" reset --hard "origin/$branch" \
         && make -C "$rootdir/git/opsboy" -j2
 fi
 
