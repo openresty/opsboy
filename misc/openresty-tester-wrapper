@@ -32,6 +32,6 @@ $run"cd /tmp && tar -czf $name.tar.gz $name.log 2>&1 | tee -a $mlog" $user
 $run"PATH=$PATH $rootdir/ortest-upload /tmp/$name.tar.gz 2>&1 | tee -a $mlog" $user
 $run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 
-shutdown -P +5
+#shutdown -P +5
 #shutdown -P now
 
