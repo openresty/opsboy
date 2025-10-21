@@ -36,6 +36,6 @@ $run"cd /tmp && rm -f $name.log $name.tar.gz" $user
 sleep 180
 
 # allow user to cancel via the `sudo shutdown -c`
-shutdown -P +3
+shutdown -P +1
 #shutdown -P now
 

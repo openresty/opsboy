@@ -151,6 +151,11 @@ ngx-lua-tests-firewall-reject {
     dep iptables;
 }
 
+ngx-lua-tests-prohibit-route {
+    test 'sudo ip route | grep "prohibit 0.0.0.1"';
+    sh 'sudo ip route add prohibit 0.0.0.1/32';
+}
+
 ngx-lua-tests-firewall-drop-tcp {
     test 'sudo iptables -S|grep -- "-A OUTPUT -p tcp --dst 127.0.0.2 --dport 12345 -j DROP"';
     sh 'sudo iptables -I OUTPUT 1 -p tcp --dst 127.0.0.2 --dport 12345 -j DROP';
@@ -167,6 +172,7 @@ ngx-lua-tests-firewall-rules {
     dep ngx-lua-tests-firewall-reject;
     dep ngx-lua-tests-firewall-drop-tcp;
     dep ngx-lua-tests-firewall-drop-udp;
+    dep ngx-lua-tests-prohibit-route;
 }
 
 ngx-lua-tests-ip-settings {
