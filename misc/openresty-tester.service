@@ -3,14 +3,13 @@ Description=OpenResty-Tester database server
 After=network.target
 
 [Service]
-Type=forking
+Type=oneshot
+RemainAfterExit=yes
 Environment="PATH=/opt/aws/bin:/usr/local/bin:/usr/sbin:/usr/bin:/bin"
 WorkingDirectory=/home/ec2-user/git/opsboy
 ExecStart=/bin/bash /home/ec2-user/git/opsboy/misc/start-openresty-tester.sh
 ExecStop=/bin/bash -c 'pid=$(ps aux|grep openresty-tester.pl|grep -v grep|awk "{print \$2}"); if [ -n "$pid" ]; then kill $pid; fi'
 TimeoutStopSec=5
-Restart=on-failure
-RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
