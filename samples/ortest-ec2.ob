@@ -1239,8 +1239,8 @@ python {
 }
 
 python3 {
-    prog python36;
-    yum python36;
+    prog python3;
+    yum python3;
 }
 
 libev {
