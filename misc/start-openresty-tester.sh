@@ -3,7 +3,7 @@
 set -x
 
 userdata=$(ec2-metadata -d|sed "s/^user-data: *//");
-userdata='tv-ngx_lua force=1 opsboy_branch=valgrind'
+#userdata='tv-ngx_lua force=1 opsboy_branch=or-1.29.2'
 if [ "$userdata" = "not available" ]; then
      exit 1
 fi
