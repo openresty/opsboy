@@ -3,7 +3,7 @@
 set -x
 
 userdata=$(ec2-metadata -d|sed "s/^user-data: *//");
-#userdata='t-lua-resty-redis to-lua-resty-websocket force=1 opsboy_branch=nginx-1.29.2'
+userdata='tv-ngx_lua force=1 opsboy_branch=valgrind'
 if [ "$userdata" = "not available" ]; then
      exit 1
 fi
