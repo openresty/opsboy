@@ -59,7 +59,7 @@ my @cmd = ("aws", "ec2", "run-instances", "--image-id", $ami, "--key-name", $key
         '--subnet-id', 'subnet-43b4a508',
         #'--subnet-id', 'subnet-0d1309b13efc7eff4',
         # '--subnet-id', 'subnet-3438276c',
-        '--instance-initiated-shutdown-behavior', 'terminate', #'stop',
+        '--instance-initiated-shutdown-behavior', 'stop', #'terminate', #'stop',
         '--tag-specifications', "ResourceType=instance,Tags=[{Key=Name,Value=ortest-$date}]",
         '--output', 'text',
         '--security-group-ids', 'sg-0b7026cb77214408c');

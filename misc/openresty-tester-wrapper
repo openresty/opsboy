@@ -13,6 +13,8 @@ logfile2=/tmp/$name.log
 mlog=$rootdir/ortest.log
 echo > $mlog
 
+echo 10000 | sudo tee /proc/sys/kernel/pid_max
+
 branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
 if [ -n "$branch" ]; then
     sudo -u ec2-user git -C "$rootdir/git/opsboy" reset --hard \
