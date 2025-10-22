@@ -21,6 +21,7 @@ sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson
 sudo chown -R ec2-user:ec2-user /home/ec2-user/git/opsboy
 sudo -u ec2-user /usr/bin/git config pull.rebase true
 sudo -u ec2-user /usr/bin/git reset --hard
+sudo -u ec2-user /usr/bin/git checkout master
 sudo -u ec2-user /usr/bin/git pull
 /usr/bin/make -j2 | tee make.log
 misc/openresty-tester-wrapper $userdata 2>&1 | tee test.log
