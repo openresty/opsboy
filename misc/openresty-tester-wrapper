@@ -14,6 +14,7 @@ mlog=$rootdir/ortest.log
 echo > $mlog
 
 echo 10000 | sudo tee /proc/sys/kernel/pid_max
+sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson.so
 
 branch=$(echo $args|sed -n 's/^.*\bopsboy_branch=\(.*\)/\1/p'|awk '{print $1}')
 if [ -n "$branch" ]; then

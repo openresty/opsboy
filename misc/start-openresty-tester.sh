@@ -9,15 +9,20 @@ if [ "$userdata" = "not available" ]; then
 fi
 
 ps aux | grep openresty-tester.pl | grep -v grep > /dev/null 2>&1
-if [ $? = 0 ]; then
+if [ $? -eq 0 ]; then
     echo "openresty-tester.pl already running"
+    exit 1
+fi
+
+diff /etc/systemd/system/openresty-tester.service /home/ec2-user/openresty-tester.service
+if [ $? -ne 0 ]; then
+    echo "please copy /home/ec2-user/git/opsboy/misc/openresty-tester.service to /home/ec2-user/openresty-tester.service and run systemctl daemon-reload"
     exit 1
 fi
 
 mkdir -p /home/ec2-user/build
 chown ec2-user:ec2-user /home/ec2-user/build
 ln -s /home/ec2-user/build /tmp/build
-sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson.so
 sudo chown -R ec2-user:ec2-user /home/ec2-user/git/opsboy
 sudo -u ec2-user /usr/bin/git config pull.rebase true
 sudo -u ec2-user /usr/bin/git reset --hard
