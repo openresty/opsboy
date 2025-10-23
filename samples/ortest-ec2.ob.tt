@@ -241,6 +241,7 @@ luajit {
     always;
     cwd ~/git/luajit2;
     sh 'sudo rm -rf /opt/luajit; git reset --hard; git checkout $luajit_branch && git merge origin/$luajit_branch && make CC=gcc CCDEBUG=-g XCFLAGS="$luajit_xcflags" -B -j$jobs PREFIX=/opt/luajit && sudo make install PREFIX=/opt/luajit';
+    sh 'sudo cp /usr/local/openresty-debug/lualib/cjson.so /opt/luajit/lib/lua/5.1/cjson.so';
     dep luajit-git;
 }
 
