@@ -23,7 +23,7 @@ my %ami_config = (
     # 'linux x86_64' => 'ami-0ced5728c06f5f399', # ortest-x86_64-2022-04-13 (us-west-2)
     # 'linux x86_64' => 'ami-0cef3f6128fa955c5', # ortest-x86_64-2023-01-31 (us-west-2)
     #'linux x86_64' => 'ami-04fcc0530e5723c22', # ortest-x86_64-2023-12-12 (us-west-2)
-    'linux x86_64' => 'ami-05b857d8cad6e182e', # ortest-x86_64-2025-10-29.3 (us-west-2)
+    'linux x86_64' => 'ami-09ecb2233dd317743', # ortest-x86_64-2025-10-29.4 (us-west-2)
 );
 
 my %opts;
