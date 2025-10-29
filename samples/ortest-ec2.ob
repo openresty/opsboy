@@ -1118,6 +1118,8 @@ postgres {
 
 run-mysql {
     running 'mariadbd --';
+    sh 'sudo docker stop mysqld';
+    sh 'sudo docker rm mysqld';
     sh 'sudo systemctl start mariadb';
     dep mysql;
 }
@@ -3212,8 +3214,8 @@ t-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -6055,8 +6057,8 @@ tv-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -8427,8 +8429,8 @@ tr-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -10897,8 +10899,8 @@ trv-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -13365,8 +13367,8 @@ tw-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -15866,8 +15868,8 @@ twv-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -18727,8 +18729,8 @@ th-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -21532,8 +21534,8 @@ thv-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -24339,8 +24341,8 @@ tl-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
@@ -27095,8 +27097,8 @@ to-lua-resty-mysql {
     env TEST_NGINX_REDIS_PORT '';
 
     env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env TEST_NGINX_MYSQL_PORT 3307;
     env DB_VERSION mariadb:10.3;
+    sh 'sudo systemctl stop mariadb';
     sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
     env TEST_NGINX_EVENT_TYPE '';
     env MOCKEAGAIN '';
