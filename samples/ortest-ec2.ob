@@ -1228,7 +1228,7 @@ weighttp {
     prog weighttp;
     git https://github.com/lighttpd/weighttp ~/git/weighttp;
     cwd ~/git/weighttp;
-    sh 'autogen.sh && configure && make && sudo make install';
+    sh './autogen.sh && ./configure && make && sudo make install';
     dep libev python;
 }
 
