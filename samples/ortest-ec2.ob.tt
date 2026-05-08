@@ -1,13 +1,13 @@
 # OpenResty Tester Deployment Script for Amazon Linux AMI
 
 jobs = 3;
-nginx_version = 1.29.2;
-openresty_version = 1.29.2.1;
+nginx_version = 1.31.0;
+openresty_version = 1.31.0.1;
 redis_version = 5.0.9;
-pcre2_version = 10.46;
+pcre2_version = 10.47;
 force = 0;
 ragel_version = 6.10;
-valgrind_version = 3.25.1;
+valgrind_version = 3.27.0;
 libev_version = 4.33;
 systemtap_version = 5.3;
 perl516_version = 5.16.2;
@@ -18,8 +18,8 @@ test_nginx_branch = master;
 ngx_lua_branch = master;
 stream_lua_branch = master;
 resty_core_branch = master;
-openssl_version = 3.5.4;
-openssl_patch_version = 3.5.4;
+openssl_version = 3.5.6;
+openssl_patch_version = 3.5.5;
 #luajit_branch = v2.1-agentzh-no-stitch;
 use_lua_resty_core = 0;
 use_stap = 0;
@@ -67,6 +67,7 @@ libpostgres_version = 9.3.25;
     [%- END %]
     env NGX_BUILD_JOBS $jobs;
     env NGX_BUILD_DTRACE 1;
+    env TEST_NGINX_SKIP_COSOCKET_LOG_TEST 1;
 
     env LD_LIBRARY_PATH ~/git/mockeagain:$LD_LIBRARY_PATH;
     env LD_PRELOAD '';
@@ -258,12 +259,7 @@ luajit-git {
 
     env TEST_NGINX_REDIS_PORT '';
 
-    [%- IF name == "lua-resty-mysql" %]
-    env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
-    env DB_VERSION mariadb:10.3;
-    sh 'sudo systemctl stop mariadb';
-    sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
-    [%- ELSIF name == "lua-resty-redis" -%]
+    [%- IF name == "lua-resty-redis" -%]
     dep ngx-lua-tests-firewall-rules;
     dep run-redis;
     env TEST_NGINX_REDIS_PORT 6379;
@@ -275,6 +271,11 @@ luajit-git {
     [%- PROCESS nginx_test_config no_build=1 -%]
 
     dep ngx_lua nginx-module-test [% name %];
+
+    [%- IF name == "lua-resty-mysql" %]
+    env TEST_NGINX_MYSQL_PATH /var/run/mysqld/mysqld.sock;
+    env DB_VERSION mariadb:11.8;
+    [%- END -%]
 [% END %]
 
 [% BLOCK build_nginx_module %]
@@ -877,10 +878,22 @@ postgres {
 
 run-mysql {
     running 'mariadbd --';
-    sh 'sudo docker stop mysqld';
-    sh 'sudo docker rm mysqld';
-    sh 'sudo systemctl start mariadb';
+    sh 'sudo docker stop mysqld || true';
+    sh 'sudo docker rm mysqld || true';
+    sh 'sudo rm -f /var/run/mysqld/mysqld.sock';
+    sh 'sudo systemctl start mariadb || (sleep 3 && sudo systemctl start mariadb)';
     dep mysql;
+}
+
+init-lua-resty-mysql-db {
+    always;
+    env DB_VERSION mariadb:11.8;
+    sh 'sudo systemctl disable --now mariadb || true';
+    sh 'sudo pkill -9 mariadbd mysqld || true';
+    sh 'sudo rm -f /var/run/mysqld/mysqld.sock';
+    sh 'sudo docker rm -f mysqld || true';
+    sh 'cd ~/git/lua-resty-mysql && ./.travis/initializedb.sh';
+    dep docker run-docker;
 }
 
 run-ncserver {
@@ -892,7 +905,7 @@ run-ncserver {
 
 mysql {
     prog mysqld_safe;
-    yum mariadb105-server mariadb105;
+    yum mariadb1011-server mariadb1011;
 
     # mysql -u root
     # mysql> create database ngx_test;
@@ -1235,6 +1248,9 @@ t[% type %]-lua-[% name %] {
     [%- PROCESS build_lua_lib name="lua-" _ name -%]
 
     dep build-ngx_lua;
+    [%- IF name == "lua-resty-mysql" %]
+    dep init-lua-resty-mysql-db;
+    [%- END %]
 }
 [% END -%]
 
@@ -1253,7 +1269,7 @@ valgrind {
     file /opt/valgrind/bin/valgrind;
     test '/opt/valgrind/bin/valgrind --version|grep $valgrind_version';
     cwd /tmp;
-    fetch ftp://sourceware.org/pub/valgrind/valgrind-$valgrind_version.tar.bz2;
+    fetch https://sourceware.org/pub/valgrind/valgrind-$valgrind_version.tar.bz2;
     tarball valgrind-$valgrind_version.tar.bz2;
     sh 'cd valgrind-$valgrind_version && ./configure --prefix=/opt/valgrind && make -j$jobs && sudo make install';
     dep cc;

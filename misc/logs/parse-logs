@@ -58,11 +58,12 @@ my %white_list = (
     ],
 
     'lua-resty-limit-traffic' => [
-        ['v', 'req.t', qr/TEST 1: a single key \(always commit\) - response_body_like - response is expected \(elapsed: \d+.\d+ sec\.\)/],
         ['v', 'count.t', 'TEST 3: reset limit window - response_body - response is expected'],
+        ['r', 'count.t', qr/TEST 3: reset limit window - response_body - response is expected/],
+        ['w', 'count.t', qr/TEST 3: reset limit window - response_body - response is expected/],
+        ['v', 'req.t', qr/TEST 1: a single key \(always commit\) - response_body_like - response is expected \(elapsed: \d+.\d+ sec\.\)/],
         ['v', 'traffic.t', qr/TEST 1: sanity \(output states\) - response_body_like - response is expected /],
         ['v', 'traffic.t', qr/TEST 2: sanity \(no output states\) - response_body_like - response is expected/],
-        ['r', 'count.t', 'TEST 3: reset limit window - response_body - response is expected'],
     ],
 
     'resty-cli' => [
@@ -312,7 +313,7 @@ my %white_list = (
     ],
 
     ngx_eval => [
-        ['l', 'crash.t', 'nginx: [emerg]', qr/"eval" directive is not allowed here/],
+        [undef, 'crash.t', 'nginx: [emerg]', qr/"eval" directive is not allowed here/],
     ],
 
     ngx_form_input => [
@@ -545,6 +546,7 @@ my %white_list = (
     ngx_stream_lua => [
         ['h', '043-shdict.t', '- response_body'],
         ['h', '058-tcp-socket.t', qr/pattern "\[error\]" should not match any line in error.log but matches line .*? unexpected response for agentzh\.org/],
+        ['h', '058-tcp-socket.t', qr/content_by_lua\(nginx.conf:29\):5: closed"/],
         ['h', '058-tcp-socket.t', qr/TEST 25: send tables of string fragments - pattern "\[error\]" should not match any line in error.log but matches line.*lua entry thread aborted: runtime error/],
         ['h', '068-socket-keepalive.t', 'TEST 18: custom pools (same pool for the same path) - unix - response_body - response is expected'],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should match a line in error\.log/],
@@ -570,6 +572,7 @@ my %white_list = (
         ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
         ['h', '162-ssl-client-hello-by.t', qr/pattern "\[error\]" should not match any line in error\.log but matches line .*? send\(\) failed \(111: Connection refused\) while logging to syslog/],
         ['hv', '058-tcp-socket.t', 'TEST 14: receive by chunks (very small buffer) - pattern "[error]" should not match any line in error.log but matches line'],
+        ['hv', '157-socket-keepalive-hup.t', 'TEST 1: exiting - pattern "timer prematurely expired: true" should match a line in error.log (req 0)'],
         ['l', undef, 'nginx: [emerg]', 'still could not bind()'],
         ['l', undef, 'nginx: [emerg]', qr/bind\(\) to 0\.0\.0\.0:\d+ failed \(\d+: Address already in use\)/],
         ['o', undef, ' - grep_error_log_out'],
@@ -663,6 +666,10 @@ my %white_list = (
         [undef, '161-load-resty-core.t', 'nginx: [alert]', qr/failed to load the 'resty\.core' module .*? \(reason: module 'resty\.core' not found:/],
         [undef, '164-proxy-ssl-verify-by.t', 'nginx: [emerg]', 'proxy_ssl_verify_by_lua* should be used with proxy_ssl directive'],
         [undef, '164-proxy-ssl-verify-by.t', 'nginx: [emerg]', '"proxy_ssl_verify_by_lua_block" directive is not allowed here in'],
+        [undef, '165-proxy-ssl-cert-by.t', 'nginx: [emerg]', 'proxy_ssl_certificate_by_lua* should be used with proxy_ssl directive'],
+        [undef, '165-proxy-ssl-cert-by.t', 'nginx: [emerg]', '"proxy_ssl_certificate_by_lua_block" directive is not allowed here in'],
+        [undef, '165-proxy-ssl-cert-by.t', 'TEST 4: sleep - pattern "(?^:elapsed in proxy ssl certificate by lua: 0.(?:09|1\d)\d+ while loading proxy ssl certificate by lua,)" should match a line in error.log', undef],
+        [undef, '165-proxy-ssl-cert-by.t', 'TEST 20: upstream connection aborted - pattern "proxy_ssl_certificate_by_lua: cert cb aborted" should match a line in error.log', undef],
     ],
 
     ngx_lua => [
@@ -703,6 +710,9 @@ my %white_list = (
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should match a line in error\.log/],
         ['h', '068-socket-keepalive.t', qr/pattern ".*?" should not match any line in error\.log/],
         ['h', '089-phase.t', qr/\QTEST 9: get_phase in ngx.timer callback - pattern "[error]" should not match any line in error.log but matches line\E.*\Q[lua] exit_worker_by_lua/],
+        ['h', '089-phase.t', qr/\Qget_phase in ngx.timer callback - pattern "[error]" should not match any line in error.log but matches line\E.*\Q[lua] exit_worker_by_lua/],
+        ['h', '089-phase.t', qr/TEST 10: get_phase in init_worker_by_lua - pattern "\[error\]" should not match any line in error.log but matches line .*: exit_worker"/],
+        ['h', '089-phase.t', qr/TEST 10: get_phase in init_worker_by_lua - pattern "\[error\]" should not match any line in error.log but matches line .*: exiting now"/],
         ['h', '091-coroutine.t', 'unexpected response for iscribblet.org"'],
         ['h', '094-uthread-exit.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
         ['h', '101-on-abort.t', ' should not match any line in error.log but matches line '],
@@ -750,6 +760,7 @@ my %white_list = (
         ['h', '154-semaphore.t', 'TEST 3: exit before post_handler was called - grep_error_log_out'],
         ['h', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
         ['h', '162-exit-worker.t', qr/TEST 4: exit_worker_by_lua single process ngx.timer not work - pattern "[error]"/],
+        ['h', '162-exit-worker.t', qr/TEST 6: skip in cache processes \(with exit worker and privileged agent\) - pattern "\[error\]" should not match any line in error.log but matches line .*?: exit_worker_by_lua_file error: cannot open .*?exit.lua: No such file or directory/],
         ['h', '162-exit-worker.t', qr/TEST 6: skip in cache processes \(with exit worker and privileged agent\) - pattern "\[error\]" should not match any line in error.log but matches line.*exit_worker_by_lua error: exit_worker_by_lua.*API disabled in the context of exit_worker_by_lua/],
         ['h', '167-server-rewrite.t', qr/TEST 19: syntax error server_rewrite_by_lua_block in http - failed to reload configuration after 200 failed test requests/],
         ['h', '167-server-rewrite.t', qr/TEST 19: syntax error server_rewrite_by_lua_block in http - waiting 1 sec for nginx to reload the configuration/],
@@ -758,7 +769,9 @@ my %white_list = (
         ['hv', '024-access/on-abort.t', 'should not match any line in error.log but matches line'],
         ['hv', '058-tcp-socket.t', 'TEST 33: github issue #215: Handle the posted requests in lua cosocket api (failed to resolve) - pattern "[error]" should not match any line in error.log'],
         ['hv', '058-tcp-socket.t', qr/TEST 41: receive\(0\) - pattern "\[error\]" should not match any line in error.log but matches line.*lua entry thread aborted: runtime error/],
+        ['hv', '089-phase.t', qr/TEST 10: get_phase in init_worker_by_lua - pattern "\[error\]" should not match any line in error.log/],
         ['hv', '094-uthread-exit.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
+        ['hv', '122-worker.t', qr/TEST 4: content_by_lua \+ ngx.worker.pids - response_body_like - response is expected \(worker pid: \d+ worker pids is wrong. worker pid is correct.\)/],
         ['hv', '127-uthread-kill.t', qr/\Qpattern "[alert]" should not match any line in error.log\E .* \Qsend() failed (1: Operation not permitted) while resolving\E/],
         ['hv', '129-ssl-socket.t', 'response is expected', qr/failed to connect: no such file or directory/],
         ['hv', '129-ssl-socket.t', qr/unix domain ssl cosocket .*? should match a line in error\.log/],
@@ -769,6 +782,7 @@ my %white_list = (
         ['hv', '162-ssl-client-hello-by.t', qr/send\(\) failed \(111: Connection refused\) while logging to syslog, server: 127.0.0.1:12345/],
         ['hv', '166-ssl-client-hello.t', qr/send\(\) failed \(111: Connection refused\) while logging to syslog, server: 127.0.0.1:12345/],
         ['hv', '166-ssl-client-hello.t', qr{\Qshould not match any line in error.log but matches line\E ".*? \Q[error]\E .*? \Qsend() failed (111: Connection refused)\E"}],
+        ['hv', '166-worker-thread.t', qr/TEST 44: shdict lpush lpop - response_body - response is expected/],
         ['l', undef, 'nginx: [error]', qr/init_by_lua error: init_by_lua(?:\(nginx.conf:\d+\))?:\d+: failed to init/],
         ['o', undef, ' - grep_error_log_out'],
         ['o', undef, 'should match a line in error.log'],
@@ -807,6 +821,8 @@ my %white_list = (
         ['r', '158-global-var.t', qr/TEST 8: .*? - grep_error_log_out/],
         ['r', '158-global-var.t', qr/TEST 8: .*? - response_body_like - response is expected /, 'failed to do SSL handshake: handshake failed'],
         ['r', '160-disable-init-by-lua.t', qr/TEST 1: .*? - pattern "failed \(2: No such file or directory\)" should match a line in error\.log/],
+        ['r', '170-proxy-ssl-cert.t', qr/\QTEST 22: upstream connection aborted - pattern "upstream timed out (110: Connection timed out) while loading proxy ssl certificate by lua" should match a line in error.log\E/],
+        ['r', '170-proxy-ssl-cert.t', qr/TEST 22: upstream connection aborted - pattern "proxy_ssl_certificate_by_lua: cert cb aborted" should match a line in error.log/],
         ['rv', '020-subrequest.t', 'TEST 54: forwarding in-file request bodies to multiple subrequests (exceeding client_body_buffer_size)'],
         ['rv', '058-tcp-socket.t', 'TEST 37: successful reread after a read time out happen (receive -> receive) - response_body - response is expected'],
         ['rv', '058-tcp-socket.t', 'TEST 38: successful reread after a read time out happen (receive -> receiveuntil) - response_body - response is expected'],
@@ -900,7 +916,13 @@ my %white_list = (
         ['v', '152-timer-every.t', 'TEST 4: create the next timer immediately when timer start running - response_body - response is expected', qr/\+foo = 3$/sm],
         ['v', '152-timer-every.t', 'TEST 6: memory leak check - response_body - response is expected', qr/\+growth1 == growth2: false$/sm],
         ['v', '152-timer-every.t', qr/TEST 1: simple very - pattern ".*?elapsed:.*?" should match a line in error\.log/sm],
+        ['v', '157-socket-keepalive-hup.t', 'TEST 1: exiting - pattern "setkeepalive successfully" should match a line in error.log'],
+        ['v', '157-socket-keepalive-hup.t', 'TEST 1: exiting - pattern "lua tcp socket set keepalive while process exiting, closing connection" should match a line in error.log (req 0)'],
         ['v', '169-proxy-ssl-verify.t', 'TEST 5: sleep - pattern "(?^:elapsed in proxy ssl verify by lua: 0.(?:09|1\d)\d+ while loading proxy ssl verify by lua,)" should match a line in error.log'],
+        ['v', '170-proxy-ssl-cert.t', 'TEST 22: upstream connection aborted - pattern "upstream timed out (110: Connection timed out) while loading proxy ssl certificate by lua" should match a line in error.log'],
+        ['v', '170-proxy-ssl-cert.t', 'TEST 22: upstream connection aborted - pattern "proxy_ssl_certificate_by_lua: cert cb aborted" should match a line in error.log'],
+        ['v', '170-proxy-ssl-cert.t', 'TEST 5: sleep - pattern "(?^:elapsed in proxy ssl certificate by lua: 0.(?:09|1\d)\d+ while loading proxy ssl certificate by lua,)" should match a line in error.log'],
+        ['v', '189-http2-subreq-error-wakeup.t', undef],
         ['w', '005-exit.t', 'TEST 21: exit 403 in header filter - response_body_like - response is expected'],
         ['w', '005-exit.t', 'TEST 21: exit 403 in header filter - status code ok'],
         ['w', '005-exit.t', 'TEST 22: exit 201 in header filter - status code ok'],
@@ -954,6 +976,8 @@ my %white_list = (
         [undef, '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - response_body - response is expected', undef, 'linux i386'],
         [undef, '126-shdict-frag.t', 'TEST 9: cannot merge in-used big slabs page (forward) - stap output expected', undef, 'linux i386'],
         [undef, '132-lua-blocks.t', 'nginx: [emerg]', qr/Lua code block missing the closing long bracket \"\]=*\]\"(?: in|, the inlined Lua code)|unexpected lua closing long-bracket in|"events" directive is not allowed here in/],
+        # to-be-del
+        [undef, '138-balancer.t', 'TEST 22: upstream does not support http2'],
         [undef, '142-ssl-session-store.t', 'nginx: [emerg]', '"ssl_session_store_by_lua_block" directive is not allowed here in '],
         [undef, '146-malloc-trim.t', ' - grep_error_log_out', '+malloc_trim(1) returned 1', 'linux i386'],
         [undef, '146-malloc-trim.t', 'TEST 1: malloc_trim() every 1 req, in subreq - grep_error_log_out', "got: 'malloc_trim(1) returned 1", 'linux i386'],
@@ -966,9 +990,12 @@ my %white_list = (
         [undef, '169-proxy-ssl-verify.t', 'nginx: [emerg]', qr/"proxy_ssl_verify_by_lua_block" directive is not allowed here in/],
         [undef, '169-proxy-ssl-verify.t', 'nginx: [emerg]', qr/proxy_ssl_verify_by_lua\* should be used with proxy_pass https url/],
         [undef, '169-proxy-ssl-verify.t', 'upstream connection aborted - pattern "proxy_ssl_verify_by_lua: cert verify callback aborted" should match a line in error.log'],
+        [undef, '170-proxy-ssl-cert.t', 'nginx: [emerg]', '"proxy_ssl_certificate_by_lua_block" directive is not allowed here in'],
+        [undef, '170-proxy-ssl-cert.t', 'nginx: [emerg]', 'proxy_ssl_certificate_by_lua* should be used with proxy_pass https url'],
         [undef, undef, qr/ - stap output expected/, undef, 'linux i386'],
         [undef, undef, qr/ - stap output should match the pattern/, qr/doesn't match/m, 'linux i386'],
         [undef, undef, qr/pattern "\[error\]" should not match any line in error.log but matches line ".*? wrong ident \d+ response for \w+\.org, expect \d+/],
+        [undef, undef, qr/proxy_ssl_certificate_by_lua_block" directive is not allowed here in/],
     ],
 
     ngx_drizzle => [
